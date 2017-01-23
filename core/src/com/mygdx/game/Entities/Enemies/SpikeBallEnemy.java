@@ -1,0 +1,138 @@
+package com.mygdx.game.Entities.Enemies;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.utils.Timer;
+import com.mygdx.game.Entities.Player;
+import com.mygdx.game.GameEngine.EnemyType;
+import com.mygdx.game.GameEngine;
+import com.mygdx.game.Multimedia.Sounds;
+import com.mygdx.game.Multimedia.Sprites;
+
+/**
+ * Created by 100VOL on 09/08/2016.
+ */
+public class SpikeBallEnemy extends Enemy {
+
+    /* DESCRIPCIÓN:
+        enemigo estánder dispara y tiene una velocidad vertical de 200,
+        su movimiento es controlado por schedules de las clases derivadas de Level.
+     */
+
+    public SpikeBallEnemy(float x, float y, int behavior) {
+
+        super(x, y, behavior);
+        vSpeed = -550;
+        setWidth(48);
+        setHeight(48);
+        lives = 3;
+        
+        score = 15;
+        
+        type = EnemyType.SPIKE_BALL;
+
+    }
+
+
+    public void draw () {
+
+        GameEngine.batch.draw(Sprites.enemy_spikeBall[index].getTexture(), x, y, 48, 48);
+
+    }
+
+
+    protected void playAnimation() {
+
+        animation = new Timer.Task(){
+            @Override
+            public void run() {
+
+                if (index==0) {
+                    index = 1;
+                } else {
+                    index = 0;
+                }
+
+            }
+
+        };
+
+        //cada 0.1 segundos incrementamos el índice de la imagen.
+        Timer.schedule(animation,0.2f, 0.2f);
+
+    } //end playAnimation()
+
+    public void action(Player player) {
+
+        // le restamos a su Y las unidades por segundo de su vspeed aplicando la misma fórmula que a la nave. Lo mismo para su X y su hspeed;
+        y -= this.vSpeed * Gdx.graphics.getDeltaTime();
+        x += this.hSpeed * Gdx.graphics.getDeltaTime();
+        //si el enemigo se sale de los márgenes, invertimos su velocidad.
+        if (x <= 68 || x >= 480 - 32 ) {
+            this.setHSpeed(-hSpeed);
+        }
+
+        //COMPORTAMIENTO
+        runBehavior();
+
+
+        // en caso de que el enemigo se salga de los márgenes de la pantalla por debajo, la eliminamos.
+        if (y + 48 < 0) {
+            remove = true;
+        }
+
+        //si una gota colisiona con la nave...
+        /*if (overlaps(player)) {
+            // reproducimos el sonido correspondiente...
+            Sounds.explodeSound.play();
+            //si este enemigo choca con el jugador le bajaremos 1 vida, la spikeBall le bajara 2
+            player.decreaseLives(2);
+            // y la eliminamos de nuestro mundo.
+            kill();
+
+
+        }*/
+
+        if (getLives() <= 0) {
+
+            Sounds.explodeSound.play();
+            player.addScore(10);
+
+            random = MathUtils.random(0,10);
+
+            if (random == 5 || random == 8 || random == 2) {
+                //spawnPowerUpLive(enemyContainer.getX(), enemyContainer.getY());
+                charge = true;
+            }
+
+
+            remove = true;
+
+            //spawnExplosion(enemyContainer.getX() + 6, enemyContainer.getY() + 6);
+            //iterEnemys.remove();
+        }
+
+    } //end ACTION()
+
+    @Override
+    public void runBehavior() {
+
+    }
+
+
+
+	@Override
+	public boolean canShoot() {
+		return false;
+	}
+
+
+	@Override
+	public void shoot() {
+		// Se deja vacio, ya que son minas. NO DISPARAN... por ahora
+		
+	}
+
+
+}
