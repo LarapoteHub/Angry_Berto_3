@@ -132,9 +132,9 @@ public class Scr_Introduction implements Screen {
 
         batch.draw(Backgrounds.backgroundIntro, 0, 0);
 
-        batch.draw(Sprites.enemy_std[indexEnemy], enemyX, enemyY, 96, 96); //48x48
+        //batch.draw(Sprites.enemy_std[indexEnemy], enemyX, enemyY, 96, 96); //48x48
 
-        batch.draw(Sprites.enemy_std[indexEnemy], enemyX2, enemyY2, 96, 96); //48x48
+        //batch.draw(Sprites.enemy_std[indexEnemy], enemyX2, enemyY2, 96, 96); //48x48
 
         batch.draw(Sprites.berto, bertoX, bertoY, 100, 150);
 

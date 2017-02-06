@@ -1,5 +1,9 @@
 package com.mygdx.game.Entities.Enemies;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.mygdx.game.Entities.Player;
 import com.mygdx.game.GameEngine;
@@ -21,6 +25,19 @@ public class StandardEnemy extends Enemy {
 	/*
 	 * boolean ascending; boolean descending;
 	 */
+
+	private TextureRegion[] movingFrames;
+	private TextureRegion currentFrame;
+	private TextureRegion stopFrame;
+
+	private Animation movingAnimation, stopAnimation, currentAnimation;
+
+	TextureRegion[][] tmp;
+
+	private final int FRAME_COLS = 5;
+	private final int FRAME_ROWS = 1;
+
+	private float stateTime = 0f;
 
 	public StandardEnemy(float x, float y, int behavior) {
 		super(x, y, behavior);
@@ -47,12 +64,45 @@ public class StandardEnemy extends Enemy {
 		this.cooldown = GameEngine.uni.getEnemyAttackSpeed();
 		this.lives = GameEngine.uni.getEnemyHPBuff() * lives;
 
+		Sprites.enemy_std.setBounds(0, 0, Sprites.enemy_std.getTexture().getWidth(), Sprites.enemy_std.getTexture().getHeight());
+
+		tmp = Sprites.enemy_std.split(Sprites.enemy_std.getTexture(), (int)Sprites.enemy_std.getWidth() / FRAME_COLS, (int)Sprites.enemy_std.getHeight() / FRAME_ROWS);
+
+		//tmp = Sprites.enemy_std.split(Sprites.enemy_std.getTexture(), (int)Sprites.enemy_std.getTexture().getWidth() / FRAME_COLS, (int)Sprites.enemy_std.getTexture().getHeight() / FRAME_ROWS);
+		//tmp = TextureRegion.split(Sprites.enemy_std.getTexture(), Sprites.enemy_std.getTexture().getWidth() / FRAME_COLS, Sprites.enemy_std.getTexture().getHeight() / FRAME_ROWS);
+
+		movingFrames = new TextureRegion[FRAME_COLS - 1];
+
+		for (int i = 0 ; i < (FRAME_COLS - 1) ; i++) {
+			movingFrames[i] = tmp[0][i];
+		}
+
+		stopFrame = new TextureRegion();
+		stopFrame = tmp[0][4];
+
+		movingAnimation = new Animation(0.4f, movingFrames);
+
+		currentAnimation = stopAnimation;
+
 	}
 
 	public void draw() {
 
-		GameEngine.batch.draw(Sprites.enemy_std[index].getTexture(), x, y, width,
-				height);
+		//region DANGER
+		//Sprites.enemy_std.setPosition(x, y);
+		//Sprites.enemy_std.draw(GameEngine.batch);
+
+
+		//Sprite spr = new Sprite(currentFrame);
+		//spr.setBounds(x, y, Sprites.enemy_std.getTexture().getWidth(), Sprites.enemy_std.getTexture().getHeight());
+		//spr.setPosition(x, y);
+
+		//spr.draw(GameEngine.batch);
+		//endregion
+
+		currentFrame = movingAnimation.getKeyFrame(stateTime, true);
+		GameEngine.batch.draw(currentFrame, x, y, width, height);
+		stateTime += Gdx.graphics.getDeltaTime() * 6;
 
 	}
 

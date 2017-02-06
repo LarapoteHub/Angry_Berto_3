@@ -111,6 +111,7 @@ public class Loader {
         Sprites.player_propulsion[2].setTexture(new Texture(Gdx.files.internal("sprites/player/playerFire/fire2.png")));
 
         // Enemigos
+        /*
         Sprites.enemy_std = new Sprite[4];
         Sprites.enemy_std[0] = new Sprite();
         Sprites.enemy_std[1] = new Sprite();
@@ -120,6 +121,10 @@ public class Loader {
         Sprites.enemy_std[1].setTexture(new Texture(Gdx.files.internal("sprites/enemies/standardEnemy/standardEnemy1.png")));
         Sprites.enemy_std[2].setTexture(new Texture(Gdx.files.internal("sprites/enemies/standardEnemy/standardEnemy2.png")));
         Sprites.enemy_std[3].setTexture(new Texture(Gdx.files.internal("sprites/enemies/standardEnemy/standardEnemy3.png")));
+        */
+        //Sprites.enemy_std = new Texture("sprites/enemies/standardEnemy.png");
+        Sprites.enemy_std = new Sprite();
+        Sprites.enemy_std.setTexture(new Texture("sprites/enemies/standardEnemy.png"));
 
         Sprites.enemy_dodging = new Sprite[2];
         Sprites.enemy_dodging[0] = new Sprite();
@@ -149,7 +154,7 @@ public class Loader {
         Sprites.bullet_heavy_enemy[0].setTexture(new Texture(Gdx.files.internal("sprites/projectiles/heavyEnemyShoot.png")));
         Sprites.bullet_heavy_enemy[1].setTexture(new Texture(Gdx.files.internal("sprites/projectiles/heavyEnemyShootB.png")));
 
-        Sprites.boss_1 = new Sprite(new Texture(Gdx.files.internal("sprites/enemies/bosses/firstboss/firstBoss.png")));
+        Sprites.boss_1 = new Sprite(new Texture(Gdx.files.internal("sprites/enemies/heavyEnemy.png")));
 
         // Steroids warning! Might want to skip Olympics this year...
         Sprites.powerUp_charge_bar = new Sprite(new Texture(Gdx.files.internal("sprites/powerups/chargeBar/chargeBar9.png")));

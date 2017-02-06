@@ -52,7 +52,8 @@ public class Sprites {
 
 
     // Enemigos
-    public static Sprite[] enemy_std;
+    public static Sprite enemy_std;
+    //public static Texture enemy_std;
     public static Sprite[] enemy_dodging;
     public static Sprite[] enemy_spikeBall;
     public static Sprite[] enemy_heavy;
