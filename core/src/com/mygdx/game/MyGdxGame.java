@@ -1,14 +1,11 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.TimeUtils;
 import com.mygdx.game.Engine.MusicManager;
-import com.mygdx.game.Levels.*;
+import com.mygdx.game.Levels.Level;
+import com.mygdx.game.Levels.Level0;
 import com.mygdx.game.Multimedia.Musics;
-import com.mygdx.game.Multimedia.Sprites;
 
 public class MyGdxGame extends ApplicationAdapter {
 	// Dimensiones de la pantalla de renderizado DENTRO del juego...
@@ -17,7 +14,8 @@ public class MyGdxGame extends ApplicationAdapter {
 	// TODO o lo que haga falta.
 	public static final int WIDTH = 480, HEIGHT = 800;
 
-	public static final boolean DEBUG_MODE = false;
+	//TODO modo DEBUG
+	public static final boolean DEBUG_MODE = true;
 
 	public static final boolean SHOW_FPS = true;
 

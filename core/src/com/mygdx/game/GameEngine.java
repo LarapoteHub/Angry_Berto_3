@@ -21,10 +21,10 @@ import com.mygdx.game.Entities.Enemies.EvadingEnemy;
 import com.mygdx.game.Entities.Enemies.HeavyEnemy;
 import com.mygdx.game.Entities.Enemies.SpikeBallEnemy;
 import com.mygdx.game.Entities.Enemies.StandardEnemy;
-import com.mygdx.game.Entities.PowerUps.Charge;
 import com.mygdx.game.Entities.Entity;
 import com.mygdx.game.Entities.Explosion;
 import com.mygdx.game.Entities.Player;
+import com.mygdx.game.Entities.PowerUps.Charge;
 import com.mygdx.game.Entities.Star;
 import com.mygdx.game.Entities.Text;
 import com.mygdx.game.Multimedia.Sprites;
@@ -287,6 +287,9 @@ public class GameEngine {
 			start = System.nanoTime();
 			count++;
 		}
+
+		//region LIO MENTAL
+
 		//
 		// try {
 		//
@@ -410,10 +413,16 @@ public class GameEngine {
 		// }
 		//
 		//
+
+		//endregion
 	}
 
 	public static ArrayList<Enemy> getEnemies() {
 		return enemies;
+	}
+
+	public static ArrayList<Boss> getBosses() {
+		return bosses;
 	}
 
 
@@ -432,6 +441,7 @@ public class GameEngine {
 
 		batch.draw(Sprites.powerUp_charge_bar.getTexture(), 2, 350);
 
+		//region OLD CODE
 		/*
 		 * if (player.getCharge() >= 10) { batch.draw(Sprites.chargeBarImage[1],
 		 * 4, 370); } if (player.getCharge() >= 30) {
@@ -448,8 +458,11 @@ public class GameEngine {
 		 * (player.getCharge() >= 100) { batch.draw(Sprites.chargeBarImage[9],
 		 * 4, 370); }
 		 */
+		//endregion
 
 	}
+
+	//region THATCH
 
 	/*
 	 * public void drawObjects(SpriteBatch batch, boolean pause,
@@ -578,6 +591,8 @@ public class GameEngine {
 					 * --------------------------------
 					 */
 
+	//endregion
+
 	/***************************************************************************************************************************************************
 	 * MÉTODOS DE SPAWN
 	 **************************************************************************************************************************************************/
@@ -644,6 +659,8 @@ public class GameEngine {
 	} // end spawnEnemy()
 		// ---------------------------------------------------------------------------
 
+	//region MORE THATCH
+
 	/*
 	 * public void spawnEnemyShoot(Enemy enem, int type) {
 	 * 
@@ -667,6 +684,8 @@ public class GameEngine {
 	 * } // end spawnPlayerShoot()
 	 */
 	// ---------------------------------------------------------------------
+
+	//endregion
 
 	public void spawnExplosion(float x, float y) {
 

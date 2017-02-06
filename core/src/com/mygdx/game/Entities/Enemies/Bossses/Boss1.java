@@ -3,9 +3,9 @@ package com.mygdx.game.Entities.Enemies.Bossses;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.utils.Timer;
 import com.mygdx.game.Entities.Player;
 import com.mygdx.game.GameEngine;
+import com.mygdx.game.Multimedia.Backgrounds;
 import com.mygdx.game.Multimedia.Sprites;
 import com.mygdx.game.MyGdxGame;
 
@@ -24,8 +24,10 @@ public class Boss1 extends Boss {
         super(x, y, 0);
         vSpeed = -100; //-300 no se por que
         hSpeed = 0;
-        width = 48;
-        height = 48;
+        //width = 48;
+        //height = 48;
+        width = 96;
+        height = 96;
         lives = 2;
 
         // Implementado en otro lado. Usar cooldown
@@ -73,8 +75,10 @@ public class Boss1 extends Boss {
     @Override
     public void runBehavior() {
 
-        System.out.println("BOSS HSPEED: "+hSpeed+" VSPEED: "+vSpeed+" X: "+x+" Y: "+y);
-
+        //System.out.println("BOSS HSPEED: "+hSpeed+" VSPEED: "+vSpeed+" X: "+x+" Y: "+y);
+        System.out.println("We need to build a BOSS");
+        System.out.println("And some Universes");
+        System.out.println("And it has to be build QUICLY!!");
         switch(behavior) {
             /*
             en funcion de si esta a la izquierda o a la derecha,
@@ -95,12 +99,12 @@ public class Boss1 extends Boss {
                             hSpeed = 400;
                             vSpeed = 0;
                             behaviorPhase++;
-                            increaseActionTimer();
 
                         }
                         break;
 
-                    case 1: if (actionTimer==10) {
+                    case 1:
+                        if (actionTimer >= Math.random() * 500 + 250) {
 
                         hSpeed = 0;
                         vSpeed = -400;
@@ -123,7 +127,6 @@ public class Boss1 extends Boss {
                     case 3: if (y >= referenceY) {
                         hSpeed = 400;
                         vSpeed = 0;
-                        increaseActionTimer();
                         behaviorPhase = 1;
 
                     }
@@ -132,28 +135,6 @@ public class Boss1 extends Boss {
 
                 break;
         } //end switch
-
-    }
-
-    private void increaseActionTimer() {
-
-
-
-        Timer.Task run = new Timer.Task(){
-            @Override
-            public void run() {
-
-                actionTimer++;
-
-            }
-
-        };
-
-        if (!run.isScheduled()) {
-
-            Timer.schedule(run, 0, 0.5f, 10);
-        }
-
 
     }
 
@@ -169,6 +150,9 @@ public class Boss1 extends Boss {
 
     @Override
     public void move() {
+
+        //super.move();
+
         // Moverlo simplemente.
         x += hSpeed * Gdx.graphics.getDeltaTime();
         y += vSpeed * Gdx.graphics.getDeltaTime();
@@ -176,8 +160,8 @@ public class Boss1 extends Boss {
         // Comprobar si hace falta quitarlo o no.
         if ((this.y > MyGdxGame.HEIGHT || this.y + this.height < 0) && !canLiveOutsideScreen()) {
             vSpeed = -vSpeed;
-        }
-        if ((this.x + this.width > MyGdxGame.WIDTH || this.x + this.width < 0 + 48) && !canLiveOutsideScreen()) {
+        }                                                    //bad trip
+        if ((this.x + this.width > MyGdxGame.WIDTH || this.x/* + this.width*/ < 0 + Backgrounds.backgroundPowerUps.getWidth()) && !canLiveOutsideScreen()) {
             hSpeed = -hSpeed;
         }
 
@@ -188,5 +172,7 @@ public class Boss1 extends Boss {
         if (this.y < MyGdxGame.HEIGHT && this.y + this.height > 0) {
             this.setLivesOutsideScreen(false);
         }
+
+        actionTimer++;
     }
 }

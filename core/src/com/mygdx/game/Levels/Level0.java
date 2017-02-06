@@ -12,20 +12,21 @@ public class Level0 extends Level {
 
     int movementIndex;
     int random;
-    int nPhases = 8;
 
     public Level0() {
         movementIndex = 0;
-
+        this.nPhases = 8;
+        this.bossPhase = 9;
+        this.maxPhases = MathUtils.random(10, 15);
     }
 
     //run level
     public void runLevel() {
     	if (MyGdxGame.DEBUG_MODE)
             // "phase" tiene otro significado comparado con "fase" en English
-    		System.out.println("FASE: "+ fase);
+            System.out.println("FASE: " + phase);
 
-        switch (fase) {
+        switch (phase) {
 
 
             case 0: //FASE 0 ***********************************************************************
@@ -41,11 +42,9 @@ public class Level0 extends Level {
                     GameEngine.spawnEnemy(78, 960, EnemyType.STANDARD_ENEMY, 0);
                     GameEngine.spawnEnemy(422, 960, EnemyType.STANDARD_ENEMY, 0);
 
-                } else if (GameEngine.getEnemies().size() <= 0) {
+                } else if (GameEngine.getEnemies().isEmpty()) {
 
-                    changeFase(nPhases);
-                    //fase++;
-                    //running = false;
+                    changePhase();
 
                 }
                 break;
@@ -55,18 +54,6 @@ public class Level0 extends Level {
 
                 if (!running) {
                     running = true;
-                    
-                    // NOTA*: MALA IDEA USAR VALORES QUE NO DEPENDEN DE LA PANTALLA DEL JUEGO!
-//                    GameEngine.addEntity(new StandardEnemy(76, 800, 0), EntityType.ENEMY);
-//                    GameEngine.addEntity(new StandardEnemy(422, 800, 0), EntityType.ENEMY);
-//                    GameEngine.addEntity(new StandardEnemy(76, 880, 0), EntityType.ENEMY);
-//                    GameEngine.addEntity(new StandardEnemy(422, 880, 0), EntityType.ENEMY);
-//                    GameEngine.addEntity(new StandardEnemy(76, 960, 0), EntityType.ENEMY);
-//                    GameEngine.addEntity(new StandardEnemy(422, 960, 0), EntityType.ENEMY);
-//                    GameEngine.addEntity(new StandardEnemy(76, 1040, 0), EntityType.ENEMY);
-//                    GameEngine.addEntity(new StandardEnemy(422, 1040, 0), EntityType.ENEMY);
-//                    GameEngine.addEntity(new StandardEnemy(76, 1120, 0), EntityType.ENEMY);
-//                    GameEngine.addEntity(new StandardEnemy(422, 1120, 0), EntityType.ENEMY);
 
                     GameEngine.spawnEnemy(78, 800, EnemyType.STANDARD_ENEMY, 0);
                     GameEngine.spawnEnemy(422, 800, EnemyType.STANDARD_ENEMY, 0);
@@ -80,9 +67,9 @@ public class Level0 extends Level {
                     GameEngine.spawnEnemy(422, 1120, EnemyType.STANDARD_ENEMY, 0);
 
 
-                } else  if (GameEngine.getEnemies().size() <= 0){
+                } else if (GameEngine.getEnemies().isEmpty()) {
 
-                    changeFase(nPhases);
+                    changePhase();
                     //fase++;
                     //running = false;
 
@@ -104,12 +91,7 @@ public class Level0 extends Level {
                     random = MathUtils.random(0, 1);
 
                     if (random == 0) {
-//                    	GameEngine.addEntity(new SpikeBallEnemy(71.1f, 800, -1), EntityType.ENEMY);
-//                    	GameEngine.addEntity(new SpikeBallEnemy(122.2f, 800, -1), EntityType.ENEMY);
-//                    	GameEngine.addEntity(new SpikeBallEnemy(71.1f, 880, -1), EntityType.ENEMY);
-//                    	GameEngine.addEntity(new SpikeBallEnemy(122.2f, 880, -1), EntityType.ENEMY);
-//                    	GameEngine.addEntity(new SpikeBallEnemy(71.1f, 960, -1), EntityType.ENEMY);
-//                    	GameEngine.addEntity(new SpikeBallEnemy(122.2f, 960, -1), EntityType.ENEMY);
+
                         GameEngine.spawnEnemy(71.1f, 800, EnemyType.SPIKE_BALL, -1); //spikeBall
                         GameEngine.spawnEnemy(122.2f, 800, EnemyType.SPIKE_BALL, -1); //spikeBall
                         GameEngine.spawnEnemy(71.1f, 880, EnemyType.SPIKE_BALL, -1); //spikeBall
@@ -118,12 +100,6 @@ public class Level0 extends Level {
                         GameEngine.spawnEnemy(122.2f, 960, EnemyType.SPIKE_BALL, -1); //spikeBall
                     }
                     if (random == 1) {
-//                    	GameEngine.addEntity(new SpikeBallEnemy(173.3f,  800,  -1), EntityType.ENEMY);
-//                    	GameEngine.addEntity(new SpikeBallEnemy(244.4f,  800,  -1), EntityType.ENEMY);
-//                    	GameEngine.addEntity(new SpikeBallEnemy(173.3f,  880,  -1), EntityType.ENEMY);
-//                    	GameEngine.addEntity(new SpikeBallEnemy(244.4f,  880,  -1), EntityType.ENEMY);
-//                    	GameEngine.addEntity(new SpikeBallEnemy(173.3f,  960,  -1), EntityType.ENEMY);
-//                    	GameEngine.addEntity(new SpikeBallEnemy(244.4f,  960,  -1), EntityType.ENEMY);
                     	
                         GameEngine.spawnEnemy(173.3f, 800, EnemyType.SPIKE_BALL, -1); //spikeBall
                         GameEngine.spawnEnemy(224.4f, 800, EnemyType.SPIKE_BALL, -1); //spikeBall
@@ -153,11 +129,11 @@ public class Level0 extends Level {
                     }
 
 
-                } else if (GameEngine.getEnemies().size() <= 0) {
+                } else if (GameEngine.getEnemies().isEmpty()) {
 
                     //fase++;
                     //running = false;
-                    changeFase(nPhases);
+                    changePhase();
                 }
 
                 break;
@@ -177,9 +153,9 @@ public class Level0 extends Level {
                     GameEngine.spawnEnemy(303, 880, EnemyType.EVADING_ENEMY, -1);
 
 
-                } else if (GameEngine.getEnemies().size() <= 0){
+                } else if (GameEngine.getEnemies().isEmpty()) {
 
-                    changeFase(nPhases);
+                    changePhase();
 
                 } //end else
 
@@ -205,9 +181,9 @@ public class Level0 extends Level {
                         GameEngine.spawnEnemy(403,960, EnemyType.SPIKE_BALL, -1);
 
 
-                } else if (GameEngine.getEnemies().size() <= 0){
+                } else if (GameEngine.getEnemies().isEmpty()) {
 
-                    changeFase(nPhases);
+                    changePhase();
 
                 } //end else
 
@@ -227,9 +203,9 @@ public class Level0 extends Level {
                     GameEngine.spawnEnemy(416, 880, EnemyType.HEAVY_ENEMY, -1);
 
 
-                } else if (GameEngine.getEnemies().size() <= 0){
+                } else if (GameEngine.getEnemies().isEmpty()) {
 
-                    changeFase(nPhases);
+                    changePhase();
 
                 } //end else
 
@@ -247,9 +223,9 @@ public class Level0 extends Level {
                     GameEngine.spawnEnemy(416, 880, EnemyType.STANDARD_ENEMY, 1);
 
 
-                } else if (GameEngine.getEnemies().size() <= 0){
+                } else if (GameEngine.getEnemies().isEmpty()) {
 
-                    changeFase(nPhases);
+                    changePhase();
 
                 } //end else
 
@@ -259,7 +235,8 @@ public class Level0 extends Level {
 
                 if (!running) {
                     running = true;
-
+                    //TODO cagoenraul
+                    //System.exit(7);
                     GameEngine.spawnEnemy(71.1f, 800, EnemyType.SPIKE_BALL, -1); //spikeBall
                     GameEngine.spawnEnemy(122.2f, 800, EnemyType.SPIKE_BALL, -1); //spikeBall
 
@@ -272,9 +249,9 @@ public class Level0 extends Level {
                     GameEngine.spawnEnemy(377.7f, 800, EnemyType.SPIKE_BALL, -1); //spikeBall
                     GameEngine.spawnEnemy(428.8f, 800, EnemyType.SPIKE_BALL, -1); //spikeBall
 
-                } else if (GameEngine.getEnemies().size() <= 0){
+                } else if (GameEngine.getEnemies().isEmpty()) {
 
-                    changeFase(nPhases);
+                    changePhase();
 
                 } //end else
 
@@ -285,8 +262,26 @@ public class Level0 extends Level {
             		running = true;
             		
             		GameEngine.changeUniverse(2);
-            		changeFase(nPhases);
+                    changePhase();
+
+                    System.out.println("UNIVERSO CAMBIADO");
+
             	}
+
+            case 9:
+
+                if (!running) {
+                    running = true;
+                    //GameEngine.spawnBoss(78, 500, GameEngine.BossType.TYPE_1); //boss1
+                    GameEngine.spawnBoss(78, 700, GameEngine.BossType.TYPE_1); //boss1
+
+                } else if (GameEngine.getBosses().isEmpty()) {
+
+                    changePhase();
+
+                } //end else
+
+                break;
 
         } //end switch
 

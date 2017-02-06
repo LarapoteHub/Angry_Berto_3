@@ -1,17 +1,11 @@
 package com.mygdx.game.Entities;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.Timer;
-import com.mygdx.game.Engine.GameState;
+import com.mygdx.game.GameEngine;
 import com.mygdx.game.Multimedia.Sounds;
 import com.mygdx.game.Multimedia.Sprites;
-import com.mygdx.game.GameEngine;
 import com.mygdx.game.MyGdxGame;
 
 /**
@@ -19,8 +13,8 @@ import com.mygdx.game.MyGdxGame;
  */
 public class Player extends Ship {
 
-	// Cheats!
-	private boolean GODMODE = false;
+	//TODO Cheats!
+	private boolean GODMODE = true;
 	private int initialLives;
 	// --------
 

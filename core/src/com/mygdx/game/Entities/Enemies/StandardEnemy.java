@@ -1,19 +1,12 @@
 package com.mygdx.game.Entities.Enemies;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.utils.Timer;
-import com.mygdx.game.Entities.*;
+import com.mygdx.game.Entities.Player;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.GameEngine.EnemyType;
-import com.mygdx.game.Engine.GameState;
 import com.mygdx.game.GameEngine.EntityType;
-import com.mygdx.game.Multimedia.Sounds;
 import com.mygdx.game.Multimedia.Sprites;
-import com.mygdx.game.Projectiles.HeavyEnemyShoot;
 import com.mygdx.game.Projectiles.StandardEnemyShoot;
-import com.mygdx.game.MyGdxGame;
 
 /**
  * Created by 100VOL on 09/08/2016. Modded by RedMercy since then.
@@ -63,6 +56,7 @@ public class StandardEnemy extends Enemy {
 
 	}
 
+	//region CHANGE THIS
 	//
 	// // TODO Change this
 	// protected void playAnimation() {
@@ -231,6 +225,8 @@ public class StandardEnemy extends Enemy {
 	// }
 	//
 	// }
+
+	//endregion
 
 	@Override
 	public boolean canShoot() {

@@ -149,7 +149,7 @@ public class Loader {
         Sprites.bullet_heavy_enemy[0].setTexture(new Texture(Gdx.files.internal("sprites/projectiles/heavyEnemyShoot.png")));
         Sprites.bullet_heavy_enemy[1].setTexture(new Texture(Gdx.files.internal("sprites/projectiles/heavyEnemyShootB.png")));
 
-        Sprites.boss_1 = new Sprite(new Texture(Gdx.files.internal("sprites/enemies/to Use/cartoonship blue.png")));
+        Sprites.boss_1 = new Sprite(new Texture(Gdx.files.internal("sprites/enemies/bosses/firstboss/firstBoss.png")));
 
         // Steroids warning! Might want to skip Olympics this year...
         Sprites.powerUp_charge_bar = new Sprite(new Texture(Gdx.files.internal("sprites/powerups/chargeBar/chargeBar9.png")));

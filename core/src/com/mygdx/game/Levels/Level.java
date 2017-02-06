@@ -13,16 +13,19 @@ public abstract class Level {
 
     boolean running;
     public boolean finished;
-    int fase;
+    int phase;
+    int nPhases;
+    int bossPhase;
+    int maxPhases;
+    int phasesCount = 0;
 
     Player player;
-
 
 
     public Level() {
         running = false;
         finished = false;
-        fase = 0;
+        phase = 0;
 
         //this.player = gameEngineInstance.getPlayer();
     }
@@ -32,12 +35,21 @@ public abstract class Level {
     }
 
 
-    public abstract void runLevel() ;
+    public abstract void runLevel();
 
-    protected void changeFase(int fase) {
+    protected void changePhase() {
+
 
         running = false;
-        this.fase = MathUtils.random(0,fase);
+
+        if (phasesCount >= maxPhases) {
+            this.phasesCount = 0;
+            this.phase = bossPhase;
+        } else {
+
+            this.phase = MathUtils.random(0, nPhases);
+        }
+        phasesCount++;
 
 
     }
