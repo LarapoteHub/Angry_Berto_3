@@ -78,11 +78,14 @@ public class Loader {
         //Sprites.star = new Sprite(new Texture(Gdx.files.internal("sprites/others/star.png")));
         Sprites.star = new Sprite(new Texture(Gdx.files.internal("sprites/others/star.png")));
 
+        /*
         Sprites.explosion = new Sprite[23];
         for (int i = 0; i < Sprites.explosion.length; i++) {
         	Sprites.explosion[i] = new Sprite();
             Sprites.explosion[i].setTexture(new Texture(Gdx.files.internal("sprites/others/explosion/explode" + i + ".png")));
         }
+        */
+        Sprites.explosion = new Sprite(new Texture("sprites/others/explosion.png"));
 
         // Demás
         Sprites.life = new Sprite(new Texture(Gdx.files.internal("sprites/buttons/live.png")));

@@ -34,7 +34,8 @@ public class Sprites {
     // Otros    -   Lo que no cuadra en ninguna categoria y son llaneros solitarios...
     // Efectos
     public static Sprite star;
-    public static Sprite[] explosion;
+    //public static Sprite[] explosion;
+    public static Sprite explosion;
     // Demás
     public static Sprite life;      // live = vivir (de "Dónde vives?")
     // Logos

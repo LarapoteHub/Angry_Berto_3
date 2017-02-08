@@ -46,6 +46,17 @@ public abstract class Enemy extends Ship {
     //temporizador enrtre disparos
     protected int timerShoot;
 
+    protected TextureRegion[] movingFrames;
+    protected TextureRegion currentFrame;
+    protected TextureRegion stopFrame;
+
+    protected Animation movingAnimation, stopAnimation, currentAnimation;
+
+    TextureRegion[][] tmp;
+
+    protected int FRAME_COLS;
+    protected int FRAME_ROWS;
+
 
     public Enemy(float x, float y, int behavior) {
     	cooldown = 50;
@@ -143,5 +154,6 @@ public abstract class Enemy extends Ship {
 		return powerUpProb;
 	}
 
+    //public abstract void initAnimation();
 
 }

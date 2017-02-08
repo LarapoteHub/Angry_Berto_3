@@ -28,13 +28,12 @@ public class StandardEnemy extends Enemy {
 
 	private TextureRegion[] movingFrames;
 	private TextureRegion currentFrame;
-	private TextureRegion stopFrame;
 
-	private Animation movingAnimation, stopAnimation, currentAnimation;
+	private Animation movingAnimation, currentAnimation;
 
 	TextureRegion[][] tmp;
 
-	private final int FRAME_COLS = 5;
+	private final int FRAME_COLS = 4;
 	private final int FRAME_ROWS = 1;
 
 	private float stateTime = 0f;
@@ -64,25 +63,7 @@ public class StandardEnemy extends Enemy {
 		this.cooldown = GameEngine.uni.getEnemyAttackSpeed();
 		this.lives = GameEngine.uni.getEnemyHPBuff() * lives;
 
-		Sprites.enemy_std.setBounds(0, 0, Sprites.enemy_std.getTexture().getWidth(), Sprites.enemy_std.getTexture().getHeight());
-
-		tmp = Sprites.enemy_std.split(Sprites.enemy_std.getTexture(), (int)Sprites.enemy_std.getWidth() / FRAME_COLS, (int)Sprites.enemy_std.getHeight() / FRAME_ROWS);
-
-		//tmp = Sprites.enemy_std.split(Sprites.enemy_std.getTexture(), (int)Sprites.enemy_std.getTexture().getWidth() / FRAME_COLS, (int)Sprites.enemy_std.getTexture().getHeight() / FRAME_ROWS);
-		//tmp = TextureRegion.split(Sprites.enemy_std.getTexture(), Sprites.enemy_std.getTexture().getWidth() / FRAME_COLS, Sprites.enemy_std.getTexture().getHeight() / FRAME_ROWS);
-
-		movingFrames = new TextureRegion[FRAME_COLS - 1];
-
-		for (int i = 0 ; i < (FRAME_COLS - 1) ; i++) {
-			movingFrames[i] = tmp[0][i];
-		}
-
-		stopFrame = new TextureRegion();
-		stopFrame = tmp[0][4];
-
-		movingAnimation = new Animation(0.4f, movingFrames);
-
-		currentAnimation = stopAnimation;
+		initAnimation();
 
 	}
 
@@ -100,7 +81,7 @@ public class StandardEnemy extends Enemy {
 		//spr.draw(GameEngine.batch);
 		//endregion
 
-		currentFrame = movingAnimation.getKeyFrame(stateTime, true);
+		currentFrame = currentAnimation.getKeyFrame(stateTime, true);
 		GameEngine.batch.draw(currentFrame, x, y, width, height);
 		stateTime += Gdx.graphics.getDeltaTime() * 6;
 
@@ -368,6 +349,25 @@ public class StandardEnemy extends Enemy {
 			CDCount -= 3;
 		}
 		
+	}
+
+	public void initAnimation() {
+
+		Sprites.enemy_std.setBounds(0, 0, Sprites.enemy_std.getTexture().getWidth(), Sprites.enemy_std.getTexture().getHeight());
+
+		tmp = Sprites.enemy_std.split(Sprites.enemy_std.getTexture(), (int)Sprites.enemy_std.getWidth() / FRAME_COLS, (int)Sprites.enemy_std.getHeight() / FRAME_ROWS);
+
+		movingFrames = new TextureRegion[FRAME_COLS];
+
+		for (int i = 0 ; i < FRAME_COLS ; i++) {
+			movingFrames[i] = tmp[0][i];
+		}
+
+		movingAnimation = new Animation(0.4f, movingFrames);
+		movingAnimation.setPlayMode(Animation.PlayMode.LOOP);
+
+		currentAnimation = movingAnimation;
+
 	}
 
 }
