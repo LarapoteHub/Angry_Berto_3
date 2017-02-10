@@ -16,13 +16,14 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.MathUtils;
 import com.mygdx.game.Buttons.Button;
 import com.mygdx.game.Entities.Enemies.Bossses.Boss;
+import com.mygdx.game.Entities.Enemies.Enemy;
 import com.mygdx.game.Entities.Entity;
 import com.mygdx.game.Entities.Explosion;
 import com.mygdx.game.Entities.Star;
-import com.mygdx.game.Entities.Enemies.Enemy;
+import com.mygdx.game.GameEngine;
 import com.mygdx.game.Levels.Level;
 import com.mygdx.game.Levels.Level0;
-import com.mygdx.game.Levels.LevelTest;
+import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Projectiles.PlayerShoot;
 import com.mygdx.game.Projectiles.Projectile;
 import com.mygdx.game.Screens.Scr_GameOver;
@@ -30,8 +31,6 @@ import com.mygdx.game.Screens.Scr_Introduction;
 import com.mygdx.game.Screens.Scr_MainMenu;
 import com.mygdx.game.Screens.Scr_Pause;
 import com.mygdx.game.Screens.Scr_Play;
-import com.mygdx.game.GameEngine;
-import com.mygdx.game.MyGdxGame;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -363,7 +362,7 @@ public class Logic extends GameEngine implements Runnable {
                     p.destroy();
                     if (enem.getLives() <= 0) {
                         enem.kill();
-                        addEntity(new Explosion(enem.getX(), enem.getY()),
+                        addEntity(new Explosion(enem.getX(), enem.getY(), enem.getWidth(), enem.getHeight()),
                                 EntityType.OTHER);
                         player.addScore(enem.getScore());
                         Random rnd = new Random(System.nanoTime()

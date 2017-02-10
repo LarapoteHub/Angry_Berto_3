@@ -129,12 +129,14 @@ public class Loader {
         Sprites.enemy_std = new Sprite();
         Sprites.enemy_std.setTexture(new Texture("sprites/enemies/standardEnemy.png"));
 
+        /*
         Sprites.enemy_dodging = new Sprite[2];
         Sprites.enemy_dodging[0] = new Sprite();
         Sprites.enemy_dodging[1] = new Sprite();
         Sprites.enemy_dodging[0].setTexture(new Texture(Gdx.files.internal("sprites/enemies/evadingEnemy.png")));
         Sprites.enemy_dodging[1].setTexture(new Texture(Gdx.files.internal("sprites/enemies/evadingEnemy-B.png")));
-
+        */
+        Sprites.enemy_dodging = new Sprite(new Texture(Gdx.files.internal("sprites/enemies/evadingEnemy.png")));
         Sprites.enemy_spikeBall = new Sprite[2];
         Sprites.enemy_spikeBall[0] = new Sprite();
         Sprites.enemy_spikeBall[1] = new Sprite();

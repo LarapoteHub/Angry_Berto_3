@@ -1,15 +1,10 @@
 package com.mygdx.game.Entities;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.utils.Timer;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.Multimedia.Sprites;
-
-import java.util.Iterator;
 
 /**
  * Created by 100VOL on 17/08/2016.
@@ -33,10 +28,13 @@ public class Explosion extends Entity {
 
     private float stateTime = 0f;
 
-    public Explosion(float x, float y) {
+    public Explosion(float x, float y, float width, float height) {
 
         this.x = x;
         this.y = y;
+
+        this.width = width;
+        this.height = height;
 
         //iniciamos la animación.
         initAnimation();
@@ -58,8 +56,9 @@ public class Explosion extends Entity {
     public void draw() {
 
         //GameEngine.batch.draw(Sprites.explosion[index].getTexture(), x, y, 56, 56);
-
-        currentFrame = currentAnimation.getKeyFrame(stateTime, true);
+        //Sprites.explosion.draw(GameEngine.batch);             //EL SEGUNDO PARAMETRO ES EL LOOP
+        currentFrame = currentAnimation.getKeyFrame(stateTime, false);
+        System.out.println("Exp at :" + x + "  " + y + " - " + width + "  " + height);
         GameEngine.batch.draw(currentFrame, x, y, width, height);
         stateTime += Gdx.graphics.getDeltaTime() * 6;
 
@@ -94,18 +93,23 @@ public class Explosion extends Entity {
 
         Sprites.explosion.setBounds(0, 0, Sprites.explosion.getTexture().getWidth(), Sprites.explosion.getTexture().getHeight());
 
-        tmp = Sprites.explosion.split(Sprites.explosion.getTexture(), (int)Sprites.explosion.getWidth() / FRAME_COLS, (int)Sprites.explosion.getHeight() / FRAME_ROWS);
+        Sprites.explosion.setPosition(x, y);
 
+
+        tmp = Sprites.explosion.split(Sprites.explosion.getTexture(), (int) Sprites.explosion.getWidth() / FRAME_COLS, (int) Sprites.explosion.getHeight() / FRAME_ROWS);
         explodingFrames = new TextureRegion[FRAME_COLS];
 
-        for (int i = 0 ; i < FRAME_COLS ; i++) {
+        explodingFrames = tmp[0];
+
+        /*for (int i = 0 ; i < FRAME_COLS ; i++) {
             explodingFrames[i] = tmp[0][i];
-        }
+        }*/
 
         explodingAnimation = new Animation(0.4f, explodingFrames);
         explodingAnimation.setPlayMode(Animation.PlayMode.NORMAL);
 
         currentAnimation = explodingAnimation;
+
 
     }
 }

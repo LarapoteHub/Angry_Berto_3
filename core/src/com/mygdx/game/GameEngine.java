@@ -689,7 +689,7 @@ public class GameEngine {
 
 	public void spawnExplosion(float x, float y) {
 
-		explosionsList.add(new Explosion(x, y));
+		//explosionsList.add(new Explosion(x, y));
 
 	}
 

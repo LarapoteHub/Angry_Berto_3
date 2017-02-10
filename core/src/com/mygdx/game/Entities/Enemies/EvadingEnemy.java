@@ -1,18 +1,17 @@
 package com.mygdx.game.Entities.Enemies;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Timer;
-import com.mygdx.game.Entities.*;
+import com.mygdx.game.Entities.Player;
 import com.mygdx.game.GameEngine;
-import com.mygdx.game.Engine.GameState;
 import com.mygdx.game.GameEngine.EnemyType;
 import com.mygdx.game.GameEngine.EntityType;
 import com.mygdx.game.Multimedia.Sounds;
 import com.mygdx.game.Multimedia.Sprites;
 import com.mygdx.game.Projectiles.StandardEnemyShoot;
-import com.mygdx.game.MyGdxGame;
 
 /**
  * Created by 100VOL on 09/08/2016.
@@ -25,6 +24,17 @@ public class EvadingEnemy extends Enemy {
         a una velocidad de 300, su velocidad vertical es de 250.
      */
 
+    private TextureRegion[] movingFrames;
+    private TextureRegion currentFrame;
+
+    private Animation movingAnimation, currentAnimation;
+
+    TextureRegion[][] tmp;
+
+    private final int FRAME_COLS = 2;
+    private final int FRAME_ROWS = 1;
+
+    private float stateTime = 0f;
 
     public EvadingEnemy(float x, float y, int behavior) {
         super(x, y, behavior);
@@ -41,12 +51,18 @@ public class EvadingEnemy extends Enemy {
         
         powerUpProb = 15;
 
+        initAnimation();
+
     }
 
     
     public void draw () {
 
-        GameEngine.batch.draw(Sprites.enemy_dodging[index].getTexture(), x, y, 48, 48);
+        currentFrame = currentAnimation.getKeyFrame(stateTime, true);
+        GameEngine.batch.draw(currentFrame, x, y, width, height);
+        stateTime += Gdx.graphics.getDeltaTime();
+
+        //GameEngine.batch.draw(Sprites.enemy_dodging[index].getTexture(), x, y, 48, 48);
 
     }
 
@@ -159,6 +175,25 @@ public class EvadingEnemy extends Enemy {
 		GameEngine.addEntity(new StandardEnemyShoot(this), EntityType.BULLET_ENEMY);
         canShoot = false;
 	}
+
+    public void initAnimation() {
+
+        Sprites.enemy_dodging.setBounds(0, 0, Sprites.enemy_dodging.getTexture().getWidth(), Sprites.enemy_dodging.getTexture().getHeight());
+
+        tmp = Sprites.enemy_dodging.split(Sprites.enemy_dodging.getTexture(), (int) Sprites.enemy_dodging.getWidth() / FRAME_COLS, (int) Sprites.enemy_dodging.getHeight() / FRAME_ROWS);
+
+        movingFrames = new TextureRegion[FRAME_COLS];
+
+        for (int i = 0; i < FRAME_COLS; i++) {
+            movingFrames[i] = tmp[0][i];
+        }
+
+        movingAnimation = new Animation(0.4f, movingFrames);
+        movingAnimation.setPlayMode(Animation.PlayMode.LOOP);
+
+        currentAnimation = movingAnimation;
+
+    }
 
 
 }

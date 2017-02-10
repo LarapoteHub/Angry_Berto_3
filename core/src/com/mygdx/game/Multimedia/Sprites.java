@@ -1,7 +1,5 @@
 package com.mygdx.game.Multimedia;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 /**
@@ -36,6 +34,7 @@ public class Sprites {
     public static Sprite star;
     //public static Sprite[] explosion;
     public static Sprite explosion;
+
     // Demás
     public static Sprite life;      // live = vivir (de "Dónde vives?")
     // Logos
@@ -55,7 +54,8 @@ public class Sprites {
     // Enemigos
     public static Sprite enemy_std;
     //public static Texture enemy_std;
-    public static Sprite[] enemy_dodging;
+    //public static Sprite[] enemy_dodging;
+    public static Sprite enemy_dodging;
     public static Sprite[] enemy_spikeBall;
     public static Sprite[] enemy_heavy;
 
