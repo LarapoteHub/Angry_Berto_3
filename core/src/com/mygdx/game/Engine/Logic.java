@@ -18,7 +18,7 @@ import com.mygdx.game.Buttons.Button;
 import com.mygdx.game.Entities.Enemies.Bossses.Boss;
 import com.mygdx.game.Entities.Enemies.Enemy;
 import com.mygdx.game.Entities.Entity;
-import com.mygdx.game.Entities.Explosion;
+import com.mygdx.game.Entities.PlainAnimations.Explosion;
 import com.mygdx.game.Entities.Star;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.Levels.Level;
@@ -363,7 +363,7 @@ public class Logic extends GameEngine implements Runnable {
                     if (enem.getLives() <= 0) {
                         enem.kill();
                         addEntity(new Explosion(enem.getX(), enem.getY(), enem.getWidth(), enem.getHeight()),
-                                EntityType.OTHER);
+                                EntityType.PLAIN_ANIMATION);
                         player.addScore(enem.getScore());
                         Random rnd = new Random(System.nanoTime()
                                 * System.nanoTime() / 13);

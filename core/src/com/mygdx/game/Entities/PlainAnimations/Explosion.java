@@ -1,20 +1,19 @@
-package com.mygdx.game.Entities;
+package com.mygdx.game.Entities.PlainAnimations;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.mygdx.game.Entities.PlainAnimations.PlainAnimation;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.Multimedia.Sprites;
 
 /**
  * Created by 100VOL on 17/08/2016.
  */
-public class Explosion extends Entity {
+public class Explosion extends PlainAnimation {
 
     private float x;
     private float y;
-
-    public boolean remove;
 
     private TextureRegion[] explodingFrames;
     private TextureRegion currentFrame;
@@ -23,12 +22,14 @@ public class Explosion extends Entity {
 
     TextureRegion[][] tmp;
 
-    private final int FRAME_COLS = 16;
+    private final int FRAME_COLS = 25;
     private final int FRAME_ROWS = 1;
 
     private float stateTime = 0f;
 
     public Explosion(float x, float y, float width, float height) {
+
+        remove = true;
 
         this.x = x;
         this.y = y;
@@ -55,39 +56,42 @@ public class Explosion extends Entity {
     @Override
     public void draw() {
 
+
+
         //GameEngine.batch.draw(Sprites.explosion[index].getTexture(), x, y, 56, 56);
         //Sprites.explosion.draw(GameEngine.batch);             //EL SEGUNDO PARAMETRO ES EL LOOP
         currentFrame = currentAnimation.getKeyFrame(stateTime, false);
         System.out.println("Exp at :" + x + "  " + y + " - " + width + "  " + height);
         GameEngine.batch.draw(currentFrame, x, y, width, height);
-        stateTime += Gdx.graphics.getDeltaTime() * 6;
+        stateTime += Gdx.graphics.getDeltaTime() * 25;
 
     }
 
+    /*
     public void action() {
 
-        if (explodingAnimation.isAnimationFinished(stateTime)) {
-            remove = true;
-        }
+
+
+
 
 
     }
 
     @Override
     public void kill() {
-
+        remove = true;
     }
+    */
 
     @Override
     public void decreaseLives(int lives) {
         // Doesn't have lives
     }
 
-	@Override
-	public void move() {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public boolean isFinished() {
+        return explodingAnimation.isAnimationFinished(stateTime);
+    }
 
     public void initAnimation() {
 

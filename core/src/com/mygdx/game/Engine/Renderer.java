@@ -13,28 +13,23 @@ package com.mygdx.game.Engine;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Buttons.Btn_Pause;
 import com.mygdx.game.Buttons.Button;
 import com.mygdx.game.Buttons.PowerUp_Button;
 import com.mygdx.game.Entities.Enemies.Bossses.Boss;
 import com.mygdx.game.Entities.Entity;
-import com.mygdx.game.Entities.Star;
+import com.mygdx.game.Entities.PlainAnimations.PlainAnimation;
 import com.mygdx.game.Entities.Enemies.Enemy;
 import com.mygdx.game.Entities.Text;
 import com.mygdx.game.Multimedia.Backgrounds;
-import com.mygdx.game.Multimedia.Sprites;
 import com.mygdx.game.Projectiles.Projectile;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.Screens.Scr_MainMenu;
 import com.mygdx.game.MyGdxGame;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 
 /**
@@ -92,6 +87,8 @@ public class Renderer extends GameEngine implements Runnable{
 			drawEnemies();
 			drawBosses();
 			drawBullets();
+
+			drawPlainAnimations();
 			
 			// Hay que llamar estas funciones en el orden correcto
 			drawHUD();
@@ -174,6 +171,19 @@ public class Renderer extends GameEngine implements Runnable{
 			batch.draw(Backgrounds.backgroundGameOver, 0, 0);
 		}
 
+	}
+
+	private void drawPlainAnimations() {
+		Iterator<PlainAnimation> it = plainAnimations.iterator();
+		while (it.hasNext()) {
+			PlainAnimation pa = (PlainAnimation) it.next();
+			pa.draw();
+
+			if (pa.isFinished()) {
+				it.remove();
+			}
+
+		}
 	}
 
 	private void drawOther() {

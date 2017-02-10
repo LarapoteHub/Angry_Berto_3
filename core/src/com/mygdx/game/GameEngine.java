@@ -22,7 +22,8 @@ import com.mygdx.game.Entities.Enemies.HeavyEnemy;
 import com.mygdx.game.Entities.Enemies.SpikeBallEnemy;
 import com.mygdx.game.Entities.Enemies.StandardEnemy;
 import com.mygdx.game.Entities.Entity;
-import com.mygdx.game.Entities.Explosion;
+import com.mygdx.game.Entities.PlainAnimations.Explosion;
+import com.mygdx.game.Entities.PlainAnimations.PlainAnimation;
 import com.mygdx.game.Entities.Player;
 import com.mygdx.game.Entities.PowerUps.Charge;
 import com.mygdx.game.Entities.Star;
@@ -64,6 +65,7 @@ public class GameEngine {
 	protected static ArrayList<Boss> bosses;
 	protected static ArrayList<Projectile> bullets_Player;
 	protected static ArrayList<Projectile> bullets_Enemy;
+	protected static ArrayList<PlainAnimation> plainAnimations;
 	protected static Player player;
 	protected static ArrayList<Entity> otherEntities;
 	protected static ArrayList<Sprite> images;
@@ -92,6 +94,7 @@ public class GameEngine {
 		bosses = new ArrayList<Boss>();
 		bullets_Player = new ArrayList<Projectile>();
 		bullets_Enemy = new ArrayList<Projectile>();
+		plainAnimations = new ArrayList<PlainAnimation>();
 
 		buttons = new HashMap<String, Button>();
 
@@ -161,6 +164,8 @@ public class GameEngine {
 		case ENEMY:
 			enemies.add((Enemy) entity);
 			break;
+			case PLAIN_ANIMATION:
+			plainAnimations.add((PlainAnimation) entity);
 		case OTHER:
 			otherEntities.add(entity);
 		}
@@ -172,7 +177,7 @@ public class GameEngine {
 	}
 
 	public enum EntityType {
-		BULLET_PLAYER, BULLET_ENEMY, ENEMY, OTHER
+		BULLET_PLAYER, BULLET_ENEMY, ENEMY, PLAIN_ANIMATION, OTHER
 	}
 	
 	public static void changeUniverse(int uniID) {
