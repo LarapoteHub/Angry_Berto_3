@@ -15,6 +15,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Buttons.Btn_Pause;
 import com.mygdx.game.Buttons.Button;
 import com.mygdx.game.Buttons.PowerUp_Button;
@@ -40,12 +41,8 @@ import java.util.Iterator;
  */
 public class Renderer extends GameEngine implements Runnable{
 	// SOLO se van a dibujar las entidades en este Array
+	// TODO Decidir si implementar esto o no
 	private ArrayList<Entity> entitiesToRender;
-
-	private BitmapFont printer;
-
-	private Button test = new Btn_Pause();
-	private Scr_MainMenu mm = null;
 
 	public Renderer() {
 		// Inicializamos la camara
@@ -71,7 +68,7 @@ public class Renderer extends GameEngine implements Runnable{
 		// Actualizamos la camara antes de dibujar nada
 		updateCamera();
 		batch.begin();
-		rendering = true;
+		//rendering = true;
 
 		drawBackground();
 		drawOther();
@@ -80,7 +77,6 @@ public class Renderer extends GameEngine implements Runnable{
 		/*
 		 * for (Entity e : entitiesToRender) { e.draw(batch); }
 		 */
-
 		if (gameState.isPlaying() || gameState.isPaused()) {
 			player.draw();
 			
@@ -105,7 +101,7 @@ public class Renderer extends GameEngine implements Runnable{
 		drawText();
 
 
-		rendering = false;
+		//rendering = false;
 		batch.end();
 
 	}
@@ -170,7 +166,11 @@ public class Renderer extends GameEngine implements Runnable{
 		} else if (gameState.isInEndGame()) {
 			batch.draw(Backgrounds.backgroundGameOver, 0, 0);
 		} else if (gameState.isPlaying() || gameState.isPaused()) {
-			batch.draw(uni.getBackground(), 0, 0);
+			// Estirar el fondo en altura si no llega.
+			if (uni.getBackground().getHeight() < MyGdxGame.HEIGHT)
+				batch.draw(uni.getBackground(), 0, 0, uni.getBackground().getWidth(), MyGdxGame.HEIGHT);
+			else
+				batch.draw(uni.getBackground(), 0, 0);
 		}
 
 	}

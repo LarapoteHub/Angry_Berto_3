@@ -28,6 +28,7 @@ import com.mygdx.game.Projectiles.PlayerShoot;
 import com.mygdx.game.Projectiles.Projectile;
 import com.mygdx.game.Screens.Scr_GameOver;
 import com.mygdx.game.Screens.Scr_Introduction;
+import com.mygdx.game.Screens.Scr_Loading;
 import com.mygdx.game.Screens.Scr_MainMenu;
 import com.mygdx.game.Screens.Scr_Pause;
 import com.mygdx.game.Screens.Scr_Play;
@@ -90,7 +91,15 @@ public class Logic extends GameEngine implements Runnable {
             // condicion
             updateInterface();
 
-
+        if (GameEngine.gameState.isLoading()) {
+            texts.get(1).setText((loader.getProgress() * 100) + "%");
+            if (loader.update()) {
+                // Inicializar el musicManager despues de cargar todo, ya que usa una cancion...
+                MyGdxGame.musicManager  = new MusicManager();
+                initComponents();
+                GameEngine.gameState.mainMenu();
+            }
+        }
         if (GameEngine.gameState.isPlaying()) {
             // TODO Completar esto
             checkCollisions();
@@ -388,13 +397,6 @@ public class Logic extends GameEngine implements Runnable {
                     p.destroy();
                     if (enem.getLives() <= 0) {
                         enem.kill();
-                        addEntity(new Explosion(enem.getX(), enem.getY(), enem.getWidth(), enem.getHeight()),
-                                EntityType.PLAIN_ANIMATION);
-                        player.addScore(enem.getScore());
-                        Random rnd = new Random(System.nanoTime()
-                                * System.nanoTime() / 13);
-                        if (rnd.nextInt(100) < enem.getPowerUpProbability())
-                            spawnPowerUpCharge(enem.getX(), enem.getY());
                     }
                 }
             }
@@ -404,13 +406,7 @@ public class Logic extends GameEngine implements Runnable {
                     p.destroy();
                     if (boss.getLives() <= 0) {
                         boss.kill();
-                        addEntity(new Explosion(boss.getX(), boss.getY(), boss.getWidth(), boss.getHeight()),
-                                EntityType.PLAIN_ANIMATION);
-                        player.addScore(boss.getScore());
-                        Random rnd = new Random(System.nanoTime()
-                                * System.nanoTime() / 13);
-                        if (rnd.nextInt(100) < boss.getPowerUpProbability())
-                            spawnPowerUpCharge(boss.getX(), boss.getY());
+
                     }
                 }
             }
@@ -419,6 +415,7 @@ public class Logic extends GameEngine implements Runnable {
         for (Enemy enem : enemies) {
             if (enem.isColliding(player)) {
                 enem.kill();
+
                 if (enem.getType().equals(EnemyType.SPIKE_BALL))
                     player.decreaseLives(3);        // Las minas tienen mas daño, no??
                 else if (enem.getType().equals(EnemyType.HEAVY_ENEMY))
@@ -494,6 +491,10 @@ public class Logic extends GameEngine implements Runnable {
                 case INTRO:
                     new Scr_Introduction().initComponents();
                     break;
+                case LOADING:
+                    new Scr_Loading().initComponents();
+                    break;
+
             }
         }
     }

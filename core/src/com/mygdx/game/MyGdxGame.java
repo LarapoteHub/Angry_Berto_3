@@ -20,262 +20,219 @@ import com.mygdx.game.Multimedia.Musics;
 // Corregir el playButton.png
 
 public class MyGdxGame extends ApplicationAdapter {
-	// Dimensiones de la pantalla de renderizado DENTRO del juego...
-	// TODO Esto debería ajustarse a la pantalla actual que tenemos en realidad,
-	// TODO con bordes negros
-	// TODO o lo que haga falta.
-	public static final int WIDTH = 480, HEIGHT = 800;
+    // Dimensiones de la pantalla de renderizado DENTRO del juego...
+    // TODO Esto debería ajustarse a la pantalla actual que tenemos en realidad,
+    // TODO con bordes negros
+    // TODO o lo que haga falta.
+    public static final int WIDTH = 480, HEIGHT = 800;
 
-	// modo DEBUG
-	public static final boolean DEBUG_MODE = false;
+    // modo DEBUG
+    public static final boolean DEBUG_MODE = false;
 
-	public static final boolean SHOW_FPS = true;
-	public static final boolean MOSTRAR_COMENTARIOS_CHORRA = false;
+    public static final boolean SHOW_FPS = true;
+    public static final boolean MOSTRAR_COMENTARIOS_CHORRA = false;
 
-	private Loader loader;
+    private Loader loader;
 
-	private boolean multimediaInitialized = false;
+    private boolean multimediaInitialized = false;
 
-	private long frameStart;
+    private long frameStart;
 
-	static int clockSprites;
+    static int clockSprites;
 
-	// variable para que al perder tocando la pantalla, no se cierre.
-	public static boolean recently_touched;
-	// variable para que la anterior solo se ponga una vez a true.
+    // variable para que al perder tocando la pantalla, no se cierre.
+    public static boolean recently_touched;
+    // variable para que la anterior solo se ponga una vez a true.
 
-	com.mygdx.game.Screens.Scr_MainMenu mainMenuInstance;
+    com.mygdx.game.Screens.Scr_MainMenu mainMenuInstance;
 
-	com.mygdx.game.Screens.Scr_Introduction introInstace;
+    com.mygdx.game.Screens.Scr_Introduction introInstace;
 
-	com.mygdx.game.Screens.Scr_Pause pauseInstance;
+    com.mygdx.game.Screens.Scr_Pause pauseInstance;
 
-	GameEngine engine;
+    GameEngine engine;
 
-	com.mygdx.game.Screens.Scr_GameOver gameOverInstance;
+    com.mygdx.game.Screens.Scr_GameOver gameOverInstance;
 
-	Array<Level> levelList;
+    Array<Level> levelList;
 
-	int levelIndex;
+    int levelIndex;
 
-	public static MusicManager musicManager = new MusicManager();
+    public static MusicManager musicManager;
 
-	private BitmapFont fuenteDelDany;
-	private SpriteBatch batchDelDany;
-	private OrthographicCamera camaraDelDany = new OrthographicCamera();
-
-	private boolean componentsInitialized = false;
+    private BitmapFont fuenteDelDany;
+    private SpriteBatch batchDelDany;
+    private OrthographicCamera camaraDelDany = new OrthographicCamera();
 
 
-	// OTHER!!
-	private boolean showFPS = false; // Theoretical FPS, actual FPS has VSync
-										// (60 Hz)
+    // OTHER!!
+    private boolean showFPS = false; // Theoretical FPS, actual FPS has VSync
+    // (60 Hz)
 
-	// ------------------------------------------------------------------------------------------------------
-	// ------------------------------------------------------------------------------------------------------
-	// ------------------------------------------------------------------------------------------------------
-	// ------------------------------------------------------------------------------------------------------
-	// ------------------------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------------------------
 
-	@Override
-	public void create() {
+    @Override
+    public void create() {
 
-		//TODO 100vol estuvo aqui
-		loader = new Loader();
-		loadMultimedia(); //no asincrono
+        //TODO 100vol estuvo aqui
+        initComponents();
 
-		fuenteDelDany = new BitmapFont(Gdx.files.internal("fonts/anime_ace2.fnt"));
-		batchDelDany = new SpriteBatch();
-		camaraDelDany.setToOrtho(false, WIDTH, HEIGHT);
+    } // fin del método create() <-----
 
-	} // fin del método create() <-----
-	// Uber change
-	// ------------------------------------------------------------------------------------------------------
-	// ------------------------------------------------------------------------------------------------------
-	// -------------------------------->>>>> RENDER
-	// <<<<<----------------------------------------------------
-	// ------------------------------------------------------------------------------------------------------
-	// ------------------------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------------------------
+    // -------------------------------->>>>> RENDER
+    // <<<<<----------------------------------------------------
+    // ------------------------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------------------------
 
-	@Override
-	public void render() {
+    @Override
+    public void render() {
 
-		if (!loader.update()) {
-			camaraDelDany.update();
-			batchDelDany.setProjectionMatrix(camaraDelDany.combined);
-			batchDelDany.begin();
-			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-			fuenteDelDany.draw(batchDelDany, "LOADING: "+(int)(loader.getProgress()*100) + "%", 240, 400, Align.center, Align.center, true);
-			batchDelDany.end();
-		} else {
 
-			if (!componentsInitialized) {
-				initMultimedia();
-				initComponents();
-				musicManager.setMusic(Musics.backgroundMenuMusic);
+        frameStart = System.nanoTime();
 
-				batchDelDany.dispose();
-				fuenteDelDany.dispose();
-			}
+        engine.tick(); // TODO Use some DeltaTime mechanics??
 
-			frameStart = System.nanoTime();
+        if (showFPS)
+            System.out.println(1000.0 / ((1.0 * System.nanoTime() - frameStart) / 1000000));
 
-			engine.tick(); // TODO Use some DeltaTime mechanics??
 
-			if (showFPS)
-				System.out.println(1000.0 / ((1.0 * System.nanoTime() - frameStart) / 1000000));
+    } // fin del método render() <-----
 
-		}
-	} // fin del método render() <-----
+    // ------------------------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------------------------
 
-	// ------------------------------------------------------------------------------------------------------
-	// ------------------------------------------------------------------------------------------------------
-	// ------------------------------------------------------------------------------------------------------
-	// ------------------------------------------------------------------------------------------------------
-	// ------------------------------------------------------------------------------------------------------
+    // este método sobrescrito de la Interface dispose sirve para ayudar al
+    // sistema a "limpiar" todos los objetos creados
+    // en el momento que nos salgamos de la aplicación.
+    @Override
+    public void dispose() {
 
-	// este método sobrescrito de la Interface dispose sirve para ayudar al
-	// sistema a "limpiar" todos los objetos creados
-	// en el momento que nos salgamos de la aplicación.
-	@Override
-	public void dispose() {
+        // limpiamos el sonido de fondo.
+        MusicManager.dispose();
+        // Limpiamos lo demas.
+        engine.dispose();
+        // limpiamos el batch al completo.
+        // batch.dispose();
 
-		// limpiamos el sonido de fondo.
-		MusicManager.dispose();
-		// limpiamos el batch al completo.
-		// batch.dispose();
+        //loader.dispose();
+    }
 
-		//loader.dispose();
-	}
-
-	// ------------------------------------------------------------------------------------------------------
-	// ------------------------------------------------------------------------------------------------------
-	// ------------------------------------------------------------------------------------------------------
-	// ------------------------------------------------------------------------------------------------------
-	// ------------------------------------------------------------------------------------------------------
-	// TODO Find a better system
-	public void checkFirstTouched() {
-		/*
+    // ------------------------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------------------------
+    // TODO Find a better system
+    public void checkFirstTouched() {
+        /*
 		 * //si es la primera vez que ha sido tocado recientemente... if
 		 * (firstRecently_touched) { //...ha sido recientemente tocado...
 		 * recently_touched = true; //...y ya no es la primera vez
 		 * firstRecently_touched = false; }
 		 */
-	}
+    }
 
-	private void forceLoadMultimedia() {
+    private void forceLoadMultimedia() {
 
-		if (!multimediaInitialized) {
+        if (!multimediaInitialized) {
+            loadMultimedia();
+            loader.finishLoading();
+            initMultimedia();
 
-			loader.loadSprites();
-			loader.loadSounds();
-			loader.loadMusic();
-			loader.loadBackgrounds();
+            multimediaInitialized = true;
+        }
 
-			loader.finishLoading();
+    }
 
-			loader.initSprites();
-			loader.initSounds();
-			loader.initMusic();
-			loader.initBackgrounds();
+    private void loadMultimedia() {
 
-			multimediaInitialized = true;
-		}
+        if (!multimediaInitialized) {
 
-	}
+            loader.loadSprites();
+            loader.loadSounds();
+            loader.loadMusic();
+            loader.loadBackgrounds();
+        }
+    }
 
-	private void loadMultimedia() {
+    private void initMultimedia() {
 
-		if (!multimediaInitialized) {
+        if (!multimediaInitialized) {
 
-			loader.loadSprites();
-			loader.loadSounds();
-			loader.loadMusic();
-			loader.loadBackgrounds();
-		}
-	}
+            loader.initSprites();
+            loader.initSounds();
+            loader.initMusic();
+            loader.initBackgrounds();
 
-	private void initMultimedia() {
+            multimediaInitialized = true;
+        }
+    }
 
-		if (!multimediaInitialized) {
+    //TODO ESTO SE HACE EN EL ON CREATE, ESTA PUESTO AQUI PARA PROBAR LA CARGA ASÍNCRONA.
+    private void initComponents() {
+        engine = new GameEngine();
 
-			loader.initSprites();
-			loader.initSounds();
-			loader.initMusic();
-			loader.initBackgrounds();
+        //loadMultimedia();
 
-			multimediaInitialized = true;
-		}
-	}
+        engine.create();
 
-	//TODO ESTO SE HACE EN EL ON CREATE, ESTA PUESTO AQUI PARA PROBAR LA CARGA ASÍNCRONA.
-	private void initComponents() {
+        try {
 
-		engine = new GameEngine();
+            // Evitar que cuando se reinicia el juego se reinicialize t0do.
+            // Con esto solo se cargarán los datos 1 vez.
+            // if (!multimediaInitialized)
 
-		//loadMultimedia();
+            // engine.start();
 
-		engine.create();
+            //TODO PELIGRO
 
-		try {
+            // instanciamos la clase Pause, la cual se encargara de dibujar la
+            // pantalla en el estado de pausa.
 
-			// Evitar que cuando se reinicia el juego se reinicialize t0do.
-			// Con esto solo se cargarán los datos 1 vez.
-			// if (!multimediaInitialized)
+            // instanciamos la clase MainMenu, la cual se encargará de la
+            // aplicación cuando estemos en el menú principal.
+            // mainMenuInstance = new com.mygdx.game.Screens.MainMenu();
 
-			// engine.start();
+            // estas dos variables servirán para que cuando el juego termine y
+            // se cargue el menú, la pantalla no detecte la pulsación hasta que
+            // se levante el dedo.
+            // ************************************************************************
+            // ****************** --- MECÁNICA JUGADOR ---
+            // ****************************
+            // ************************************************************************
+            // ************************************************************************
+            // ******************** --- BACKGROUND MUSIC ---
+            // **************************
+            // ************************************************************************
 
-			//TODO PELIGRO
+            // cargamos el sonido de la música de fondo
+            // backgroundMusic =
+            // Gdx.audio.newMusic(Gdx.files.internal("audio/music/background.mp3"));
 
-			introInstace = new com.mygdx.game.Screens.Scr_Introduction();
+            // establecemos la musica de fondo como bucle e iniciamos su
+            // reproducción.
 
-			gameOverInstance = new com.mygdx.game.Screens.Scr_GameOver();
+            levelList = new Array<Level>();
 
-			// instanciamos la clase Pause, la cual se encargara de dibujar la
-			// pantalla en el estado de pausa.
+            levelList.add(new Level0());
+            //levelList.add(new LevelTest());
 
-			// instanciamos la clase MainMenu, la cual se encargará de la
-			// aplicación cuando estemos en el menú principal.
-			// mainMenuInstance = new com.mygdx.game.Screens.MainMenu();
+            // variable para acceder a los niveles en el Array
+            levelIndex = 0;
 
-			// estas dos variables servirán para que cuando el juego termine y
-			// se cargue el menú, la pantalla no detecte la pulsación hasta que
-			// se levante el dedo.
-			recently_touched = false;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
 
-			// ************************************************************************
-			// ****************** --- MECÁNICA JUGADOR ---
-			// ****************************
-			// ************************************************************************
-			// No se pa que sirve.... por ahora
-			clockSprites = -5;
-
-			// ************************************************************************
-			// ******************** --- BACKGROUND MUSIC ---
-			// **************************
-			// ************************************************************************
-
-			// cargamos el sonido de la música de fondo
-			// backgroundMusic =
-			// Gdx.audio.newMusic(Gdx.files.internal("audio/music/background.mp3"));
-
-			// establecemos la musica de fondo como bucle e iniciamos su
-			// reproducción.
-			Musics.backgroundMusic.setLooping(true);
-
-			levelList = new Array<Level>();
-
-			levelList.add(new Level0());
-			//levelList.add(new LevelTest());
-
-			// variable para acceder a los niveles en el Array
-			levelIndex = 0;
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-
-		componentsInitialized = true;
-	}
+    }
 
 }

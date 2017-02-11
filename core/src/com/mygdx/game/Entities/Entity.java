@@ -17,16 +17,16 @@ public abstract class Entity {
     protected Rectangle collisionBox;     // Need to change this
     protected Texture tex;
     public static GameEngine engine;
-    
+
     protected int damage;
 
     // Quizas deberia usar metodos GET y SET...
     public boolean remove = false;
-    
+
     // Un booleano especial para saber si puede vivir fuera de la pantalla
     // Único uso: el de los enemigos cuando aparecen en ola.
     private boolean livesOutsideScreen = false;
-    
+
     public abstract void draw();
     public void kill() {
         remove = true;
@@ -47,11 +47,11 @@ public abstract class Entity {
     public Rectangle getCollisionBox() {
     	return collisionBox;
     }
-    
+
     public boolean isColliding(Entity e) {
     	return x < e.x + e.width && x + width > e.x && y < e.y + e.height && y + height > e.y;
     }
-    
+
     public float getVSpeed() {
 		return vSpeed;
 	}
@@ -67,7 +67,7 @@ public abstract class Entity {
 	public void setX(float x) {
     	this.x = x;
     }
-    
+
     public void setY(float y) {
     	this.y = y;
     }
@@ -75,15 +75,15 @@ public abstract class Entity {
     public float getX() {
     	return x;
     }
-    
+
     public float getY() {
     	return y;
     }
-    
+
     public boolean canLiveOutsideScreen() {
 		return livesOutsideScreen;
 	}
-    
+
     public void setLivesOutsideScreen(boolean livesOutsideScreen) {
 		this.livesOutsideScreen = livesOutsideScreen;
 	}

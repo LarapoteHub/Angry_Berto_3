@@ -20,8 +20,7 @@ public class Btn_Options extends Button {
 	
 	@Override
 	public void onTouch() {
-		if (GameEngine.rendering)
-			draw(1);
+		draw(1);
 	}
 
 }

@@ -28,6 +28,8 @@ public class Sprites {
     public static Sprite[] btn_options;
     public static Sprite[] btn_scores;
 
+    public static Sprite[] btn_switch_bullet;
+
 
     // Otros    -   Lo que no cuadra en ninguna categoria y son llaneros solitarios...
     // Efectos

@@ -50,7 +50,6 @@ public class Scr_GameOver implements Screen {
 		try {
 			GameEngine.addText(new Text("TOUCH THE SCREEN", 85, 200, Color.WHITE));
 
-
 			Sprite spr = new Sprite(Sprites.gameOver);
 			spr.setPosition(90, 500);
 			spr.setSize(300, 200);
@@ -58,12 +57,6 @@ public class Scr_GameOver implements Screen {
 			GameEngine.addImage(spr);
 
 			GameEngine.addText(new Text("SCORE: " + GameEngine.getPlayer().getScore(), 100, 400, Color.RED));
-
-			// TODO Implement this somehow
-			// Animacion cutrilla incoming xD
-//			if (gameOverY > 500) {
-//				gameOverY -= 100 * Gdx.graphics.getDeltaTime();
-//			}
 
 		} catch (Exception ex) {
 			System.out.println("Excepción en Scr_GameOver.");

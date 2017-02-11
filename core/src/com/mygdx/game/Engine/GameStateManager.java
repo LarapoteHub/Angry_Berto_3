@@ -14,9 +14,9 @@ public class GameStateManager {
 	private boolean saveState;
 
 	public GameStateManager() {
-		state = GameState.MAIN_MENU;
+		state = GameState.LOADING;
 		saveState = false;
-		changed = false;
+		changed = true;
 	}
 	
 	public void pause() {
@@ -64,6 +64,12 @@ public class GameStateManager {
 		changed = true;
 	}
 
+	public void loadGame() {
+		state = GameState.LOADING;
+		saveState = false;
+		changed = true;
+	}
+
 	public GameState getState() {
 		return state;
 	}
@@ -85,7 +91,7 @@ public class GameStateManager {
 	public boolean isInMainMenu() { return state == GameState.MAIN_MENU;}
 	public boolean isInEndGame() { return state == GameState.GAME_END;}
 	public boolean isIntro() { return state == GameState.INTRO;}
-
+	public boolean isLoading() { return state == GameState.LOADING; }
 	
 	
 }

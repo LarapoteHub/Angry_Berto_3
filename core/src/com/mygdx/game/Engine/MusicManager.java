@@ -1,6 +1,7 @@
 package com.mygdx.game.Engine;
 
 import com.badlogic.gdx.audio.Music;
+import com.mygdx.game.Multimedia.Musics;
 
 /**
  * Created by Red Mercy on 12/10/2016.
@@ -10,6 +11,7 @@ public class MusicManager {
 
     private static Music currentMusic = null;
 
+
     public static void setMusic(Music m) {
         if (currentMusic != null) {
             currentMusic.stop();
@@ -17,9 +19,10 @@ public class MusicManager {
         //dispose();
 
         currentMusic = m;
-
-        currentMusic.setLooping(true);
-        currentMusic.play();
+        if (currentMusic != null) {
+            currentMusic.setLooping(true);
+            currentMusic.play();
+        }
     }
 
     public static void dispose() {

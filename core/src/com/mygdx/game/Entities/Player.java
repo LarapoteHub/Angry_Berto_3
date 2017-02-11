@@ -121,7 +121,7 @@ public class Player extends Ship {
 	}
 
 	public void decreaseCharge(int charge) {
-		if (!MyGdxGame.DEBUG_MODE) {
+		if (!GODMODE) {
 			this.charge -= charge;
 			if (this.charge < 0) {
 				this.charge = 0;

@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.mygdx.game.Buttons.Button;
 import com.mygdx.game.Engine.GameStateManager;
+import com.mygdx.game.Engine.Loader;
 import com.mygdx.game.Engine.Logic;
 import com.mygdx.game.Engine.Renderer;
 import com.mygdx.game.Entities.Enemies.Bossses.Boss;
@@ -28,9 +29,11 @@ import com.mygdx.game.Entities.Player;
 import com.mygdx.game.Entities.PowerUps.Charge;
 import com.mygdx.game.Entities.Star;
 import com.mygdx.game.Entities.Text;
+import com.mygdx.game.Multimedia.Musics;
 import com.mygdx.game.Multimedia.Sprites;
 import com.mygdx.game.Projectiles.PlayerShoot;
 import com.mygdx.game.Projectiles.Projectile;
+import com.mygdx.game.Screens.Scr_Loading;
 import com.mygdx.game.Screens.Scr_MainMenu;
 import com.mygdx.game.Universe.Universe;
 
@@ -58,6 +61,9 @@ public class GameEngine {
 	// Partes del motor
 	public Logic logic;
 	public Renderer renderer;
+	// Clase usada solo para la carga.
+	protected static Loader loader;
+
 	protected static Vector3 touchPos = new Vector3();
 
 	// Todo lo que se necesita para renderizar / calcular...
@@ -70,18 +76,19 @@ public class GameEngine {
 	protected static ArrayList<Entity> otherEntities;
 	protected static ArrayList<Sprite> images;
 	protected static ArrayList<Text> texts;
+	// Contador de estrellas, para que no se llene la pantalla de ellas.
+	// TODO Poner la generacion de estrellas SEPARADA del GameEngine, en una clase
 	protected static int starCount = 0;
-	public static boolean rendering = false;
 
 	protected static HashMap<String, Button> buttons;
 	
-	// TODO TEST TEST TEST TEST //
 	public static Universe uni;
-	// TODO TEST TEST TEST TEST //
+	private boolean multimediaInitialized = false;
+	private boolean componentsInitialized = false;
 	// </Mio!!>
 
 	public GameEngine() {
-		// TODO Apparently not used?
+		// Apparently not used?
 	}
 
 	public void create() {
@@ -113,14 +120,19 @@ public class GameEngine {
 
 		printer = new BitmapFont(Gdx.files.internal("fonts/anime_ace2.fnt"));
 
-		new Scr_MainMenu().initComponents();
+
 
 		// TODO TEST TEST TEST TEST //
 		uni = new Universe();
 		// TODO TEST TEST TEST TEST //
+		// Not needed
+		//gameState.loadGame();
+		loader = new Loader();
+		loadMultimedia();
 
 		logic = new Logic();
 		renderer = new Renderer();
+
 
 		// Necesario para algunos botones...
 		Button.engine = this;
@@ -140,6 +152,36 @@ public class GameEngine {
 		
 
 
+	}
+
+	private void loadMultimedia() {
+		if (!multimediaInitialized) {
+			loader.loadSprites();
+			loader.loadSounds();
+			loader.loadMusic();
+			loader.loadBackgrounds();
+		}
+	}
+
+	protected void initComponents() {
+		if (!componentsInitialized) {
+			initMultimedia();
+
+			MyGdxGame.musicManager.setMusic(Musics.backgroundMenuMusic);
+		}
+	}
+
+	protected void initMultimedia() {
+
+		if (!multimediaInitialized) {
+
+			loader.initSprites();
+			loader.initSounds();
+			loader.initMusic();
+			loader.initBackgrounds();
+
+			multimediaInitialized = true;
+		}
 	}
 
 	public static Player getPlayer() {
@@ -176,6 +218,11 @@ public class GameEngine {
 	// Especial para añadir botones:
 	public static void addButton(Button btn) {
 		buttons.put(btn.getName(), btn);
+	}
+
+	public void dispose() {
+		batch.dispose();
+		printer.dispose();
 	}
 
 	public enum EntityType {
@@ -732,7 +779,7 @@ public class GameEngine {
 	} // end spawnStar()
 		// ---------------------------------------------------------------------------
 
-	public void spawnPowerUpCharge(float x, float y) {
+	public static void spawnPowerUpCharge(float x, float y) {
 		addEntity(new Charge(x, y), EntityType.BULLET_ENEMY);
 
 		// entities.add(new com.mygdx.game.Entities.PowerUps.Charge(x, y));
