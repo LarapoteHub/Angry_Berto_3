@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.game.GameEngine;
+import com.mygdx.game.Multimedia.Sounds;
 import com.mygdx.game.Multimedia.Sprites;
 
 /**
@@ -26,8 +27,11 @@ public class Explosion extends PlainAnimation {
         this.width = width;
         this.height = height;
 
-        this.FRAME_COLS = 25;
+        //this.FRAME_COLS = 25;
+        this.FRAME_COLS = 19;
         this.FRAME_ROWS = 1;
+
+        Sounds.explodeSound.play();
 
         //iniciamos la animación.
         initAnimation();
@@ -52,7 +56,7 @@ public class Explosion extends PlainAnimation {
         currentFrame = currentAnimation.getKeyFrame(stateTime, false);
         System.out.println("Exp at :" + x + "  " + y + " - " + width + "  " + height);
         GameEngine.batch.draw(currentFrame, x, y, width, height);
-        stateTime += Gdx.graphics.getDeltaTime() * 25;
+        stateTime += Gdx.graphics.getDeltaTime() * 19;
 
     }
 

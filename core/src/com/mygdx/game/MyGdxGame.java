@@ -59,6 +59,8 @@ public class MyGdxGame extends ApplicationAdapter {
 
 	int levelIndex;
 
+	public static MusicManager musicManager = new MusicManager();
+
 	private BitmapFont fuenteDelDany;
 	private SpriteBatch batchDelDany;
 	private OrthographicCamera camaraDelDany = new OrthographicCamera();
@@ -111,6 +113,7 @@ public class MyGdxGame extends ApplicationAdapter {
 			if (!componentsInitialized) {
 				initMultimedia();
 				initComponents();
+				musicManager.setMusic(Musics.backgroundMenuMusic);
 
 				batchDelDany.dispose();
 				fuenteDelDany.dispose();
@@ -208,6 +211,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
 	//TODO ESTO SE HACE EN EL ON CREATE, ESTA PUESTO AQUI PARA PROBAR LA CARGA ASÍNCRONA.
 	private void initComponents() {
+
 		engine = new GameEngine();
 
 		//loadMultimedia();

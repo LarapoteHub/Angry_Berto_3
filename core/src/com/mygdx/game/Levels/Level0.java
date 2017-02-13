@@ -3,6 +3,7 @@ package com.mygdx.game.Levels;
 import com.badlogic.gdx.math.MathUtils;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.GameEngine.EnemyType;
+import com.mygdx.game.Multimedia.Musics;
 import com.mygdx.game.MyGdxGame;
 
 /**
@@ -28,6 +29,7 @@ public class Level0 extends Level {
         } else if (phase != bossPhase && GameEngine.getEnemies().isEmpty()) {
             changePhase();
         } else if (phase == bossPhase && GameEngine.getBosses().isEmpty()) {
+            MyGdxGame.musicManager.setMusic(Musics.backgroundMusic);
             changePhase();
         }
 
@@ -193,6 +195,9 @@ public class Level0 extends Level {
                 break;
 
             case 8:
+
+                MyGdxGame.musicManager.setMusic(Musics.boss1Music);
+
                 GameEngine.spawnBoss(78, 700, GameEngine.BossType.TYPE_1); //boss1
 
                 break;

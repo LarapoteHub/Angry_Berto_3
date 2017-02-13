@@ -11,7 +11,10 @@ public class MusicManager {
     private static Music currentMusic = null;
 
     public static void setMusic(Music m) {
-        dispose();
+        if (currentMusic != null) {
+            currentMusic.stop();
+        }
+        //dispose();
 
         currentMusic = m;
 

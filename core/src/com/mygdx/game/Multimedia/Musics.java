@@ -10,5 +10,5 @@ public class Musics {
 
     public static Music backgroundMusic;
     public static Music backgroundMenuMusic;
-
+    public static Music boss1Music;
 }

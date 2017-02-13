@@ -114,6 +114,7 @@ public class Loader extends AssetManager {
     public void loadMusic() {
         this.load("audio/music/background.mp3", Music.class);
         this.load("audio/music/backgroundMenu.mp3", Music.class);
+        this.load("audio/music/boss1Music.mp3", Music.class);
     }
 
     public void loadBackgrounds() {
@@ -252,6 +253,7 @@ public class Loader extends AssetManager {
 
         Musics.backgroundMusic = (Music) this.get("audio/music/background.mp3");
         Musics.backgroundMenuMusic = (Music) this.get("audio/music/backgroundMenu.mp3");
+        Musics.boss1Music = (Music) this.get("audio/music/boss1Music.mp3");
 
     }
 
