@@ -1,7 +1,11 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.Engine.Loader;
@@ -54,6 +58,11 @@ public class MyGdxGame extends ApplicationAdapter {
 
 	int levelIndex;
 
+	private BitmapFont fuenteDelDany;
+	private SpriteBatch batchDelDany;
+	private boolean componentsInitialized = false;
+
+
 	// OTHER!!
 	private boolean showFPS = false; // Theoretical FPS, actual FPS has VSync
 										// (60 Hz)
@@ -66,72 +75,13 @@ public class MyGdxGame extends ApplicationAdapter {
 
 	@Override
 	public void create() {
-		engine = new GameEngine();
+
 		//TODO 100vol estuvo aqui
 		loader = new Loader();
-		forceLoadMultimedia(); //no asincrono
+		loadMultimedia(); //no asincrono
 
-		//loadMultimedia();
-
-		engine.create();
-
-		try {
-
-			// Evitar que cuando se reinicia el juego se reinicialize t0do.
-			// Con esto solo se cargarán los datos 1 vez.
-			// if (!multimediaInitialized)
-
-			// engine.start();
-
-			introInstace = new com.mygdx.game.Screens.Scr_Introduction();
-
-			gameOverInstance = new com.mygdx.game.Screens.Scr_GameOver();
-
-			// instanciamos la clase Pause, la cual se encargara de dibujar la
-			// pantalla en el estado de pausa.
-
-			// instanciamos la clase MainMenu, la cual se encargará de la
-			// aplicación cuando estemos en el menú principal.
-			// mainMenuInstance = new com.mygdx.game.Screens.MainMenu();
-
-			// estas dos variables servirán para que cuando el juego termine y
-			// se cargue el menú, la pantalla no detecte la pulsación hasta que
-			// se levante el dedo.
-			recently_touched = false;
-
-			// ************************************************************************
-			// ****************** --- MECÁNICA JUGADOR ---
-			// ****************************
-			// ************************************************************************
-			// No se pa que sirve.... por ahora
-			clockShoot = 0;
-			clockSprites = -5;
-
-			// ************************************************************************
-			// ******************** --- BACKGROUND MUSIC ---
-			// **************************
-			// ************************************************************************
-
-			// cargamos el sonido de la música de fondo
-			// backgroundMusic =
-			// Gdx.audio.newMusic(Gdx.files.internal("audio/music/background.mp3"));
-
-			// establecemos la musica de fondo como bucle e iniciamos su
-			// reproducción.
-			Musics.backgroundMusic.setLooping(true);
-
-			levelList = new Array<Level>();
-
-			levelList.add(new Level0());
-			//levelList.add(new LevelTest());
-
-			// variable para acceder a los niveles en el Array
-			levelIndex = 0;
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-
+		fuenteDelDany = new BitmapFont(Gdx.files.internal("fonts/anime_ace2.fnt"));
+		batchDelDany = new SpriteBatch();
 	} // fin del método create() <-----
 
 	// ------------------------------------------------------------------------------------------------------
@@ -143,12 +93,27 @@ public class MyGdxGame extends ApplicationAdapter {
 
 	@Override
 	public void render() {
-		frameStart = System.nanoTime();
 
-		engine.tick(); // TODO Use some DeltaTime mechanics??
+		if (!loader.update()) {
+			batchDelDany.begin();
+			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+			fuenteDelDany.draw(batchDelDany, "LOADING: "+(int)(loader.getProgress()*100) + "%", 180, 350, Align.center, Align.center, true);
+			batchDelDany.end();
+		} else {
 
-		if (showFPS)
-			System.out.println(1000.0 / ((1.0 * System.nanoTime() - frameStart) / 1000000));
+			if (!componentsInitialized) {
+				initMultimedia();
+				initComponents();
+			}
+
+			frameStart = System.nanoTime();
+
+			engine.tick(); // TODO Use some DeltaTime mechanics??
+
+			if (showFPS)
+				System.out.println(1000.0 / ((1.0 * System.nanoTime() - frameStart) / 1000000));
+
+		}
 	} // fin del método render() <-----
 
 	// ------------------------------------------------------------------------------------------------------
@@ -167,6 +132,8 @@ public class MyGdxGame extends ApplicationAdapter {
 		MusicManager.dispose();
 		// limpiamos el batch al completo.
 		// batch.dispose();
+
+		//loader.dispose();
 	}
 
 	// ------------------------------------------------------------------------------------------------------
@@ -227,6 +194,76 @@ public class MyGdxGame extends ApplicationAdapter {
 
 			multimediaInitialized = true;
 		}
+	}
+
+	//TODO ESTO SE HACE EN EL ON CREATE, ESTA PUESTO AQUI PARA PROBAR LA CARGA ASÍNCRONA.
+	private void initComponents() {
+		engine = new GameEngine();
+
+		//loadMultimedia();
+
+		engine.create();
+
+		try {
+
+			// Evitar que cuando se reinicia el juego se reinicialize t0do.
+			// Con esto solo se cargarán los datos 1 vez.
+			// if (!multimediaInitialized)
+
+			// engine.start();
+
+			//TODO PELIGRO
+
+			introInstace = new com.mygdx.game.Screens.Scr_Introduction();
+
+			gameOverInstance = new com.mygdx.game.Screens.Scr_GameOver();
+
+			// instanciamos la clase Pause, la cual se encargara de dibujar la
+			// pantalla en el estado de pausa.
+
+			// instanciamos la clase MainMenu, la cual se encargará de la
+			// aplicación cuando estemos en el menú principal.
+			// mainMenuInstance = new com.mygdx.game.Screens.MainMenu();
+
+			// estas dos variables servirán para que cuando el juego termine y
+			// se cargue el menú, la pantalla no detecte la pulsación hasta que
+			// se levante el dedo.
+			recently_touched = false;
+
+			// ************************************************************************
+			// ****************** --- MECÁNICA JUGADOR ---
+			// ****************************
+			// ************************************************************************
+			// No se pa que sirve.... por ahora
+			clockShoot = 0;
+			clockSprites = -5;
+
+			// ************************************************************************
+			// ******************** --- BACKGROUND MUSIC ---
+			// **************************
+			// ************************************************************************
+
+			// cargamos el sonido de la música de fondo
+			// backgroundMusic =
+			// Gdx.audio.newMusic(Gdx.files.internal("audio/music/background.mp3"));
+
+			// establecemos la musica de fondo como bucle e iniciamos su
+			// reproducción.
+			Musics.backgroundMusic.setLooping(true);
+
+			levelList = new Array<Level>();
+
+			levelList.add(new Level0());
+			//levelList.add(new LevelTest());
+
+			// variable para acceder a los niveles en el Array
+			levelIndex = 0;
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+		componentsInitialized = true;
 	}
 
 }
