@@ -15,8 +15,8 @@ public class Level0 extends Level {
 
     public Level0() {
         movementIndex = 0;
-        this.nPhases = 8;
-        this.bossPhase = 9;
+        this.nPhases = 7;
+        this.bossPhase = 8;
         this.maxPhases = MathUtils.random(10, 15);
     }
 
@@ -269,25 +269,16 @@ public class Level0 extends Level {
                 break;
                 
             case 8:
-            	if (!running) {
-            		running = true;
-            		
-            		GameEngine.changeUniverse(2);
-                    changePhase();
-
-                    System.out.println("UNIVERSO CAMBIADO");
-
-            	}
-
-            case 9:
 
                 if (!running) {
                     running = true;
+                    System.out.println("Holaa");
                     //GameEngine.spawnBoss(78, 500, GameEngine.BossType.TYPE_1); //boss1
                     GameEngine.spawnBoss(78, 700, GameEngine.BossType.TYPE_1); //boss1
 
                 } else if (GameEngine.getBosses().isEmpty()) {
 
+                    System.out.println("NO HAY BOSSES");
                     changePhase();
 
                 } //end else

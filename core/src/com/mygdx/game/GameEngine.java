@@ -44,9 +44,9 @@ import java.util.Iterator;
 public class GameEngine {
 
 	/*
-	 * Esta clase contendrá todos los elementos comunes e importantes para el
-	 * motor como el jugador, enemigos, mecanicas de dibujado, etc
-	 */
+		 * Esta clase contendrá todos los elementos comunes e importantes para el
+         * motor como el jugador, enemigos, mecanicas de dibujado, etc
+         */
 	// <Mio!!>
 	public static OrthographicCamera cam;
 	public static SpriteBatch batch;

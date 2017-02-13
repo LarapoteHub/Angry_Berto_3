@@ -48,10 +48,7 @@ public class Explosion extends PlainAnimation {
     @Override
     public void draw() {
 
-
-
-        //GameEngine.batch.draw(Sprites.explosion[index].getTexture(), x, y, 56, 56);
-        //Sprites.explosion.draw(GameEngine.batch);             //EL SEGUNDO PARAMETRO ES EL LOOP
+        //EL SEGUNDO PARAMETRO ES EL LOOP
         currentFrame = currentAnimation.getKeyFrame(stateTime, false);
         System.out.println("Exp at :" + x + "  " + y + " - " + width + "  " + height);
         GameEngine.batch.draw(currentFrame, x, y, width, height);
