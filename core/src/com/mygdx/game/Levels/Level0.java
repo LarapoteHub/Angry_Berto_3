@@ -35,21 +35,23 @@ public class Level0 extends Level {
                  */
                 if (!running) {
                     running = true;
-                    /*
+
+
                     GameEngine.spawnEnemy(78, 800, EnemyType.STANDARD_ENEMY, 0);
                     GameEngine.spawnEnemy(422, 800, EnemyType.STANDARD_ENEMY, 0);
                     GameEngine.spawnEnemy(78, 880, EnemyType.STANDARD_ENEMY, 0);
                     GameEngine.spawnEnemy(422, 880, EnemyType.STANDARD_ENEMY, 0);
                     GameEngine.spawnEnemy(78, 960, EnemyType.STANDARD_ENEMY, 0);
                     GameEngine.spawnEnemy(422, 960, EnemyType.STANDARD_ENEMY, 0);
-                    */
 
+                    /*
                     GameEngine.spawnEnemy(78, 800, EnemyType.EVADING_ENEMY, 0);
                     GameEngine.spawnEnemy(422, 800, EnemyType.EVADING_ENEMY, 0);
                     GameEngine.spawnEnemy(78, 880, EnemyType.EVADING_ENEMY, 0);
                     GameEngine.spawnEnemy(422, 880, EnemyType.EVADING_ENEMY, 0);
                     GameEngine.spawnEnemy(78, 960, EnemyType.EVADING_ENEMY, 0);
                     GameEngine.spawnEnemy(422, 960, EnemyType.EVADING_ENEMY, 0);
+                    */
 
                 } else if (GameEngine.getEnemies().isEmpty()) {
 

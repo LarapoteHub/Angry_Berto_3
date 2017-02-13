@@ -1,12 +1,13 @@
 package com.mygdx.game.Entities.Enemies;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Timer;
 import com.mygdx.game.Entities.Player;
-import com.mygdx.game.GameEngine.EnemyType;
 import com.mygdx.game.GameEngine;
+import com.mygdx.game.GameEngine.EnemyType;
 import com.mygdx.game.Multimedia.Sounds;
 import com.mygdx.game.Multimedia.Sprites;
 
@@ -20,6 +21,8 @@ public class SpikeBallEnemy extends Enemy {
         su movimiento es controlado por schedules de las clases derivadas de Level.
      */
 
+    private TextureRegion[] movingFrames;
+
     public SpikeBallEnemy(float x, float y, int behavior) {
 
         super(x, y, behavior);
@@ -32,12 +35,21 @@ public class SpikeBallEnemy extends Enemy {
         
         type = EnemyType.SPIKE_BALL;
 
+        this.FRAME_COLS = 2;
+        this.FRAME_ROWS = 1;
+
+        initAnimation();
+
     }
 
 
     public void draw () {
 
-        GameEngine.batch.draw(Sprites.enemy_spikeBall[index].getTexture(), x, y, 48, 48);
+        //GameEngine.batch.draw(Sprites.enemy_spikeBall[index].getTexture(), x, y, 48, 48);
+
+        currentFrame = currentAnimation.getKeyFrame(stateTime, true);
+        GameEngine.batch.draw(currentFrame, x, y, width, height);
+        stateTime += Gdx.graphics.getDeltaTime();
 
     }
 
@@ -134,5 +146,17 @@ public class SpikeBallEnemy extends Enemy {
 		
 	}
 
+    public void initAnimation() {
+
+        Sprites.enemy_spikeBall.setBounds(0, 0, Sprites.enemy_spikeBall.getTexture().getWidth(), Sprites.enemy_spikeBall.getTexture().getHeight());
+
+        movingFrames = new TextureRegion[FRAME_COLS];
+
+        movingFrames = Sprites.enemy_spikeBall.split(Sprites.enemy_spikeBall.getTexture(), (int) Sprites.enemy_spikeBall.getWidth() / FRAME_COLS, (int) Sprites.enemy_spikeBall.getHeight() / FRAME_ROWS)[0];
+
+        currentAnimation = new Animation(0.4f, movingFrames);
+        //currentAnimation.setPlayMode(Animation.PlayMode.LOOP);
+
+    }
 
 }

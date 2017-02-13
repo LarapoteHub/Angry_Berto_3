@@ -1,7 +1,5 @@
 package com.mygdx.game.Entities;
 
-import com.badlogic.gdx.math.Vector2;
-
 /**
  * Created by Red Mercy on 10/14/2016.
  */
@@ -11,8 +9,9 @@ public abstract class Ship extends Entity {
 	protected int cooldown = 10;
 	protected int CDCount = 0;
 	protected int lives = 2;
-	
-    public abstract boolean canShoot();
+
+
+	public abstract boolean canShoot();
     
     public void setCanShoot(boolean newCanShoot) {
     	this.canShoot = newCanShoot;

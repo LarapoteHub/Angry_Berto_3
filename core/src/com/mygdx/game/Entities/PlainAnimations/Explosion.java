@@ -3,7 +3,6 @@ package com.mygdx.game.Entities.PlainAnimations;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.mygdx.game.Entities.PlainAnimations.PlainAnimation;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.Multimedia.Sprites;
 
@@ -12,18 +11,8 @@ import com.mygdx.game.Multimedia.Sprites;
  */
 public class Explosion extends PlainAnimation {
 
-    private float x;
-    private float y;
 
-    private TextureRegion[] explodingFrames;
-    private TextureRegion currentFrame;
-
-    private Animation explodingAnimation, currentAnimation;
-
-    TextureRegion[][] tmp;
-
-    private final int FRAME_COLS = 25;
-    private final int FRAME_ROWS = 1;
+    private Animation explodingAnimation;
 
     private float stateTime = 0f;
 
@@ -36,6 +25,9 @@ public class Explosion extends PlainAnimation {
 
         this.width = width;
         this.height = height;
+
+        this.FRAME_COLS = 25;
+        this.FRAME_ROWS = 1;
 
         //iniciamos la animación.
         initAnimation();

@@ -56,8 +56,8 @@ public class Sprites {
     //public static Texture enemy_std;
     //public static Sprite[] enemy_dodging;
     public static Sprite enemy_dodging;
-    public static Sprite[] enemy_spikeBall;
-    public static Sprite[] enemy_heavy;
+    public static Sprite enemy_spikeBall;
+    public static Sprite enemy_heavy;
 
     // Balas - Bullets
     public static Sprite bullet_player;
