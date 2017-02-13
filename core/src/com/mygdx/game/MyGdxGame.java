@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Align;
@@ -60,6 +61,8 @@ public class MyGdxGame extends ApplicationAdapter {
 
 	private BitmapFont fuenteDelDany;
 	private SpriteBatch batchDelDany;
+	private OrthographicCamera camaraDelDany = new OrthographicCamera();
+
 	private boolean componentsInitialized = false;
 
 
@@ -82,6 +85,8 @@ public class MyGdxGame extends ApplicationAdapter {
 
 		fuenteDelDany = new BitmapFont(Gdx.files.internal("fonts/anime_ace2.fnt"));
 		batchDelDany = new SpriteBatch();
+		camaraDelDany.setToOrtho(false, WIDTH, HEIGHT);
+
 	} // fin del método create() <-----
 
 	// ------------------------------------------------------------------------------------------------------
@@ -95,15 +100,20 @@ public class MyGdxGame extends ApplicationAdapter {
 	public void render() {
 
 		if (!loader.update()) {
+			camaraDelDany.update();
+			batchDelDany.setProjectionMatrix(camaraDelDany.combined);
 			batchDelDany.begin();
 			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-			fuenteDelDany.draw(batchDelDany, "LOADING: "+(int)(loader.getProgress()*100) + "%", 180, 350, Align.center, Align.center, true);
+			fuenteDelDany.draw(batchDelDany, "LOADING: "+(int)(loader.getProgress()*100) + "%", 240, 400, Align.center, Align.center, true);
 			batchDelDany.end();
 		} else {
 
 			if (!componentsInitialized) {
 				initMultimedia();
 				initComponents();
+
+				batchDelDany.dispose();
+				fuenteDelDany.dispose();
 			}
 
 			frameStart = System.nanoTime();
