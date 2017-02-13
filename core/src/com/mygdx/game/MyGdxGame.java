@@ -1,7 +1,10 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
+import com.mygdx.game.Engine.Loader;
 import com.mygdx.game.Engine.MusicManager;
 import com.mygdx.game.Levels.Level;
 import com.mygdx.game.Levels.Level0;
@@ -18,6 +21,8 @@ public class MyGdxGame extends ApplicationAdapter {
 	public static final boolean DEBUG_MODE = true;
 
 	public static final boolean SHOW_FPS = true;
+
+	private Loader loader;
 
 	private boolean multimediaInitialized = false;
 
@@ -62,7 +67,12 @@ public class MyGdxGame extends ApplicationAdapter {
 	@Override
 	public void create() {
 		engine = new GameEngine();
-		initMultimedia();
+		//TODO 100vol estuvo aqui
+		loader = new Loader();
+		forceLoadMultimedia(); //no asincrono
+
+		//loadMultimedia();
+
 		engine.create();
 
 		try {
@@ -134,6 +144,7 @@ public class MyGdxGame extends ApplicationAdapter {
 	@Override
 	public void render() {
 		frameStart = System.nanoTime();
+
 		engine.tick(); // TODO Use some DeltaTime mechanics??
 
 		if (showFPS)
@@ -173,20 +184,46 @@ public class MyGdxGame extends ApplicationAdapter {
 		 */
 	}
 
-	private void initMultimedia() {
+	private void forceLoadMultimedia() {
+
 		if (!multimediaInitialized) {
-			com.mygdx.game.Engine.Loader l = new com.mygdx.game.Engine.Loader();
 
-			l.loadSprites();
-			// Alternativa....
-			// TODO Meditar sobre si implementarlo o no...
-			// Sprites.load();
+			loader.loadSprites();
+			loader.loadSounds();
+			loader.loadMusic();
+			loader.loadBackgrounds();
 
-			l.loadSounds();
+			loader.finishLoading();
 
-			l.loadMusic();
+			loader.initSprites();
+			loader.initSounds();
+			loader.initMusic();
+			loader.initBackgrounds();
 
-			l.loadBackgrounds();
+			multimediaInitialized = true;
+		}
+
+	}
+
+	private void loadMultimedia() {
+
+		if (!multimediaInitialized) {
+
+			loader.loadSprites();
+			loader.loadSounds();
+			loader.loadMusic();
+			loader.loadBackgrounds();
+		}
+	}
+
+	private void initMultimedia() {
+
+		if (!multimediaInitialized) {
+
+			loader.initSprites();
+			loader.initSounds();
+			loader.initMusic();
+			loader.initBackgrounds();
 
 			multimediaInitialized = true;
 		}

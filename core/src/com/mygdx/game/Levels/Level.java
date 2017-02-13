@@ -35,8 +35,9 @@ public abstract class Level {
         return running;
     }
 
-
     public abstract void runLevel();
+
+    public abstract void runPhase();
 
     protected void changePhase() {
 
