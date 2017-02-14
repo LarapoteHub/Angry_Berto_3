@@ -66,7 +66,7 @@ public class Logic extends GameEngine implements Runnable {
         }
 
         /*
-		 * Parte del Button de Hoe
+         * Parte del Button de Hoe
 		 * 
 		 * if (chargeBar >= cost) {
 		 * GameEngine.batch.draw(textures[1].getTexture(), x, y, width, height);
@@ -82,7 +82,7 @@ public class Logic extends GameEngine implements Runnable {
                 && GameEngine.gameState.isPlaying()) {
             GameEngine.gameState.mainMenu();
         } /*
-		 * else if (GameEngine.gameState.isInMainMenu()) { System.exit(0); }
+         * else if (GameEngine.gameState.isInMainMenu()) { System.exit(0); }
 		 */
 
         if (gameState.isChanged()) // && !Gdx.input.isTouched()) Efecto MUY
@@ -111,6 +111,7 @@ public class Logic extends GameEngine implements Runnable {
 
             moveBullets();
             cargarNivel();
+            player.move();
         }
 
         checkButtonPress();
@@ -168,9 +169,13 @@ public class Logic extends GameEngine implements Runnable {
             // del lugar del click/toque, en la medida en la que se desenvuelve
             // nuestro mundo.
             GameEngine.cam.unproject(touchPos);
-        } else {
-            touchPos.set(-10, -10, 0);
         }
+
+        // TODO Por alguna razon tira para abajo a la izquierda en alguna circunstancia.
+        /*else {
+
+            //touchPos.set(-10, -10, 0);
+        }*/
 
     }
 
@@ -355,7 +360,7 @@ public class Logic extends GameEngine implements Runnable {
     }
 
     private void checkCollisions() {
-        for (Enemy enem : enemies) {
+        /*for (Enemy enem : enemies) {
             for (Projectile p : bullets_Player) {
                 if (enem.isColliding(p)) {
                     enem.decreaseLives(p.getDamage());
@@ -371,6 +376,62 @@ public class Logic extends GameEngine implements Runnable {
                             spawnPowerUpCharge(enem.getX(), enem.getY());
                     }
                 }
+            }
+        }*/
+
+        // Invertido el bucle. Se evita recorrer el array de "bullets_Player" 2 veces. (Culpa de los bosses)
+        // TODO Meter threads para esto si es posible.
+        for (Projectile p : bullets_Player) {
+            for (Enemy enem : enemies) {
+                if (enem.isColliding(p)) {
+                    enem.decreaseLives(p.getDamage());
+                    p.destroy();
+                    if (enem.getLives() <= 0) {
+                        enem.kill();
+                        addEntity(new Explosion(enem.getX(), enem.getY(), enem.getWidth(), enem.getHeight()),
+                                EntityType.PLAIN_ANIMATION);
+                        player.addScore(enem.getScore());
+                        Random rnd = new Random(System.nanoTime()
+                                * System.nanoTime() / 13);
+                        if (rnd.nextInt(100) < enem.getPowerUpProbability())
+                            spawnPowerUpCharge(enem.getX(), enem.getY());
+                    }
+                }
+            }
+            for (Boss boss : bosses) {
+                if (boss.isColliding(p)) {
+                    boss.decreaseLives(p.getDamage());
+                    p.destroy();
+                    if (boss.getLives() <= 0) {
+                        boss.kill();
+                        addEntity(new Explosion(boss.getX(), boss.getY(), boss.getWidth(), boss.getHeight()),
+                                EntityType.PLAIN_ANIMATION);
+                        player.addScore(boss.getScore());
+                        Random rnd = new Random(System.nanoTime()
+                                * System.nanoTime() / 13);
+                        if (rnd.nextInt(100) < boss.getPowerUpProbability())
+                            spawnPowerUpCharge(boss.getX(), boss.getY());
+                    }
+                }
+            }
+        }
+
+        for (Enemy enem : enemies) {
+            if (enem.isColliding(player)) {
+                enem.kill();
+                if (enem.getType().equals(EnemyType.SPIKE_BALL))
+                    player.decreaseLives(3);        // Las minas tienen mas daño, no??
+                else if (enem.getType().equals(EnemyType.HEAVY_ENEMY))
+                    player.decreaseLives(2);        // -2 por Heavy
+                else
+                    player.decreaseLives(1);
+            }
+        }
+        for (Boss b : bosses) {
+            if (b.isColliding(player)) {
+                player.decreaseLives(15);
+                // No se si la funcion kill() tiene un comportamiento adecuado para Player. Por eso el -15
+                //player.kill();
             }
         }
         for (Projectile p : bullets_Enemy) {

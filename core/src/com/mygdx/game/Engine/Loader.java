@@ -24,13 +24,26 @@ public class Loader extends AssetManager {
     public Loader() {
         param = new TextureLoader.TextureParameter();
         param.minFilter = Texture.TextureFilter.Linear;
+        // Esto ultimo es solo util para 3D, pero bueno...
         param.genMipMaps = true;
+    }
+
+    // Fase de Load compleja. Deberia haber un String que tenga todas las rutas.
+    // Enum algo chungo de entender.
+    enum SprPath {
+        pauseButton("sprites/buttons/pauseButton.png");
+
+        private final String path;
+
+        SprPath(String path) {
+            this.path = path;
+        }
     }
 
     public void loadSprites() {
 
         //BOTONES - BUTTONS
-        this.load("sprites/buttons/pauseButton.png", Texture.class, param);
+        this.load(SprPath.pauseButton.path, Texture.class, param);
         this.load("sprites/buttons/playButton.png", Texture.class, param);
         this.load("sprites/buttons/archievementsButtonMenu.png", Texture.class, param);
         this.load("sprites/buttons/archievementsButtonMenuTouched.png", Texture.class, param);
@@ -122,6 +135,8 @@ public class Loader extends AssetManager {
         this.load("backgrounds/backgroundGameOver.png", Texture.class, param);
         this.load("backgrounds/backgroundIntro.png", Texture.class, param);
         this.load("backgrounds/powerUps.png", Texture.class, param);
+        this.load("backgrounds/universe1.jpg", Texture.class, param);
+        this.load("backgrounds/universe2.jpg", Texture.class, param);
     }
 
     public void initSprites() {
@@ -149,7 +164,7 @@ public class Loader extends AssetManager {
         Sprites.btn_pause = new Sprite[2];
         Sprites.btn_pause[0] = new Sprite();
         Sprites.btn_pause[1] = new Sprite();
-        Sprites.btn_pause[0].setTexture((Texture) this.get("sprites/buttons/pauseButton.png"));
+        Sprites.btn_pause[0].setTexture((Texture) this.get(SprPath.pauseButton.path));
         Sprites.btn_pause[1].setTexture((Texture) this.get("sprites/buttons/playButton.png"));
 
         Sprites.btn_achievements = new Sprite[2];
@@ -262,6 +277,8 @@ public class Loader extends AssetManager {
         Backgrounds.backgroundGameOver = (Texture) this.get("backgrounds/backgroundGameOver.png");
         Backgrounds.backgroundIntro = (Texture) this.get("backgrounds/backgroundIntro.png");
         Backgrounds.backgroundPowerUps = (Texture) this.get("backgrounds/powerUps.png");
+        Backgrounds.universe_1 = (Texture) this.get("backgrounds/universe1.jpg");
+        Backgrounds.universe_2 = (Texture) this.get("backgrounds/universe2.jpg");
     }
 
 }

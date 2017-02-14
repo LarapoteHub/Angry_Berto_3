@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Timer;
 import com.mygdx.game.GameEngine;
+import com.mygdx.game.Multimedia.Backgrounds;
 import com.mygdx.game.Multimedia.Sounds;
 import com.mygdx.game.Multimedia.Sprites;
 import com.mygdx.game.MyGdxGame;
@@ -29,7 +30,7 @@ public class Player extends Ship {
 	private int fireIndex;
 	private Timer.Task animation;
 	Vector3 touchPos;
-	
+
 	private int attackSpeed = 1;
 
 	// alamcena la carga para usar powerUps
@@ -40,7 +41,7 @@ public class Player extends Ship {
 
 		/*
 		 * playerImage = new Texture[2]; fireImage = new Texture[3];
-		 * 
+		 *
 		 * playerImage[0] = new
 		 * Texture(Gdx.files.internal("sprites/player/player.png"));
 		 * playerImage[1] = new
@@ -140,15 +141,7 @@ public class Player extends Ship {
 				GameEngine.batch.draw(Sprites.player[0].getTexture(), x - 4, y,
 						56, getHeight());
 			} else {
-				// TODO entender esto
-				// Mecanica para que no salte cuando haya un tap fuera de
-				// ciertos limites
-				this.x -= hspeed * Gdx.graphics.getDeltaTime() * 10;
-				this.y -= vspeed * Gdx.graphics.getDeltaTime() * 10;
-				hspeed = Math.round(hspeed / 2);
-				vspeed = Math.round(vspeed / 2);
 
-				// Algo de render??
 				GameEngine.batch.draw(Sprites.player[index].getTexture(),
 						x - 4, y, 56, getHeight());
 				GameEngine.batch.draw(
@@ -211,14 +204,32 @@ public class Player extends Ship {
 
 	@Override
 	public void move() {
-		if (x < 68)
-			x = 68; // antes 0 donde el 68
+		/*x += hSpeed * Gdx.graphics.getDeltaTime();
+		y += vSpeed * Gdx.graphics.getDeltaTime();
+		*/
+
+		// TODO entender esto
+		// Mecanica para que no salte cuando haya un tap fuera de
+		// ciertos limites
+		this.x -= hspeed * Gdx.graphics.getDeltaTime() * 10;
+		this.y -= vspeed * Gdx.graphics.getDeltaTime() * 10;
+		hspeed = Math.round(hspeed / 2);
+		vspeed = Math.round(vspeed / 2);
+
+		if (x <= Backgrounds.backgroundPowerUps.getWidth())
+			x = Backgrounds.backgroundPowerUps.getWidth(); // antes 0 donde el 68
 		if (x > 480 - width)
 			x = 480 - width;
 		if (y > 300)
 			y = 300;
 		if (y < 20)
 			y = 20;
+		if (x <= Backgrounds.backgroundPowerUps.getWidth() && hSpeed > 0) {
+			hSpeed = 0;
+		}
+		if (x + width >= MyGdxGame.WIDTH && hSpeed < 0) {
+			hSpeed = 0;
+		}
 	}
 
 	public void setAttackSpeed(int attackSpeed) {
@@ -226,7 +237,7 @@ public class Player extends Ship {
 		if (cooldown != baseCooldown / attackSpeed)
 			this.cooldown = baseCooldown / attackSpeed;
 	}
-	
+
 	public boolean collides(Entity collisionBox) {
 		return this.collisionBox.overlaps(collisionBox.collisionBox);
 
@@ -234,7 +245,7 @@ public class Player extends Ship {
 		 * if (this.x <= collisionBox.x && this.x + this.width >= collisionBox.x
 		 * + collisionBox.width && this.y <= collisionBox.y && this.y +
 		 * this.height >= collisionBox.y + collisionBox.height) { return true; }
-		 * 
+		 *
 		 * return false;
 		 */
 	}

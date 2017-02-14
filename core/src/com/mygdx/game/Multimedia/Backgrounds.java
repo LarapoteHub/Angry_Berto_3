@@ -15,4 +15,7 @@ public class Backgrounds {
 
     public static Texture backgroundPowerUps;// = new Texture(Gdx.files.internal("backgrounds/powerUps.png"));
 
+    public static Texture universe_1;
+    public static Texture universe_2;
+
 }

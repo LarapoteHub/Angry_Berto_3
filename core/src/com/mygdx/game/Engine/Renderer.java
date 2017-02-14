@@ -169,6 +169,8 @@ public class Renderer extends GameEngine implements Runnable{
 			batch.draw(Backgrounds.backgroundIntro, 0, 0);
 		} else if (gameState.isInEndGame()) {
 			batch.draw(Backgrounds.backgroundGameOver, 0, 0);
+		} else if (gameState.isPlaying() || gameState.isPaused()) {
+			batch.draw(uni.getBackground(), 0, 0);
 		}
 
 	}
