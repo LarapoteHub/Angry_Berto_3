@@ -111,6 +111,7 @@ public class Logic extends GameEngine implements Runnable {
 
             moveBullets();
             cargarNivel();
+            player.move();
         }
 
         checkButtonPress();
@@ -168,9 +169,13 @@ public class Logic extends GameEngine implements Runnable {
             // del lugar del click/toque, en la medida en la que se desenvuelve
             // nuestro mundo.
             GameEngine.cam.unproject(touchPos);
-        } else {
-            touchPos.set(-10, -10, 0);
         }
+
+        // TODO Por alguna razon tira para abajo a la izquierda en alguna circunstancia.
+        /*else {
+
+            //touchPos.set(-10, -10, 0);
+        }*/
 
     }
 
