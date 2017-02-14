@@ -15,17 +15,22 @@ import com.mygdx.game.Levels.Level;
 import com.mygdx.game.Levels.Level0;
 import com.mygdx.game.Multimedia.Musics;
 
+// TODO LIST!
+// Lista donde se pone el resto de cosas que no son directamente relacionadas con codigo
+// Corregir el playButton.png
+
 public class MyGdxGame extends ApplicationAdapter {
 	// Dimensiones de la pantalla de renderizado DENTRO del juego...
 	// TODO Esto debería ajustarse a la pantalla actual que tenemos en realidad,
-	// con bordes negros
+	// TODO con bordes negros
 	// TODO o lo que haga falta.
 	public static final int WIDTH = 480, HEIGHT = 800;
 
-	//TODO modo DEBUG
-	public static final boolean DEBUG_MODE = true;
+	// modo DEBUG
+	public static final boolean DEBUG_MODE = false;
 
 	public static final boolean SHOW_FPS = true;
+	public static final boolean MOSTRAR_COMENTARIOS_CHORRA = false;
 
 	private Loader loader;
 
@@ -33,13 +38,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
 	private long frameStart;
 
-	private int clockShoot;
 	static int clockSprites;
-
-	// variables que serviran para dejar un tiempo entre la pausa y el resumir,
-	// para que no se hagan las dos cosas instantaneamente
-	public static long lastPaused;
-	public static long lastResumed;
 
 	// variable para que al perder tocando la pantalla, no se cierre.
 	public static boolean recently_touched;
@@ -249,7 +248,6 @@ public class MyGdxGame extends ApplicationAdapter {
 			// ****************************
 			// ************************************************************************
 			// No se pa que sirve.... por ahora
-			clockShoot = 0;
 			clockSprites = -5;
 
 			// ************************************************************************

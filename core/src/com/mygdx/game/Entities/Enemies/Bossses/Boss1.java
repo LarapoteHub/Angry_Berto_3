@@ -28,7 +28,8 @@ public class Boss1 extends Boss {
         //height = 48;
         width = 96;
         height = 96;
-        lives = 2;
+        // TODO Que es un boss, por dios
+        lives = 200;
 
         // Implementado en otro lado. Usar cooldown
         // timerShoot = 50;
@@ -74,12 +75,13 @@ public class Boss1 extends Boss {
 
     @Override
     public void runBehavior() {
-
         //System.out.println("BOSS HSPEED: "+hSpeed+" VSPEED: "+vSpeed+" X: "+x+" Y: "+y);
-        System.out.println("We need to build a BOSS");
-        System.out.println("And some Universes");
-        System.out.println("And it has to be build QUICLY!!");
-        switch(behavior) {
+        if (MyGdxGame.MOSTRAR_COMENTARIOS_CHORRA) {
+            System.out.println("We need to build a BOSS");
+            System.out.println("And some Universes");
+            System.out.println("And it has to be build QUICKLY!!");
+        }
+        switch (behavior) {
             /*
             en funcion de si esta a la izquierda o a la derecha,
             le damos movimiento hacia un lado o hacia otro.
@@ -91,11 +93,11 @@ public class Boss1 extends Boss {
                     GameEngine.spawnEnemy(MathUtils.random(68, 432), 800, GameEngine.EnemyType.SPIKE_BALL, 0);
                 }
 
-                switch(behaviorPhase) {
-
-                    case 0: vSpeed = -100;
+                switch (behaviorPhase) {
+                    case 0:
+                        vSpeed = -100;
                         if (y <= referenceY) {
-
+                            y = referenceY;
                             hSpeed = 400;
                             vSpeed = 0;
                             behaviorPhase++;
@@ -106,30 +108,34 @@ public class Boss1 extends Boss {
                     case 1:
                         if (actionTimer >= Math.random() * 500 + 250) {
 
-                        hSpeed = 0;
-                        vSpeed = -400;
-                        referenceY-=144; //height * 1.5
-                        if (referenceY <= 0) {
-                            referenceY = 600;
+                            hSpeed = 0;
+                            vSpeed = -400;
+                            referenceY -= 144; //height * 1.5
+                            if (referenceY <= 0) {
+                                referenceY = 600;
+                            }
+                            actionTimer = 0;
+                            behaviorPhase++;
+
                         }
-                        actionTimer = 0;
-                        behaviorPhase++;
-
-                    }
                         break;
 
-                    case 2: if (y<=0) {
-                        vSpeed = 600;
-                        behaviorPhase++;
-                    }
+                    case 2:
+                        if (y <= 0) {
+                            y = 0;
+                            vSpeed = 600;
+                            behaviorPhase++;
+                        }
                         break;
 
-                    case 3: if (y >= referenceY) {
-                        hSpeed = 400;
-                        vSpeed = 0;
-                        behaviorPhase = 1;
+                    case 3:
+                        if (y >= referenceY) {
+                            y = referenceY;
+                            hSpeed = 400;
+                            vSpeed = 0;
+                            behaviorPhase = 1;
 
-                    }
+                        }
                         break;
                 } //end switch
 

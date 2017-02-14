@@ -115,6 +115,10 @@ public class GameEngine {
 
 		new Scr_MainMenu().initComponents();
 
+		// TODO TEST TEST TEST TEST //
+		uni = new Universe();
+		// TODO TEST TEST TEST TEST //
+
 		logic = new Logic();
 		renderer = new Renderer();
 
@@ -134,9 +138,7 @@ public class GameEngine {
 
 		entities = new Array<Entity>();
 		
-		// TODO TEST TEST TEST TEST //
-		uni = new Universe();
-		// TODO TEST TEST TEST TEST //
+
 
 	}
 

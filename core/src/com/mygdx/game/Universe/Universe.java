@@ -1,5 +1,8 @@
 package com.mygdx.game.Universe;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.mygdx.game.Multimedia.Backgrounds;
+
 public class Universe {
 	protected int enemyHPBuff = 1;
 	protected int playerHPBuff = 1;
@@ -13,12 +16,15 @@ public class Universe {
 	
 	protected int playerAttackMode = 1;
 	
-	
+
+	private int uniMode = 1;
+
 	// Base values
 	private int playerAttackSpeedBase = 10;
 	private int enemyAttackSpeedBase = 10;
 	
 	public void setMode(int uniMode) {
+		this.uniMode = uniMode;
 		switch (uniMode){
 		case 1:
 			// Normaliño
@@ -26,6 +32,7 @@ public class Universe {
 			dogDisabled = hoeDisabled = hpDisabled = false;
 			break;
 		case 2:
+			// TODO Crear balas oscuras para el fondo del universo blanco.
 			dogDisabled = true;
 			enemyHPBuff = 2;
 			playerAttackSpeed = 5;
@@ -48,6 +55,17 @@ public class Universe {
 	
 	public int getPlayerAttackSpeed() {
 		return playerAttackSpeedBase / playerAttackSpeed;
+	}
+
+	public Texture getBackground() {
+		switch (uniMode) {
+			case 1:
+				return Backgrounds.universe_1;
+			case 2:
+				return Backgrounds.universe_2;
+		}
+
+		return null;
 	}
 	
 	public int getPlayerHPBuff() {
