@@ -3,8 +3,8 @@ package com.mygdx.game.Entities.PlainAnimations;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.mygdx.game.Entities.PlainAnimations.PlainAnimation;
 import com.mygdx.game.GameEngine;
+import com.mygdx.game.Multimedia.Sounds;
 import com.mygdx.game.Multimedia.Sprites;
 
 /**
@@ -12,18 +12,8 @@ import com.mygdx.game.Multimedia.Sprites;
  */
 public class Explosion extends PlainAnimation {
 
-    private float x;
-    private float y;
 
-    private TextureRegion[] explodingFrames;
-    private TextureRegion currentFrame;
-
-    private Animation explodingAnimation, currentAnimation;
-
-    TextureRegion[][] tmp;
-
-    private final int FRAME_COLS = 25;
-    private final int FRAME_ROWS = 1;
+    private Animation explodingAnimation;
 
     private float stateTime = 0f;
 
@@ -36,6 +26,12 @@ public class Explosion extends PlainAnimation {
 
         this.width = width;
         this.height = height;
+
+        //this.FRAME_COLS = 25;
+        this.FRAME_COLS = 19;
+        this.FRAME_ROWS = 1;
+
+        Sounds.explodeSound.play();
 
         //iniciamos la animación.
         initAnimation();
@@ -56,14 +52,11 @@ public class Explosion extends PlainAnimation {
     @Override
     public void draw() {
 
-
-
-        //GameEngine.batch.draw(Sprites.explosion[index].getTexture(), x, y, 56, 56);
-        //Sprites.explosion.draw(GameEngine.batch);             //EL SEGUNDO PARAMETRO ES EL LOOP
+        //EL SEGUNDO PARAMETRO ES EL LOOP
         currentFrame = currentAnimation.getKeyFrame(stateTime, false);
         System.out.println("Exp at :" + x + "  " + y + " - " + width + "  " + height);
         GameEngine.batch.draw(currentFrame, x, y, width, height);
-        stateTime += Gdx.graphics.getDeltaTime() * 25;
+        stateTime += Gdx.graphics.getDeltaTime() * 19;
 
     }
 

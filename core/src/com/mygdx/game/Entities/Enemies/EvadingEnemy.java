@@ -25,16 +25,8 @@ public class EvadingEnemy extends Enemy {
      */
 
     private TextureRegion[] movingFrames;
-    private TextureRegion currentFrame;
 
-    private Animation movingAnimation, currentAnimation;
-
-    TextureRegion[][] tmp;
-
-    private final int FRAME_COLS = 2;
-    private final int FRAME_ROWS = 1;
-
-    private float stateTime = 0f;
+    private Animation movingAnimation;
 
     public EvadingEnemy(float x, float y, int behavior) {
         super(x, y, behavior);
@@ -50,6 +42,9 @@ public class EvadingEnemy extends Enemy {
         type = EnemyType.EVADING_ENEMY;
         
         powerUpProb = 15;
+
+        this.FRAME_COLS = 2;
+        this.FRAME_ROWS = 1;
 
         initAnimation();
 
@@ -180,18 +175,10 @@ public class EvadingEnemy extends Enemy {
 
         Sprites.enemy_dodging.setBounds(0, 0, Sprites.enemy_dodging.getTexture().getWidth(), Sprites.enemy_dodging.getTexture().getHeight());
 
-        tmp = Sprites.enemy_dodging.split(Sprites.enemy_dodging.getTexture(), (int) Sprites.enemy_dodging.getWidth() / FRAME_COLS, (int) Sprites.enemy_dodging.getHeight() / FRAME_ROWS);
-
         movingFrames = new TextureRegion[FRAME_COLS];
+        movingFrames = Sprites.enemy_dodging.split(Sprites.enemy_dodging.getTexture(), (int) Sprites.enemy_dodging.getWidth() / FRAME_COLS, (int) Sprites.enemy_dodging.getHeight() / FRAME_ROWS)[0];
 
-        for (int i = 0; i < FRAME_COLS; i++) {
-            movingFrames[i] = tmp[0][i];
-        }
-
-        movingAnimation = new Animation(0.4f, movingFrames);
-        movingAnimation.setPlayMode(Animation.PlayMode.LOOP);
-
-        currentAnimation = movingAnimation;
+        currentAnimation = new Animation(0.4f, movingFrames);
 
     }
 

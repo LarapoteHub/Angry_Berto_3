@@ -19,4 +19,9 @@ public class LevelTest extends Level {
         }
 
     }
+
+    @Override
+    public void runPhase() {
+
+    }
 }

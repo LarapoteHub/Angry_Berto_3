@@ -2,7 +2,6 @@ package com.mygdx.game.Entities.Enemies;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.mygdx.game.Entities.Player;
@@ -26,17 +25,8 @@ public class StandardEnemy extends Enemy {
 	 * boolean ascending; boolean descending;
 	 */
 
+	//solo tiene una animacion
 	private TextureRegion[] movingFrames;
-	private TextureRegion currentFrame;
-
-	private Animation movingAnimation, currentAnimation;
-
-	TextureRegion[][] tmp;
-
-	private final int FRAME_COLS = 4;
-	private final int FRAME_ROWS = 1;
-
-	private float stateTime = 0f;
 
 	public StandardEnemy(float x, float y, int behavior) {
 		super(x, y, behavior);
@@ -62,6 +52,9 @@ public class StandardEnemy extends Enemy {
 		
 		this.cooldown = GameEngine.uni.getEnemyAttackSpeed();
 		this.lives = GameEngine.uni.getEnemyHPBuff() * lives;
+
+		this.FRAME_COLS = 4;
+		this.FRAME_ROWS = 1;
 
 		initAnimation();
 
@@ -355,18 +348,12 @@ public class StandardEnemy extends Enemy {
 
 		Sprites.enemy_std.setBounds(0, 0, Sprites.enemy_std.getTexture().getWidth(), Sprites.enemy_std.getTexture().getHeight());
 
-		tmp = Sprites.enemy_std.split(Sprites.enemy_std.getTexture(), (int)Sprites.enemy_std.getWidth() / FRAME_COLS, (int)Sprites.enemy_std.getHeight() / FRAME_ROWS);
-
 		movingFrames = new TextureRegion[FRAME_COLS];
 
-		for (int i = 0 ; i < FRAME_COLS ; i++) {
-			movingFrames[i] = tmp[0][i];
-		}
+		movingFrames = Sprites.enemy_std.split(Sprites.enemy_std.getTexture(), (int) Sprites.enemy_std.getWidth() / FRAME_COLS, (int) Sprites.enemy_std.getHeight() / FRAME_ROWS)[0];
 
-		movingAnimation = new Animation(0.4f, movingFrames);
-		movingAnimation.setPlayMode(Animation.PlayMode.LOOP);
-
-		currentAnimation = movingAnimation;
+		currentAnimation = new Animation(0.4f, movingFrames);
+		//currentAnimation.setPlayMode(Animation.PlayMode.LOOP);
 
 	}
 

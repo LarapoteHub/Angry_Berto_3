@@ -1,7 +1,15 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
+import com.mygdx.game.Engine.Loader;
 import com.mygdx.game.Engine.MusicManager;
 import com.mygdx.game.Levels.Level;
 import com.mygdx.game.Levels.Level0;
@@ -18,6 +26,8 @@ public class MyGdxGame extends ApplicationAdapter {
 	public static final boolean DEBUG_MODE = true;
 
 	public static final boolean SHOW_FPS = true;
+
+	private Loader loader;
 
 	private boolean multimediaInitialized = false;
 
@@ -49,6 +59,15 @@ public class MyGdxGame extends ApplicationAdapter {
 
 	int levelIndex;
 
+	public static MusicManager musicManager = new MusicManager();
+
+	private BitmapFont fuenteDelDany;
+	private SpriteBatch batchDelDany;
+	private OrthographicCamera camaraDelDany = new OrthographicCamera();
+
+	private boolean componentsInitialized = false;
+
+
 	// OTHER!!
 	private boolean showFPS = false; // Theoretical FPS, actual FPS has VSync
 										// (60 Hz)
@@ -61,8 +80,142 @@ public class MyGdxGame extends ApplicationAdapter {
 
 	@Override
 	public void create() {
+
+		//TODO 100vol estuvo aqui
+		loader = new Loader();
+		loadMultimedia(); //no asincrono
+
+		fuenteDelDany = new BitmapFont(Gdx.files.internal("fonts/anime_ace2.fnt"));
+		batchDelDany = new SpriteBatch();
+		camaraDelDany.setToOrtho(false, WIDTH, HEIGHT);
+
+	} // fin del método create() <-----
+
+	// ------------------------------------------------------------------------------------------------------
+	// ------------------------------------------------------------------------------------------------------
+	// -------------------------------->>>>> RENDER
+	// <<<<<----------------------------------------------------
+	// ------------------------------------------------------------------------------------------------------
+	// ------------------------------------------------------------------------------------------------------
+
+	@Override
+	public void render() {
+
+		if (!loader.update()) {
+			camaraDelDany.update();
+			batchDelDany.setProjectionMatrix(camaraDelDany.combined);
+			batchDelDany.begin();
+			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+			fuenteDelDany.draw(batchDelDany, "LOADING: "+(int)(loader.getProgress()*100) + "%", 240, 400, Align.center, Align.center, true);
+			batchDelDany.end();
+		} else {
+
+			if (!componentsInitialized) {
+				initMultimedia();
+				initComponents();
+				musicManager.setMusic(Musics.backgroundMenuMusic);
+
+				batchDelDany.dispose();
+				fuenteDelDany.dispose();
+			}
+
+			frameStart = System.nanoTime();
+
+			engine.tick(); // TODO Use some DeltaTime mechanics??
+
+			if (showFPS)
+				System.out.println(1000.0 / ((1.0 * System.nanoTime() - frameStart) / 1000000));
+
+		}
+	} // fin del método render() <-----
+
+	// ------------------------------------------------------------------------------------------------------
+	// ------------------------------------------------------------------------------------------------------
+	// ------------------------------------------------------------------------------------------------------
+	// ------------------------------------------------------------------------------------------------------
+	// ------------------------------------------------------------------------------------------------------
+
+	// este método sobrescrito de la Interface dispose sirve para ayudar al
+	// sistema a "limpiar" todos los objetos creados
+	// en el momento que nos salgamos de la aplicación.
+	@Override
+	public void dispose() {
+
+		// limpiamos el sonido de fondo.
+		MusicManager.dispose();
+		// limpiamos el batch al completo.
+		// batch.dispose();
+
+		//loader.dispose();
+	}
+
+	// ------------------------------------------------------------------------------------------------------
+	// ------------------------------------------------------------------------------------------------------
+	// ------------------------------------------------------------------------------------------------------
+	// ------------------------------------------------------------------------------------------------------
+	// ------------------------------------------------------------------------------------------------------
+	// TODO Find a better system
+	public void checkFirstTouched() {
+		/*
+		 * //si es la primera vez que ha sido tocado recientemente... if
+		 * (firstRecently_touched) { //...ha sido recientemente tocado...
+		 * recently_touched = true; //...y ya no es la primera vez
+		 * firstRecently_touched = false; }
+		 */
+	}
+
+	private void forceLoadMultimedia() {
+
+		if (!multimediaInitialized) {
+
+			loader.loadSprites();
+			loader.loadSounds();
+			loader.loadMusic();
+			loader.loadBackgrounds();
+
+			loader.finishLoading();
+
+			loader.initSprites();
+			loader.initSounds();
+			loader.initMusic();
+			loader.initBackgrounds();
+
+			multimediaInitialized = true;
+		}
+
+	}
+
+	private void loadMultimedia() {
+
+		if (!multimediaInitialized) {
+
+			loader.loadSprites();
+			loader.loadSounds();
+			loader.loadMusic();
+			loader.loadBackgrounds();
+		}
+	}
+
+	private void initMultimedia() {
+
+		if (!multimediaInitialized) {
+
+			loader.initSprites();
+			loader.initSounds();
+			loader.initMusic();
+			loader.initBackgrounds();
+
+			multimediaInitialized = true;
+		}
+	}
+
+	//TODO ESTO SE HACE EN EL ON CREATE, ESTA PUESTO AQUI PARA PROBAR LA CARGA ASÍNCRONA.
+	private void initComponents() {
+
 		engine = new GameEngine();
-		initMultimedia();
+
+		//loadMultimedia();
+
 		engine.create();
 
 		try {
@@ -72,6 +225,8 @@ public class MyGdxGame extends ApplicationAdapter {
 			// if (!multimediaInitialized)
 
 			// engine.start();
+
+			//TODO PELIGRO
 
 			introInstace = new com.mygdx.game.Screens.Scr_Introduction();
 
@@ -122,74 +277,7 @@ public class MyGdxGame extends ApplicationAdapter {
 			ex.printStackTrace();
 		}
 
-	} // fin del método create() <-----
-
-	// ------------------------------------------------------------------------------------------------------
-	// ------------------------------------------------------------------------------------------------------
-	// -------------------------------->>>>> RENDER
-	// <<<<<----------------------------------------------------
-	// ------------------------------------------------------------------------------------------------------
-	// ------------------------------------------------------------------------------------------------------
-
-	@Override
-	public void render() {
-		frameStart = System.nanoTime();
-		engine.tick(); // TODO Use some DeltaTime mechanics??
-
-		if (showFPS)
-			System.out.println(1000.0 / ((1.0 * System.nanoTime() - frameStart) / 1000000));
-	} // fin del método render() <-----
-
-	// ------------------------------------------------------------------------------------------------------
-	// ------------------------------------------------------------------------------------------------------
-	// ------------------------------------------------------------------------------------------------------
-	// ------------------------------------------------------------------------------------------------------
-	// ------------------------------------------------------------------------------------------------------
-
-	// este método sobrescrito de la Interface dispose sirve para ayudar al
-	// sistema a "limpiar" todos los objetos creados
-	// en el momento que nos salgamos de la aplicación.
-	@Override
-	public void dispose() {
-
-		// limpiamos el sonido de fondo.
-		MusicManager.dispose();
-		// limpiamos el batch al completo.
-		// batch.dispose();
-	}
-
-	// ------------------------------------------------------------------------------------------------------
-	// ------------------------------------------------------------------------------------------------------
-	// ------------------------------------------------------------------------------------------------------
-	// ------------------------------------------------------------------------------------------------------
-	// ------------------------------------------------------------------------------------------------------
-	// TODO Find a better system
-	public void checkFirstTouched() {
-		/*
-		 * //si es la primera vez que ha sido tocado recientemente... if
-		 * (firstRecently_touched) { //...ha sido recientemente tocado...
-		 * recently_touched = true; //...y ya no es la primera vez
-		 * firstRecently_touched = false; }
-		 */
-	}
-
-	private void initMultimedia() {
-		if (!multimediaInitialized) {
-			com.mygdx.game.Engine.Loader l = new com.mygdx.game.Engine.Loader();
-
-			l.loadSprites();
-			// Alternativa....
-			// TODO Meditar sobre si implementarlo o no...
-			// Sprites.load();
-
-			l.loadSounds();
-
-			l.loadMusic();
-
-			l.loadBackgrounds();
-
-			multimediaInitialized = true;
-		}
+		componentsInitialized = true;
 	}
 
 }

@@ -1,6 +1,8 @@
 package com.mygdx.game.Engine;
 
 import com.mygdx.game.Engine.GameState;
+import com.mygdx.game.Multimedia.Musics;
+import com.mygdx.game.MyGdxGame;
 
 /**
  * Created by Red Mercy on 9/26/2016.
@@ -36,12 +38,16 @@ public class GameStateManager {
 	
 	public void play() {
 		state = GameState.GAMEPLAY;
+		//TODO 100vol estuvo aqui
+		MyGdxGame.musicManager.setMusic(Musics.backgroundMusic);
 		saveState = false;
 		changed = true;
 	}
 	
 	public void mainMenu() {
 		state = GameState.MAIN_MENU;
+		//TODO 100vol estuvo aqui
+		MyGdxGame.musicManager.setMusic(Musics.backgroundMenuMusic);
 		saveState = false;
 		changed = true;
 	}

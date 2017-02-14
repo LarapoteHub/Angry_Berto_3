@@ -1,18 +1,17 @@
 package com.mygdx.game.Entities.Enemies;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Timer;
 import com.mygdx.game.Entities.Player;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.GameEngine.EnemyType;
-import com.mygdx.game.Engine.GameState;
 import com.mygdx.game.GameEngine.EntityType;
 import com.mygdx.game.Multimedia.Sounds;
 import com.mygdx.game.Multimedia.Sprites;
 import com.mygdx.game.Projectiles.HeavyEnemyShoot;
-import com.mygdx.game.MyGdxGame;
 
 /**
  * Created by 100VOL on 09/08/2016.
@@ -29,12 +28,14 @@ public class HeavyEnemy extends Enemy {
     private float originalX;
     Timer.Task shootTask;
 
+    private TextureRegion[] movingFrames;
+
     public HeavyEnemy(float x, float y, int behavior) {
         super(x, y, behavior);
         vSpeed = -150;
-        setWidth(64);
-        setHeight(64);
-    	// TODO TEST TEST TEST TEST //
+        this.width = 64;
+        this.height = 64;
+        // TODO TEST TEST TEST TEST //
         lives = lives * 2 * GameEngine.uni.getEnemyHPBuff();
         timerShoot = 150 / GameEngine.uni.getEnemyAttackSpeed();
     	// TODO TEST TEST TEST TEST //
@@ -46,13 +47,22 @@ public class HeavyEnemy extends Enemy {
         type = EnemyType.HEAVY_ENEMY;
 
         powerUpProb = 50;
+
+        this.FRAME_COLS = 2;
+        this.FRAME_ROWS = 1;
+
+        initAnimation();
         
     }
 
     @Override
     public void draw () {
-    	
-        GameEngine.batch.draw(Sprites.enemy_heavy[index].getTexture(), x, y, 64, 64);
+
+        //GameEngine.batch.draw(Sprites.enemy_heavy[index].getTexture(), x, y, 64, 64);
+
+        currentFrame = currentAnimation.getKeyFrame(stateTime, true);
+        GameEngine.batch.draw(currentFrame, x, y, width, height);
+        stateTime += Gdx.graphics.getDeltaTime();
 
     }
 
@@ -198,4 +208,17 @@ public class HeavyEnemy extends Enemy {
 	public boolean canShoot() {
 		return canShoot;
 	}
+
+    public void initAnimation() {
+
+        Sprites.enemy_heavy.setBounds(0, 0, Sprites.enemy_heavy.getTexture().getWidth(), Sprites.enemy_heavy.getTexture().getHeight());
+
+        movingFrames = new TextureRegion[FRAME_COLS];
+
+        movingFrames = Sprites.enemy_heavy.split(Sprites.enemy_heavy.getTexture(), (int) Sprites.enemy_heavy.getWidth() / FRAME_COLS, (int) Sprites.enemy_heavy.getHeight() / FRAME_ROWS)[0];
+
+        currentAnimation = new Animation(0.4f, movingFrames);
+        //currentAnimation.setPlayMode(Animation.PlayMode.LOOP);
+
+    }
 }

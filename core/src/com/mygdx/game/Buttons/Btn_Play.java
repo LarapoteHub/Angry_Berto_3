@@ -1,7 +1,9 @@
 package com.mygdx.game.Buttons;
 
 import com.mygdx.game.GameEngine;
+import com.mygdx.game.Multimedia.Musics;
 import com.mygdx.game.Multimedia.Sprites;
+import com.mygdx.game.MyGdxGame;
 
 /**
  * Created by Red Mercy on 10/25/2016.
