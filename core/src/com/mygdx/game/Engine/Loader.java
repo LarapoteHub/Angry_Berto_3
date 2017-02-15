@@ -23,15 +23,19 @@ public class Loader extends AssetManager {
 
     public Loader() {
         param = new TextureLoader.TextureParameter();
-        param.minFilter = Texture.TextureFilter.Linear;
+        //param.minFilter = Texture.TextureFilter.Linear;
+        param.magFilter = Texture.TextureFilter.Linear;
         // Esto ultimo es solo util para 3D, pero bueno...
-        param.genMipMaps = true;
+        param.genMipMaps = false;
     }
 
     // Fase de Load compleja. Deberia haber un String que tenga todas las rutas.
     // Enum algo chungo de entender.
     enum SprPath {
-        pauseButton("sprites/buttons/pauseButton.png");
+        pauseButton("sprites/buttons/pauseButton.png"),
+        playButton("sprites/buttons/playButton.png"),
+        bulletSwitch_1("sprites/butons/type_1_btn.png"),
+        bulletSwitch_2("sprites/butons/type_2_btn.png");
 
         private final String path;
 
@@ -42,9 +46,15 @@ public class Loader extends AssetManager {
 
     public void loadSprites() {
 
+        // <TODO TEST BULLET TYPES>
+        this.load(SprPath.bulletSwitch_1.path, Texture.class, param);
+        this.load(SprPath.bulletSwitch_2.path, Texture.class, param);
+        // </TODO>
+
         //BOTONES - BUTTONS
         this.load(SprPath.pauseButton.path, Texture.class, param);
-        this.load("sprites/buttons/playButton.png", Texture.class, param);
+        this.load(SprPath.playButton.path, Texture.class, param);
+
         this.load("sprites/buttons/archievementsButtonMenu.png", Texture.class, param);
         this.load("sprites/buttons/archievementsButtonMenuTouched.png", Texture.class, param);
         this.load("sprites/buttons/optionsButtonMenu.png", Texture.class, param);
@@ -141,6 +151,15 @@ public class Loader extends AssetManager {
 
     public void initSprites() {
 
+        // <TODO TEST BULLET TYPES>
+        Sprites.btn_switch_bullet = new Sprite[2];
+        Sprites.btn_switch_bullet[0] = new Sprite((Texture) this.get(SprPath.bulletSwitch_1.path));
+        Sprites.btn_switch_bullet[1] = new Sprite((Texture) this.get(SprPath.bulletSwitch_2.path));
+        // </TODO>
+
+
+        // TODO Organizar mejor esto
+        // TODO Acortar las 2 lineas en 1, como arriba.
         // Part 2 - Les Botones - PowerUps
         Sprites.btn_rotaryHoe = new Sprite[2];
         Sprites.btn_rotaryHoe[0] = new Sprite();
@@ -165,7 +184,7 @@ public class Loader extends AssetManager {
         Sprites.btn_pause[0] = new Sprite();
         Sprites.btn_pause[1] = new Sprite();
         Sprites.btn_pause[0].setTexture((Texture) this.get(SprPath.pauseButton.path));
-        Sprites.btn_pause[1].setTexture((Texture) this.get("sprites/buttons/playButton.png"));
+        Sprites.btn_pause[1].setTexture((Texture) this.get(SprPath.playButton.path));
 
         Sprites.btn_achievements = new Sprite[2];
         Sprites.btn_achievements[0] = new Sprite();
