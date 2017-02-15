@@ -92,7 +92,7 @@ public class Boss1 extends Boss {
 
                     GameEngine.spawnEnemy(MathUtils.random(68, 432), 800, GameEngine.EnemyType.SPIKE_BALL, 0);
                 }
-
+                System.out.println(behaviorPhase + "  " + vSpeed + "  " + hSpeed);
                 switch (behaviorPhase) {
                     case 0:
                         vSpeed = -100;
@@ -133,7 +133,7 @@ public class Boss1 extends Boss {
                             y = referenceY;
                             hSpeed = 400;
                             vSpeed = 0;
-                            behaviorPhase = 1;
+                            behaviorPhase = 0;
 
                         }
                         break;
@@ -166,10 +166,18 @@ public class Boss1 extends Boss {
         // Comprobar si hace falta quitarlo o no.
         if ((this.y > MyGdxGame.HEIGHT || this.y + this.height < 0) && !canLiveOutsideScreen()) {
             vSpeed = -vSpeed;
-        }                                                    //bad trip
-        if ((this.x + this.width > MyGdxGame.WIDTH || this.x/* + this.width*/ < 0 + Backgrounds.backgroundPowerUps.getWidth()) && !canLiveOutsideScreen()) {
+        }
+        if (x + width > MyGdxGame.WIDTH) {
+            x = MyGdxGame.WIDTH - width;
             hSpeed = -hSpeed;
         }
+        if (x < Backgrounds.backgroundPowerUps.getWidth()){
+            x = Backgrounds.backgroundPowerUps.getWidth();
+            hSpeed = -hSpeed;
+        }
+
+
+
 
         // Desactivar la habilidad de vivir fuera de la pantalla una vez que entre el area de renderizado
         // Este se usa para cuando generamos los enemigos.

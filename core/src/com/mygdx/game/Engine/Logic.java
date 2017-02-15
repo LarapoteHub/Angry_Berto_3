@@ -388,13 +388,6 @@ public class Logic extends GameEngine implements Runnable {
                     p.destroy();
                     if (enem.getLives() <= 0) {
                         enem.kill();
-                        addEntity(new Explosion(enem.getX(), enem.getY(), enem.getWidth(), enem.getHeight()),
-                                EntityType.PLAIN_ANIMATION);
-                        player.addScore(enem.getScore());
-                        Random rnd = new Random(System.nanoTime()
-                                * System.nanoTime() / 13);
-                        if (rnd.nextInt(100) < enem.getPowerUpProbability())
-                            spawnPowerUpCharge(enem.getX(), enem.getY());
                     }
                 }
             }
@@ -404,13 +397,7 @@ public class Logic extends GameEngine implements Runnable {
                     p.destroy();
                     if (boss.getLives() <= 0) {
                         boss.kill();
-                        addEntity(new Explosion(boss.getX(), boss.getY(), boss.getWidth(), boss.getHeight()),
-                                EntityType.PLAIN_ANIMATION);
-                        player.addScore(boss.getScore());
-                        Random rnd = new Random(System.nanoTime()
-                                * System.nanoTime() / 13);
-                        if (rnd.nextInt(100) < boss.getPowerUpProbability())
-                            spawnPowerUpCharge(boss.getX(), boss.getY());
+
                     }
                 }
             }
@@ -419,6 +406,7 @@ public class Logic extends GameEngine implements Runnable {
         for (Enemy enem : enemies) {
             if (enem.isColliding(player)) {
                 enem.kill();
+
                 if (enem.getType().equals(EnemyType.SPIKE_BALL))
                     player.decreaseLives(3);        // Las minas tienen mas daño, no??
                 else if (enem.getType().equals(EnemyType.HEAVY_ENEMY))

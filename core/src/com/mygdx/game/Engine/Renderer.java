@@ -170,7 +170,11 @@ public class Renderer extends GameEngine implements Runnable{
 		} else if (gameState.isInEndGame()) {
 			batch.draw(Backgrounds.backgroundGameOver, 0, 0);
 		} else if (gameState.isPlaying() || gameState.isPaused()) {
-			batch.draw(uni.getBackground(), 0, 0);
+			// Estirar el fondo en altura si no llega.
+			if (uni.getBackground().getHeight() < MyGdxGame.HEIGHT)
+				batch.draw(uni.getBackground(), 0, 0, uni.getBackground().getWidth(), MyGdxGame.HEIGHT);
+			else
+				batch.draw(uni.getBackground(), 0, 0);
 		}
 
 	}

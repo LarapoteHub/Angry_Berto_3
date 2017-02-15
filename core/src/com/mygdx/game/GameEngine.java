@@ -732,7 +732,7 @@ public class GameEngine {
 	} // end spawnStar()
 		// ---------------------------------------------------------------------------
 
-	public void spawnPowerUpCharge(float x, float y) {
+	public static void spawnPowerUpCharge(float x, float y) {
 		addEntity(new Charge(x, y), EntityType.BULLET_ENEMY);
 
 		// entities.add(new com.mygdx.game.Entities.PowerUps.Charge(x, y));

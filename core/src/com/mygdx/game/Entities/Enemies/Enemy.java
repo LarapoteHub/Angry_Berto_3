@@ -6,10 +6,14 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Timer;
+import com.mygdx.game.Entities.PlainAnimations.Explosion;
 import com.mygdx.game.Entities.Player;
 import com.mygdx.game.Entities.Ship;
+import com.mygdx.game.GameEngine;
 import com.mygdx.game.GameEngine.EnemyType;
 import com.mygdx.game.MyGdxGame;
+
+import java.util.Random;
 
 /**
  * Created by 100VOL on 09/08/2016.
@@ -86,6 +90,16 @@ public abstract class Enemy extends Ship {
     public void kill() {
         lives = 0;
         remove = true;
+        // Crear la explosion
+        GameEngine.addEntity(new Explosion(x, y, width, height),
+                GameEngine.EntityType.PLAIN_ANIMATION);
+        // Incrementar la puntuacion del jugador
+        GameEngine.getPlayer().addScore(score);
+        // Spawnear carga de Power Up si hay suerte.
+        Random rnd = new Random(System.nanoTime()
+                * System.nanoTime() / 13);
+        if (rnd.nextInt(100) < getPowerUpProbability())
+            GameEngine.spawnPowerUpCharge(x, y);
     }
 
     public int getLives() {

@@ -15,8 +15,6 @@ import com.mygdx.game.Levels.Level;
 import com.mygdx.game.Levels.Level0;
 import com.mygdx.game.Multimedia.Musics;
 
-//Comentario de Prueba
-
 // TODO LIST!
 // Lista donde se pone el resto de cosas que no son directamente relacionadas con codigo
 // Corregir el playButton.png
