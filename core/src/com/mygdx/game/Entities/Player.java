@@ -2,7 +2,9 @@ package com.mygdx.game.Entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Timer;
 import com.mygdx.game.GameEngine;
@@ -41,6 +43,19 @@ public class Player extends Ship {
 	// alamcena la carga para usar powerUps
 	public int charge = 100;
 
+	private TextureRegion currentFrame, propulsionFrame;
+	private  TextureRegion[] movingFrames, propulsionFrames;
+
+	private Animation currentAnimation, propulsionAnimation;
+
+	private int FRAME_COLS, FRAME_ROWS;
+	private int FRAME_COLS_PROPULSION, FRAME_ROWS_PROPULSION;
+
+	private float stateTime = 0f;
+	private float propulsionStateTime = 0f;
+
+	boolean animationInitializated = false;
+
 	public Player() {
 		canShoot = true;
 		mode = 0;
@@ -59,7 +74,12 @@ public class Player extends Ship {
 		index = 0;
 		fireIndex = 0;
 
-		playAnimation();
+		this.FRAME_COLS = 2;
+		this.FRAME_ROWS = 1;
+		this.FRAME_COLS_PROPULSION = 3;
+		this.FRAME_ROWS_PROPULSION = 1;
+
+		//initAnimation();
 
 	}
 
@@ -125,8 +145,14 @@ public class Player extends Ship {
 
 	public void draw() {
 
+		if (!animationInitializated) {
+			initAnimation();
+			animationInitializated = true;
+		}
+
+
 		if (draw) {
-			Sprite[] spr = Sprites.player;
+			//Sprite[] spr = Sprites.player;
 			// TODO Implementar algun dia esto
 			/*switch (mode) {
 				case 0:
@@ -136,53 +162,29 @@ public class Player extends Ship {
 					tex = Sprites.player_2;
 					break;
 			}*/
-			if (GameEngine.gameState.isPaused()) {
-				GameEngine.batch.draw(spr[0].getTexture(), x - 4, y,
-						56, getHeight());
-			} else {
 
-				GameEngine.batch.draw(spr[index].getTexture(),
-						x - 4, y, 56, getHeight());
-				GameEngine.batch.draw(
-						Sprites.player_propulsion[fireIndex].getTexture(),
-						x - 4 + 14, y - 16, 8, 16);
-				GameEngine.batch.draw(
-						Sprites.player_propulsion[fireIndex].getTexture(),
-						x - 4 + 34, y - 16, 8, 16);
+			currentFrame = currentAnimation.getKeyFrame(stateTime, true);
+			propulsionFrame = propulsionAnimation.getKeyFrame(propulsionStateTime, true);
+
+			GameEngine.batch.draw(currentFrame,
+					x - 4, y, 56, getHeight());
+			GameEngine.batch.draw(
+					propulsionFrame,
+					x - 4 + 14, y - 16, 8, 16);
+			GameEngine.batch.draw(
+					propulsionFrame,
+					x - 4 + 34, y - 16, 8, 16);
+
+			if (!GameEngine.gameState.isPaused()) {
+
+				stateTime += Gdx.graphics.getDeltaTime() * 3;
+				propulsionStateTime += Gdx.graphics.getDeltaTime() * 6;
+
 			}
+
 		}
 
 	}
-
-	// TODO Just replace it all together
-	private void playAnimation() {
-
-		animation = new Timer.Task() {
-			@Override
-			public void run() {
-
-				if (fireIndex == 1) {
-					index = 0;
-					y += 1;
-				} else if (fireIndex == 0) {
-					index = 1;
-					y -= 1;
-				}
-
-				if (fireIndex < 2) {
-					fireIndex++;
-				} else {
-					fireIndex = 0;
-				}
-
-			}
-
-		};
-
-		// cada 0.1 segundos incrementamos el índice de la imagen.
-		Timer.schedule(animation, 0.09f, 0.09f);
-
-	} // end playAnimation()
 
 	public float getVSpeed() {
 		return vspeed;
@@ -265,5 +267,27 @@ public class Player extends Ship {
 
 	public int getMode() {
 		return mode;
+	}
+
+	public void initAnimation() {
+
+
+
+		Sprites.player.setBounds(0, 0, Sprites.player.getTexture().getWidth(), Sprites.player.getTexture().getHeight());
+
+		movingFrames = new TextureRegion[FRAME_COLS];
+
+		movingFrames = Sprites.player.split(Sprites.player.getTexture(), (int) Sprites.player.getWidth() / FRAME_COLS, (int) Sprites.player.getHeight() / FRAME_ROWS)[0];
+
+		currentAnimation = new Animation(0.4f, movingFrames);
+
+		Sprites.player_propulsion.setBounds(0, 0, Sprites.player_propulsion.getTexture().getWidth(), Sprites.player_propulsion.getTexture().getHeight());
+
+		propulsionFrames = new TextureRegion[FRAME_COLS_PROPULSION];
+
+		propulsionFrames = Sprites.player_propulsion.split(Sprites.player_propulsion.getTexture(), (int) Sprites.player_propulsion.getWidth() / FRAME_COLS_PROPULSION, (int) Sprites.player_propulsion.getHeight() / FRAME_ROWS_PROPULSION)[0];
+
+		propulsionAnimation = new Animation(0.4f, propulsionFrames);
+
 	}
 }

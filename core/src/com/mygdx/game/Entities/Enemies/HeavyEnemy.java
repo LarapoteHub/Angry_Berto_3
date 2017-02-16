@@ -62,7 +62,10 @@ public class HeavyEnemy extends Enemy {
 
         currentFrame = currentAnimation.getKeyFrame(stateTime, true);
         GameEngine.batch.draw(currentFrame, x, y, width, height);
-        stateTime += Gdx.graphics.getDeltaTime();
+
+        if(!GameEngine.gameState.isPaused()) {
+            stateTime += Gdx.graphics.getDeltaTime();
+        }
 
     }
 

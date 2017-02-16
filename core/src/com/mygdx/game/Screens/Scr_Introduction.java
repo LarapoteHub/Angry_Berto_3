@@ -138,10 +138,12 @@ public class Scr_Introduction implements Screen {
 
         batch.draw(Sprites.berto, bertoX, bertoY, 100, 150);
 
-        batch.draw(Sprites.player[0], bertolinaX, bertolinaY, 104, 104); //56x56
+        //TODO arreglar esto (Introduction)
 
-        batch.draw(Sprites.player_propulsion[fireIndex], bertolinaX + 25, bertolinaY - 32, 16, 32); //8x16
-        batch.draw(Sprites.player_propulsion[fireIndex], bertolinaX + 63, bertolinaY - 32, 16, 32); //8x16
+        //batch.draw(Sprites.player[0], bertolinaX, bertolinaY, 104, 104); //56x56
+
+        //batch.draw(Sprites.player_propulsion[fireIndex], bertolinaX + 25, bertolinaY - 32, 16, 32); //8x16
+        //batch.draw(Sprites.player_propulsion[fireIndex], bertolinaX + 63, bertolinaY - 32, 16, 32); //8x16
 
 
         if (enemyY>290) {

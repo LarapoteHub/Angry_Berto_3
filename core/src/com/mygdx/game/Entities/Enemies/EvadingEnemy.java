@@ -55,7 +55,10 @@ public class EvadingEnemy extends Enemy {
 
         currentFrame = currentAnimation.getKeyFrame(stateTime, true);
         GameEngine.batch.draw(currentFrame, x, y, width, height);
-        stateTime += Gdx.graphics.getDeltaTime();
+
+        if(!GameEngine.gameState.isPaused()) {
+            stateTime += Gdx.graphics.getDeltaTime();
+        }
 
         //GameEngine.batch.draw(Sprites.enemy_dodging[index].getTexture(), x, y, 48, 48);
 

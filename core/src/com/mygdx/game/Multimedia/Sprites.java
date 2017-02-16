@@ -49,8 +49,8 @@ public class Sprites {
     public static Sprite lina;
 
     // Naves ---
-    public static Sprite[] player;
-    public static Sprite[] player_propulsion;
+    public static Sprite player;
+    public static Sprite player_propulsion;
 
 
     // Enemigos

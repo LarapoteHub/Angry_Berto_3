@@ -76,7 +76,10 @@ public class StandardEnemy extends Enemy {
 
 		currentFrame = currentAnimation.getKeyFrame(stateTime, true);
 		GameEngine.batch.draw(currentFrame, x, y, width, height);
-		stateTime += Gdx.graphics.getDeltaTime() * 6;
+
+		if(!GameEngine.gameState.isPaused()) {
+			stateTime += Gdx.graphics.getDeltaTime() * 6;
+		}
 
 	}
 

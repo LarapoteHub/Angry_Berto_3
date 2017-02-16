@@ -35,8 +35,8 @@ public class Loader extends AssetManager {
         bulletSwitch_1("sprites/powerups/type_1_btn.png"),
         bulletSwitch_2("sprites/powerups/type_2_btn.png"),
         bullet_type_0("sprites/projectiles/playerShoot.png"),
-        bullet_type_1("sprites/projectiles/playerShoot_brown.png");
-
+        bullet_type_1("sprites/projectiles/playerShoot_brown.png"),
+        player_propulsion("sprites/player/playerPropulsion.png");
         private final String path;
 
         SprPath(String path) {
@@ -97,10 +97,7 @@ public class Loader extends AssetManager {
 
         //JUGADOR
         this.load("sprites/player/player.png", Texture.class, param);
-        this.load("sprites/player/playerB.png", Texture.class, param);
-        this.load("sprites/player/playerFire/fire0.png", Texture.class, param);
-        this.load("sprites/player/playerFire/fire1.png", Texture.class, param);
-        this.load("sprites/player/playerFire/fire2.png", Texture.class, param);
+        this.load(SprPath.player_propulsion.path, Texture.class, param);
 
         //ENEMIGOS
 
@@ -239,20 +236,10 @@ public class Loader extends AssetManager {
         Sprites.lina = new Sprite((Texture) this.get("sprites/characters/lina.png"));
 
         // jugador
-        Sprites.player = new Sprite[2];
-        Sprites.player[0] = new Sprite();
-        Sprites.player[1] = new Sprite();
-        Sprites.player[0].setTexture((Texture) this.get("sprites/player/player.png"));
-        Sprites.player[1].setTexture((Texture) this.get("sprites/player/playerB.png"));
+        Sprites.player = new Sprite((Texture) this.get("sprites/player/player.png"));
         // TODO Implementar los otros colores del jugador algun dia
 
-        Sprites.player_propulsion = new Sprite[3];
-        Sprites.player_propulsion[0] = new Sprite();
-        Sprites.player_propulsion[1] = new Sprite();
-        Sprites.player_propulsion[2] = new Sprite();
-        Sprites.player_propulsion[0].setTexture((Texture) this.get("sprites/player/playerFire/fire0.png"));
-        Sprites.player_propulsion[1].setTexture((Texture) this.get("sprites/player/playerFire/fire1.png"));
-        Sprites.player_propulsion[2].setTexture((Texture) this.get("sprites/player/playerFire/fire2.png"));
+        Sprites.player_propulsion = new Sprite((Texture) this.get(SprPath.player_propulsion.path));
 
         // Enemigos
         Sprites.enemy_std = new Sprite((Texture) this.get("sprites/enemies/standardEnemy.png"));
