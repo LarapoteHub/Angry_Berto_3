@@ -832,24 +832,8 @@ public class GameEngine {
 		// --------------------------------------------------------------------
 
 	// static long lastEnemySpawnTime;
-
+	// TODO REHACER ESTO - ELIMINAR LO INUTIL!
 	static Enemy enemy;
-	Rectangle playerShootSpawn;
-
-	Iterator<Enemy> iterEnemys;
-	Enemy enemyContainer;
-	// Sound explodeSound;
-
-	// Texture enemyShootImage;
-	Iterator<PlayerShoot> iterPlayerShoots;
-	Iterator<Projectile> iterShoots;
-	Projectile enemyShootContainer;
-
-	// contenedor temporal de la hitbox de los disparos del jugador
-	PlayerShoot playerShootContainer;
-
-	// hit box de los botones de play y pausa
-	static Rectangle pausePlayButtonBox;
 
 	Array<Explosion> explosionsList;
 

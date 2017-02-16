@@ -1,6 +1,8 @@
 package com.mygdx.game.Entities;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Timer;
 import com.mygdx.game.GameEngine;
@@ -21,9 +23,12 @@ public class Player extends Ship {
 
 	// Dibujar o no
 	private boolean draw = false;
-	// Puede disparar?
 	private float vspeed;
 	private float hspeed;
+
+	// Lo relacionado con los modos del jugador (Tipos de bala, nave, etc)
+	private int numModes = 2;
+	private int mode;
 
 	private long score;
 	private int index;
@@ -38,23 +43,7 @@ public class Player extends Ship {
 
 	public Player() {
 		canShoot = true;
-
-		/*
-		 * playerImage = new Texture[2]; fireImage = new Texture[3];
-		 *
-		 * playerImage[0] = new
-		 * Texture(Gdx.files.internal("sprites/player/player.png"));
-		 * playerImage[1] = new
-		 * Texture(Gdx.files.internal("sprites/player/playerB.png"));
-		 * //playerImage[1] = new
-		 * Texture(Gdx.files.internal("sprites/player/playerB.png"));
-		 * fireImage[0] = new
-		 * Texture(Gdx.files.internal("sprites/player/playerFire/fire0.png"));
-		 * fireImage[1] = new
-		 * Texture(Gdx.files.internal("sprites/player/playerFire/fire1.png"));
-		 * fireImage[2] = new
-		 * Texture(Gdx.files.internal("sprites/player/playerFire/fire2.png"));
-		 */
+		mode = 0;
 
 		setWidth(48); // la hitbox la dsejamos con menos ancho por las alas
 		setHeight(56);
@@ -137,12 +126,22 @@ public class Player extends Ship {
 	public void draw() {
 
 		if (draw) {
+			Sprite[] spr = Sprites.player;
+			// TODO Implementar algun dia esto
+			/*switch (mode) {
+				case 0:
+					tex = Sprites.player_1;
+					break;
+				case 1:
+					tex = Sprites.player_2;
+					break;
+			}*/
 			if (GameEngine.gameState.isPaused()) {
-				GameEngine.batch.draw(Sprites.player[0].getTexture(), x - 4, y,
+				GameEngine.batch.draw(spr[0].getTexture(), x - 4, y,
 						56, getHeight());
 			} else {
 
-				GameEngine.batch.draw(Sprites.player[index].getTexture(),
+				GameEngine.batch.draw(spr[index].getTexture(),
 						x - 4, y, 56, getHeight());
 				GameEngine.batch.draw(
 						Sprites.player_propulsion[fireIndex].getTexture(),
@@ -254,5 +253,17 @@ public class Player extends Ship {
 	public void shoot() {
 		// TODO Auto-generated method stub
 
+	}
+
+	public void setMode(int mode) {
+		this.mode = mode;
+	}
+
+	public int getNumModes() {
+		return numModes;
+	}
+
+	public int getMode() {
+		return mode;
 	}
 }

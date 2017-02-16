@@ -1,5 +1,6 @@
 package com.mygdx.game.Screens;
 
+import com.mygdx.game.Buttons.Btn_Change_Bullet_Type;
 import com.mygdx.game.Buttons.Button;
 import com.mygdx.game.Entities.Text;
 import com.mygdx.game.GameEngine;
@@ -20,6 +21,7 @@ public class Scr_Play implements Screen {
 		GameEngine.addButton(new Btn_Hoe());
 		GameEngine.addButton(new Btn_PlusHP());
 		GameEngine.addButton(new Btn_Pause());
+		GameEngine.addButton(new Btn_Change_Bullet_Type());
 		//GameEngine.addEntity((Enemy) new StandardEnemy(10, 10, 0), EntityType.ENEMY);
 		//printer.draw(batch, "SCORE: " + player.getScore(), 78, 800 - 10); // antes x=10
 		GameEngine.addText(new Text("", 78, 800));

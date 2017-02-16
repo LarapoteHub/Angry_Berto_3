@@ -445,7 +445,7 @@ public class Logic extends GameEngine implements Runnable {
     }
 
     private void checkButtonPress() {
-        if (Gdx.input.isTouched())
+        if (Gdx.input.justTouched())
             for (Button b : buttons.values()) {
                 if (b.isTouched(touchPos)) {
                     if (MyGdxGame.DEBUG_MODE)

@@ -10,8 +10,6 @@ import com.mygdx.game.GameEngine;
  */
 public abstract class Level {
 
-    Timer.Task spawnsTask;
-
     boolean running;
     public boolean finished;
     int phase;
@@ -19,9 +17,6 @@ public abstract class Level {
     int bossPhase;
     int maxPhases;
     int phasesCount = 0;
-
-    Player player;
-
 
     public Level() {
         running = false;

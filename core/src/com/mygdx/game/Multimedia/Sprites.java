@@ -62,7 +62,7 @@ public class Sprites {
     public static Sprite enemy_heavy;
 
     // Balas - Bullets
-    public static Sprite bullet_player;
+    public static Sprite[] bullet_player;
     public static Sprite bullet_enemy;
     public static Sprite[] bullet_heavy_enemy;
 
@@ -74,6 +74,7 @@ public class Sprites {
     public static Sprite powerUp_attackCow;
 
     public static Sprite boss_1;
+
 
     public static void load() {
         // TODO Se podría pasar todo para aquí en realidad....

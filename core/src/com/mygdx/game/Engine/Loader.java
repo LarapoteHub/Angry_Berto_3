@@ -1,7 +1,5 @@
 package com.mygdx.game.Engine;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.AssetLoaderParameters;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.audio.Music;
@@ -26,7 +24,7 @@ public class Loader extends AssetManager {
         //param.minFilter = Texture.TextureFilter.Linear;
         param.magFilter = Texture.TextureFilter.Linear;
         // Esto ultimo es solo util para 3D, pero bueno...
-        param.genMipMaps = false;
+        param.genMipMaps = true;
     }
 
     // Fase de Load compleja. Deberia haber un String que tenga todas las rutas.
@@ -34,8 +32,10 @@ public class Loader extends AssetManager {
     enum SprPath {
         pauseButton("sprites/buttons/pauseButton.png"),
         playButton("sprites/buttons/playButton.png"),
-        bulletSwitch_1("sprites/butons/type_1_btn.png"),
-        bulletSwitch_2("sprites/butons/type_2_btn.png");
+        bulletSwitch_1("sprites/powerups/type_1_btn.png"),
+        bulletSwitch_2("sprites/powerups/type_2_btn.png"),
+        bullet_type_0("sprites/projectiles/playerShoot.png"),
+        bullet_type_1("sprites/projectiles/playerShoot_brown.png");
 
         private final String path;
 
@@ -49,6 +49,8 @@ public class Loader extends AssetManager {
         // <TODO TEST BULLET TYPES>
         this.load(SprPath.bulletSwitch_1.path, Texture.class, param);
         this.load(SprPath.bulletSwitch_2.path, Texture.class, param);
+        this.load(SprPath.bullet_type_0.path, Texture.class, param);
+        this.load(SprPath.bullet_type_1.path, Texture.class, param);
         // </TODO>
 
         //BOTONES - BUTTONS
@@ -242,6 +244,8 @@ public class Loader extends AssetManager {
         Sprites.player[1] = new Sprite();
         Sprites.player[0].setTexture((Texture) this.get("sprites/player/player.png"));
         Sprites.player[1].setTexture((Texture) this.get("sprites/player/playerB.png"));
+        // TODO Implementar los otros colores del jugador algun dia
+
         Sprites.player_propulsion = new Sprite[3];
         Sprites.player_propulsion[0] = new Sprite();
         Sprites.player_propulsion[1] = new Sprite();
@@ -260,7 +264,9 @@ public class Loader extends AssetManager {
         Sprites.boss_1 = new Sprite((Texture) this.get("sprites/enemies/firstBoss.png"));
 
         // Balas - Bullets
-        Sprites.bullet_player = new Sprite((Texture) this.get("sprites/projectiles/playerShoot.png"));
+        Sprites.bullet_player = new Sprite[2];
+        Sprites.bullet_player[0] = new Sprite((Texture) this.get(SprPath.bullet_type_0.path));
+        Sprites.bullet_player[1] = new Sprite((Texture) this.get(SprPath.bullet_type_1.path));
         Sprites.bullet_enemy = new Sprite((Texture) this.get("sprites/projectiles/standardEnemyShoot.png"));
         Sprites.bullet_heavy_enemy = new Sprite[2];
         Sprites.bullet_heavy_enemy[0] = new Sprite();

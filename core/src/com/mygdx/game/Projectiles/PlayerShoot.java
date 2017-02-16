@@ -1,6 +1,7 @@
 package com.mygdx.game.Projectiles;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.GameEngine;
@@ -14,6 +15,8 @@ import com.mygdx.game.Multimedia.Sprites;
  * Created by 100VOL on 06/09/2016.
  */
 public class PlayerShoot extends Projectile {
+
+    private int mode;
 
     public PlayerShoot(Player player) {
         super();
@@ -29,11 +32,22 @@ public class PlayerShoot extends Projectile {
 
         remove=false;
 
+        mode = player.getMode();
+
 }
 
     @Override
     public void draw() {
-        GameEngine.batch.draw(Sprites.bullet_player, x, y, getWidth(), getHeight());
+        Texture tex = null;
+        switch (mode) {
+            case 0:
+                tex = Sprites.bullet_player[0].getTexture();
+                break;
+            case 1:
+                tex = Sprites.bullet_player[1].getTexture();
+                break;
+        }
+        GameEngine.batch.draw(tex, x, y, getWidth(), getHeight());
     }
 
     @Override
