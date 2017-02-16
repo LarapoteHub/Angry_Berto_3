@@ -93,6 +93,7 @@ public class MyGdxGame extends ApplicationAdapter {
     @Override
     public void render() {
 
+        //un comentario
 
         frameStart = System.nanoTime();
 
