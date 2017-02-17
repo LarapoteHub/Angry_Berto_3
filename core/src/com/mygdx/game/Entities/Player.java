@@ -190,7 +190,9 @@ public class Player extends Ship {
 					hitted = false;
 				}
 
-				hittedClock++;
+				if (!GameEngine.gameState.isPaused()) {
+					hittedClock++;
+				}
 
 			}
 

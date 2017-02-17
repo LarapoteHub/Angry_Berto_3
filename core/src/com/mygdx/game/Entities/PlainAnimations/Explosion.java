@@ -56,7 +56,10 @@ public class Explosion extends PlainAnimation {
         currentFrame = currentAnimation.getKeyFrame(stateTime, false);
         System.out.println("Exp at :" + x + "  " + y + " - " + width + "  " + height);
         GameEngine.batch.draw(currentFrame, x, y, width, height);
-        stateTime += Gdx.graphics.getDeltaTime() * 19;
+
+        if (!GameEngine.gameState.isPaused()) {
+            stateTime += Gdx.graphics.getDeltaTime() * 19;
+        }
 
     }
 

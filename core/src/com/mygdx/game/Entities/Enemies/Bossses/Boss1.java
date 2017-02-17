@@ -91,7 +91,9 @@ public class Boss1 extends Boss {
                 hitted = false;
             }
 
-            hittedClock++;
+            if (!GameEngine.gameState.isPaused()) {
+                hittedClock++;
+            }
 
         }
 

@@ -75,7 +75,9 @@ public class HeavyEnemy extends Enemy {
                 hitted = false;
             }
 
-            hittedClock++;
+            if (!GameEngine.gameState.isPaused()) {
+                hittedClock++;
+            }
 
         }
         if(!GameEngine.gameState.isPaused()) {
