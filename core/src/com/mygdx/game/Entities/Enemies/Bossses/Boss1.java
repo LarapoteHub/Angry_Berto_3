@@ -1,7 +1,11 @@
 package com.mygdx.game.Entities.Enemies.Bossses;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.mygdx.game.Entities.Player;
 import com.mygdx.game.GameEngine;
@@ -14,19 +18,24 @@ import com.mygdx.game.MyGdxGame;
  */
 
 public class Boss1 extends Boss {
-    Sprite spr = Sprites.boss_1;
 
     private int behaviorPhase;
     private int referenceY;
     private int actionTimer;
 
+    private TextureRegion[] movingFrames;
+
     public Boss1(float x, float y) {
         super(x, y, 0);
         vSpeed = -100; //-300 no se por que
         hSpeed = 0;
+
         //width = 48;
         //height = 48;
-        width = 96;
+
+        //width = 96;
+
+        width = 120;
         height = 96;
         // TODO Que es un boss, por dios
         lives = 200;
@@ -51,6 +60,11 @@ public class Boss1 extends Boss {
         behaviorPhase = 0;
         referenceY = 600;
         actionTimer = 0;
+
+        this.FRAME_COLS = 4;
+        this.FRAME_ROWS = 1;
+
+        initAnimation();
     }
 
     @Override
@@ -60,11 +74,32 @@ public class Boss1 extends Boss {
 
     @Override
     public void draw() {
-        GameEngine.batch.draw(spr.getTexture(), x, y, width, height);
-    }
 
-    @Override
-    protected void playAnimation() {
+        if (hitted) {
+            tmpColor = GameEngine.batch.getColor();
+            GameEngine.batch.setColor(Color.RED);
+        }
+
+            currentFrame = currentAnimation.getKeyFrame(stateTime, true);
+            GameEngine.batch.draw(currentFrame, x, y, width, height);
+
+        if (hitted) {
+            GameEngine.batch.setColor(tmpColor);
+
+            if (hittedClock >= HITTED_TIME) {
+                hittedClock = 0;
+                hitted = false;
+            }
+
+            hittedClock++;
+
+        }
+
+        if(!GameEngine.gameState.isPaused()) {
+            stateTime += Gdx.graphics.getDeltaTime() * 6;
+        }
+
+
 
     }
 
@@ -176,9 +211,6 @@ public class Boss1 extends Boss {
             hSpeed = -hSpeed;
         }
 
-
-
-
         // Desactivar la habilidad de vivir fuera de la pantalla una vez que entre el area de renderizado
         // Este se usa para cuando generamos los enemigos.
         // Los enemigos se generan fuera de la pantalla con el booleano en true, y despues se desactiva para
@@ -188,5 +220,19 @@ public class Boss1 extends Boss {
         }
 
         actionTimer++;
+    }
+
+    @Override
+    public void initAnimation() {
+
+        Sprites.boss_1.setBounds(0, 0, Sprites.boss_1.getTexture().getWidth(), Sprites.boss_1.getTexture().getHeight());
+
+        movingFrames = new TextureRegion[FRAME_COLS];
+
+        movingFrames = Sprites.boss_1.split(Sprites.boss_1.getTexture(), (int) Sprites.boss_1.getWidth() / FRAME_COLS, (int) Sprites.boss_1.getHeight() / FRAME_ROWS)[0];
+
+        currentAnimation = new Animation(0.4f, movingFrames);
+        //currentAnimation.setPlayMode(Animation.PlayMode.LOOP);
+
     }
 }

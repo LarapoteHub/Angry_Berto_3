@@ -1,6 +1,7 @@
 package com.mygdx.game.Entities.Enemies;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
@@ -51,6 +52,15 @@ public abstract class Enemy extends Ship {
 
     protected float stateTime = 0f;
 
+    //boolean para probar mecanica de hits (cuando un enemigo sea golpeado que se vuelva rojo)
+    protected boolean hitted = false;
+    //int para controlar el tiempo que se va a ver e nrojo el enemigo tras recibir daño.
+    protected int hittedClock = 0;
+    //variable para almacenar y restaurar el color actual de SpriteBatch.
+    protected Color tmpColor;
+    //variable para almacenar el numero de ciclos del render en los cuales el enemigo se verá de color rojo.
+    protected int HITTED_TIME = 4;
+
 
     public Enemy(float x, float y, int behavior) {
     	cooldown = 50;
@@ -84,6 +94,7 @@ public abstract class Enemy extends Ship {
     // Quita vidas
     public void decreaseLives(int lives) {
         this.lives -= lives;
+        hitted = true;
     }
 
     // Mata. Se ha de llamar para matar un enemigo.
@@ -107,10 +118,8 @@ public abstract class Enemy extends Ship {
     }
     
     public abstract void draw ();
-    
-    // Usado por separado por cada enemigo, porque sus animaciones NO son estándar.
-    // TODO Deberia plantearse estandarizarlas
-    protected abstract void playAnimation();
+
+    public abstract void initAnimation();
 
     public abstract void action(Player player);
 

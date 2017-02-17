@@ -1,6 +1,7 @@
 package com.mygdx.game.Entities.Enemies;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
@@ -58,38 +59,30 @@ public class HeavyEnemy extends Enemy {
     @Override
     public void draw () {
 
-        //GameEngine.batch.draw(Sprites.enemy_heavy[index].getTexture(), x, y, 64, 64);
+        if (hitted) {
+            tmpColor = GameEngine.batch.getColor();
+            GameEngine.batch.setColor(Color.RED);
+        }
 
         currentFrame = currentAnimation.getKeyFrame(stateTime, true);
         GameEngine.batch.draw(currentFrame, x, y, width, height);
 
+        if (hitted) {
+            GameEngine.batch.setColor(tmpColor);
+
+            if (hittedClock >= HITTED_TIME) {
+                hittedClock = 0;
+                hitted = false;
+            }
+
+            hittedClock++;
+
+        }
         if(!GameEngine.gameState.isPaused()) {
             stateTime += Gdx.graphics.getDeltaTime();
         }
 
     }
-
-
-    protected void playAnimation() {
-
-        animation = new Timer.Task(){
-            @Override
-            public void run() {
-
-                if (index==0) {
-                    index = 1;
-                } else {
-                    index = 0;
-                }
-
-            }
-
-        };
-
-        //cada 0.1 segundos incrementamos el índice de la imagen.
-        Timer.schedule(animation,0.2f, 0.2f);
-
-    } //end playAnimation()
 
     public void action(Player player) {
 
@@ -212,6 +205,7 @@ public class HeavyEnemy extends Enemy {
 		return canShoot;
 	}
 
+    @Override
     public void initAnimation() {
 
         Sprites.enemy_heavy.setBounds(0, 0, Sprites.enemy_heavy.getTexture().getWidth(), Sprites.enemy_heavy.getTexture().getHeight());

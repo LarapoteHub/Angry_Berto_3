@@ -38,5 +38,8 @@ public abstract class Boss extends Enemy {
         }
     }
 
+    @Override
+    public abstract void initAnimation();
+
 
 }

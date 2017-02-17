@@ -1,6 +1,7 @@
 package com.mygdx.game.Entities.Enemies;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
@@ -62,20 +63,25 @@ public class StandardEnemy extends Enemy {
 
 	public void draw() {
 
-		//region DANGER
-		//Sprites.enemy_std.setPosition(x, y);
-		//Sprites.enemy_std.draw(GameEngine.batch);
-
-
-		//Sprite spr = new Sprite(currentFrame);
-		//spr.setBounds(x, y, Sprites.enemy_std.getTexture().getWidth(), Sprites.enemy_std.getTexture().getHeight());
-		//spr.setPosition(x, y);
-
-		//spr.draw(GameEngine.batch);
-		//endregion
+		if (hitted) {
+			tmpColor = GameEngine.batch.getColor();
+			GameEngine.batch.setColor(Color.RED);
+		}
 
 		currentFrame = currentAnimation.getKeyFrame(stateTime, true);
 		GameEngine.batch.draw(currentFrame, x, y, width, height);
+
+		if (hitted) {
+			GameEngine.batch.setColor(tmpColor);
+
+			if (hittedClock >= HITTED_TIME) {
+				hittedClock = 0;
+				hitted = false;
+			}
+
+			hittedClock++;
+
+		}
 
 		if(!GameEngine.gameState.isPaused()) {
 			stateTime += Gdx.graphics.getDeltaTime() * 6;
@@ -261,12 +267,6 @@ public class StandardEnemy extends Enemy {
 	}
 
 	@Override
-	protected void playAnimation() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public void action(Player player) {
 		// TODO Auto-generated method stub
 
@@ -347,6 +347,7 @@ public class StandardEnemy extends Enemy {
 		
 	}
 
+	@Override
 	public void initAnimation() {
 
 		Sprites.enemy_std.setBounds(0, 0, Sprites.enemy_std.getTexture().getWidth(), Sprites.enemy_std.getTexture().getHeight());
