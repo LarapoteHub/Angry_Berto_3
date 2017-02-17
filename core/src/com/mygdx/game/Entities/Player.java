@@ -1,6 +1,7 @@
 package com.mygdx.game.Entities;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -91,6 +92,7 @@ public class Player extends Ship {
 		if (!GODMODE && !(lives > initialLives))
 			this.lives -= lives;
 		Sounds.playerHitSound.play();
+		hitted = true;
 	}
 
 	public void incrementLives(int lives) {
@@ -162,6 +164,11 @@ public class Player extends Ship {
 					tex = Sprites.player_2;
 					break;
 			}*/
+			if (hitted) {
+				tmpColor = GameEngine.batch.getColor();
+				GameEngine.batch.setColor(Color.RED);
+			}
+
 
 			currentFrame = currentAnimation.getKeyFrame(stateTime, true);
 			propulsionFrame = propulsionAnimation.getKeyFrame(propulsionStateTime, true);
@@ -174,6 +181,18 @@ public class Player extends Ship {
 			GameEngine.batch.draw(
 					propulsionFrame,
 					x - 4 + 34, y - 16, 8, 16);
+
+			if (hitted) {
+				GameEngine.batch.setColor(tmpColor);
+
+				if (hittedClock >= HITTED_TIME) {
+					hittedClock = 0;
+					hitted = false;
+				}
+
+				hittedClock++;
+
+			}
 
 			if (!GameEngine.gameState.isPaused()) {
 
