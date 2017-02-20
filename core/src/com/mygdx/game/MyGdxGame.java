@@ -25,6 +25,7 @@ public class MyGdxGame extends ApplicationAdapter {
     // TODO con bordes negros
     // TODO o lo que haga falta.
     public static final int WIDTH = 480, HEIGHT = 800;
+    //EL WIDTH DE LA BARRA DE LA IZQUIERDA ES 68.
 
     // modo DEBUG
     public static final boolean DEBUG_MODE = false;

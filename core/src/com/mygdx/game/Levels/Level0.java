@@ -26,6 +26,8 @@ public class Level0 extends Level {
 
         if (!running) {
             running = true;
+            //TODO TEST TEST TEST TETAS TEST TEST TEST TEST
+            //phase = 7;
             runPhase();
         } else if (phase != bossPhase && GameEngine.getEnemies().isEmpty()) {
             changePhase();
@@ -33,6 +35,9 @@ public class Level0 extends Level {
             MyGdxGame.musicManager.setMusic(Musics.backgroundMusic);
             changePhase();
         }
+
+
+
 
     }
 
@@ -181,7 +186,8 @@ public class Level0 extends Level {
 
             case 7:
 
-                GameEngine.spawnEnemy((MyGdxGame.WIDTH/2 - 24) + Backgrounds.backgroundPowerUps.getWidth(), 800, GameEngine.EnemyType.CORE_ORBIT_ENEMY, -1);
+                GameEngine.spawnEnemy(380, 800, GameEngine.EnemyType.CORE_ORBIT_ENEMY, -1);
+                GameEngine.spawnEnemy(128, 800, GameEngine.EnemyType.CORE_ORBIT_ENEMY, -1);
 
                 break;
 

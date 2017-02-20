@@ -18,6 +18,8 @@ public class CoreOrbitEnemy extends Enemy {
         super(x, y, -1);
 
         this.vSpeed = -200;
+        //CUIDAO COLGAOS!!
+        //this.hSpeed = 100;
         this.width = 48;
         this.height = 48;
         this.lives = 10;

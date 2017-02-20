@@ -91,8 +91,9 @@ public class Player extends Ship {
 	public void decreaseLives(int lives) {
 		if (!GODMODE && !(lives > initialLives))
 			this.lives -= lives;
-		Sounds.playerHitSound.play();
+
 		if (lives > 0) {
+			Sounds.playerHitSound.play();
 			hitted = true;
 		}
 	}
