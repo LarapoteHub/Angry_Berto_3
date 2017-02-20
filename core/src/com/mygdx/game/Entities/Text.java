@@ -2,6 +2,7 @@ package com.mygdx.game.Entities;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.GameEngine;
 
 /**
@@ -13,6 +14,7 @@ public class Text {
     private float x, y, width, height;
     private String text;
     private Color color;
+    private boolean centerToPoint = false;
 
     public Text(String text, float x, float y) {
         // Sobrecarca de constructor
@@ -37,12 +39,22 @@ public class Text {
                 .getTexture()
                 .setFilter(Texture.TextureFilter.Linear,
                         Texture.TextureFilter.Linear);
-        GameEngine.printer.draw(GameEngine.batch, text, x, y);
+        if (centerToPoint) {
+            GameEngine.printer.draw(GameEngine.batch, text, x, y, Align.center, Align.center, true);
+        } else {
+            GameEngine.printer.draw(GameEngine.batch, text, x, y);
+        }
         // Restablecer el color de texto
         GameEngine.printer.setColor(oldColor);
     }
 
     public void setText(String newText) {
         this.text = newText;
+    }
+
+    //poniendo centerToPoint a true, el texto se centrará en el origen.
+    public Text setCenterToPoint(boolean centerToPoint) {
+        this.centerToPoint = centerToPoint;
+        return this;
     }
 }

@@ -63,27 +63,6 @@ public class Explosion extends PlainAnimation {
 
     }
 
-    /*
-    public void action() {
-
-
-
-
-
-
-    }
-
-    @Override
-    public void kill() {
-        remove = true;
-    }
-    */
-
-    @Override
-    public void decreaseLives(int lives) {
-        // Doesn't have lives
-    }
-
     @Override
     public boolean isFinished() {
         return explodingAnimation.isAnimationFinished(stateTime);
