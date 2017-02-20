@@ -3,6 +3,7 @@ package com.mygdx.game.Levels;
 import com.badlogic.gdx.math.MathUtils;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.GameEngine.EnemyType;
+import com.mygdx.game.Multimedia.Backgrounds;
 import com.mygdx.game.Multimedia.Musics;
 import com.mygdx.game.MyGdxGame;
 
@@ -16,9 +17,9 @@ public class Level0 extends Level {
 
     public Level0() {
         movementIndex = 0;
-        this.nPhases = 7;
-        this.bossPhase = 8;
-        this.maxPhases = MathUtils.random(10, 15);
+        this.nPhases = 8;
+        this.bossPhase = 9;
+        this.maxPhases = MathUtils.random(12, 18);
     }
 
     public void runLevel() {
@@ -180,6 +181,12 @@ public class Level0 extends Level {
 
             case 7:
 
+                GameEngine.spawnEnemy((MyGdxGame.WIDTH/2 - 24) + Backgrounds.backgroundPowerUps.getWidth(), 800, GameEngine.EnemyType.CORE_ORBIT_ENEMY, -1);
+
+                break;
+
+            case 8:
+
                 GameEngine.spawnEnemy(71.1f, 800, EnemyType.SPIKE_BALL, -1); //spikeBall
                 GameEngine.spawnEnemy(122.2f, 800, EnemyType.SPIKE_BALL, -1); //spikeBall
 
@@ -194,7 +201,7 @@ public class Level0 extends Level {
 
                 break;
 
-            case 8:
+            case 9:
 
                 MyGdxGame.musicManager.setMusic(Musics.boss1Music);
 

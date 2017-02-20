@@ -269,12 +269,6 @@ public class StandardEnemy extends Enemy {
 	}
 
 	@Override
-	public void action(Player player) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public void runBehavior() {
 		switch (behavior) {
 

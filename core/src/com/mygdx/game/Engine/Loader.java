@@ -36,7 +36,9 @@ public class Loader extends AssetManager {
         bulletSwitch_2("sprites/powerups/type_2_btn.png"),
         bullet_type_0("sprites/projectiles/playerShoot.png"),
         bullet_type_1("sprites/projectiles/playerShoot_brown.png"),
-        player_propulsion("sprites/player/playerPropulsion.png");
+        player_propulsion("sprites/player/playerPropulsion.png"),
+        enemy_satellite_orbit("sprites/enemies/satelliteOrbitEnemy.png"),
+        enemy_core_orbit("sprites/enemies/coreOrbitEnemy.png");
         private final String path;
 
         SprPath(String path) {
@@ -105,6 +107,8 @@ public class Loader extends AssetManager {
         this.load("sprites/enemies/evadingEnemy.png", Texture.class, param);
         this.load("sprites/enemies/spikeBallEnemy.png", Texture.class, param);
         this.load("sprites/enemies/heavyEnemy.png", Texture.class, param);
+        this.load(SprPath.enemy_satellite_orbit.path, Texture.class, param);
+        this.load(SprPath.enemy_core_orbit.path, Texture.class, param);
 
         //BOSSES
 
@@ -246,6 +250,8 @@ public class Loader extends AssetManager {
         Sprites.enemy_dodging = new Sprite((Texture) this.get("sprites/enemies/evadingEnemy.png"));
         Sprites.enemy_spikeBall = new Sprite((Texture) this.get("sprites/enemies/spikeBallEnemy.png"));
         Sprites.enemy_heavy = new Sprite((Texture) this.get("sprites/enemies/heavyEnemy.png"));
+        Sprites.enemy_satellite_orbit = new Sprite((Texture) this.get(SprPath.enemy_satellite_orbit.path));
+        Sprites.enemy_core_orbit = new Sprite((Texture) this.get(SprPath.enemy_core_orbit.path));
 
         //BOSSES
         Sprites.boss_1 = new Sprite((Texture) this.get("sprites/enemies/firstBoss.png"));

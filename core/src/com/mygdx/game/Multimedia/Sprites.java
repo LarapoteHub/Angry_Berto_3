@@ -60,6 +60,8 @@ public class Sprites {
     public static Sprite enemy_dodging;
     public static Sprite enemy_spikeBall;
     public static Sprite enemy_heavy;
+    public static Sprite enemy_satellite_orbit;
+    public static Sprite enemy_core_orbit;
 
     // Balas - Bullets
     public static Sprite[] bullet_player;

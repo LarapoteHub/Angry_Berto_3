@@ -111,7 +111,9 @@ public abstract class Enemy extends Ship {
 
     public abstract void initAnimation();
 
-    public abstract void action(Player player);
+    public void action(Player player) {
+
+    }
 
     public abstract void runBehavior();
     

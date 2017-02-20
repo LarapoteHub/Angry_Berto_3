@@ -23,6 +23,7 @@ import com.mygdx.game.Entities.Star;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.Levels.Level;
 import com.mygdx.game.Levels.Level0;
+import com.mygdx.game.Levels.LevelTest;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Projectiles.PlayerShoot;
 import com.mygdx.game.Projectiles.Projectile;
@@ -414,21 +415,28 @@ public class Logic extends GameEngine implements Runnable {
 
         for (Enemy enem : enemies) {
             if (enem.isColliding(player)) {
-                enem.kill();
+                if (!player.isHitted()) {
 
-                if (enem.getType().equals(EnemyType.SPIKE_BALL))
-                    player.decreaseLives(3);        // Las minas tienen mas daño, no??
-                else if (enem.getType().equals(EnemyType.HEAVY_ENEMY))
-                    player.decreaseLives(2);        // -2 por Heavy
-                else
-                    player.decreaseLives(1);
+                    enem.kill();
+
+                    if (enem.getType().equals(EnemyType.SPIKE_BALL))
+                        player.decreaseLives(3);        // Las minas tienen mas daño, no??
+                    else if (enem.getType().equals(EnemyType.HEAVY_ENEMY))
+                        player.decreaseLives(2);        // -2 por Heavy
+                    else
+                        player.decreaseLives(1);
+
+                }
             }
         }
         for (Boss b : bosses) {
             if (b.isColliding(player)) {
-                player.decreaseLives(15);
-                // No se si la funcion kill() tiene un comportamiento adecuado para Player. Por eso el -15
-                //player.kill();
+
+                if (!player.isHitted()) {
+                    player.decreaseLives(15);
+                    // No se si la funcion kill() tiene un comportamiento adecuado para Player. Por eso el -15
+                    //player.kill();
+                }
             }
         }
         for (Projectile p : bullets_Enemy) {

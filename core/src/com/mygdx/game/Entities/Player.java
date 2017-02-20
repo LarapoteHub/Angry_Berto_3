@@ -307,4 +307,8 @@ public class Player extends Ship {
 		propulsionAnimation = new Animation(0.4f, propulsionFrames);
 
 	}
+
+	public boolean isHitted() {
+		return hitted;
+	}
 }

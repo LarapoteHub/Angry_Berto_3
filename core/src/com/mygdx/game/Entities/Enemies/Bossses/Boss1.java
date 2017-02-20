@@ -201,14 +201,14 @@ public class Boss1 extends Boss {
         y += vSpeed * Gdx.graphics.getDeltaTime();
 
         // Comprobar si hace falta quitarlo o no.
-        if ((this.y > MyGdxGame.HEIGHT || this.y + this.height < 0) && !canLiveOutsideScreen()) {
+        if ((this.y + this.height > MyGdxGame.HEIGHT && this.vSpeed > 0 || this.y < 0 && this.vSpeed < 0) && !canLiveOutsideScreen()) {
             vSpeed = -vSpeed;
         }
-        if (x + width > MyGdxGame.WIDTH) {
+        if (x + width > MyGdxGame.WIDTH && hSpeed > 0) {
             x = MyGdxGame.WIDTH - width;
             hSpeed = -hSpeed;
         }
-        if (x < Backgrounds.backgroundPowerUps.getWidth()){
+        if ( x < Backgrounds.backgroundPowerUps.getWidth() && hSpeed < 0){
             x = Backgrounds.backgroundPowerUps.getWidth();
             hSpeed = -hSpeed;
         }

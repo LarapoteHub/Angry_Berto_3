@@ -17,9 +17,11 @@ import com.mygdx.game.Engine.Logic;
 import com.mygdx.game.Engine.Renderer;
 import com.mygdx.game.Entities.Enemies.Bossses.Boss;
 import com.mygdx.game.Entities.Enemies.Bossses.Boss1;
+import com.mygdx.game.Entities.Enemies.CoreOrbitEnemy;
 import com.mygdx.game.Entities.Enemies.Enemy;
 import com.mygdx.game.Entities.Enemies.EvadingEnemy;
 import com.mygdx.game.Entities.Enemies.HeavyEnemy;
+import com.mygdx.game.Entities.Enemies.SatelliteOrbitEnemy;
 import com.mygdx.game.Entities.Enemies.SpikeBallEnemy;
 import com.mygdx.game.Entities.Enemies.StandardEnemy;
 import com.mygdx.game.Entities.Entity;
@@ -652,7 +654,7 @@ public class GameEngine {
 	 **************************************************************************************************************************************************/
 
 	public enum EnemyType {
-		STANDARD_ENEMY, EVADING_ENEMY, SPIKE_BALL, HEAVY_ENEMY, BOSS;
+		STANDARD_ENEMY, EVADING_ENEMY, SPIKE_BALL, HEAVY_ENEMY, SATELLITE_ORBIT_ENEMY, CORE_ORBIT_ENEMY, BOSS;
 	}
 
 	public enum BossType {
@@ -682,30 +684,33 @@ public class GameEngine {
 
 		// standardEnemy
 		// --------------------------------------------------------------------------
-		case STANDARD_ENEMY:
-			enemy = new StandardEnemy(x, y, behavior);
-			enemies.add(enemy);
-			break;
+			case STANDARD_ENEMY:
+				enemy = new StandardEnemy(x, y, behavior);
+				break;
 
 		// evadingEnemy
 		// --------------------------------------------------------------------------
-		case EVADING_ENEMY:
-			enemy = new EvadingEnemy(x, y, behavior);
-			enemies.add(enemy);
-			break;
+			case EVADING_ENEMY:
+				enemy = new EvadingEnemy(x, y, behavior);
+				break;
 		// spikeBallEnemy
 		// --------------------------------------------------------------------------
-		case SPIKE_BALL:
-			enemy = new SpikeBallEnemy(x, y, behavior);
-			enemies.add(enemy);
-			break;
+			case SPIKE_BALL:
+				enemy = new SpikeBallEnemy(x, y, behavior);
+				break;
 
-		case HEAVY_ENEMY:
-			enemy = new HeavyEnemy(x, y, behavior);
-			enemies.add(enemy);
-			break;
+			case HEAVY_ENEMY:
+				enemy = new HeavyEnemy(x, y, behavior);
+				break;
+
+			case CORE_ORBIT_ENEMY:
+				enemy = new CoreOrbitEnemy(x, y);
+				enemies.add(new SatelliteOrbitEnemy(enemy));
+				break;
 
 		} // end switch();
+
+		enemies.add(enemy);
 
 		// }
 
