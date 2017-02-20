@@ -92,7 +92,9 @@ public class Player extends Ship {
 		if (!GODMODE && !(lives > initialLives))
 			this.lives -= lives;
 		Sounds.playerHitSound.play();
-		hitted = true;
+		if (lives > 0) {
+			hitted = true;
+		}
 	}
 
 	public void incrementLives(int lives) {
@@ -147,6 +149,9 @@ public class Player extends Ship {
 
 	public void draw() {
 
+		//descomentar para ver
+		//System.out.println("Color que trae el SpriteBatch: "+GameEngine.batch.getColor().toString());
+
 		if (!animationInitializated) {
 			initAnimation();
 			animationInitializated = true;
@@ -154,16 +159,7 @@ public class Player extends Ship {
 
 
 		if (draw) {
-			//Sprite[] spr = Sprites.player;
-			// TODO Implementar algun dia esto
-			/*switch (mode) {
-				case 0:
-					tex = Sprites.player_1;
-					break;
-				case 1:
-					tex = Sprites.player_2;
-					break;
-			}*/
+
 			if (hitted) {
 				tmpColor = GameEngine.batch.getColor();
 				GameEngine.batch.setColor(Color.RED);
