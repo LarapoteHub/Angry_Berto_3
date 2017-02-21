@@ -54,23 +54,23 @@ public class CoreOrbitEnemy extends Enemy {
     @Override
     public void draw() {
 
-        if (hitted) {
+        if (hit) {
             tmpColor = GameEngine.batch.getColor();
             GameEngine.batch.setColor(Color.RED);
         }
 
         GameEngine.batch.draw(Sprites.enemy_core_orbit.getTexture(), x, y, width, height);
 
-        if (hitted) {
+        if (hit) {
             GameEngine.batch.setColor(tmpColor);
 
-            if (hittedClock >= HITTED_TIME) {
-                hittedClock = 0;
-                hitted = false;
+            if (hitClock >= HITTED_TIME) {
+                hitClock = 0;
+                hit = false;
             }
 
             if (!GameEngine.gameState.isPaused()) {
-                hittedClock++;
+                hitClock++;
             }
 
         }

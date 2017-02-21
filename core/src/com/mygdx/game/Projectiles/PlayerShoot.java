@@ -51,7 +51,7 @@ public class PlayerShoot extends Projectile {
     }
 
     @Override
-    public void decreaseLives(int lives) {
+    public void decreaseLives(float lives) {
 
     }
 

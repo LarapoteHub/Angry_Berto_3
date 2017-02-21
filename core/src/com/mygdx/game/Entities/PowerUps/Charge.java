@@ -36,7 +36,7 @@ public class Charge extends PowerUp {
     }
 
 	@Override
-	public void decreaseLives(int lives) {
+	public void decreaseLives(float lives) {
 		// Ehm... no implementado? xD
 	}
 

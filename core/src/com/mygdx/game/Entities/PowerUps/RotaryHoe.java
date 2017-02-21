@@ -93,7 +93,7 @@ public class RotaryHoe extends Projectile {
     }
 
     @Override
-    public void decreaseLives(int lives) {
+    public void decreaseLives(float lives) {
 
     }
 

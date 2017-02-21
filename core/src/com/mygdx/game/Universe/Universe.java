@@ -1,14 +1,15 @@
 package com.mygdx.game.Universe;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.mygdx.game.GameEngine;
 import com.mygdx.game.Multimedia.Backgrounds;
 
 public class Universe {
-	protected int enemyHPBuff = 1;
-	protected int playerHPBuff = 1;
+	protected float enemyHPBuff = 1;
+	protected float playerHPBuff = 1;
 	
-	protected int playerAttackSpeed = 1;
-	protected int enemyAttackSpeed = 1;
+	protected float playerAttackSpeed = 100;
+	protected float enemyAttackSpeed = 1;
 	
 	protected boolean dogDisabled = false;
 	protected boolean hoeDisabled = false;
@@ -20,16 +21,24 @@ public class Universe {
 	private int uniMode = 1;
 
 	// Base values
-	private int playerAttackSpeedBase = 10;
-	private int enemyAttackSpeedBase = 10;
-	
+	private float playerAttackSpeedBase = 10;
+	private float enemyAttackSpeedBase = 10;
+
 	public void setMode(int uniMode) {
 		this.uniMode = uniMode;
 		switch (uniMode){
 		case 1:
 			// Normaliño
-			enemyHPBuff = playerHPBuff = playerAttackSpeed = playerAttackMode = enemyAttackSpeed = 1;
-			dogDisabled = hoeDisabled = hpDisabled = false;
+			enemyHPBuff = 1;
+			enemyAttackSpeed = 1;
+
+			playerHPBuff = 1;
+			playerAttackSpeed = 1;
+			playerAttackSpeed = 1;
+
+			dogDisabled = false;
+			hoeDisabled = false;
+			hpDisabled = false;
 			break;
 		case 2:
 			// TODO Crear balas oscuras para el fondo del universo blanco.
@@ -40,12 +49,20 @@ public class Universe {
 		}
 	}
 	
-	public int getEnemyAttackSpeed() {
-		return enemyAttackSpeedBase / enemyAttackSpeed;
+	public float getEnemyAttackSpeed(GameEngine.EnemyType type) {
+		switch (type) {
+			case STANDARD_ENEMY:
+				return enemyAttackSpeed;
+			case HEAVY_ENEMY:
+				return enemyAttackSpeed / 4;
+		}
+
+		// Just in case TODO Edit this later to include all possibilities
+		return 1;
 	}
 	
 	/// #Getters
-	public int getEnemyHPBuff() {
+	public float getEnemyHPBuff() {
 		return enemyHPBuff;
 	}
 	
@@ -53,8 +70,8 @@ public class Universe {
 		return playerAttackMode;
 	}
 	
-	public int getPlayerAttackSpeed() {
-		return playerAttackSpeedBase / playerAttackSpeed;
+	public float getPlayerAttackSpeed() {
+		return playerAttackSpeed;
 	}
 
 	public Texture getBackground() {
@@ -68,7 +85,7 @@ public class Universe {
 		return null;
 	}
 	
-	public int getPlayerHPBuff() {
+	public float getPlayerHPBuff() {
 		return playerHPBuff;
 	}
 	

@@ -113,8 +113,7 @@ public class Logic extends GameEngine implements Runnable {
             if (player.canShoot()) {
                 if (MyGdxGame.DEBUG_MODE)
                     System.out.println("pew!");
-                bullets_Player.add(new PlayerShoot(player));
-                player.setCanShoot(false);
+                player.shoot();
             } else {
                 player.incrementCooldown();
             }

@@ -95,7 +95,7 @@ public class HeavyEnemyShoot extends Projectile {
 	}
 
 	@Override
-	public void decreaseLives(int lives) {
+	public void decreaseLives(float lives) {
 		// TODO Auto-generated method stub
 		
 	}

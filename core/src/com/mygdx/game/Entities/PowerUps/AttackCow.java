@@ -34,9 +34,7 @@ public class AttackCow extends Projectile {
     }
 
 	@Override
-	public void decreaseLives(int lives) {
-		// TODO Auto-generated method stub
-		
+	public void decreaseLives(float lives) {
 	}
 	
 	@Override

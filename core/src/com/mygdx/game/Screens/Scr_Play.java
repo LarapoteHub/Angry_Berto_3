@@ -25,7 +25,6 @@ public class Scr_Play implements Screen {
 		//GameEngine.addEntity((Enemy) new StandardEnemy(10, 10, 0), EntityType.ENEMY);
 		//printer.draw(batch, "SCORE: " + player.getScore(), 78, 800 - 10); // antes x=10
 		GameEngine.addText(new Text("", 78, 800));
-		
 	}
 
 }

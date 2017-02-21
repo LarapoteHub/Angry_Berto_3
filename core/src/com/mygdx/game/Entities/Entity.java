@@ -31,7 +31,7 @@ public abstract class Entity {
     public void kill() {
         remove = true;
     }
-    public abstract void decreaseLives(int lives);
+    public abstract void decreaseLives(float lives);
     public abstract void move();
 
 

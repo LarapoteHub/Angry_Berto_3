@@ -124,7 +124,7 @@ public class SatelliteOrbitEnemy extends Enemy {
 
     //SOBRESCRITO PARA QUE SEA INMORTAL
     @Override
-    public void decreaseLives(int lives) {
+    public void decreaseLives(float lives) {
 
     }
 

@@ -24,7 +24,7 @@ public abstract class PlainAnimation extends Entity {
     public abstract void draw();
 
     @Override
-    public void decreaseLives(int lives) {
+    public void decreaseLives(float lives) {
         //without lives.
     }
 

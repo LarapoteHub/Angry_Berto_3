@@ -112,8 +112,6 @@ public class GameEngine {
 		images = new ArrayList<Sprite>();
 		texts = new ArrayList<Text>();
 
-		player = new Player();
-		player.setDraw(false);
 
 		// Pasarle el motor, que se va usar en todas partes del Entity.
 		Entity.engine = this;
@@ -227,6 +225,10 @@ public class GameEngine {
 		printer.dispose();
 	}
 
+	public static void initPlayer() {
+
+	}
+
 	public enum EntityType {
 		BULLET_PLAYER, BULLET_ENEMY, ENEMY, PLAIN_ANIMATION, OTHER
 	}
@@ -275,8 +277,7 @@ public class GameEngine {
 	}*/
 
 	protected void clearAll() {
-		player = new Player();
-		player.setDraw(false);
+		player = null;
 		enemies.clear();
 		bullets_Player.clear();
 		bullets_Enemy.clear();

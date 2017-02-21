@@ -25,9 +25,6 @@ public class HeavyEnemy extends Enemy {
         - lento
         - dispara grandes proyectiles (hacen pupa)
      */
-    //variable para crear zigzag
-    private float originalX;
-    Timer.Task shootTask;
 
     private TextureRegion[] movingFrames;
 
@@ -36,9 +33,11 @@ public class HeavyEnemy extends Enemy {
         vSpeed = -150;
         this.width = 64;
         this.height = 64;
+        // Doble de vida.... armadura OP
+        lives *= 2;
         // TODO TEST TEST TEST TEST //
-        lives = lives * 2 * GameEngine.uni.getEnemyHPBuff();
-        timerShoot = 150 / GameEngine.uni.getEnemyAttackSpeed();
+        lives = (int) Math.ceil(lives * GameEngine.uni.getEnemyHPBuff());
+        setAttackSpeed(GameEngine.uni.getEnemyAttackSpeed(EnemyType.HEAVY_ENEMY));
     	// TODO TEST TEST TEST TEST //
         
         score = 150;
@@ -59,7 +58,7 @@ public class HeavyEnemy extends Enemy {
     @Override
     public void draw () {
 
-        if (hitted) {
+        if (hit) {
             tmpColor = GameEngine.batch.getColor();
             GameEngine.batch.setColor(Color.RED);
         }
@@ -67,16 +66,16 @@ public class HeavyEnemy extends Enemy {
         currentFrame = currentAnimation.getKeyFrame(stateTime, true);
         GameEngine.batch.draw(currentFrame, x, y, width, height);
 
-        if (hitted) {
+        if (hit) {
             GameEngine.batch.setColor(tmpColor);
 
-            if (hittedClock >= HITTED_TIME) {
-                hittedClock = 0;
-                hitted = false;
+            if (hitClock >= HITTED_TIME) {
+                hitClock = 0;
+                hit = false;
             }
 
             if (!GameEngine.gameState.isPaused()) {
-                hittedClock++;
+                hitClock++;
             }
 
         }
@@ -86,91 +85,91 @@ public class HeavyEnemy extends Enemy {
 
     }
 
-    public void action(Player player) {
-
-
-        //PRUEBAS (ZIG ZAG)
-        if (originalX == x && hSpeed == 0) {
-
-        	hSpeed = -50;
-
-        }
-
-        if (x < (originalX - 40)) {
-
-            hSpeed = 50;
-
-        }
-
-        if (x > (originalX+40)) {
-
-            hSpeed = -50;
-        }
-        //************************
-
-        // le restamos a su Y las unidades por segundo de su vspeed aplicando la misma fórmula que a la nave. Lo mismo para su X y su hspeed;
-        y -= vSpeed * Gdx.graphics.getDeltaTime();
-        x += hSpeed * Gdx.graphics.getDeltaTime();
-        //si el enemigo se sale de los márgenes, invertimos su velocidad.
-        if (x <= 68 || x >= 480 - getWidth() ) {
-            this.setHSpeed(-hSpeed);
-        }
-
-        //usamos timerShoot para que entre disparo y disparo ocurran al menos 100 iteraciones
-        if (timerShoot<150) {
-            timerShoot++;
-
-        }
-
-
-
-            if (MathUtils.random(0, 1000) > 990 && !GameEngine.gameState.isPaused() && timerShoot >= 150) {
-
-                timerShoot = 0;
-                Sounds.heavyEnemyShootSound.play();
-                initShoot();
-
-            }
-
-
-        //COMPORTAMIENTO
-        runBehavior();
-
-
-        // en caso de que el enemigo se salga de los márgenes de la pantalla por debajo, la eliminamos.
-        if (y + getHeight() < 0) {
-            remove = true;
-        }
-
-        //si una gota colisiona con la nave...
-        /*if (overlaps(player)) {
-            // reproducimos el sonido correspondiente...
-            Sounds.explodeSound.play();
-            // y la eliminamos de nuestro mundo.
-            kill();
-            player.decreaseLives(2); //si este enemigo choca con el jugador le bajaremos 2 de vida
-
-        }*/
-
-        if (getLives() <= 0) {
-
-            Sounds.explodeSound.play();
-            player.addScore(10);
-
-            random = MathUtils.random(0,20);
-
-            if (random == 5 || random == 8 || random == 2) {
-                //spawnPowerUpLive(enemyContainer.getX(), enemyContainer.getY());
-                charge = true;
-            }
-
-            remove = true;
-
-            //spawnExplosion(enemyContainer.getX() + 6, enemyContainer.getY() + 6);
-            //iterEnemys.remove();
-        }
-
-    } //end ACTION()
+//    public void action(Player player) {
+//
+//
+//        //PRUEBAS (ZIG ZAG)
+//        if (originalX == x && hSpeed == 0) {
+//
+//        	hSpeed = -50;
+//
+//        }
+//
+//        if (x < (originalX - 40)) {
+//
+//            hSpeed = 50;
+//
+//        }
+//
+//        if (x > (originalX+40)) {
+//
+//            hSpeed = -50;
+//        }
+//        //************************
+//
+//        // le restamos a su Y las unidades por segundo de su vspeed aplicando la misma fórmula que a la nave. Lo mismo para su X y su hspeed;
+//        y -= vSpeed * Gdx.graphics.getDeltaTime();
+//        x += hSpeed * Gdx.graphics.getDeltaTime();
+//        //si el enemigo se sale de los márgenes, invertimos su velocidad.
+//        if (x <= 68 || x >= 480 - getWidth() ) {
+//            this.setHSpeed(-hSpeed);
+//        }
+//
+//        //usamos timerShoot para que entre disparo y disparo ocurran al menos 100 iteraciones
+//        if (timerShoot<150) {
+//            timerShoot++;
+//
+//        }
+//
+//
+//
+//            if (MathUtils.random(0, 1000) > 990 && !GameEngine.gameState.isPaused() && timerShoot >= 150) {
+//
+//                timerShoot = 0;
+//                Sounds.heavyEnemyShootSound.play();
+//                initShoot();
+//
+//            }
+//
+//
+//        //COMPORTAMIENTO
+//        runBehavior();
+//
+//
+//        // en caso de que el enemigo se salga de los márgenes de la pantalla por debajo, la eliminamos.
+//        if (y + getHeight() < 0) {
+//            remove = true;
+//        }
+//
+//        //si una gota colisiona con la nave...
+//        /*if (overlaps(player)) {
+//            // reproducimos el sonido correspondiente...
+//            Sounds.explodeSound.play();
+//            // y la eliminamos de nuestro mundo.
+//            kill();
+//            player.decreaseLives(2); //si este enemigo choca con el jugador le bajaremos 2 de vida
+//
+//        }*/
+//
+//        if (getLives() <= 0) {
+//
+//            Sounds.explodeSound.play();
+//            player.addScore(10);
+//
+//            random = MathUtils.random(0,20);
+//
+//            if (random == 5 || random == 8 || random == 2) {
+//                //spawnPowerUpLive(enemyContainer.getX(), enemyContainer.getY());
+//                charge = true;
+//            }
+//
+//            remove = true;
+//
+//            //spawnExplosion(enemyContainer.getX() + 6, enemyContainer.getY() + 6);
+//            //iterEnemys.remove();
+//        }
+//
+//    } //end ACTION()
 
     @Override
     public void runBehavior() {

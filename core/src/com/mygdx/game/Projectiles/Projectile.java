@@ -11,7 +11,7 @@ import com.mygdx.game.Entities.Player;
  */
 public abstract class Projectile extends Entity {
 	
-    protected int damage;
+    protected float damage;
     protected int charge = 0;
     protected boolean gotIt = false;
 
@@ -21,8 +21,16 @@ public abstract class Projectile extends Entity {
     
     public abstract void draw();
 
-    public int getDamage() {
+    public float getDamage() {
     	return damage;
+    }
+
+    /**
+     * Solo por si acaso
+     * @param dmg nuevo daño a hacer este proyectil.
+     */
+    public void setDamage(float dmg) {
+        this.damage = dmg;
     }
     
     public void destroy() {
@@ -38,4 +46,24 @@ public abstract class Projectile extends Entity {
 		gotIt = true;
 		return charge;
 	}
+
+    // TODO Mirar como hacer que esto se muestre decentemente...
+    /**
+     * Metodo creado para centrar un proyectil en comparacion con algo.\n
+     * Ejemplo: bala.centerTo("x", player.x, player.width);
+     * @param coord "x" o "y", dependiendo de lo que se quiere centrar.
+     * @param start la coordenada inicial del objeto al que se quiere centrar
+     * @param size el tamaño correspondiente (ancho en caso de X o alto en caso de Y) del objeto
+     *             con el que se quiere centrar.
+
+     */
+    public void centerTo(String coord, float start, float size) {
+        if (coord.equals("x")) {
+            this.x = start + (size - width) / 2;
+
+        } else if (coord.equals("y")) {
+            this.y = start + (size - height) / 2;
+        }
+
+    }
 }

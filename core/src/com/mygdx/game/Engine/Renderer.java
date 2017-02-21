@@ -77,7 +77,7 @@ public class Renderer extends GameEngine implements Runnable{
 		/*
 		 * for (Entity e : entitiesToRender) { e.draw(batch); }
 		 */
-		if (gameState.isPlaying() || gameState.isPaused()) {
+		if ((gameState.isPlaying() || gameState.isPaused()) && player != null) {
 			player.draw();
 			
 			drawEnemies();

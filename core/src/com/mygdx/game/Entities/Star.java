@@ -36,7 +36,7 @@ public class Star extends Entity{
     }
 
     @Override
-    public void decreaseLives(int lives) {
+    public void decreaseLives(float lives) {
         // NO USADO
     }
 

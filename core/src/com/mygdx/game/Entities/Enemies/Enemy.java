@@ -1,7 +1,6 @@
 package com.mygdx.game.Entities.Enemies;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
@@ -82,9 +81,10 @@ public abstract class Enemy extends Ship {
     }
 
     // Quita vidas
-    public void decreaseLives(int lives) {
-        this.lives -= lives;
-        hitted = true;
+    @Override
+    public void decreaseLives(float lives) {
+        super.decreaseLives(lives);
+        hit = true;
     }
 
     // Mata. Se ha de llamar para matar un enemigo.
@@ -103,7 +103,7 @@ public abstract class Enemy extends Ship {
             GameEngine.spawnPowerUpCharge(x, y);
     }
 
-    public int getLives() {
+    public float getLives() {
         return this.lives;
     }
     

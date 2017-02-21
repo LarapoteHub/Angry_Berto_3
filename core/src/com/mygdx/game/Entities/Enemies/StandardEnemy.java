@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
-import com.mygdx.game.Entities.Player;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.GameEngine.EnemyType;
 import com.mygdx.game.GameEngine.EntityType;
@@ -50,9 +49,10 @@ public class StandardEnemy extends Enemy {
 
 		type = EnemyType.STANDARD_ENEMY;
 		powerUpProb = 10;
-		
-		this.cooldown = GameEngine.uni.getEnemyAttackSpeed();
-		this.lives = GameEngine.uni.getEnemyHPBuff() * lives;
+
+		setAttackSpeed(GameEngine.uni.getEnemyAttackSpeed(EnemyType.STANDARD_ENEMY));
+
+		this.lives = (int) Math.ceil(GameEngine.uni.getEnemyHPBuff() * lives);
 
 		this.FRAME_COLS = 4;
 		this.FRAME_ROWS = 1;
@@ -63,7 +63,7 @@ public class StandardEnemy extends Enemy {
 
 	public void draw() {
 
-		if (hitted) {
+		if (hit) {
 			tmpColor = GameEngine.batch.getColor();
 			GameEngine.batch.setColor(Color.RED);
 		}
@@ -71,16 +71,16 @@ public class StandardEnemy extends Enemy {
 		currentFrame = currentAnimation.getKeyFrame(stateTime, true);
 		GameEngine.batch.draw(currentFrame, x, y, width, height);
 
-		if (hitted) {
+		if (hit) {
 			GameEngine.batch.setColor(tmpColor);
 
-			if (hittedClock >= HITTED_TIME) {
-				hittedClock = 0;
-				hitted = false;
+			if (hitClock >= HITTED_TIME) {
+				hitClock = 0;
+				hit = false;
 			}
 
 			if (!GameEngine.gameState.isPaused()) {
-				hittedClock++;
+				hitClock++;
 			}
 
 		}

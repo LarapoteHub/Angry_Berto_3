@@ -2,17 +2,14 @@ package com.mygdx.game.Entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.utils.Timer;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.Multimedia.Backgrounds;
 import com.mygdx.game.Multimedia.Sounds;
 import com.mygdx.game.Multimedia.Sprites;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.Projectiles.PlayerShoot;
 
 /**
  * Created by 100VOL on 10/08/2016.
@@ -21,7 +18,7 @@ public class Player extends Ship {
 
 	//TODO Cheats!
 	private boolean GODMODE = true;
-	private int initialLives;
+	private float initialLives;
 	// --------
 
 	// Dibujar o no
@@ -34,12 +31,6 @@ public class Player extends Ship {
 	private int mode;
 
 	private long score;
-	private int index;
-	private int fireIndex;
-	private Timer.Task animation;
-	Vector3 touchPos;
-
-	private int attackSpeed = 1;
 
 	// alamcena la carga para usar powerUps
 	public int charge = 100;
@@ -55,7 +46,9 @@ public class Player extends Ship {
 	private float stateTime = 0f;
 	private float propulsionStateTime = 0f;
 
-	boolean animationInitializated = false;
+	boolean init = false;
+	private int countBigOne = 0;
+	private int bigOneInterval = 10;
 
 	public Player() {
 		canShoot = true;
@@ -72,15 +65,16 @@ public class Player extends Ship {
 		x = 246;
 		y = 20;
 
-		index = 0;
-		fireIndex = 0;
-
 		this.FRAME_COLS = 2;
 		this.FRAME_ROWS = 1;
 		this.FRAME_COLS_PROPULSION = 3;
 		this.FRAME_ROWS_PROPULSION = 1;
 
 		//initAnimation();
+
+		if (!init) {
+			initAll();
+		}
 
 	}
 
@@ -94,7 +88,7 @@ public class Player extends Ship {
 
 		if (lives > 0) {
 			Sounds.playerHitSound.play();
-			hitted = true;
+			hit = true;
 		}
 	}
 
@@ -108,7 +102,7 @@ public class Player extends Ship {
 
 	}
 
-	public int getLives() {
+	public float getLives() {
 
 		return this.lives;
 
@@ -153,15 +147,8 @@ public class Player extends Ship {
 		//descomentar para ver
 		//System.out.println("Color que trae el SpriteBatch: "+GameEngine.batch.getColor().toString());
 
-		if (!animationInitializated) {
-			initAnimation();
-			animationInitializated = true;
-		}
-
-
 		if (draw) {
-
-			if (hitted) {
+			if (hit) {
 				tmpColor = GameEngine.batch.getColor();
 				GameEngine.batch.setColor(Color.RED);
 			}
@@ -179,16 +166,16 @@ public class Player extends Ship {
 					propulsionFrame,
 					x - 4 + 34, y - 16, 8, 16);
 
-			if (hitted) {
+			if (hit) {
 				GameEngine.batch.setColor(tmpColor);
 
-				if (hittedClock >= HITTED_TIME) {
-					hittedClock = 0;
-					hitted = false;
+				if (hitClock >= HITTED_TIME) {
+					hitClock = 0;
+					hit = false;
 				}
 
 				if (!GameEngine.gameState.isPaused()) {
-					hittedClock++;
+					hitClock++;
 				}
 
 			}
@@ -251,11 +238,6 @@ public class Player extends Ship {
 		}
 	}
 
-	public void setAttackSpeed(int attackSpeed) {
-		this.attackSpeed = attackSpeed;
-		if (cooldown != baseCooldown / attackSpeed)
-			this.cooldown = baseCooldown / attackSpeed;
-	}
 
 	public boolean collides(Entity collisionBox) {
 		return this.collisionBox.overlaps(collisionBox.collisionBox);
@@ -269,10 +251,22 @@ public class Player extends Ship {
 		 */
 	}
 
+	/**
+	 * Puesto aqui la parte del disparo para poder añadir mecanicas extra, como la del ejemplo.
+	 */
 	@Override
 	public void shoot() {
-		// TODO Auto-generated method stub
+		countBigOne++;
+		PlayerShoot bullet = new PlayerShoot(this);
+		if (countBigOne >= bigOneInterval) {
+			countBigOne = 0;
+			bullet.setWidth(100);
+			bullet.setDamage(2.5f);
+		}
+		bullet.centerTo("x", x, width);
+		GameEngine.addEntity(bullet, GameEngine.EntityType.BULLET_PLAYER);
 
+		setCanShoot(false);
 	}
 
 	public void setMode(int mode) {
@@ -287,8 +281,13 @@ public class Player extends Ship {
 		return mode;
 	}
 
-	public void initAnimation() {
+	private void initAll() {
+		initAnimation();
+		setAttackSpeed(GameEngine.uni.getPlayerAttackSpeed());
+		init = true;
+	}
 
+	private void initAnimation() {
 
 
 		Sprites.player.setBounds(0, 0, Sprites.player.getTexture().getWidth(), Sprites.player.getTexture().getHeight());
@@ -310,6 +309,6 @@ public class Player extends Ship {
 	}
 
 	public boolean isHitted() {
-		return hitted;
+		return hit;
 	}
 }

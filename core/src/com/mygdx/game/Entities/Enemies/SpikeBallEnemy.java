@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.utils.Timer;
 import com.mygdx.game.Entities.Player;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.GameEngine.EnemyType;
@@ -46,7 +45,7 @@ public class SpikeBallEnemy extends Enemy {
 
     public void draw () {
 
-        if (hitted) {
+        if (hit) {
             tmpColor = GameEngine.batch.getColor();
             GameEngine.batch.setColor(Color.RED);
         }
@@ -54,16 +53,16 @@ public class SpikeBallEnemy extends Enemy {
         currentFrame = currentAnimation.getKeyFrame(stateTime, true);
         GameEngine.batch.draw(currentFrame, x, y, width, height);
 
-        if (hitted) {
+        if (hit) {
             GameEngine.batch.setColor(tmpColor);
 
-            if (hittedClock >= HITTED_TIME) {
-                hittedClock = 0;
-                hitted = false;
+            if (hitClock >= HITTED_TIME) {
+                hitClock = 0;
+                hit = false;
             }
 
             if (!GameEngine.gameState.isPaused()) {
-                hittedClock++;
+                hitClock++;
             }
 
         }
