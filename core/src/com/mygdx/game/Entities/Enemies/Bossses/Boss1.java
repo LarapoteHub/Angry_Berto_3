@@ -36,7 +36,7 @@ public class Boss1 extends Boss {
         width = 120;
         height = 96;
         // TODO Que es un boss, por dios
-        lives = 200;
+        lives = 200.0f;
 
         // Implementado en otro lado. Usar cooldown
         // timerShoot = 50;

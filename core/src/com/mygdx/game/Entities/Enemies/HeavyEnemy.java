@@ -13,6 +13,7 @@ import com.mygdx.game.GameEngine.EntityType;
 import com.mygdx.game.Multimedia.Sounds;
 import com.mygdx.game.Multimedia.Sprites;
 import com.mygdx.game.Projectiles.HeavyEnemyShoot;
+import com.mygdx.game.Projectiles.StandardEnemyShoot;
 
 /**
  * Created by 100VOL on 09/08/2016.
@@ -38,12 +39,12 @@ public class HeavyEnemy extends Enemy {
         // TODO TEST TEST TEST TEST //
         lives = (int) Math.ceil(lives * GameEngine.uni.getEnemyHPBuff());
         setAttackSpeed(GameEngine.uni.getEnemyAttackSpeed(EnemyType.HEAVY_ENEMY));
-    	// TODO TEST TEST TEST TEST //
-        
+        // TODO TEST TEST TEST TEST //
+
         score = 150;
-        
+
         cooldown = 150;
-        
+
         type = EnemyType.HEAVY_ENEMY;
 
         powerUpProb = 50;
@@ -52,11 +53,11 @@ public class HeavyEnemy extends Enemy {
         this.FRAME_ROWS = 1;
 
         initAnimation();
-        
+
     }
 
     @Override
-    public void draw () {
+    public void draw() {
 
         if (hit) {
             tmpColor = GameEngine.batch.getColor();
@@ -79,7 +80,7 @@ public class HeavyEnemy extends Enemy {
             }
 
         }
-        if(!GameEngine.gameState.isPaused()) {
+        if (!GameEngine.gameState.isPaused()) {
             stateTime += Gdx.graphics.getDeltaTime();
         }
 
@@ -175,7 +176,6 @@ public class HeavyEnemy extends Enemy {
     public void runBehavior() {
 
 
-
     }
 
     //este método lanzará el método shoot() en 1 segundo
@@ -195,16 +195,22 @@ public class HeavyEnemy extends Enemy {
 
     //creamos un disparo
     public void shoot() {
-        GameEngine.addEntity(new HeavyEnemyShoot(this), EntityType.BULLET_ENEMY);
+        // 10% probabilidad de que dispare
+        int a = MathUtils.random(0, 100);
+        if (a < 70) {
+            GameEngine.addEntity(new HeavyEnemyShoot(this), EntityType.BULLET_ENEMY);
+        } else {
+            // Retraso en caso de que no dispare.
+            CDCount -= MathUtils.random(0.15f, 0.45f);
+        }
         canShoot = false;
-
     }
 
 
-	@Override
-	public boolean canShoot() {
-		return canShoot;
-	}
+    @Override
+    public boolean canShoot() {
+        return canShoot;
+    }
 
     @Override
     public void initAnimation() {

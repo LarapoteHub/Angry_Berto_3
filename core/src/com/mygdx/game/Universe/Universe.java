@@ -8,8 +8,8 @@ public class Universe {
 	protected float enemyHPBuff = 1;
 	protected float playerHPBuff = 1;
 	
-	protected float playerAttackSpeed = 100;
-	protected float enemyAttackSpeed = 1;
+	protected float playerAttackSpeed = 1;
+	protected float enemyAttackSpeed = 5;
 	
 	protected boolean dogDisabled = false;
 	protected boolean hoeDisabled = false;
@@ -30,11 +30,10 @@ public class Universe {
 		case 1:
 			// Normaliño
 			enemyHPBuff = 1;
-			enemyAttackSpeed = 1;
+			enemyAttackSpeed = 10;
 
 			playerHPBuff = 1;
-			playerAttackSpeed = 1;
-			playerAttackSpeed = 1;
+			playerAttackSpeed = 10;
 
 			dogDisabled = false;
 			hoeDisabled = false;
@@ -44,7 +43,7 @@ public class Universe {
 			// TODO Crear balas oscuras para el fondo del universo blanco.
 			dogDisabled = true;
 			enemyHPBuff = 2;
-			playerAttackSpeed = 5;
+			playerAttackSpeed = 20;
 			break;
 		}
 	}

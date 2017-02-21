@@ -18,14 +18,11 @@ import com.mygdx.game.Buttons.Button;
 import com.mygdx.game.Entities.Enemies.Bossses.Boss;
 import com.mygdx.game.Entities.Enemies.Enemy;
 import com.mygdx.game.Entities.Entity;
-import com.mygdx.game.Entities.PlainAnimations.Explosion;
 import com.mygdx.game.Entities.Star;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.Levels.Level;
 import com.mygdx.game.Levels.Level0;
-import com.mygdx.game.Levels.LevelTest;
 import com.mygdx.game.MyGdxGame;
-import com.mygdx.game.Projectiles.PlayerShoot;
 import com.mygdx.game.Projectiles.Projectile;
 import com.mygdx.game.Screens.Scr_GameOver;
 import com.mygdx.game.Screens.Scr_Introduction;
@@ -36,7 +33,6 @@ import com.mygdx.game.Screens.Scr_Play;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Random;
 
 /**
  * Created by Red Mercy on 9/26/2016.
@@ -369,25 +365,6 @@ public class Logic extends GameEngine implements Runnable {
     }
 
     private void checkCollisions() {
-        /*for (Enemy enem : enemies) {
-            for (Projectile p : bullets_Player) {
-                if (enem.isColliding(p)) {
-                    enem.decreaseLives(p.getDamage());
-                    p.destroy();
-                    if (enem.getLives() <= 0) {
-                        enem.kill();
-                        addEntity(new Explosion(enem.getX(), enem.getY(), enem.getWidth(), enem.getHeight()),
-                                EntityType.PLAIN_ANIMATION);
-                        player.addScore(enem.getScore());
-                        Random rnd = new Random(System.nanoTime()
-                                * System.nanoTime() / 13);
-                        if (rnd.nextInt(100) < enem.getPowerUpProbability())
-                            spawnPowerUpCharge(enem.getX(), enem.getY());
-                    }
-                }
-            }
-        }*/
-
         // Invertido el bucle. Se evita recorrer el array de "bullets_Player" 2 veces. (Culpa de los bosses)
         // TODO Meter threads para esto si es posible.
         for (Projectile p : bullets_Player) {
@@ -404,9 +381,8 @@ public class Logic extends GameEngine implements Runnable {
                 if (boss.isColliding(p)) {
                     boss.decreaseLives(p.getDamage());
                     p.destroy();
-                    if (boss.getLives() <= 0) {
+                    if (boss.getLives() <= 0.0f) {
                         boss.kill();
-
                     }
                 }
             }
@@ -414,7 +390,7 @@ public class Logic extends GameEngine implements Runnable {
 
         for (Enemy enem : enemies) {
             if (enem.isColliding(player)) {
-                if (!player.isHitted()) {
+                if (!player.isHit()) {
 
                     enem.kill();
 
@@ -428,10 +404,11 @@ public class Logic extends GameEngine implements Runnable {
                 }
             }
         }
+
         for (Boss b : bosses) {
             if (b.isColliding(player)) {
 
-                if (!player.isHitted()) {
+                if (!player.isHit()) {
                     player.decreaseLives(15);
                     // No se si la funcion kill() tiene un comportamiento adecuado para Player. Por eso el -15
                     //player.kill();
@@ -442,11 +419,12 @@ public class Logic extends GameEngine implements Runnable {
             if (player.isColliding(p)) {
                 player.increaseCharge(p.getCharge());
                 player.decreaseLives(p.getDamage());
-                if (player.getLives() <= 0) {
-                    gameState.finishGame();
-                }
                 p.destroy();
             }
+        }
+
+        if (player.getLives() <= 0.0f) {
+            gameState.finishGame();
         }
 
     }

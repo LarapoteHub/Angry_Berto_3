@@ -56,7 +56,7 @@ public class Scr_GameOver implements Screen {
 
 			GameEngine.addImage(spr);
 
-			GameEngine.addText(new Text("SCORE: " + GameEngine.getPlayer().getScore(), 100, 400, Color.RED));
+			GameEngine.addText(new Text("SCORE: " + GameEngine.getLastScore(), 100, 400, Color.RED));
 
 		} catch (Exception ex) {
 			System.out.println("Excepción en Scr_GameOver.");

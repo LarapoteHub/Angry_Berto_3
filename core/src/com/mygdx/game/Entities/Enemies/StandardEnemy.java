@@ -35,10 +35,6 @@ public class StandardEnemy extends Enemy {
 		height = 48;
 		lives = 2;
 		
-		// Implementado en otro lado. Usar cooldown
-		// timerShoot = 50;
-		//cooldown = 100;
-		
 		damage = 2;
 		
 		// Valor que sumar para la puntuacion
@@ -50,7 +46,8 @@ public class StandardEnemy extends Enemy {
 		type = EnemyType.STANDARD_ENEMY;
 		powerUpProb = 10;
 
-		setAttackSpeed(GameEngine.uni.getEnemyAttackSpeed(EnemyType.STANDARD_ENEMY));
+		// Calculate the attack speed.
+		initAttackSpeed();
 
 		this.lives = (int) Math.ceil(GameEngine.uni.getEnemyHPBuff() * lives);
 
@@ -59,6 +56,15 @@ public class StandardEnemy extends Enemy {
 
 		initAnimation();
 
+	}
+
+	private void initAttackSpeed() {
+		float uniAtkSpeed = GameEngine.uni.getEnemyAttackSpeed(EnemyType.STANDARD_ENEMY);
+		// Porcentaje de la variacion de la velocidad de ataque, para que no tengan todos exactamente
+		// la misma velocidad de ataque.
+		float variation = 0.1f;
+
+		setAttackSpeed(MathUtils.random(uniAtkSpeed * (1 - variation), uniAtkSpeed * (1 + variation)));
 	}
 
 	public void draw() {
@@ -332,15 +338,15 @@ public class StandardEnemy extends Enemy {
 
 	@Override
 	public void shoot() {
-		// 30% probabilidad de que dispare... nope
+		// 50% probabilidad de que dispare
 		int a = MathUtils.random(0, 100);
-		if (a > 70) {
+		if (a < 10) {
 			GameEngine.addEntity(new StandardEnemyShoot(this), EntityType.BULLET_ENEMY);
-			canShoot = false;
 		} else {
-			CDCount -= 3;
+			// Retraso en caso de que no dispare.
+			CDCount -= MathUtils.random(0.15f, 0.45f);
 		}
-		
+		canShoot = false;
 	}
 
 	@Override

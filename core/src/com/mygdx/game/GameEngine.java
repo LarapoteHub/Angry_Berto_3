@@ -87,6 +87,7 @@ public class GameEngine {
 	public static Universe uni;
 	private boolean multimediaInitialized = false;
 	private boolean componentsInitialized = false;
+	private static  long lastScore = 0;
 	// </Mio!!>
 
 	public GameEngine() {
@@ -229,6 +230,10 @@ public class GameEngine {
 
 	}
 
+	public static long getLastScore() {
+		return lastScore;
+	}
+
 	public enum EntityType {
 		BULLET_PLAYER, BULLET_ENEMY, ENEMY, PLAIN_ANIMATION, OTHER
 	}
@@ -277,6 +282,8 @@ public class GameEngine {
 	}*/
 
 	protected void clearAll() {
+		if (player != null)
+			lastScore = player.getScore();
 		player = null;
 		enemies.clear();
 		bullets_Player.clear();
@@ -286,6 +293,8 @@ public class GameEngine {
 		buttons.clear();
 		texts.clear();
 		starCount = 0;
+		// Reset del universo.
+		uni.setMode(1);
 	}
 
 	public static void createPlayer() {

@@ -58,7 +58,7 @@ public class Player extends Ship {
 		setHeight(56);
 		hspeed = 200;
 		vspeed = 200;
-		lives = 5; // 5
+		lives = 5.0f; // 5
 		initialLives = lives;
 		score = 0;
 
@@ -82,8 +82,8 @@ public class Player extends Ship {
 		this.draw = draw;
 	}
 
-	public void decreaseLives(int lives) {
-		if (!GODMODE && !(lives > initialLives))
+	public void decreaseLives(float lives) {
+		if (!GODMODE)
 			this.lives -= lives;
 
 		if (lives > 0) {
@@ -103,7 +103,6 @@ public class Player extends Ship {
 	}
 
 	public float getLives() {
-
 		return this.lives;
 
 	}
@@ -308,7 +307,7 @@ public class Player extends Ship {
 
 	}
 
-	public boolean isHitted() {
+	public boolean isHit() {
 		return hit;
 	}
 }

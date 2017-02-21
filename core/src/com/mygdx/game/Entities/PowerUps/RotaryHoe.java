@@ -23,19 +23,16 @@ public class RotaryHoe extends Projectile {
     GameEngine gameEngineInstance;
     Enemy enContainer;
     Sprite spr;
+    // TODO Esto no funca bien...
+    private float targetX, targetY, accelX = 0, step;
 
     float angle = 0;
 
-    private int index;
-    Timer.Task animation;
-
     public RotaryHoe(float x, float y) {
-        this.spr = new Sprite(Sprites.powerUp_rotaryHoe);
-        spr.rotate(MathUtils.random(0, 350));
-
-    	this.x = x - 6;
-    	this.y = y - 6;
-        spr.setPosition(x - 6, y - 6);
+        this.x = x;
+        this.y = y;
+        initSprite();
+        initCurve();
 
         this.setWidth(64);
         this.setHeight(64);
@@ -48,6 +45,29 @@ public class RotaryHoe extends Projectile {
 
     }
 
+    private void initSprite() {
+        this.spr = new Sprite(Sprites.powerUp_rotaryHoe);
+        spr.rotate(MathUtils.random(0, 350));
+
+        x -= 6;
+        y -= 6;
+        spr.setPosition(x, y);
+    }
+
+    private void initCurve() {
+        targetX = this.x;
+        targetY = -100;
+        // TODO CORREGIR ESTO!!
+        int direccion = (int) Math.round(Math.random());
+
+        accelX = MathUtils.random(10, 50);
+
+        if (direccion == 1)
+            accelX = -accelX;
+        step = accelX * 0.005f;
+        System.out.println(accelX);
+    }
+
     @Override
     public void destroy() {
         // Override hecho para que no se destruya al chocar
@@ -55,37 +75,11 @@ public class RotaryHoe extends Projectile {
 
 
     public void action(Player player, OrthographicCamera camera) {
-/*
-        y += 500 * Gdx.graphics.getDeltaTime();
-
-        collisionEnemys = gameEngineInstance.enemysList.iterator();
-
-        while(collisionEnemys.hasNext()) {
-            enContainer = collisionEnemys.next();
-
-            if (enContainer.overlaps(this)) {
-
-
-                enContainer.decreaseLives(enContainer.getLives());
-
-            }
-        }
-
-        if (this.y >= 864) {
-
-            remove = true;
-
-        }
-*/
     } //end action()
-
-    private void increaseIndex() {
-        index++;
-    }
 
     public void draw() {
         // TODO Reñir a Dani por no usar la clase "Sprite"
-    	spr.rotate(MathUtils.random(15, 45));
+        spr.rotate(MathUtils.random(15, 45));
 
         spr.draw(GameEngine.batch);
         //GameEngine.batch.draw(Sprites.rotaryHoePowerUpImage[0])
@@ -99,31 +93,17 @@ public class RotaryHoe extends Projectile {
 
     @Override
     public void move() {
-        this.x += hSpeed * Gdx.graphics.getDeltaTime();
+        this.x += (hSpeed + accelX)* accelX * Gdx.graphics.getDeltaTime();
         this.y += vSpeed * Gdx.graphics.getDeltaTime();
         spr.setPosition(x - 6, y - 6);
+
+
+        if (step > 0) {
+            accelX -= step;
+        } else {
+            accelX += step;
+        }
+
+
     }
-
-    /*public void play() {
-
-        animation = new Timer.Task(){
-            @Override
-            public void run() {
-
-                if (index <= 2) {
-                    increaseIndex();
-                } else {
-                    index = 0;
-                }
-
-            }
-
-        };
-
-        //cada 0.06 segundos incrementamos el índice de la imagen.
-        Timer.schedule(animation,0.05f, 0.05f);
-    }*/
-
-
-
 }
