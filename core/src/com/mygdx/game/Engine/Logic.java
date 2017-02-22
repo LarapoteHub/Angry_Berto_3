@@ -89,7 +89,12 @@ public class Logic extends GameEngine implements Runnable {
             updateInterface();
 
         if (GameEngine.gameState.isLoading()) {
-            texts.get(1).setText((loader.getProgress() * 100) + "%");
+
+            if (MathUtils.random(0,100) > 95) {
+                texts.get(0).setText(Scr_Loading.getRandomText());
+            }
+
+            texts.get(1).setText((int)(loader.getProgress() * 100) + "%");
             if (loader.update()) {
                 // Inicializar el musicManager despues de cargar todo, ya que usa una cancion...
                 MyGdxGame.musicManager  = new MusicManager();
