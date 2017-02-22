@@ -50,6 +50,16 @@ public class Player extends Ship {
 	private int countBigOne = 0;
 	private int bigOneInterval = 10;
 
+	private boolean blinking = false;
+
+	//TIEMPO TOTAL PARPADEANDO
+	private final int BLINKING_TIME = 75;
+	//TIEMPO POR PARPADEO
+	private final int BLINK_INTERVAL_LIMIT = 8;
+
+	private int blinkClock = 0;
+	private int blinkIntervalClock = 0;
+
 	public Player() {
 		canShoot = true;
 		mode = 0;
@@ -70,6 +80,9 @@ public class Player extends Ship {
 		this.FRAME_COLS_PROPULSION = 3;
 		this.FRAME_ROWS_PROPULSION = 1;
 
+		//implementado por su cuenta
+		this.HITTED_TIME = 10;
+
 		//initAnimation();
 
 		if (!init) {
@@ -89,6 +102,7 @@ public class Player extends Ship {
 		if (lives > 0) {
 			Sounds.playerHitSound.play();
 			hit = true;
+			blinking = true;
 		}
 	}
 
@@ -147,23 +161,29 @@ public class Player extends Ship {
 		//System.out.println("Color que trae el SpriteBatch: "+GameEngine.batch.getColor().toString());
 
 		if (draw) {
+
 			if (hit) {
 				tmpColor = GameEngine.batch.getColor();
 				GameEngine.batch.setColor(Color.RED);
 			}
 
-
 			currentFrame = currentAnimation.getKeyFrame(stateTime, true);
 			propulsionFrame = propulsionAnimation.getKeyFrame(propulsionStateTime, true);
 
-			GameEngine.batch.draw(currentFrame,
-					x - 4, y, 56, getHeight());
-			GameEngine.batch.draw(
-					propulsionFrame,
-					x - 4 + 14, y - 16, 8, 16);
-			GameEngine.batch.draw(
-					propulsionFrame,
-					x - 4 + 34, y - 16, 8, 16);
+			if (!blinking || blinkIntervalClock > BLINK_INTERVAL_LIMIT / 2 && blinking) {
+
+				GameEngine.batch.draw(currentFrame,
+						x - 4, y, 56, getHeight());
+				GameEngine.batch.draw(
+						propulsionFrame,
+						x - 4 + 14, y - 16, 8, 16);
+				GameEngine.batch.draw(
+						propulsionFrame,
+						x - 4 + 34, y - 16, 8, 16);
+
+			}
+
+
 
 			if (hit) {
 				GameEngine.batch.setColor(tmpColor);
@@ -177,6 +197,24 @@ public class Player extends Ship {
 					hitClock++;
 				}
 
+			}
+
+			if (blinking) {
+
+				if (blinkClock >= BLINKING_TIME) {
+					blinkIntervalClock = 0;
+					blinkClock = 0;
+					blinking = false;
+				}
+
+				if (blinkIntervalClock >= BLINK_INTERVAL_LIMIT) {
+					blinkIntervalClock = 0;
+				}
+
+				if (!GameEngine.gameState.isPaused()) {
+					blinkClock++;
+					blinkIntervalClock++;
+				}
 			}
 
 			if (!GameEngine.gameState.isPaused()) {
@@ -308,6 +346,7 @@ public class Player extends Ship {
 	}
 
 	public boolean isHit() {
-		return hit;
+		//devuelvo blinkng para que sea inmune teniendo en cuenta el tiempo de parpadeo.
+		return blinking;
 	}
 }
