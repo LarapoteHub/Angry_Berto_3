@@ -48,6 +48,6 @@ public abstract class Ship extends Entity {
 	}
 
 	public void decreaseLives(float damage) {
-		this.lives -= lives;
+		this.lives -= damage;
 	}
 }

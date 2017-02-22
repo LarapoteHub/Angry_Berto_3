@@ -82,8 +82,8 @@ public abstract class Enemy extends Ship {
 
     // Quita vidas
     @Override
-    public void decreaseLives(float lives) {
-        super.decreaseLives(lives);
+    public void decreaseLives(float damage) {
+        super.decreaseLives(damage);
         hit = true;
     }
 
