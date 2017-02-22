@@ -32,6 +32,7 @@ public class Loader extends AssetManager {
     enum SprPath {
         pauseButton("sprites/buttons/pauseButton.png"),
         playButton("sprites/buttons/playButton.png"),
+        skipButton("sprites/buttons/skipButton.png"),
         bulletSwitch_1("sprites/powerups/type_1_btn.png"),
         bulletSwitch_2("sprites/powerups/type_2_btn.png"),
         bullet_type_0("sprites/projectiles/playerShoot.png"),
@@ -70,6 +71,7 @@ public class Loader extends AssetManager {
         this.load("sprites/buttons/exitButtonMenu.png", Texture.class, param);
         this.load("sprites/buttons/exitButtonMenuTouched.png", Texture.class, param);
         this.load("sprites/buttons/live.png", Texture.class, param);
+        this.load(SprPath.skipButton.path, Texture.class, param);
 
         //POWERUPS
         this.load("sprites/powerups/livePowerUp.png", Texture.class, param);
@@ -226,6 +228,7 @@ public class Loader extends AssetManager {
         Sprites.btn_plusHP[1].setTexture((Texture) this.get("sprites/powerups/livePowerUpB.png"));
         Sprites.life = new Sprite((Texture) this.get("sprites/buttons/live.png"));
 
+        Sprites.btn_skip = new Sprite((Texture) this.get(SprPath.skipButton.path));
 
         //otros - others
         Sprites.explosion = new Sprite((Texture) this.get("sprites/others/explosion.png"));

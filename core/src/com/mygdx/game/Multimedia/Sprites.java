@@ -30,6 +30,8 @@ public class Sprites {
 
     public static Sprite[] btn_switch_bullet;
 
+    public static Sprite btn_skip;
+
 
     // Otros    -   Lo que no cuadra en ninguna categoria y son llaneros solitarios...
     // Efectos
@@ -51,7 +53,6 @@ public class Sprites {
     // Naves ---
     public static Sprite player;
     public static Sprite player_propulsion;
-
 
     // Enemigos
     public static Sprite enemy_std;

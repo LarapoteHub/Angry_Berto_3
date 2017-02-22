@@ -3,6 +3,7 @@ package com.mygdx.game.Entities;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Multimedia.Backgrounds;
@@ -20,14 +21,20 @@ public class Star extends Entity{
     	this.x = x;
     	this.y = y;
     	this.vSpeed = -100;
+
+        this.width = starImage.getWidth() / 2;
+
     	// Esto es por comodidad mas que nada
-    	this.width = starImage.getWidth();
-    	this.height = starImage.getHeight();
+        if (MathUtils.random(0,1) == 0) {
+            this.height = starImage.getHeight() / 2;
+        } else {
+            this.height = starImage.getHeight();
+        }
     }
 
     @Override
     public void draw() {
-        GameEngine.batch.draw(starImage, x, y);
+        GameEngine.batch.draw(starImage, x, y, width, height);
     }
 
     @Override

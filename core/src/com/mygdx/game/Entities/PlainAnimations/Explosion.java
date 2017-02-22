@@ -15,8 +15,6 @@ public class Explosion extends PlainAnimation {
 
     private Animation explodingAnimation;
 
-    private float stateTime = 0f;
-
     public Explosion(float x, float y, float width, float height) {
 
         remove = true;

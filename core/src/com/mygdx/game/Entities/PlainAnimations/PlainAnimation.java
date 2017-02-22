@@ -20,6 +20,8 @@ public abstract class PlainAnimation extends Entity {
 
     protected Animation currentAnimation;
 
+    protected float stateTime = 0f;
+
     @Override
     public abstract void draw();
 
@@ -34,5 +36,7 @@ public abstract class PlainAnimation extends Entity {
     }
 
     public abstract boolean isFinished();
+
+    public abstract void initAnimation();
 
 }

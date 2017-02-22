@@ -289,6 +289,7 @@ public class GameEngine {
 		bullets_Player.clear();
 		bullets_Enemy.clear();
 		otherEntities.clear();
+		plainAnimations.clear();
 		images.clear();
 		buttons.clear();
 		texts.clear();

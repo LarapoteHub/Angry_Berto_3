@@ -90,7 +90,7 @@ public class Logic extends GameEngine implements Runnable {
 
         if (GameEngine.gameState.isLoading()) {
 
-            if (MathUtils.random(0,100) > 95) {
+            if (MathUtils.random(0,100) > 98) {
                 texts.get(0).setText(Scr_Loading.getRandomText());
             }
 

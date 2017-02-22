@@ -1,6 +1,7 @@
 package com.mygdx.game.Projectiles;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
@@ -39,6 +40,12 @@ public class PlayerShoot extends Projectile {
     @Override
     public void draw() {
         Texture tex = null;
+
+        //PRUEBA DE COLORES :
+        // aparentemente el mas visible viene siendo el amarillo.
+        //Color tmpColor = GameEngine.batch.getColor();
+        //GameEngine.batch.setColor(Color.YELLOW);
+
         switch (mode) {
             case 0:
                 tex = Sprites.bullet_player[0].getTexture();
@@ -48,6 +55,8 @@ public class PlayerShoot extends Projectile {
                 break;
         }
         GameEngine.batch.draw(tex, x, y, getWidth(), getHeight());
+
+        //GameEngine.batch.setColor(tmpColor);
     }
 
     @Override

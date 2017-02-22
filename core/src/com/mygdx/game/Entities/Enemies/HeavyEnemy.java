@@ -43,7 +43,6 @@ public class HeavyEnemy extends Enemy {
 
         score = 150;
 
-        cooldown = 150;
 
         type = EnemyType.HEAVY_ENEMY;
 

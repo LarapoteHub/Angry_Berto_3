@@ -28,7 +28,8 @@ public class Btn_Play extends Button {
 		// ESTO NO SE EJECUTA
 		// WTF, MAN??
 		System.out.println("HALLO");
-		GameEngine.gameState.play();
+		GameEngine.gameState.showIntro();
+		//GameEngine.gameState.play();
 
 	}
 
