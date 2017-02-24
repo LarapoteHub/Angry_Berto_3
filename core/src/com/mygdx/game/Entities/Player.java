@@ -170,7 +170,9 @@ public class Player extends Ship {
 			currentFrame = currentAnimation.getKeyFrame(stateTime, true);
 			propulsionFrame = propulsionAnimation.getKeyFrame(propulsionStateTime, true);
 
-			if (!blinking || blinkIntervalClock > BLINK_INTERVAL_LIMIT / 2 && blinking) {
+			//si no esta parpadeando, se dibuja normalmente, pero si esta parpadeando solo se dibujara cuando
+			// blinkIntervalClock estea por debajo de la mitad de BLINK_INTERVAL_LIMIT.
+			if (!blinking || blinkIntervalClock < BLINK_INTERVAL_LIMIT / 2 && blinking) {
 
 				GameEngine.batch.draw(currentFrame,
 						x - 4, y, 56, getHeight());
@@ -199,22 +201,29 @@ public class Player extends Ship {
 
 			}
 
+			//si esta parpadeando
 			if (blinking) {
 
+				//si el reloj del intervalo llega al final del intervalo...
+				if (blinkIntervalClock >= BLINK_INTERVAL_LIMIT) {
+					//se reinicia
+					blinkIntervalClock = 0;
+				}
+
+				//solo se aumentan los relojes si el juego no está en pausa.
+				if (!GameEngine.gameState.isPaused()) {
+					blinkClock++;
+					blinkIntervalClock++;
+				}
+
+				//cuando el reloj de parpadeo llega al limite, se reinicia y deja de parpadear.
 				if (blinkClock >= BLINKING_TIME) {
 					blinkIntervalClock = 0;
 					blinkClock = 0;
 					blinking = false;
 				}
 
-				if (blinkIntervalClock >= BLINK_INTERVAL_LIMIT) {
-					blinkIntervalClock = 0;
-				}
 
-				if (!GameEngine.gameState.isPaused()) {
-					blinkClock++;
-					blinkIntervalClock++;
-				}
 			}
 
 			if (!GameEngine.gameState.isPaused()) {

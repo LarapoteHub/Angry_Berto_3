@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Timer;
 import com.mygdx.game.Buttons.Btn_SkipIntro;
+import com.mygdx.game.Engine.MusicManager;
 import com.mygdx.game.Entities.PlainAnimations.Intro_Berto;
 import com.mygdx.game.Entities.PlainAnimations.Intro_Enemy;
 import com.mygdx.game.GameEngine.EntityType;
@@ -32,6 +33,8 @@ public class Scr_Introduction implements Screen {
 
     @Override
     public void initComponents() {
+
+        MusicManager.setMusic(null);
 
         Intro_Berto introBerto = new Intro_Berto(480, 170);
         Intro_Enemy introEnemy = new Intro_Enemy(25, 800);

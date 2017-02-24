@@ -29,13 +29,19 @@ public class Scr_Loading implements Screen {
                 "SEMENTANDO AS PATACAS...",
                 "FACENDO NOS REGOS...",
                 "QUEIMANDO NO BULLO...",
-                "VOTANDO OS POPULARES...",
+                "VOTANDO ÓS POPULARES...",
                 "PICANDO NA LEÑA...",
                 "ABRAZANDO AS LEITUGAS...",
                 "POÑENDO O PASTOR...",
                 "MUNXINDO AS GHALIÑAS...",
                 "TIRANDO DO BECERRO...",
-                "BOTANDO O TOURO..."};
+                "BOTANDO O TOURO...",
+                "CONFENSANDO CO CURA...",
+                "ABRÍNDOLLE Ó PIPO...",
+                "COCENDO A CACHUCHA...",
+                "CEBANDO NOS PORCOS...",
+                "BUSH ME PATACAIRA...",
+                "AFIANDO NO FOUCIÑO..."};
     }
 
     @Override
