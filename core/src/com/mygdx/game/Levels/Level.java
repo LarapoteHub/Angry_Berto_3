@@ -1,8 +1,6 @@
 package com.mygdx.game.Levels;
 
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.utils.Timer;
-import com.mygdx.game.Entities.Player;
 import com.mygdx.game.GameEngine;
 
 /**

@@ -48,7 +48,7 @@ public class Scr_Loading implements Screen {
     public void initComponents() {
 
         GameEngine.addText(new Text(texts[MathUtils.random(0,texts.length-1)], MyGdxGame.WIDTH/2, MyGdxGame.HEIGHT/2, Color.GREEN).setCenterToPoint(true));
-        GameEngine.addText(new Text("0%", MyGdxGame.WIDTH/2, 350, Color.WHITE).setCenterToPoint(true));
+        GameEngine.addText(new Text("0%", MyGdxGame.WIDTH/2, 350, Color.WHITE).setCenterToPoint(true).setScale(2, 2));
     }
 
     public static String getRandomText() {

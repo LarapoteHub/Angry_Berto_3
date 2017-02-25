@@ -1,6 +1,5 @@
 package com.mygdx.game.Engine;
 
-import com.mygdx.game.Engine.GameState;
 import com.mygdx.game.Multimedia.Musics;
 import com.mygdx.game.MyGdxGame;
 

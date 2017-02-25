@@ -1,6 +1,5 @@
 package com.mygdx.game.Buttons;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.mygdx.game.Multimedia.Sprites;
 
 /**

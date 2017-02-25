@@ -1,18 +1,9 @@
 package com.mygdx.game.Screens;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.utils.TimeUtils;
 import com.mygdx.game.Buttons.Btn_Exit;
-import com.mygdx.game.Buttons.Btn_Pause;
-import com.mygdx.game.Buttons.Button;
 import com.mygdx.game.GameEngine;
-import com.mygdx.game.Multimedia.Sprites;
-import com.mygdx.game.MyGdxGame;
 
 /**
  * Created by 100VOL on 16/08/2016.

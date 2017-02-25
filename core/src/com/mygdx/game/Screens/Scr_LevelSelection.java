@@ -1,8 +1,6 @@
 package com.mygdx.game.Screens;
 
-import com.badlogic.gdx.graphics.Color;
 import com.mygdx.game.Buttons.Btn_LevelSelection;
-import com.mygdx.game.Entities.Text;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.Levels.Level0;
 import com.mygdx.game.Levels.LevelTest;

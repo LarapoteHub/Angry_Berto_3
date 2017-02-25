@@ -1,8 +1,8 @@
 package com.mygdx.game.Buttons;
 
 import com.badlogic.gdx.Gdx;
-import com.mygdx.game.Multimedia.Sprites;
 import com.mygdx.game.GameEngine;
+import com.mygdx.game.Multimedia.Sprites;
 import com.mygdx.game.MyGdxGame;
 
 /**

@@ -1,19 +1,14 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.Engine.Loader;
 import com.mygdx.game.Engine.MusicManager;
 import com.mygdx.game.Levels.Level;
 import com.mygdx.game.Levels.Level0;
-import com.mygdx.game.Multimedia.Musics;
 
 // TODO LIST!
 // Lista donde se pone el resto de cosas que no son directamente relacionadas con codigo

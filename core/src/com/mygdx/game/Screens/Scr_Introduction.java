@@ -1,21 +1,11 @@
 package com.mygdx.game.Screens;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.Timer;
 import com.mygdx.game.Buttons.Btn_SkipIntro;
 import com.mygdx.game.Engine.MusicManager;
 import com.mygdx.game.Entities.PlainAnimations.Intro_Berto;
 import com.mygdx.game.Entities.PlainAnimations.Intro_Enemy;
-import com.mygdx.game.GameEngine.EntityType;
-import com.mygdx.game.Entities.Enemies.StandardEnemy;
-import com.mygdx.game.Multimedia.Backgrounds;
-import com.mygdx.game.Multimedia.Musics;
-import com.mygdx.game.Multimedia.Sounds;
-import com.mygdx.game.Multimedia.Sprites;
 import com.mygdx.game.GameEngine;
-import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.GameEngine.EntityType;
 
 /**
  * Created by 100VOL on 29/08/2016.

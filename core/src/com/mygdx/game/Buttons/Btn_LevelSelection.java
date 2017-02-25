@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.mygdx.game.Entities.Text;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.Levels.Level;
-import com.mygdx.game.Multimedia.Sprites;
 
 /**
  * Created by xldan on 25/02/2017.
@@ -20,7 +19,7 @@ public class Btn_LevelSelection extends Button {
         this.name = name;
         this.targetLevel = targetLevel;
 
-        GameEngine.addText(new Text(targetLevel.getName(), x + (width/2), (y-10), Color.RED).setCenterToPoint(true));
+        GameEngine.addText(new Text(targetLevel.getName(), x + (width/2), (y-10), Color.RED).setCenterToPoint(true).setScale(0.8f, 0.8f));
     }
 
     @Override

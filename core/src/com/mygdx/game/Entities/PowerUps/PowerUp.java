@@ -1,13 +1,7 @@
 package com.mygdx.game.Entities.PowerUps;
 
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.game.GameEngine;
-import com.mygdx.game.Entities.Entity;
-import com.mygdx.game.Entities.Player;
 import com.mygdx.game.Projectiles.Projectile;
 
 /**

@@ -1,16 +1,13 @@
 package com.mygdx.game.Projectiles;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
-import com.mygdx.game.GameEngine;
-import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Entities.Enemies.Enemy;
 import com.mygdx.game.Entities.Player;
-import com.mygdx.game.Multimedia.Sounds;
+import com.mygdx.game.GameEngine;
 import com.mygdx.game.Multimedia.Sprites;
+import com.mygdx.game.MyGdxGame;
 
 /**
  * Created by 100VOL on 06/09/2016.

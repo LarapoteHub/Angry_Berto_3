@@ -1,16 +1,13 @@
 package com.mygdx.game.Screens;
 
+import com.badlogic.gdx.graphics.Color;
 import com.mygdx.game.Buttons.Btn_Change_Bullet_Type;
-import com.mygdx.game.Buttons.Button;
-import com.mygdx.game.Entities.Text;
-import com.mygdx.game.GameEngine;
 import com.mygdx.game.Buttons.Btn_Dog;
 import com.mygdx.game.Buttons.Btn_Hoe;
 import com.mygdx.game.Buttons.Btn_Pause;
 import com.mygdx.game.Buttons.Btn_PlusHP;
-import com.mygdx.game.Entities.Enemies.Enemy;
-import com.mygdx.game.Entities.Enemies.StandardEnemy;
-import com.mygdx.game.GameEngine.EntityType;
+import com.mygdx.game.Entities.Text;
+import com.mygdx.game.GameEngine;
 
 public class Scr_Play implements Screen {
 
@@ -22,9 +19,9 @@ public class Scr_Play implements Screen {
 		GameEngine.addButton(new Btn_PlusHP());
 		GameEngine.addButton(new Btn_Pause());
 		GameEngine.addButton(new Btn_Change_Bullet_Type());
-		//GameEngine.addEntity((Enemy) new StandardEnemy(10, 10, 0), EntityType.ENEMY);
-		//printer.draw(batch, "SCORE: " + player.getScore(), 78, 800 - 10); // antes x=10
-		GameEngine.addText(new Text("", 78, 800));
+
+		//TEXTO DE LA SCORE:
+		GameEngine.addText(new Text("", 78, 800, Color.GREEN));
 	}
 
 }

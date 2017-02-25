@@ -1,9 +1,6 @@
 package com.mygdx.game.Buttons;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.mygdx.game.Entities.PowerUps.AttackCow;
 import com.mygdx.game.GameEngine;
-import com.mygdx.game.Multimedia.Sounds;
 import com.mygdx.game.Multimedia.Sprites;
 
 /**

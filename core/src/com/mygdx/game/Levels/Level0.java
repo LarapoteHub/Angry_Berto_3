@@ -3,7 +3,6 @@ package com.mygdx.game.Levels;
 import com.badlogic.gdx.math.MathUtils;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.GameEngine.EnemyType;
-import com.mygdx.game.Multimedia.Backgrounds;
 import com.mygdx.game.Multimedia.Musics;
 import com.mygdx.game.MyGdxGame;
 

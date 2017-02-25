@@ -8,11 +8,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.TimeUtils;
 import com.mygdx.game.Buttons.Button;
 import com.mygdx.game.Engine.GameStateManager;
 import com.mygdx.game.Engine.LevelManager;
@@ -35,14 +32,10 @@ import com.mygdx.game.Entities.Player;
 import com.mygdx.game.Entities.PowerUps.Charge;
 import com.mygdx.game.Entities.Star;
 import com.mygdx.game.Entities.Text;
-import com.mygdx.game.Levels.Level;
 import com.mygdx.game.Multimedia.Backgrounds;
 import com.mygdx.game.Multimedia.Musics;
 import com.mygdx.game.Multimedia.Sprites;
-import com.mygdx.game.Projectiles.PlayerShoot;
 import com.mygdx.game.Projectiles.Projectile;
-import com.mygdx.game.Screens.Scr_Loading;
-import com.mygdx.game.Screens.Scr_MainMenu;
 import com.mygdx.game.Universe.Universe;
 
 import java.util.ArrayList;
@@ -89,6 +82,7 @@ public class GameEngine {
 	// Contador de estrellas, para que no se llene la pantalla de ellas.
 	// TODO Poner la generacion de estrellas SEPARADA del GameEngine, en una clase
 	protected static int starCount = 0;
+	protected static int starLimit = 50;
 
 	protected static HashMap<String, Button> buttons;
 	
@@ -298,6 +292,7 @@ public class GameEngine {
 			lastScore = player.getScore();
 		player = null;
 		enemies.clear();
+		bosses.clear();
 		bullets_Player.clear();
 		bullets_Enemy.clear();
 		otherEntities.clear();
@@ -364,8 +359,14 @@ public class GameEngine {
 
 			Color oldColor = printer.getColor();
 			printer.setColor(Color.WHITE);
-			printer.draw(batch, time + "", MyGdxGame.WIDTH - 200, 50);
+
+			printer.getData().setScale(0.75f, 0.75f);
+													//x78
+			printer.draw(batch, String.format("%.2f fps",time), 78, 770);
+
 			printer.setColor(oldColor);
+
+			printer.getData().setScale(1, 1);
 
 			batch.end();
 			start = System.nanoTime();
@@ -808,37 +809,6 @@ public class GameEngine {
 		//explosionsList.add(new Explosion(x, y));
 
 	}
-
-	public void spawnStar() {
-		// ------------------------------------------------------------------------
-		// este método creará los gotas con un movimiento aleatorio e
-		// independiente.
-		// ------------------------------------------------------------------------
-
-		// evitamos que haya demasiados enemigos en pantalla por rendimiento
-		if (starsList.size <= 50) {
-			// instanciamos un nuevo rectángulo.
-			// Le pasamos las vidas que va a tener el enemigo, para ahorrar una
-			// llamada al metodo.
-			starSpawnContainer = new Star(10, 10);
-			// lo colocamos en una posición X aleatoria dentro de la pantalla
-			// (entre 0 y 480-48(-48 para no salirse del borde)).
-			starSpawnContainer.setX(MathUtils.random(68, 480 - 2)); // antes 0
-																	// en el 68
-			// y en la parte más alta de la pantalla.
-
-			// le damos una velocidad vertical aleatorias a la estrella.
-			starSpawnContainer.setVSpeed(MathUtils.random(1000, 1500));
-
-			// añadimos el rectángulo al array de rectángulos de las gotas de
-			// lluvia.
-			starsList.add(starSpawnContainer);
-			// guardamos el tiempo actual en nano segundos para posteriormente
-			// decidir si pasado un tiempo X,
-			// aparecerá otro enemigo o no.
-			lastStarSpawnTime = TimeUtils.nanoTime();
-		}
-	} // end spawnStar()
 		// ---------------------------------------------------------------------------
 
 	public static void spawnPowerUpCharge(float x, float y) {
@@ -847,42 +817,6 @@ public class GameEngine {
 		// entities.add(new com.mygdx.game.Entities.PowerUps.Charge(x, y));
 
 	}
-
-	/*
-	 * 
-	 * public void spawnPowerUpLive(float x, float y) {
-	 * 
-	 * if (entities.size <= 10) {
-	 * 
-	 * entities.add(new Btn_PlusHP(x, y));
-	 * 
-	 * }
-	 * 
-	 * 
-	 * } //end spawnPowerUpLive()
-	 * 
-	 * public void spawnPowerUpHoe(float x, float y) {
-	 * 
-	 * if (entities.size <= 10) {
-	 * 
-	 * entities.add(new Btn_Hoe(x, y, this));
-	 * 
-	 * }
-	 * 
-	 * 
-	 * } //end spawnPowerUpLive()
-	 * 
-	 * public void spawnPowerUpDog(float x, float y) {
-	 * 
-	 * if (entities.size <= 10) {
-	 * 
-	 * entities.add(new Btn_Dog(x, y, this));
-	 * 
-	 * }
-	 * 
-	 * 
-	 * } //end spawnPowerUpLive()
-	 */
 
 	/**************************************************************************************************************************************************
 	 * MÉTODOS DE ACCIÓN

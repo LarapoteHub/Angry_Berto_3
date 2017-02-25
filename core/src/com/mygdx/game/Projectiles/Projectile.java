@@ -1,11 +1,9 @@
 package com.mygdx.game.Projectiles;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.game.Entities.Entity;
 import com.mygdx.game.Entities.PlainAnimations.Explosion;
-import com.mygdx.game.Entities.Player;
 import com.mygdx.game.GameEngine;
 
 /**

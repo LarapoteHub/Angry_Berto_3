@@ -1,19 +1,9 @@
 package com.mygdx.game.Screens;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Entities.PlainAnimations.GameOver;
 import com.mygdx.game.Entities.Text;
 import com.mygdx.game.GameEngine;
-import com.mygdx.game.Multimedia.Backgrounds;
-import com.mygdx.game.Multimedia.Musics;
-import com.mygdx.game.Multimedia.Sprites;
 import com.mygdx.game.MyGdxGame;
 
 /**
@@ -52,7 +42,9 @@ public class Scr_GameOver implements Screen {
 		try {
 
 			GameEngine.addEntity(new GameOver(90, 850), GameEngine.EntityType.PLAIN_ANIMATION);
-			GameEngine.addText(new Text("SCORE: " + GameEngine.getLastScore(), MyGdxGame.WIDTH/2, 400, Color.RED).setCenterToPoint(true));
+
+			GameEngine.addText(new Text("-- SCORE --", MyGdxGame.WIDTH/2, 400, Color.RED).setCenterToPoint(true).setScale(0.8f, 0.8f));
+			GameEngine.addText(new Text("- " + GameEngine.getLastScore()+" -", MyGdxGame.WIDTH/2, 365, Color.GREEN).setCenterToPoint(true).setScale(1.5f, 1.5f));
 
 		} catch (Exception ex) {
 			System.out.println("Excepción en Scr_GameOver.");

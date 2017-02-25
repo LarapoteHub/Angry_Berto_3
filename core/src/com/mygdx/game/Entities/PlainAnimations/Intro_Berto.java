@@ -3,7 +3,6 @@ package com.mygdx.game.Entities.PlainAnimations;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.mygdx.game.Entities.Enemies.Enemy;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.Multimedia.Sounds;
 import com.mygdx.game.Multimedia.Sprites;
