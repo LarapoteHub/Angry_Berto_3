@@ -219,6 +219,7 @@ public class Renderer extends GameEngine implements Runnable{
 
 		// Lo que Dani dice que es importante:
 		batch.setProjectionMatrix(cam.combined);
+		sRenderer.setProjectionMatrix(cam.combined);
 	}
 
 	@Override

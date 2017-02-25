@@ -10,7 +10,6 @@ import com.mygdx.game.Entities.Entity;
 
 public abstract class PlainAnimation extends Entity {
 
-    protected TextureRegion[] explodingFrames;
     protected TextureRegion currentFrame;
 
     protected int FRAME_COLS;

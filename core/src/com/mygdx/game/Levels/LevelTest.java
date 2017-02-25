@@ -18,6 +18,8 @@ public class LevelTest extends Level {
             //GameEngine.spawnBoss(78, 500, GameEngine.BossType.TYPE_1);
             GameEngine.spawnEnemy(MyGdxGame.WIDTH/2 - 24, 800, GameEngine.EnemyType.CORE_ORBIT_ENEMY, -1);
             running = true;
+        } else if (GameEngine.getEnemies().isEmpty() && GameEngine.getBosses().isEmpty()) {
+            running = false;
         }
 
     }

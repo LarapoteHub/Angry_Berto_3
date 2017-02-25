@@ -76,6 +76,7 @@ public class Sprites {
     // Esteroides...
     // TODO No olvidarse de tapar con un rectangulo la carga a la que corresponde en la pantalla de juego
     public static Sprite powerUp_charge_bar;
+    public static Sprite powerUp_charge_bar_container;
     public static Sprite powerUp_charge_increase;
     public static Sprite powerUp_rotaryHoe;
     public static Sprite powerUp_attackCow;

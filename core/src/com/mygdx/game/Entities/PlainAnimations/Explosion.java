@@ -13,6 +13,7 @@ import com.mygdx.game.Multimedia.Sprites;
 public class Explosion extends PlainAnimation {
 
 
+    private TextureRegion[] explodingFrames;
     private Animation explodingAnimation;
 
     public Explosion(float x, float y, float width, float height, boolean sound) {

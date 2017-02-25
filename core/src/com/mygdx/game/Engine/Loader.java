@@ -41,7 +41,8 @@ public class Loader extends AssetManager {
         enemy_satellite_orbit("sprites/enemies/satelliteOrbitEnemy.png"),
         enemy_core_orbit("sprites/enemies/coreOrbitEnemy.png"),
         //Botones seleccion de nivel
-        btn_level0("sprites/buttons/levels/level0.png");
+        btn_level0("sprites/buttons/levels/level0.png"),
+        powerUp_charge_bar_container("sprites/powerups/chargeBar/chargeBarContainer.png");
 
         private final String path;
 
@@ -103,6 +104,7 @@ public class Loader extends AssetManager {
         this.load("sprites/powerups/livePowerUpB.png", Texture.class, param);
         // Steroids warning! Might want to skip Olympics this year...
         this.load("sprites/powerups/chargeBar/chargeBar9.png", Texture.class, param);
+        this.load(SprPath.powerUp_charge_bar_container.path, Texture.class, param);
         this.load("sprites/powerups/charge.png", Texture.class, param);
         this.load("sprites/powerups/rotaryHoePowerUp0.png", Texture.class, param);
         this.load("sprites/powerups/attackCowPowerUp.png", Texture.class, param);
@@ -210,6 +212,7 @@ public class Loader extends AssetManager {
 
         // Steroids warning! Might want to skip Olympics this year...
         Sprites.powerUp_charge_bar = new Sprite((Texture) this.get("sprites/powerups/chargeBar/chargeBar9.png"));
+        Sprites.powerUp_charge_bar_container = new Sprite((Texture) this.get(SprPath.powerUp_charge_bar_container.path));
         Sprites.powerUp_charge_increase = new Sprite((Texture) this.get("sprites/powerups/charge.png"));
         Sprites.powerUp_rotaryHoe = new Sprite((Texture) this.get("sprites/powerups/rotaryHoePowerUp0.png"));
         Sprites.powerUp_attackCow = new Sprite((Texture) this.get("sprites/powerups/attackCowPowerUp.png"));

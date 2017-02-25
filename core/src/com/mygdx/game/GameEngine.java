@@ -3,9 +3,11 @@ package com.mygdx.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
@@ -34,6 +36,7 @@ import com.mygdx.game.Entities.PowerUps.Charge;
 import com.mygdx.game.Entities.Star;
 import com.mygdx.game.Entities.Text;
 import com.mygdx.game.Levels.Level;
+import com.mygdx.game.Multimedia.Backgrounds;
 import com.mygdx.game.Multimedia.Musics;
 import com.mygdx.game.Multimedia.Sprites;
 import com.mygdx.game.Projectiles.PlayerShoot;
@@ -58,6 +61,7 @@ public class GameEngine {
 	// <Mio!!>
 	public static OrthographicCamera cam;
 	public static SpriteBatch batch;
+	public static ShapeRenderer sRenderer;
 	public static GameStateManager gameState;
 	public static BitmapFont printer;
 	public static LevelManager levelManager;
@@ -94,6 +98,8 @@ public class GameEngine {
 	private static  long lastScore = 0;
 	// </Mio!!>
 
+	private Color powerUpChargeBgColor;
+
 	public GameEngine() {
 		// Apparently not used?
 	}
@@ -123,6 +129,7 @@ public class GameEngine {
 		Entity.engine = this;
 
 		batch = new SpriteBatch();
+		sRenderer = new ShapeRenderer();
 
 		printer = new BitmapFont(Gdx.files.internal("fonts/anime_ace2.fnt"));
 
@@ -516,8 +523,25 @@ public class GameEngine {
 		if (MyGdxGame.DEBUG_MODE)
 			System.out.println("Need to finish the charge_bar!");
 
-		batch.draw(Sprites.powerUp_charge_bar.getTexture(), 2, 350);
+		//Sprites.powerUp_charge_bar.draw(batch);
+																		//380 - 20 (diferencia )
+		batch.draw(Sprites.powerUp_charge_bar_container.getTexture(), 3, 360);
+		batch.draw(Sprites.powerUp_charge_bar.getTexture(), 5, 380);
+		batch.end();
 
+		if (powerUpChargeBgColor == null) {
+			processPowerUpChargeBgColor();
+		}
+
+		sRenderer.begin(ShapeRenderer.ShapeType.Filled);
+
+		sRenderer.setColor(powerUpChargeBgColor);
+		//Lógica chunga para esto....
+		sRenderer.rect(5, 380 + 100 - (100 - player.getCharge()), Sprites.powerUp_charge_bar.getTexture().getWidth(), 100 - player.getCharge());
+
+		sRenderer.end();
+
+		batch.begin();
 		//region OLD CODE
 		/*
 		 * if (player.getCharge() >= 10) { batch.draw(Sprites.chargeBarImage[1],
@@ -536,6 +560,18 @@ public class GameEngine {
 		 * 4, 370); }
 		 */
 		//endregion
+
+	}
+
+	private void processPowerUpChargeBgColor() {
+
+		if (!Backgrounds.backgroundMenuImage.getTextureData().isPrepared()) {
+			Backgrounds.backgroundMenuImage.getTextureData().prepare();
+		}
+
+		Pixmap pMap = Backgrounds.backgroundMenuImage.getTextureData().consumePixmap();
+
+		powerUpChargeBgColor = new Color(pMap.getPixel(6, 350));
 
 	}
 
