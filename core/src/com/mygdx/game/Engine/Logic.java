@@ -136,7 +136,6 @@ public class Logic extends GameEngine implements Runnable {
     private void handleEndGame() {
         //basicamente, nsi la animacion de gameOver ha llegado a su fin, se podra pasar de pantalla.
         if (Gdx.input.justTouched() && Scr_GameOver.textAdded) {
-            Scr_GameOver.textAdded = false;
             gameState.mainMenu();
         }
     }
@@ -426,7 +425,11 @@ public class Logic extends GameEngine implements Runnable {
         for (Projectile p : bullets_Enemy) {
             if (player.isColliding(p)) {
                 player.increaseCharge(p.getCharge());
-                player.decreaseLives(p.getDamage());
+
+                if (!player.isHit()) {
+                    player.decreaseLives(p.getDamage());
+                }
+
                 p.destroy();
             }
         }

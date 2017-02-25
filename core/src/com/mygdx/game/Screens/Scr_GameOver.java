@@ -33,6 +33,8 @@ public class Scr_GameOver implements Screen {
 
 	public Scr_GameOver() {
 
+		textAdded = false;
+
 		gameOverX = 90;
 		gameOverY = 500;
 		touched = true;

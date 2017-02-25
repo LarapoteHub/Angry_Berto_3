@@ -72,6 +72,8 @@ public class GameStateManager {
 
 	public void goToLevelSelection() {
 		state = GameState.LEVEL_SELECTION;
+		//TODO 100vol estuvo aqui
+		MyGdxGame.musicManager.setMusic(Musics.backgroundLevelSelectionMusic);
 		saveState = false;
 		changed = true;
 	}

@@ -95,11 +95,11 @@ public class Player extends Ship {
 		this.draw = draw;
 	}
 
-	public void decreaseLives(float lives) {
+	public void decreaseLives(float damage) {
 		if (!GODMODE)
-			this.lives -= lives;
+			this.lives -= damage;
 
-		if (lives > 0) {
+		if (damage > 0) {
 			Sounds.playerHitSound.play();
 			hit = true;
 			blinking = true;

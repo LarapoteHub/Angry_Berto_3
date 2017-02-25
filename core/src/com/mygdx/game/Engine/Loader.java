@@ -50,8 +50,18 @@ public class Loader extends AssetManager {
         }
     }
 
+    enum MusicPath {
+
+        background_music("audio/music/background.mp3"),
+        background_menu_music("audio/music/backgroundMenu.mp3"),
+        boss1_music("audio/music/boss1Music.mp3"),
+        background_level_selection_music("audio/music/backgroundLevelSelectionMusic.mp3");
+        private final String path;
+        MusicPath(String path) {this.path = path;}
+    }
+
     enum BackgroundPath {
-        backgroundLevelSelection("backgrounds/backgroundLevelSelection.png");
+        background_level_selection("backgrounds/backgroundLevelSelection.png");
         private final String path;
 
         BackgroundPath(String path) {
@@ -155,9 +165,10 @@ public class Loader extends AssetManager {
     }
 
     public void loadMusic() {
-        this.load("audio/music/background.mp3", Music.class);
-        this.load("audio/music/backgroundMenu.mp3", Music.class);
-        this.load("audio/music/boss1Music.mp3", Music.class);
+        this.load(MusicPath.background_music.path, Music.class);
+        this.load(MusicPath.background_menu_music.path, Music.class);
+        this.load(MusicPath.boss1_music.path, Music.class);
+        this.load(MusicPath.background_level_selection_music.path, Music.class);
     }
 
     public void loadBackgrounds() {
@@ -167,7 +178,7 @@ public class Loader extends AssetManager {
         this.load("backgrounds/powerUps.png", Texture.class, param);
         this.load("backgrounds/universe1.jpg", Texture.class, param);
         this.load("backgrounds/universe2.jpg", Texture.class, param);
-        this.load(BackgroundPath.backgroundLevelSelection.path, Texture.class, param);
+        this.load(BackgroundPath.background_level_selection.path, Texture.class, param);
     }
 
     public void initSprites() {
@@ -306,9 +317,10 @@ public class Loader extends AssetManager {
 
     public void initMusic() {
 
-        Musics.backgroundMusic = (Music) this.get("audio/music/background.mp3");
-        Musics.backgroundMenuMusic = (Music) this.get("audio/music/backgroundMenu.mp3");
-        Musics.boss1Music = (Music) this.get("audio/music/boss1Music.mp3");
+        Musics.backgroundMusic = (Music) this.get(MusicPath.background_music.path);
+        Musics.backgroundMenuMusic = (Music) this.get(MusicPath.background_menu_music.path);
+        Musics.boss1Music = (Music) this.get(MusicPath.boss1_music.path);
+        Musics.backgroundLevelSelectionMusic = (Music) this.get(MusicPath.background_level_selection_music.path);
 
     }
 
@@ -319,7 +331,7 @@ public class Loader extends AssetManager {
         Backgrounds.backgroundPowerUps = (Texture) this.get("backgrounds/powerUps.png");
         Backgrounds.universe_1 = (Texture) this.get("backgrounds/universe1.jpg");
         Backgrounds.universe_2 = (Texture) this.get("backgrounds/universe2.jpg");
-        Backgrounds.backgroundLevelSelection = (Texture) this.get(BackgroundPath.backgroundLevelSelection.path);
+        Backgrounds.backgroundLevelSelection = (Texture) this.get(BackgroundPath.background_level_selection.path);
     }
 
 }
