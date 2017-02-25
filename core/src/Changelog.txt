@@ -26,3 +26,7 @@ Arreglado "parcialmente" el sacho, con unas ecuaciones de la virgen santísima.
 Añadida la linea bosses.clear() en la función clearAll() de GameEngine
     (motivo por el cual el boss se quedaba en el juego tras salir/perder y entrar a otro nivel).
 ------------
+
+0.1_3
+Añadido el método setScale(float scaleX, float scaleY) a la clase Text(), el cual permite que el
+    texto se escale a los valores que se le pasen, siendo 1 el valor por defecto.

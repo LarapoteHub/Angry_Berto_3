@@ -15,6 +15,9 @@ public class Text {
     private String text;
     private Color color;
     private boolean centerToPoint = false;
+    private boolean scale;
+    private float scaleX;
+    private float scaleY;
 
     public Text(String text, float x, float y) {
         // Sobrecarca de constructor
@@ -34,6 +37,9 @@ public class Text {
         // Guardar el color de texto viejo
         Color oldColor = GameEngine.printer.getColor();
         GameEngine.printer.setColor(color);
+        if (scale) {
+            GameEngine.printer.getData().setScale(scaleX, scaleY);
+        }
         GameEngine.printer
                 .getRegion()
                 .getTexture()
@@ -44,6 +50,12 @@ public class Text {
         } else {
             GameEngine.printer.draw(GameEngine.batch, text, x, y);
         }
+
+        if (scale) {
+            //le devolvemos su escala original.
+            GameEngine.printer.getData().setScale(1, 1);
+        }
+
         // Restablecer el color de texto
         GameEngine.printer.setColor(oldColor);
     }
@@ -55,6 +67,13 @@ public class Text {
     //poniendo centerToPoint a true, el texto se centrará en el origen.
     public Text setCenterToPoint(boolean centerToPoint) {
         this.centerToPoint = centerToPoint;
+        return this;
+    }
+
+    public Text setScale(float scaleX, float scaleY) {
+        this.scale = true;
+        this.scaleX = scaleX;
+        this.scaleY = scaleY;
         return this;
     }
 }

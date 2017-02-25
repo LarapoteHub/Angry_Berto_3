@@ -20,7 +20,7 @@ public class Btn_LevelSelection extends Button {
         this.name = name;
         this.targetLevel = targetLevel;
 
-        GameEngine.addText(new Text(targetLevel.getName(), x + (width/2), (y-10), Color.RED).setCenterToPoint(true));
+        GameEngine.addText(new Text(targetLevel.getName(), x + (width/2), (y-10), Color.RED).setCenterToPoint(true).setScale(0.8f, 0.8f));
     }
 
     @Override
