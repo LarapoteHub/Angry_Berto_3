@@ -36,7 +36,7 @@ public abstract class Projectile extends Entity {
     }
     
     public void destroy() {
-        GameEngine.addEntity(new Explosion(x, y, width, height),
+        GameEngine.addEntity(new Explosion(x, y, width, height, false),
                 GameEngine.EntityType.PLAIN_ANIMATION);
     	this.remove = true;
     }

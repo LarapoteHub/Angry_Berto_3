@@ -92,7 +92,7 @@ public abstract class Enemy extends Ship {
         lives = 0;
         remove = true;
         // Crear la explosion
-        GameEngine.addEntity(new Explosion(x, y, width, height),
+        GameEngine.addEntity(new Explosion(x, y, width, height, true),
                 GameEngine.EntityType.PLAIN_ANIMATION);
         // Incrementar la puntuacion del jugador
         GameEngine.getPlayer().addScore(score);

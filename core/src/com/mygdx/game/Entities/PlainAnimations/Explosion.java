@@ -15,7 +15,7 @@ public class Explosion extends PlainAnimation {
 
     private Animation explodingAnimation;
 
-    public Explosion(float x, float y, float width, float height) {
+    public Explosion(float x, float y, float width, float height, boolean sound) {
 
         remove = true;
 
@@ -29,7 +29,9 @@ public class Explosion extends PlainAnimation {
         this.FRAME_COLS = 19;
         this.FRAME_ROWS = 1;
 
-        Sounds.explodeSound.play();
+        if (sound) {
+            Sounds.explodeSound.play();
+        }
 
         //iniciamos la animación.
         initAnimation();

@@ -95,7 +95,7 @@ public class SatelliteOrbitEnemy extends Enemy {
 
         if (parent.remove) {
             this.remove = true;
-            GameEngine.addEntity(new Explosion(x, y, width, height),
+            GameEngine.addEntity(new Explosion(x, y, width, height, true),
                     GameEngine.EntityType.PLAIN_ANIMATION);
         }
 
