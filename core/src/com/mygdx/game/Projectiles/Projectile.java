@@ -4,7 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.game.Entities.Entity;
+import com.mygdx.game.Entities.PlainAnimations.Explosion;
 import com.mygdx.game.Entities.Player;
+import com.mygdx.game.GameEngine;
 
 /**
  * Created by 100VOL on 06/09/2016.
@@ -34,6 +36,8 @@ public abstract class Projectile extends Entity {
     }
     
     public void destroy() {
+        GameEngine.addEntity(new Explosion(x, y, width, height),
+                GameEngine.EntityType.PLAIN_ANIMATION);
     	this.remove = true;
     }
     
