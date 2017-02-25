@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.Entities.PlainAnimations.GameOver;
 import com.mygdx.game.Entities.Text;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.Multimedia.Backgrounds;
@@ -27,16 +28,15 @@ public class Scr_GameOver implements Screen {
 	boolean touched;
 	boolean selected;
 
+	//variable para controlar cuando aparece el texto "Tocuh the Screen".
+	public static boolean textAdded = false;
+
 	public Scr_GameOver() {
 
-		// gameOverImage = new
-		// Texture(Gdx.files.internal("sprites/others/gameOver.png"));
 		gameOverX = 90;
 		gameOverY = 500;
 		touched = true;
 		selected = false;
-		// background = new
-		// Texture(Gdx.files.internal("backgrounds/backgroundGameOver.png"));
 
 	}
 
@@ -48,15 +48,9 @@ public class Scr_GameOver implements Screen {
 	public void initComponents() {
 
 		try {
-			GameEngine.addText(new Text("TOUCH THE SCREEN", 85, 200, Color.WHITE));
 
-			Sprite spr = new Sprite(Sprites.gameOver);
-			spr.setPosition(90, 500);
-			spr.setSize(300, 200);
-
-			GameEngine.addImage(spr);
-
-			GameEngine.addText(new Text("SCORE: " + GameEngine.getLastScore(), 100, 400, Color.RED));
+			GameEngine.addEntity(new GameOver(90, 850), GameEngine.EntityType.PLAIN_ANIMATION);
+			GameEngine.addText(new Text("SCORE: " + GameEngine.getLastScore(), MyGdxGame.WIDTH/2, 400, Color.RED).setCenterToPoint(true));
 
 		} catch (Exception ex) {
 			System.out.println("Excepción en Scr_GameOver.");

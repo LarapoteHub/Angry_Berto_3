@@ -134,7 +134,9 @@ public class Logic extends GameEngine implements Runnable {
     }
 
     private void handleEndGame() {
-        if (Gdx.input.justTouched()) {
+        //basicamente, nsi la animacion de gameOver ha llegado a su fin, se podra pasar de pantalla.
+        if (Gdx.input.justTouched() && Scr_GameOver.textAdded) {
+            Scr_GameOver.textAdded = false;
             gameState.mainMenu();
         }
     }
