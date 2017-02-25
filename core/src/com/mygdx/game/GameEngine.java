@@ -8,11 +8,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.TimeUtils;
 import com.mygdx.game.Buttons.Button;
 import com.mygdx.game.Engine.GameStateManager;
 import com.mygdx.game.Engine.LevelManager;
@@ -35,14 +32,10 @@ import com.mygdx.game.Entities.Player;
 import com.mygdx.game.Entities.PowerUps.Charge;
 import com.mygdx.game.Entities.Star;
 import com.mygdx.game.Entities.Text;
-import com.mygdx.game.Levels.Level;
 import com.mygdx.game.Multimedia.Backgrounds;
 import com.mygdx.game.Multimedia.Musics;
 import com.mygdx.game.Multimedia.Sprites;
-import com.mygdx.game.Projectiles.PlayerShoot;
 import com.mygdx.game.Projectiles.Projectile;
-import com.mygdx.game.Screens.Scr_Loading;
-import com.mygdx.game.Screens.Scr_MainMenu;
 import com.mygdx.game.Universe.Universe;
 
 import java.util.ArrayList;
@@ -366,8 +359,14 @@ public class GameEngine {
 
 			Color oldColor = printer.getColor();
 			printer.setColor(Color.WHITE);
-			printer.draw(batch, time + "", MyGdxGame.WIDTH - 200, 50);
+
+			printer.getData().setScale(0.75f, 0.75f);
+													//x78
+			printer.draw(batch, String.format("%.2f fps",time), 78, 770);
+
 			printer.setColor(oldColor);
+
+			printer.getData().setScale(1, 1);
 
 			batch.end();
 			start = System.nanoTime();

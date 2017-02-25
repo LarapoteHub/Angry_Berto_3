@@ -1,14 +1,10 @@
 package com.mygdx.game.Buttons;
 
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector3;
-import com.mygdx.game.Entities.Player;
 import com.mygdx.game.Entities.PowerUps.RotaryHoe;
 import com.mygdx.game.GameEngine;
-import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.GameEngine.EntityType;
 import com.mygdx.game.Multimedia.Sprites;
+import com.mygdx.game.MyGdxGame;
 
 /**
  * Created by 100VOL on 20/08/2016.

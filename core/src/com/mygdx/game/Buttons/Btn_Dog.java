@@ -1,9 +1,9 @@
 package com.mygdx.game.Buttons;
 
+import com.mygdx.game.Entities.PowerUps.AttackCow;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.Multimedia.Sounds;
 import com.mygdx.game.Multimedia.Sprites;
-import com.mygdx.game.Entities.PowerUps.AttackCow;
 
 /**
  * Created by 100VOL on 20/08/2016.

@@ -2,14 +2,9 @@ package com.mygdx.game.Entities.PowerUps;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Timer;
-import com.mygdx.game.Entities.Enemies.Enemy;
-import com.mygdx.game.Entities.Player;
 import com.mygdx.game.GameEngine;
-import com.mygdx.game.Multimedia.Sounds;
 import com.mygdx.game.Multimedia.Sprites;
 import com.mygdx.game.Projectiles.Projectile;
-
-import java.util.Iterator;
 
 /**
  * Created by 100VOL on 20/08/2016.

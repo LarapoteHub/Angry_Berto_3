@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.mygdx.game.Entities.Text;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.Levels.Level;
-import com.mygdx.game.Multimedia.Sprites;
 
 /**
  * Created by xldan on 25/02/2017.

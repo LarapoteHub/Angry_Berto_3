@@ -1,14 +1,11 @@
 package com.mygdx.game.Entities.PlainAnimations;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.MathUtils;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.Multimedia.Sounds;
 import com.mygdx.game.Multimedia.Sprites;
-import com.mygdx.game.Projectiles.StandardEnemyShoot;
 import com.mygdx.game.Screens.Scr_Introduction;
 
 /**

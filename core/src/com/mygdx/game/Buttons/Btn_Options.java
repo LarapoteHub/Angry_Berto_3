@@ -1,6 +1,5 @@
 package com.mygdx.game.Buttons;
 
-import com.mygdx.game.GameEngine;
 import com.mygdx.game.Multimedia.Sprites;
 
 public class Btn_Options extends Button {

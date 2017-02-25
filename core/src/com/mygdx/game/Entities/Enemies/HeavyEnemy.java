@@ -5,15 +5,11 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.utils.Timer;
-import com.mygdx.game.Entities.Player;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.GameEngine.EnemyType;
 import com.mygdx.game.GameEngine.EntityType;
-import com.mygdx.game.Multimedia.Sounds;
 import com.mygdx.game.Multimedia.Sprites;
 import com.mygdx.game.Projectiles.HeavyEnemyShoot;
-import com.mygdx.game.Projectiles.StandardEnemyShoot;
 
 /**
  * Created by 100VOL on 09/08/2016.

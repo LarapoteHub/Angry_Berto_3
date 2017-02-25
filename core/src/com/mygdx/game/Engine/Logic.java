@@ -21,7 +21,6 @@ import com.mygdx.game.Entities.Entity;
 import com.mygdx.game.Entities.Star;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.Levels.Level;
-import com.mygdx.game.Levels.Level0;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Projectiles.Projectile;
 import com.mygdx.game.Screens.Scr_GameOver;

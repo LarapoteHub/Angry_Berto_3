@@ -1,13 +1,9 @@
 package com.mygdx.game.Projectiles;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Timer;
-import com.mygdx.game.GameEngine;
 import com.mygdx.game.Entities.Enemies.Enemy;
 import com.mygdx.game.Entities.Player;
-import com.mygdx.game.Multimedia.Sounds;
+import com.mygdx.game.GameEngine;
 import com.mygdx.game.Multimedia.Sprites;
 
 /**

@@ -1,11 +1,8 @@
 package com.mygdx.game.Entities.Enemies;
 
-import com.badlogic.gdx.math.MathUtils;
 import com.mygdx.game.Entities.PlainAnimations.Explosion;
-import com.mygdx.game.Entities.Player;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.Multimedia.Sprites;
-import com.mygdx.game.MyGdxGame;
 
 /**
  * Created by xldan on 20/02/2017.
