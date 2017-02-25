@@ -9,7 +9,7 @@ import com.mygdx.game.MyGdxGame;
 
 public class LevelTest extends Level {
     public LevelTest() {
-
+        this.name = "Level Test";
     }
 
     @Override

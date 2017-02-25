@@ -17,6 +17,7 @@ public abstract class Level {
     int bossPhase;
     int maxPhases;
     int phasesCount = 0;
+    protected String name = null;
 
     public Level() {
         running = false;
@@ -53,6 +54,10 @@ public abstract class Level {
         }
 
 
+    }
+
+    public String getName() {
+        return name;
     }
 
 }

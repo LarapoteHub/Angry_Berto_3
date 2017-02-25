@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.mygdx.game.Buttons.Btn_LevelSelection;
 import com.mygdx.game.Entities.Text;
 import com.mygdx.game.GameEngine;
+import com.mygdx.game.Levels.Level0;
+import com.mygdx.game.Levels.LevelTest;
 import com.mygdx.game.Multimedia.Sprites;
 
 /**
@@ -15,9 +17,10 @@ public class Scr_LevelSelection implements Screen {
     @Override
     public void initComponents() {
 
-        GameEngine.addButton(new Btn_LevelSelection(Sprites.btn_level0, "btn_level0"));
+        GameEngine.addButton(new Btn_LevelSelection(350, 200, Sprites.btn_level0, "btn_level0", new Level0()));
         //super(350, 80, 80, 50, spr);
-        GameEngine.addText(new Text("1", 350 + 40, 190, Color.RED).setCenterToPoint(true));
+
+        GameEngine.addButton(new Btn_LevelSelection(100, 100, Sprites.btn_level0, "btn_level_test", new LevelTest()));
 
     }
 }

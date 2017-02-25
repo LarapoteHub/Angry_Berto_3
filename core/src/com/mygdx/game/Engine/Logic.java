@@ -498,6 +498,11 @@ public class Logic extends GameEngine implements Runnable {
     }
 
     private void cargarNivel() {
+
+        levelManager.getCurrentLevel().runLevel();
+
+        //region OLD_CODE
+        /*
         if (levelList.size() == 0) {
             levelList = new ArrayList<Level>();
             levelList.add(new Level0());
@@ -527,6 +532,9 @@ public class Logic extends GameEngine implements Runnable {
             System.out.println("Error al rular el nivel");
             ex.printStackTrace();
         }
+
+        */
+        //endregion
     }
 
     @Override

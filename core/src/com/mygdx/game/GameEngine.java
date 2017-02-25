@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.mygdx.game.Buttons.Button;
 import com.mygdx.game.Engine.GameStateManager;
+import com.mygdx.game.Engine.LevelManager;
 import com.mygdx.game.Engine.Loader;
 import com.mygdx.game.Engine.Logic;
 import com.mygdx.game.Engine.Renderer;
@@ -32,6 +33,7 @@ import com.mygdx.game.Entities.Player;
 import com.mygdx.game.Entities.PowerUps.Charge;
 import com.mygdx.game.Entities.Star;
 import com.mygdx.game.Entities.Text;
+import com.mygdx.game.Levels.Level;
 import com.mygdx.game.Multimedia.Musics;
 import com.mygdx.game.Multimedia.Sprites;
 import com.mygdx.game.Projectiles.PlayerShoot;
@@ -58,6 +60,7 @@ public class GameEngine {
 	public static SpriteBatch batch;
 	public static GameStateManager gameState;
 	public static BitmapFont printer;
+	public static LevelManager levelManager;
 
 	private Thread lThread = null;
 
@@ -98,6 +101,7 @@ public class GameEngine {
 	public void create() {
 		// MIO
 		gameState = new GameStateManager();
+		levelManager = new LevelManager();
 		cam = new OrthographicCamera();
 		cam.setToOrtho(false, MyGdxGame.WIDTH, MyGdxGame.HEIGHT);
 

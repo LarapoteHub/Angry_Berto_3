@@ -20,6 +20,7 @@ public class Level0 extends Level {
         this.nPhases = 8;
         this.bossPhase = 9;
         this.maxPhases = MathUtils.random(12, 18);
+        this.name = "Level 1";
     }
 
     public void runLevel() {
