@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -349,7 +350,12 @@ public class GameEngine {
 			 */
 
 			batch.begin();
+
+			Color oldColor = printer.getColor();
+			printer.setColor(Color.WHITE);
 			printer.draw(batch, time + "", MyGdxGame.WIDTH - 200, 50);
+			printer.setColor(oldColor);
+
 			batch.end();
 			start = System.nanoTime();
 			count++;
