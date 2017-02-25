@@ -20,7 +20,6 @@ public class Btn_Options extends Button {
 	
 	@Override
 	public void onTouch() {
-		//draw(1);
 	}
 
 }

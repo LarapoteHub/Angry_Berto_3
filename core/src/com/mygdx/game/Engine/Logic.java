@@ -145,7 +145,7 @@ public class Logic extends GameEngine implements Runnable {
     }
 
     private void generateStars() {
-        System.out.println(starCount);
+        //System.out.println(starCount);
         if (starCount < starLimit) {
             // 10% probabilidad de spawnear estrella.
             if (MathUtils.random(0, 100) < 20) {

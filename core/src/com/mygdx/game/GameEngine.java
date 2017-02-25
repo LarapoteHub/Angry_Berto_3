@@ -299,6 +299,7 @@ public class GameEngine {
 			lastScore = player.getScore();
 		player = null;
 		enemies.clear();
+		bosses.clear();
 		bullets_Player.clear();
 		bullets_Enemy.clear();
 		otherEntities.clear();

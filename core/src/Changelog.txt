@@ -15,3 +15,14 @@ Añadida pantalla de selección de niveles.
 Añadido gestor de niveles.
 Etc.
 -------------
+
+0.1_2
+-- Naitprauler && RuloSp --
+Arreglado "parcialmente" el sacho, con unas ecuaciones de la virgen santísima.
+
+---------------------------
+
+-- 100vol --
+Añadida la linea bosses.clear() en la función clearAll() de GameEngine
+    (motivo por el cual el boss se quedaba en el juego tras salir/perder y entrar a otro nivel).
+------------
