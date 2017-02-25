@@ -1,3 +1,17 @@
+0.1_0
+
+-- RuloSp --
 Arreglado el problema del fondo
 Arreglabo boss (esta vez si)
 Hecho sacho giratorio
+-------------
+
+ 0.1_1
+
+-- 100vol --
+Añadidas estrellas en forma de partículas
+Añadida barra de carga con ShapeRenderer
+Añadida pantalla de selección de niveles.
+Añadido gestor de niveles.
+Etc.
+-------------

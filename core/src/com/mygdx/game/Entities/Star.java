@@ -2,9 +2,11 @@ package com.mygdx.game.Entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.mygdx.game.GameEngine;
+import com.mygdx.game.Multimedia.Effects;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Multimedia.Backgrounds;
 import com.mygdx.game.Multimedia.Sprites;
@@ -12,29 +14,29 @@ import com.mygdx.game.Multimedia.Sprites;
 /**
  * Created by 100VOL on 18/08/2016.
  */
-public class Star extends Entity{
+public class Star extends Entity {
 
     private Texture starImage = Sprites.star.getTexture();
 
+    private ParticleEffect p = new ParticleEffect(Effects.star);
 
-    public Star(float x, float y) {
-    	this.x = x;
-    	this.y = y;
-    	this.vSpeed = -100;
+    public Star() {
+        // Esto es por comodidad mas que nada
+//    	this.width = starImage.getWidth();
+//    	this.height = starImage.getHeight();
+        x = MathUtils.random(68, 480 - 2); // antes 0
+        y = 800;
+        vSpeed = (-MathUtils.random(1000, 1500));
+        // Esto es opcional
+        hSpeed = (-MathUtils.random(10, 30));
 
-        this.width = starImage.getWidth() / 2;
-
-    	// Esto es por comodidad mas que nada
-        if (MathUtils.random(0,1) == 0) {
-            this.height = starImage.getHeight() / 2;
-        } else {
-            this.height = starImage.getHeight();
-        }
+        p.start();
     }
 
     @Override
     public void draw() {
-        GameEngine.batch.draw(starImage, x, y, width, height);
+        p.draw(GameEngine.batch);
+        //GameEngine.batch.draw(starImage, x, y);
     }
 
     @Override
@@ -51,10 +53,23 @@ public class Star extends Entity{
     public void move() {
         this.y += vSpeed * Gdx.graphics.getDeltaTime();
         this.x += hSpeed * Gdx.graphics.getDeltaTime();
+//        x = 300;
+//        y = 300;
+        p.setPosition(x, y);
+        //p.getEmitters().first().setPosition(x, y);
+        p.update(Gdx.graphics.getDeltaTime());
+
 
         // TODO Poner esto en funcion de un rectangulo especial PLEASE!
-        if (y < 0 || x + width < Backgrounds.backgroundPowerUps.getWidth())
+        if (p.isComplete()) {
+            p.reset();
+        }
+        if (y < -300 || x + width < Backgrounds.backgroundPowerUps.getWidth()) {
+
+            p.dispose();
             kill();
+
+        }
     }
 
     public float getX() {
@@ -89,3 +104,4 @@ public class Star extends Entity{
 
 
 }
+

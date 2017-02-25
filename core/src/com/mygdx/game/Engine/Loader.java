@@ -1,12 +1,15 @@
 package com.mygdx.game.Engine;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.mygdx.game.Multimedia.Backgrounds;
+import com.mygdx.game.Multimedia.Effects;
 import com.mygdx.game.Multimedia.Musics;
 import com.mygdx.game.Multimedia.Sounds;
 import com.mygdx.game.Multimedia.Sprites;
@@ -115,6 +118,13 @@ public class Loader extends AssetManager {
         this.load("sprites/powerups/dogPowerUpB.png", Texture.class, param);
 
         //OTROS - OTHERS
+        this.load("sprites/others/star.png", Texture.class, param);
+        this.load("sprites/others/explosion.png", Texture.class, param);
+        this.load("sprites/others/gameOver.png", Texture.class, param);
+
+        //OTROS - OTHERS
+        // TODO DANGER!!
+        this.load("effects/test.p", ParticleEffect.class);
         this.load("sprites/others/star.png", Texture.class, param);
         this.load("sprites/others/explosion.png", Texture.class, param);
         this.load("sprites/others/gameOver.png", Texture.class, param);
@@ -267,6 +277,10 @@ public class Loader extends AssetManager {
         Sprites.explosion = new Sprite((Texture) this.get("sprites/others/explosion.png"));
         Sprites.gameOver = new Sprite((Texture) this.get("sprites/others/gameOver.png"));
         Sprites.star = new Sprite((Texture) this.get("sprites/others/star.png"));
+
+        // TODO DANGER!!
+        Effects.star = new ParticleEffect();
+        Effects.star.load(Gdx.files.internal("effects/test.p"), Gdx.files.internal("effects"));
 
         // Logos
         Sprites.logo = new Sprite((Texture) this.get("sprites/logos/angryBerto.png"));

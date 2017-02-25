@@ -89,6 +89,7 @@ public class GameEngine {
 	// Contador de estrellas, para que no se llene la pantalla de ellas.
 	// TODO Poner la generacion de estrellas SEPARADA del GameEngine, en una clase
 	protected static int starCount = 0;
+	protected static int starLimit = 50;
 
 	protected static HashMap<String, Button> buttons;
 	
@@ -808,37 +809,6 @@ public class GameEngine {
 		//explosionsList.add(new Explosion(x, y));
 
 	}
-
-	public void spawnStar() {
-		// ------------------------------------------------------------------------
-		// este método creará los gotas con un movimiento aleatorio e
-		// independiente.
-		// ------------------------------------------------------------------------
-
-		// evitamos que haya demasiados enemigos en pantalla por rendimiento
-		if (starsList.size <= 50) {
-			// instanciamos un nuevo rectángulo.
-			// Le pasamos las vidas que va a tener el enemigo, para ahorrar una
-			// llamada al metodo.
-			starSpawnContainer = new Star(10, 10);
-			// lo colocamos en una posición X aleatoria dentro de la pantalla
-			// (entre 0 y 480-48(-48 para no salirse del borde)).
-			starSpawnContainer.setX(MathUtils.random(68, 480 - 2)); // antes 0
-																	// en el 68
-			// y en la parte más alta de la pantalla.
-
-			// le damos una velocidad vertical aleatorias a la estrella.
-			starSpawnContainer.setVSpeed(MathUtils.random(1000, 1500));
-
-			// añadimos el rectángulo al array de rectángulos de las gotas de
-			// lluvia.
-			starsList.add(starSpawnContainer);
-			// guardamos el tiempo actual en nano segundos para posteriormente
-			// decidir si pasado un tiempo X,
-			// aparecerá otro enemigo o no.
-			lastStarSpawnTime = TimeUtils.nanoTime();
-		}
-	} // end spawnStar()
 		// ---------------------------------------------------------------------------
 
 	public static void spawnPowerUpCharge(float x, float y) {
@@ -847,42 +817,6 @@ public class GameEngine {
 		// entities.add(new com.mygdx.game.Entities.PowerUps.Charge(x, y));
 
 	}
-
-	/*
-	 * 
-	 * public void spawnPowerUpLive(float x, float y) {
-	 * 
-	 * if (entities.size <= 10) {
-	 * 
-	 * entities.add(new Btn_PlusHP(x, y));
-	 * 
-	 * }
-	 * 
-	 * 
-	 * } //end spawnPowerUpLive()
-	 * 
-	 * public void spawnPowerUpHoe(float x, float y) {
-	 * 
-	 * if (entities.size <= 10) {
-	 * 
-	 * entities.add(new Btn_Hoe(x, y, this));
-	 * 
-	 * }
-	 * 
-	 * 
-	 * } //end spawnPowerUpLive()
-	 * 
-	 * public void spawnPowerUpDog(float x, float y) {
-	 * 
-	 * if (entities.size <= 10) {
-	 * 
-	 * entities.add(new Btn_Dog(x, y, this));
-	 * 
-	 * }
-	 * 
-	 * 
-	 * } //end spawnPowerUpLive()
-	 */
 
 	/**************************************************************************************************************************************************
 	 * MÉTODOS DE ACCIÓN

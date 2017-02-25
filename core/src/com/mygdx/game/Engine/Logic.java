@@ -145,17 +145,15 @@ public class Logic extends GameEngine implements Runnable {
     }
 
     private void generateStars() {
-        if (starCount <= 50) {
-            Star s = new Star(10, 10);
+        System.out.println(starCount);
+        if (starCount < starLimit) {
+            // 10% probabilidad de spawnear estrella.
+            if (MathUtils.random(0, 100) < 20) {
+                Star s = new Star();
 
-            s.setX(MathUtils.random(68, 480 - 2)); // antes 0
-            s.setY(800);
-            s.setVSpeed(-MathUtils.random(1000, 1500));
-            // Esto es opcional
-            s.setHSpeed(-MathUtils.random(10, 30));
-
-            addEntity(s, EntityType.OTHER);
-            starCount++;
+                addEntity(s, EntityType.OTHER);
+                starCount++;
+            }
         }
 
     }
@@ -262,7 +260,15 @@ public class Logic extends GameEngine implements Runnable {
             e.move();
             if (e.remove) {
                 it.remove();
-                starCount--;
+                // SI quitas este IF luego acaba en una lluvia de estrellas. Cosas de Serrano para boss.
+                // Equivalente seria hacer starCount -= 20 (mas o menos).
+                // P.D Probado -= 20, NO funciona...
+                // P.D2 > probado tambien controlando el 0, sigue sin funcionar bien
+                // Quizas alterando el starLimit
+                if (e.getClass().equals(Star.class)) {
+                    starCount--;
+
+                }
             }
         }
     }
