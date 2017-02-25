@@ -16,6 +16,10 @@ public class Sprites {
     // Nota: btn = Sprite que se usa para un boton
     // Si no contiene nada es la imagen (o imagenes) que se usan en si para el juego. (No clickeables)
     // Botones
+
+    //Seleccion de niveles
+    public static Sprite btn_level0;
+
     public static Sprite[] btn_exit;
     public static Sprite[] btn_init;
     public static Sprite[] btn_pause;

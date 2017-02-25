@@ -70,6 +70,12 @@ public class GameStateManager {
 		changed = true;
 	}
 
+	public void goToLevelSelection() {
+		state = GameState.LEVEL_SELECTION;
+		saveState = false;
+		changed = true;
+	}
+
 	public GameState getState() {
 		return state;
 	}
@@ -92,6 +98,7 @@ public class GameStateManager {
 	public boolean isInEndGame() { return state == GameState.GAME_END;}
 	public boolean isIntro() { return state == GameState.INTRO;}
 	public boolean isLoading() { return state == GameState.LOADING; }
+	public boolean isLevelSelection() {return state == GameState.LEVEL_SELECTION; }
 	
 	
 }

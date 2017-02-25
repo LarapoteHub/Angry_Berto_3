@@ -111,7 +111,7 @@ public class Intro_Berto extends PlainAnimation {
             propulsionStateTime += Gdx.graphics.getDeltaTime() * 6;
 
             if (this.y >= 800) {
-                GameEngine.gameState.play();
+                GameEngine.gameState.goToLevelSelection();
                 Sounds.bertolinaSound.stop(1);
             }
         }

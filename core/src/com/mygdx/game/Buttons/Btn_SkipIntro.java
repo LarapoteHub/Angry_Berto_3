@@ -16,6 +16,6 @@ public class Btn_SkipIntro extends Button {
 
     @Override
     public void onTouch() {
-        GameEngine.gameState.play();
+        GameEngine.gameState.goToLevelSelection();
     }
 }

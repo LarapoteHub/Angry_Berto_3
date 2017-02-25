@@ -163,6 +163,8 @@ public class Renderer extends GameEngine implements Runnable{
 
 		} else if (gameState.isIntro()) {
 			batch.draw(Backgrounds.backgroundIntro, 0, 0);
+		} else if (gameState.isLevelSelection()) {
+			batch.draw(Backgrounds.backgroundLevelSelection, 0, 0);
 		} else if (gameState.isInEndGame()) {
 			batch.draw(Backgrounds.backgroundGameOver, 0, 0);
 		} else if (gameState.isPlaying() || gameState.isPaused()) {

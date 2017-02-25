@@ -13,6 +13,8 @@ public class Backgrounds {
 
     public static Texture backgroundIntro;// = new Texture(Gdx.files.internal("backgrounds/backgroundIntro.png"));
 
+    public static Texture backgroundLevelSelection;
+
     public static Texture backgroundPowerUps;// = new Texture(Gdx.files.internal("backgrounds/powerUps.png"));
 
     public static Texture universe_1;

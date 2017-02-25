@@ -5,5 +5,5 @@ package com.mygdx.game.Engine;
  */
 public enum GameState {
                                  //TODO activar HIGH_SCORE state cuando se implementen mecánicas relativas a lo mismo.
-    GAMEPLAY, PAUSED, MAIN_MENU, /*HIGH_SCORE,*/ INTRO, GAME_END, LOADING
+    GAMEPLAY, PAUSED, MAIN_MENU, /*HIGH_SCORE,*/ INTRO, GAME_END, LOADING, LEVEL_SELECTION
 }

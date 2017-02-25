@@ -26,6 +26,7 @@ import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Projectiles.Projectile;
 import com.mygdx.game.Screens.Scr_GameOver;
 import com.mygdx.game.Screens.Scr_Introduction;
+import com.mygdx.game.Screens.Scr_LevelSelection;
 import com.mygdx.game.Screens.Scr_Loading;
 import com.mygdx.game.Screens.Scr_MainMenu;
 import com.mygdx.game.Screens.Scr_Pause;
@@ -484,7 +485,9 @@ public class Logic extends GameEngine implements Runnable {
                 case LOADING:
                     new Scr_Loading().initComponents();
                     break;
-
+                case LEVEL_SELECTION:
+                    new Scr_LevelSelection().initComponents();
+                    break;
             }
         }
     }
