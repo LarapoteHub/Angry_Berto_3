@@ -1,6 +1,7 @@
 package com.mygdx.game.Entities.Enemies;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.mygdx.game.Entities.PlainAnimations.Explosion;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.Multimedia.Sprites;
@@ -33,6 +34,8 @@ public class SatelliteOrbitEnemy extends Enemy {
     private float rotationSpeed = 10f;
 
     private Behavior.SatelliteOrbitEnemy behavior;
+
+    Sprite spr;
 
     public SatelliteOrbitEnemy(Enemy parent, Behavior.SatelliteOrbitEnemy behavior) {
 
@@ -74,7 +77,8 @@ public class SatelliteOrbitEnemy extends Enemy {
         this.type = GameEngine.EnemyType.SATELLITE_ORBIT_ENEMY;
         powerUpProb = 10;
 
-        Sprites.getSpriteByName("enemy_satellite_orbit")[0].setSize(width, height);
+        spr = new Sprite(Sprites.getSpriteByName("enemy_satellite_orbit")[0]);
+        spr.setSize(width, height);
 
         //TODO, muy peligroso
         //this.cooldown = GameEngine.uni.getEnemyAttackSpeed();
@@ -88,7 +92,8 @@ public class SatelliteOrbitEnemy extends Enemy {
 
     @Override
     public void draw() {
-        Sprites.getSpriteByName("enemy_satellite_orbit")[0].draw(GameEngine.batch);
+        spr.draw(GameEngine.batch);
+        //Sprites.getSpriteByName("enemy_satellite_orbit")[0].draw(GameEngine.batch);
         //GameEngine.batch.draw(Sprites.enemy_satellite_orbit.getTexture(), x, y, width, height);
 
     }
@@ -120,7 +125,9 @@ public class SatelliteOrbitEnemy extends Enemy {
         this.x = (float) ((Math.cos(angleWithParent) * rotationSpeed) * (this.width / 2) + (parent.getX() + (parent.getWidth()/2)));
         this.y = (float) ((Math.sin(angleWithParent) * rotationSpeed) * (this.height / 2) + (parent.getY() + (parent.getHeight()/2)));
 
-        Sprites.getSpriteByName("enemy_satellite_orbit")[0].setPosition(x, y);
+        spr.setPosition(x, y);
+
+        //Sprites.getSpriteByName("enemy_satellite_orbit")[0].setPosition(x, y);
 
     }
 

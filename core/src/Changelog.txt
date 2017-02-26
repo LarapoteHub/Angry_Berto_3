@@ -61,3 +61,8 @@ Ahora CoreOrbetEnemy se encarga de spawnear su SatelliteOrbitEnemy el solo, y ad
 -- RuLoSp --
 Reducido codigo necesario para inicializar animacion.
 ------------
+
+0.1_6_1
+-- RuLoSp --
+Arreglado los satelites cuando hay mas de 1 enemigo de ese tipo en pantalla.
+------------
