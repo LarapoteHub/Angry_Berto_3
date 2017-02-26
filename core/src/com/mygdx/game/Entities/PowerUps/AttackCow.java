@@ -10,6 +10,7 @@ import com.mygdx.game.Projectiles.Projectile;
 /**
  * Created by 100VOL on 20/08/2016.
  * A ver si funca
+ * No parece que funque...
  */
 public class AttackCow extends Projectile {
 
