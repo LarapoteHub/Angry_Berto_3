@@ -2,6 +2,7 @@ package com.mygdx.game.Entities.PlainAnimations;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.Multimedia.Sounds;
@@ -89,11 +90,16 @@ public class Intro_Enemy extends PlainAnimation {
 
         //Sprites.enemy_std.setBounds(0, 0, Sprites.enemy_std.getTexture().getWidth(), Sprites.enemy_std.getTexture().getHeight());
 
-        movingFrames = new TextureRegion[FRAME_COLS];
+        //movingFrames = new TextureRegion[FRAME_COLS];
 
-        movingFrames = Sprites.getSpriteByName("enemy_std")[0].split(Sprites.getSpriteByName("enemy_std")[0].getTexture(), (int) Sprites.getSpriteByName("enemy_std")[0].getWidth() / FRAME_COLS, (int) Sprites.getSpriteByName("enemy_std")[0].getHeight() / FRAME_ROWS)[0];
+        //movingFrames = Sprites.getSpriteByName("enemy_std")[0].split(Sprites.getSpriteByName("enemy_std")[0].getTexture(), (int) Sprites.getSpriteByName("enemy_std")[0].getWidth() / FRAME_COLS, (int) Sprites.getSpriteByName("enemy_std")[0].getHeight() / FRAME_ROWS)[0];
 
-        currentAnimation = new Animation(0.4f, movingFrames);
+
+        Sprite spr = Sprites.getSpriteByName("enemy_std")[0];
+
+        currentAnimation = new AnimationAdapter(0, AnimationAdapter.splitSheet(spr, FRAME_COLS, FRAME_ROWS), Animation.PlayMode.NORMAL);
+
+        //currentAnimation = new AnimationAdapter(0.4f, movingFrames, Animation.PlayMode.NORMAL);
         //currentAnimation.setPlayMode(Animation.PlayMode.LOOP);
 
     }
