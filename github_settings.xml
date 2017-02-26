@@ -1,7 +1,7 @@
 <application>
   <component name="GithubSettings">
     <option name="LOGIN" value="LarapoteHub" />
-    <option name="HOST" value="https://github.com/LarapoteHub/Angry_Berto_3.git" />
+    <option name="HOST" value="https://github.com" />
     <option name="AUTH_TYPE" value="BASIC" />
   </component>
 </application>
