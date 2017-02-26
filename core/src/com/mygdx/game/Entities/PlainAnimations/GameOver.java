@@ -22,6 +22,7 @@ public class GameOver extends PlainAnimation {
 
         this.vSpeed = -200;
 
+        Sprites.getSpriteByName("gameOver")[0].setSize(width, height);
     }
 
     @Override
@@ -34,8 +35,9 @@ public class GameOver extends PlainAnimation {
             Scr_GameOver.textAdded = true;
         }
 
+
         Sprites.getSpriteByName("gameOver")[0].setPosition(x, y);
-        //Sprites.getSpriteByName("gameOver")[0].draw();
+        Sprites.getSpriteByName("gameOver")[0].draw(GameEngine.batch);
         //GameEngine.batch.draw(Sprites.gameOver.getTexture(), x, y, width, height);
 
     }

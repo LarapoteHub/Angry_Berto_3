@@ -2,6 +2,7 @@ package com.mygdx.game.Entities.PlainAnimations;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.Multimedia.Sounds;
@@ -11,10 +12,6 @@ import com.mygdx.game.Multimedia.Sprites;
  * Created by 100VOL on 17/08/2016.
  */
 public class Explosion extends PlainAnimation {
-
-
-    private TextureRegion[] explodingFrames;
-    private Animation explodingAnimation;
 
     public Explosion(float x, float y, float width, float height, boolean sound) {
 
@@ -66,7 +63,7 @@ public class Explosion extends PlainAnimation {
 
     @Override
     public boolean isFinished() {
-        return explodingAnimation.isAnimationFinished(stateTime);
+        return currentAnimation.isAnimationFinished(stateTime);
     }
 
     public void initAnimation() {
@@ -76,20 +73,25 @@ public class Explosion extends PlainAnimation {
         //Sprites.getSpriteByName("explosion").setPosition(x, y);
 
 
-        tmp = Sprites.getSpriteByName("explosion")[0].split(Sprites.getSpriteByName("explosion")[0].getTexture(), (int) Sprites.getSpriteByName("explosion")[0].getWidth() / FRAME_COLS, (int) Sprites.getSpriteByName("explosion")[0].getHeight() / FRAME_ROWS);
-        explodingFrames = new TextureRegion[FRAME_COLS];
+        // TODO REDUCIDO A 1 LINEA (2 por comodidad)
+//
+//        tmp = Sprites.getSpriteByName("explosion")[0].split(Sprites.getSpriteByName("explosion")[0].getTexture(), (int) Sprites.getSpriteByName("explosion")[0].getWidth() / FRAME_COLS, (int) Sprites.getSpriteByName("explosion")[0].getHeight() / FRAME_ROWS);
+//        explodingFrames = new TextureRegion[FRAME_COLS];
+//
+//        explodingFrames = tmp[0];
+//
+//        /*for (int i = 0 ; i < FRAME_COLS ; i++) {
+//            explodingFrames[i] = tmp[0][i];
+//        }*/
+//
+//        explodingAnimation = new Animation(0.4f, explodingFrames);
+//        explodingAnimation.setPlayMode(Animation.PlayMode.NORMAL);
+//
+//        currentAnimation = explodingAnimation;
 
-        explodingFrames = tmp[0];
+        Sprite spr = Sprites.getSpriteByName("explosion")[0];
 
-        /*for (int i = 0 ; i < FRAME_COLS ; i++) {
-            explodingFrames[i] = tmp[0][i];
-        }*/
-
-        explodingAnimation = new Animation(0.4f, explodingFrames);
-        explodingAnimation.setPlayMode(Animation.PlayMode.NORMAL);
-
-        currentAnimation = explodingAnimation;
-
+        currentAnimation = new AnimationAdapter(0.4f, AnimationAdapter.splitSheet(spr, FRAME_COLS, FRAME_ROWS), Animation.PlayMode.NORMAL);
 
     }
 }

@@ -57,3 +57,7 @@ Ahora CoreOrbetEnemy se encarga de spawnear su SatelliteOrbitEnemy el solo, y ad
     array para alcenar uno o varios.
 ------------
 
+0.1_6
+-- RuLoSp --
+Reducido codigo necesario para inicializar animacion.
+------------

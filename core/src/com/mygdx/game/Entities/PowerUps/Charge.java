@@ -26,6 +26,7 @@ public class Charge extends PowerUp {
         
         charge = 20;
 		spr = new Sprite(Sprites.getSpriteByName("powerUp_charge_increase")[0]);
+		spr.setSize(width, height);
 
     }
 
