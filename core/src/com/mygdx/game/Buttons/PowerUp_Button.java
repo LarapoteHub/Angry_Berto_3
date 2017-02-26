@@ -7,13 +7,8 @@ public abstract class PowerUp_Button extends Button {
 	protected int cost;
 	
 	public PowerUp_Button(float x, float y, float width, float height,
-			Sprite tex) {
-		super(x, y, width, height, tex);
-	}
-	
-	public PowerUp_Button(float x, float y, float width, float height,
-			Sprite tex[]) {
-		super(x, y, width, height, tex);
+			String name) {
+		super(x, y, width, height, name);
 	}
 
 	public int getCost() {

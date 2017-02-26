@@ -19,9 +19,9 @@ public class Btn_Dog extends PowerUp_Button {
     // Pasarle las coordenadas predeterminadas por Dani para la localizacion del boton
     // Tambien pasarle el array de sprites.
     public Btn_Dog() {
-        super(10, 276, 48, 48, Sprites.btn_dog);
+        super(10, 276, 48, 48, "btn_dog");
         isPowerUp = true;
-        name = "btn_Dog";
+        name = "btn_dog";
     }
 
     // Sobreescribir y dibujar el que corresponda si hay la energia necesaria o no

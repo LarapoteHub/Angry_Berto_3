@@ -59,7 +59,7 @@ public class CoreOrbitEnemy extends Enemy {
             GameEngine.batch.setColor(Color.RED);
         }
 
-        GameEngine.batch.draw(Sprites.enemy_core_orbit.getTexture(), x, y, width, height);
+        GameEngine.batch.draw(Sprites.getSpriteByName("enemy_core_orbit")[0].getTexture(), x, y, width, height);
 
         if (hit) {
             GameEngine.batch.setColor(tmpColor);

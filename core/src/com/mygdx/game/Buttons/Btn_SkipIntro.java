@@ -10,8 +10,8 @@ import com.mygdx.game.Multimedia.Sprites;
 public class Btn_SkipIntro extends Button {
 
     public Btn_SkipIntro() {
-        super(350, 20, 100, 80, Sprites.btn_skip);
-        this.name = "btn_SkipIntro";
+        super(350, 20, 100, 80, "btn_skip");
+        this.name = "btn_skip";
     }
 
     @Override

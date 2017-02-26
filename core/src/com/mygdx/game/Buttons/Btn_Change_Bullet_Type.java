@@ -11,9 +11,10 @@ public class Btn_Change_Bullet_Type extends Button {
     private int mode;
 
     public Btn_Change_Bullet_Type() {
-        super(10, 50, 48, 48, Sprites.btn_switch_bullet);
+        // X, Y, Ancho, Alto, Nombre de sprite
+        super(10, 50, 48, 48, "btn_switch_bullet");
         isPowerUp = false;
-        name = "btn_Change_Bullet_Type";
+        name = "btn_switch_bullet";
         mode = 0;
     }
 

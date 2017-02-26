@@ -15,8 +15,8 @@ public class Btn_Play extends Button {
 //    initButtonBox.y = 166; //136
 	
 	public Btn_Play() {
-		super(96, 166, 287, 81, Sprites.btn_init);
-		this.name = "btn_Play";
+		super(96, 166, 287, 81, "btn_init");
+		this.name = "btn_init";
 	}
 
 	@Override

@@ -15,10 +15,10 @@ public class Scr_LevelSelection implements Screen {
     @Override
     public void initComponents() {
 
-        GameEngine.addButton(new Btn_LevelSelection(350, 200, Sprites.btn_level0, "btn_level0", new Level0()));
+        GameEngine.addButton(new Btn_LevelSelection(350, 200, Sprites.getSpriteByName("btn_level0")[0], "btn_level0", new Level0()));
         //super(350, 80, 80, 50, spr);
 
-        GameEngine.addButton(new Btn_LevelSelection(100, 100, Sprites.btn_level0, "btn_level_test", new LevelTest()));
+        GameEngine.addButton(new Btn_LevelSelection(100, 100, Sprites.getSpriteByName("btn_level_test")[0], "btn_level_test", new LevelTest()));
 
     }
 }

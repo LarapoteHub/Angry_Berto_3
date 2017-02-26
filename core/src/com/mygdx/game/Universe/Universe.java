@@ -53,7 +53,7 @@ public class Universe {
 			case STANDARD_ENEMY:
 				return enemyAttackSpeed;
 			case HEAVY_ENEMY:
-				return enemyAttackSpeed / 4;
+				return enemyAttackSpeed / 10;
 		}
 
 		// Just in case TODO Edit this later to include all possibilities

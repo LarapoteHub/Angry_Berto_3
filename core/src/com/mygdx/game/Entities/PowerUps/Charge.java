@@ -1,6 +1,8 @@
 package com.mygdx.game.Entities.PowerUps;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.Multimedia.Sounds;
 import com.mygdx.game.Multimedia.Sprites;
@@ -10,10 +12,11 @@ import com.mygdx.game.Multimedia.Sprites;
  */
 // ESTO ES UN OTHER!!
 public class Charge extends PowerUp {
-    
+
+	private Sprite spr;
 
     public Charge(float x, float y) {
-        super(x,y, Sprites.powerUp_charge_increase);
+        super(x,y, "powerUp_charge_increase");
         
         setWidth(32);
         setHeight(32);
@@ -22,13 +25,14 @@ public class Charge extends PowerUp {
         damage = 0;
         
         charge = 20;
+		spr = new Sprite(Sprites.getSpriteByName("powerUp_charge_increase")[0]);
 
-        //powerUpImage = new Texture(Gdx.files.internal("sprites/powerups/livePowerUp.png"));
     }
 
 
     public void draw() {
-        GameEngine.batch.draw(Sprites.powerUp_charge_increase.getTexture(), x, y, getWidth(), getHeight());
+		spr.draw(GameEngine.batch);
+        //GameEngine.batch.draw(Sprites.getSpriteByName("powerUp_charge_increase")[0].getTexture(), x, y, getWidth(), getHeight());
     }
 
 	@Override
@@ -39,7 +43,7 @@ public class Charge extends PowerUp {
 	@Override
 	public void move() {
 		this.y += vSpeed * Gdx.graphics.getDeltaTime();
-		
+		spr.setPosition(x, y);
 	}
 	
 	@Override

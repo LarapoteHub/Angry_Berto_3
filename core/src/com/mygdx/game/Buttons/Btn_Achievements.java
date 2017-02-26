@@ -10,10 +10,10 @@ public class Btn_Achievements extends Button {
         archievementsButtonBox.x = 350;
         archievementsButtonBox.y = 20;
 	 */
-	
+
 	public Btn_Achievements() {
-		super(350, 20, 110, 120, Sprites.btn_achievements);
-		this.name = "btn_Achievements";
+		super(350, 20, 110, 120, "btn_achievements");
+		this.name = "btn_achievements";
 	}
 	
 	@Override

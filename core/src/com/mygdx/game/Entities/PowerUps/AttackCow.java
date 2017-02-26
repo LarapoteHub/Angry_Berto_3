@@ -1,6 +1,7 @@
 package com.mygdx.game.Entities.PowerUps;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.Timer;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.Multimedia.Sprites;
@@ -11,8 +12,7 @@ import com.mygdx.game.Projectiles.Projectile;
  */
 public class AttackCow extends Projectile {
 
-
-    Timer.Task animation;
+    private Sprite spr;
 
     public AttackCow(float x, float y) {
         damage = 5;
@@ -22,10 +22,14 @@ public class AttackCow extends Projectile {
         height = 64;
         this.vSpeed = 750;
         //setLivesOutsideScreen(true);
+        // Crea copia local del sprite
+        spr = new Sprite(Sprites.getSpriteByName("powerUp_attackCow")[0]);
+        // Hace que coincida el sprite con el tamaño del objeto.
+        spr.setBounds(x, y, width, height);
     }
 
     public void draw() {
-        GameEngine.batch.draw(Sprites.powerUp_attackCow, x, y, getWidth(), getHeight());
+        spr.draw(GameEngine.batch);
     }
 
 	@Override
@@ -47,6 +51,8 @@ public class AttackCow extends Projectile {
         if (this.y >= 864) {
             uberKill();
         }
+
+        spr.setPosition(x, y);
 	}
 
 

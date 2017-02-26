@@ -34,7 +34,9 @@ public class GameOver extends PlainAnimation {
             Scr_GameOver.textAdded = true;
         }
 
-        GameEngine.batch.draw(Sprites.gameOver.getTexture(), x, y, width, height);
+        Sprites.getSpriteByName("gameOver")[0].setPosition(x, y);
+        //Sprites.getSpriteByName("gameOver")[0].draw();
+        //GameEngine.batch.draw(Sprites.gameOver.getTexture(), x, y, width, height);
 
     }
 

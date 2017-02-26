@@ -14,8 +14,6 @@ import com.mygdx.game.Multimedia.Sprites;
  */
 public class Star extends Entity {
 
-    private Texture starImage = Sprites.star.getTexture();
-
     private ParticleEffect p = new ParticleEffect(Effects.star);
 
     public Star() {

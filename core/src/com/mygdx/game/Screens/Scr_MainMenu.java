@@ -55,20 +55,21 @@ public class Scr_MainMenu {
          * logoY = 525;
          */
         // Hace falta en 2 lineas para poder poner la posicion...
-        Sprite spr = new Sprite(Sprites.logo);
+        Sprite spr = new Sprite(Sprites.getSpriteByName("logo")[0]);
         spr.setPosition(75, 525);
         GameEngine.addImage(spr);
         
         
         // Agregamos al gañuflas
-        Sprite sprBerto = new Sprite(Sprites.berto);
+        // Por que se reinicia???
+        Sprite sprBerto = Sprites.getSpriteByName("berto")[0];
         sprBerto.setPosition(38.99f, 217);
         sprBerto.setSize(234, 311);
         
         GameEngine.addImage(sprBerto);
         
         // Agregamos a su compinche
-        Sprite sprLina = new Sprite(Sprites.lina);
+        Sprite sprLina = new Sprite(Sprites.getSpriteByName("lina")[0]);
         sprLina.setPosition(205.72f, 217);
         sprLina.setSize(234, 311);
         

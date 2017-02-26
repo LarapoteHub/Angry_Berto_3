@@ -15,17 +15,17 @@ public class Btn_Hoe extends PowerUp_Button {
     private int damage = 10;
 
     public Btn_Hoe() {
-        super(10, 150, 48, 48, Sprites.btn_rotaryHoe);
+        super(10, 150, 48, 48, "btn_rotaryHoe");
         isPowerUp = true;
-        name = "btn_Hoe";
+        name = "btn_rotaryHoe";
         cost = 50;
     }
 
     @Override
     public void onTouch() {
-    	if ((engine.getPlayer().getCharge() >= cost) || MyGdxGame.DEBUG_MODE) {
-    		GameEngine.addEntity(new RotaryHoe(engine.getPlayer().getX(), engine.getPlayer().getY()), EntityType.BULLET_PLAYER);
-    		engine.getPlayer().decreaseCharge(cost);
+    	if ((GameEngine.getPlayer().getCharge() >= cost) || MyGdxGame.DEBUG_MODE) {
+    		GameEngine.addEntity(new RotaryHoe(GameEngine.getPlayer().getX(), GameEngine.getPlayer().getY()), EntityType.BULLET_PLAYER);
+            GameEngine.getPlayer().decreaseCharge(cost);
     	}
     }
     

@@ -45,10 +45,10 @@ public class PlayerShoot extends Projectile {
 
         switch (mode) {
             case 0:
-                tex = Sprites.bullet_player[0].getTexture();
+                tex = Sprites.getSpriteByName("bullet_player")[0].getTexture();
                 break;
             case 1:
-                tex = Sprites.bullet_player[1].getTexture();
+                tex = Sprites.getSpriteByName("bullet_player")[1].getTexture();
                 break;
         }
         GameEngine.batch.draw(tex, x, y, getWidth(), getHeight());

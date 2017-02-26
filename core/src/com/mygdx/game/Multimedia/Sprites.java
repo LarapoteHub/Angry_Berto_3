@@ -2,6 +2,8 @@ package com.mygdx.game.Multimedia;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
+import java.util.HashMap;
+
 /**
  * Created by 100VOL on 20/08/2016.
  */
@@ -13,80 +15,103 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  */
 
 public class Sprites {
+
+    private static HashMap<String, Sprite[]> spriteMap = new HashMap<String, Sprite[]>();
+
+    public static Sprite[] getSpriteByName(String spriteName) {
+        // Pillar el valor del HashMap
+        Sprite[] retValue = spriteMap.get(spriteName);
+        // En caso de que ese valor no exista en le HashMap, crearlo y añadirlo.
+        if (retValue == null) {
+            // No se sabe el tamaño, asique 0
+            retValue = new Sprite[0];
+            // La parte importante es agregar la clave al HashMap
+
+            putSpriteWithName(spriteName, retValue);
+        }
+
+        return retValue;
+    }
+
+    public static void putSpriteWithName(String spriteName, Sprite[] sprs) {
+        spriteMap.put(spriteName, sprs);
+    }
+
+
     // Nota: btn = Sprite que se usa para un boton
     // Si no contiene nada es la imagen (o imagenes) que se usan en si para el juego. (No clickeables)
     // Botones
 
     //Seleccion de niveles
-    public static Sprite btn_level0;
-
-    public static Sprite[] btn_exit;
-    public static Sprite[] btn_init;
-    public static Sprite[] btn_pause;
-
-    public static Sprite[] btn_rotaryHoe;
-    public static Sprite[] btn_dog;
-    public static Sprite[] btn_plusHP;
-
-    public static Sprite[] btn_achievements;
-    public static Sprite[] btn_options;
-    public static Sprite[] btn_scores;
-
-    public static Sprite[] btn_switch_bullet;
-
-    public static Sprite btn_skip;
-
-
-    // Otros    -   Lo que no cuadra en ninguna categoria y son llaneros solitarios...
-    // Efectos
-    public static Sprite star;
-    //public static Sprite[] explosion;
-    public static Sprite explosion;
-
-    // Demás
-    public static Sprite life;      // live = vivir (de "Dónde vives?")
-    // Logos
-    public static Sprite logo;
-    public static Sprite gameOver;
-
-
-    // Personajes
-    public static Sprite berto;
-    public static Sprite lina;
-
-    // Naves ---
-    public static Sprite player;
-    public static Sprite player_propulsion;
-
-    // Enemigos
-    public static Sprite enemy_std;
-    //public static Texture enemy_std;
-    //public static Sprite[] enemy_dodging;
-    public static Sprite enemy_dodging;
-    public static Sprite enemy_spikeBall;
-    public static Sprite enemy_heavy;
-    public static Sprite enemy_satellite_orbit;
-    public static Sprite enemy_core_orbit;
-
-    // Balas - Bullets
-    public static Sprite[] bullet_player;
-    public static Sprite bullet_enemy;
-    public static Sprite[] bullet_heavy_enemy;
-
-    // Esteroides...
-    // TODO No olvidarse de tapar con un rectangulo la carga a la que corresponde en la pantalla de juego
-    public static Sprite powerUp_charge_bar;
-    public static Sprite powerUp_charge_bar_container;
-    public static Sprite powerUp_charge_increase;
-    public static Sprite powerUp_rotaryHoe;
-    public static Sprite powerUp_attackCow;
-
-    public static Sprite boss_1;
-
-
-    public static void load() {
-        // TODO Se podría pasar todo para aquí en realidad....
-    }
+//    public static Sprite btn_level0;
+//
+//    public static Sprite[] btn_exit;
+//    public static Sprite[] btn_init;
+//    public static Sprite[] btn_pause;
+//
+//    public static Sprite[] btn_rotaryHoe;
+//    public static Sprite[] btn_dog;
+//    public static Sprite[] btn_plusHP;
+//
+//    public static Sprite[] btn_achievements;
+//    public static Sprite[] btn_options;
+//    public static Sprite[] btn_scores;
+//
+//    public static Sprite[] btn_switch_bullet;
+//
+//    public static Sprite btn_skip;
+//
+//
+//    // Otros    -   Lo que no cuadra en ninguna categoria y son llaneros solitarios...
+//    // Efectos
+//    public static Sprite star;
+//    //public static Sprite[] explosion;
+//    public static Sprite explosion;
+//
+//    // Demás
+//    public static Sprite life;      // live = vivir (de "Dónde vives?")
+//    // Logos
+//    public static Sprite logo;
+//    public static Sprite gameOver;
+//
+//
+//    // Personajes
+//    public static Sprite berto;
+//    public static Sprite lina;
+//
+//    // Naves ---
+//    public static Sprite player;
+//    public static Sprite player_propulsion;
+//
+//    // Enemigos
+//    public static Sprite enemy_std;
+//    //public static Texture enemy_std;
+//    //public static Sprite[] enemy_dodging;
+//    public static Sprite enemy_dodging;
+//    public static Sprite enemy_spikeBall;
+//    public static Sprite enemy_heavy;
+//    public static Sprite enemy_satellite_orbit;
+//    public static Sprite enemy_core_orbit;
+//
+//    // Balas - Bullets
+//    public static Sprite[] bullet_player;
+//    public static Sprite bullet_enemy;
+//    public static Sprite[] bullet_heavy_enemy;
+//
+//    // Esteroides...
+//    // TODO No olvidarse de tapar con un rectangulo la carga a la que corresponde en la pantalla de juego
+//    public static Sprite powerUp_charge_bar;
+//    public static Sprite powerUp_charge_bar_container;
+//    public static Sprite powerUp_charge_increase;
+//    public static Sprite powerUp_rotaryHoe;
+//    public static Sprite powerUp_attackCow;
+//
+//    public static Sprite boss_1;
+//
+//
+//    public static void load() {
+//        // TODO Se podría pasar todo para aquí en realidad....
+//    }
 
     // TODO Eliminar comentario si se va entregar...
     // OLD AND DEPRECATED!!!	#VICENTE
