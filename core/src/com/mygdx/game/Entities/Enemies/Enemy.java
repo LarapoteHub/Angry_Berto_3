@@ -19,11 +19,7 @@ import java.util.Random;
  * Created by 100VOL on 09/08/2016.
  */
 public abstract class Enemy extends Ship {
-	
-    //protected int lives;
-    protected int index;
-    protected int behavior;
-    //public Sound shootSound;
+
     protected Timer.Task animation;
     protected Vector2 center = new Vector2();
     
@@ -51,18 +47,14 @@ public abstract class Enemy extends Ship {
 
     protected float stateTime = 0f;
 
-    public Enemy(float x, float y, int behavior) {
+    protected boolean canReboundX = false;
+    protected boolean canReboundY = false;
+
+    public Enemy(float x, float y) {
     	cooldown = 50;
-//        //hspeed = 0;
-//
         this.x = x;
         this.y = y;
-//
-//        index = 0;
-//
-//        timerShoot = 0;
-//
-        this.behavior = behavior;
+
         
         // Necesario para que hagan Spawn por fuera de la pantalla.
         // Cosas de la organizacion.
@@ -133,25 +125,45 @@ public abstract class Enemy extends Ship {
     
     @Override
     public void move() {
-    	// Moverlo simplemente.
-    	x += hSpeed * Gdx.graphics.getDeltaTime();
-		y += vSpeed * Gdx.graphics.getDeltaTime();
-		
-		// Comprobar si hace falta quitarlo o no.
-		if ((this.y > MyGdxGame.HEIGHT || this.y + this.height < 0) && !canLiveOutsideScreen()) {
-			this.remove = true;
-		}
-		if ((this.x > MyGdxGame.WIDTH || this.x + this.width < 0) && !canLiveOutsideScreen()) {
-			this.remove = true;
-		}
-		
-		// Desactivar la habilidad de vivir fuera de la pantalla una vez que entre el area de renderizado
-		// Este se usa para cuando generamos los enemigos.
-		// Los enemigos se generan fuera de la pantalla con el booleano en true, y despues se desactiva para
-		// ser destruidos al salir de la pantalla por debajo.
-		if (this.y < MyGdxGame.HEIGHT && this.y + this.height > 0) {
-			this.setLivesOutsideScreen(false);
-		}
+        // Moverlo simplemente.
+        x += hSpeed * Gdx.graphics.getDeltaTime();
+        y += vSpeed * Gdx.graphics.getDeltaTime();
+
+        if (canReboundY) {
+
+            if ((this.y + this.height > MyGdxGame.HEIGHT && this.vSpeed > 0 || this.y < 0 && this.vSpeed < 0) && !canLiveOutsideScreen()) {
+                vSpeed = -vSpeed;
+            }
+
+        }
+
+        if (canReboundX) {
+
+            if (x + width > MyGdxGame.WIDTH && hSpeed > 0) {
+                x = MyGdxGame.WIDTH - width;
+                hSpeed = -hSpeed;
+            }
+            if (x < MyGdxGame.ORIGIN_X && hSpeed < 0) {
+                x = MyGdxGame.ORIGIN_X;
+                hSpeed = -hSpeed;
+            }
+        }
+
+        // Comprobar si hace falta quitarlo o no.
+        if ((this.y > MyGdxGame.HEIGHT || this.y + this.height < 0) && !canLiveOutsideScreen()) {
+            this.remove = true;
+        }
+        if ((this.x > MyGdxGame.WIDTH || this.x + this.width < 0) && !canLiveOutsideScreen()) {
+            this.remove = true;
+        }
+
+        // Desactivar la habilidad de vivir fuera de la pantalla una vez que entre el area de renderizado
+        // Este se usa para cuando generamos los enemigos.
+        // Los enemigos se generan fuera de la pantalla con el booleano en true, y despues se desactiva para
+        // ser destruidos al salir de la pantalla por debajo.
+        if (this.y < MyGdxGame.HEIGHT && this.y + this.height > 0) {
+            this.setLivesOutsideScreen(false);
+        }
     }
 
     
@@ -161,4 +173,41 @@ public abstract class Enemy extends Ship {
 
     //public abstract void initAnimation();
 
+    //TIPOS DE ENEMIGOS.
+
+    public static class Behavior {
+
+        public enum StandardEnemy {
+            DEFAULT, ON_Y550_TURN_LEFT, ON_Y550_TURN_RIGHT;
+        }
+
+        public enum EvadingEnemy {
+            DEFAULT, DODGE_PLAYER_RIGHT, DODGE_PLAYER_LEFT;
+        }
+
+        public enum HeavyEnemy {
+            DEFAULT;
+        }
+
+        public enum SpikeBallEnemy {
+            DEFAULT;
+        }
+
+        public enum CoreOrbitEnemy {
+            DEFAULT;
+        }
+
+        public enum SatelliteOrbitEnemy {
+            DEFAULT;
+        }
+
+        public static class Bosses {
+
+            public enum Boss1 {
+                DEFAULT;
+            }
+
+        }
+
+    }
 }

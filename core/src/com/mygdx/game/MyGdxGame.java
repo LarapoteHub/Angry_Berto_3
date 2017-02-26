@@ -19,7 +19,7 @@ public class MyGdxGame extends ApplicationAdapter {
     // TODO Esto debería ajustarse a la pantalla actual que tenemos en realidad,
     // TODO con bordes negros
     // TODO o lo que haga falta.
-    public static final int WIDTH = 480, HEIGHT = 800;
+    public static final int WIDTH = 480, HEIGHT = 800, ORIGIN_X = 68;
     //EL WIDTH DE LA BARRA DE LA IZQUIERDA ES 68.
 
     // modo DEBUG

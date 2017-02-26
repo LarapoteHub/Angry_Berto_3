@@ -46,3 +46,14 @@ Cambiado la mayoria de GameEngine.batch.draw() por Sprite.draw()
 
 -- RuLoSp --
 
+0.1_5
+-- 100vol --
+Implementado comportamiento de EvadingEnemy.
+Añadida una enum en la clase Enemy con los comportamientos de todos los enemigos.
+    Modificados métodos de spawn para que funcionen con ello.
+Abstraido el move() de todos los objetos salvo SatelliteOrbitEnemy a la clase Enemy.
+    El rebote con los bordes de la pantalla se controla con dos booleans canReboundX y canREboundY.
+Ahora CoreOrbetEnemy se encarga de spawnear su SatelliteOrbitEnemy el solo, y ademas dispone de un
+    array para alcenar uno o varios.
+------------
+

@@ -23,9 +23,11 @@ public class SpikeBallEnemy extends Enemy {
 
     private TextureRegion[] movingFrames;
 
-    public SpikeBallEnemy(float x, float y, int behavior) {
+    private Behavior.SpikeBallEnemy behavior;
 
-        super(x, y, behavior);
+    public SpikeBallEnemy(float x, float y, Behavior.SpikeBallEnemy behavior) {
+
+        super(x, y);
         vSpeed = -550;
         setWidth(48);
         setHeight(48);

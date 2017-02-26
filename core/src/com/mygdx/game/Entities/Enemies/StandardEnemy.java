@@ -29,13 +29,17 @@ public class StandardEnemy extends Enemy {
 	//solo tiene una animacion
 	private TextureRegion[] movingFrames;
 
-	public StandardEnemy(float x, float y, int behavior) {
-		super(x, y, behavior);
+	private Behavior.StandardEnemy behavior;
+
+	public StandardEnemy(float x, float y, Behavior.StandardEnemy behavior) {
+		super(x, y);
 		vSpeed = -300;
 		width = 48;
 		height = 48;
 		lives = 2;
-		
+
+		this.behavior = behavior;
+
 		damage = 2;
 		
 		// Valor que sumar para la puntuacion
@@ -107,54 +111,25 @@ public class StandardEnemy extends Enemy {
 	public void runBehavior() {
 		switch (behavior) {
 
-		/*
-		 * en funcion de si esta a la izquierda o a la derecha, le damos
-		 * movimiento hacia un lado o hacia otro.
-		 */
-		case 0:
+			// si el enemigo alcanza la y550, se moverá hacia la derecha
+			case ON_Y550_TURN_RIGHT:
 
-			if (this.getY() < 550 && this.getHSpeed() == 0) {
-				if (this.getX() > 240) {
-					this.setHSpeed(-100);
-				} else {
+				if (this.getY() < 550 && this.getHSpeed() == 0) {
+
 					this.setHSpeed(100);
-				}
 
-			} // end if
-			break;
+				} // end if
+				break;
 
-		// igual que el anterior pero invirtiendo el lado
-		case 1:
+			// si el enemigo alcanza la y550, se moverá hacia la izquierda
+			case ON_Y550_TURN_LEFT:
 
-			if (this.getY() < 550 && this.getHSpeed() == 0) {
-				if (this.getX() > 240) {
-					this.setHSpeed(100);
-				} else {
+				if (this.getY() < 550 && this.getHSpeed() == 0) {
+
 					this.setHSpeed(-100);
-				}
 
-			} // end if
-			break;
-
-		// si el enemigo alcanza la y550, se moverá hacia la derecha
-		case 2:
-
-			if (this.getY() < 550 && this.getHSpeed() == 0) {
-
-				this.setHSpeed(100);
-
-			} // end if
-			break;
-
-		// si el enemigo alcanza la y550, se moverá hacia la derecha
-		case 3:
-
-			if (this.getY() < 550 && this.getHSpeed() == 0) {
-
-				this.setHSpeed(-100);
-
-			} // end if
-			break;
+				} // end if
+				break;
 
 		}
 	}

@@ -1,5 +1,6 @@
 package com.mygdx.game.Levels;
 
+import com.mygdx.game.Entities.Enemies.Enemy;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.MyGdxGame;
 
@@ -16,11 +17,8 @@ public class LevelTest extends Level {
     public void runLevel() {
 
         if (!running) {
-            //GameEngine.spawnBoss(78, 500, GameEngine.BossType.TYPE_1);
-            //GameEngine.spawnEnemy(MyGdxGame.WIDTH/2 - 24, 800, GameEngine.EnemyType.CORE_ORBIT_ENEMY, -1);
-            GameEngine.spawnEnemy(MyGdxGame.WIDTH/2 - 24, 800, GameEngine.EnemyType.HEAVY_ENEMY, -1);
-            GameEngine.spawnEnemy(MyGdxGame.WIDTH/2 - 24, 800, GameEngine.EnemyType.HEAVY_ENEMY, -1);
-            GameEngine.spawnEnemy(MyGdxGame.WIDTH/2 - 24, 800, GameEngine.EnemyType.HEAVY_ENEMY, -1);
+            GameEngine.spawnBoss(78, 700, GameEngine.BossType.TYPE_1, Enemy.Behavior.Bosses.Boss1.DEFAULT); //boss1
+            //GameEngine.spawnEnemy(MyGdxGame.WIDTH/2, 800, GameEngine.EnemyType.CORE_ORBIT_ENEMY, Enemy.Behavior.CoreOrbitEnemy.DEFAULT);
             running = true;
         } else if (GameEngine.getEnemies().isEmpty() && GameEngine.getBosses().isEmpty()) {
             running = false;

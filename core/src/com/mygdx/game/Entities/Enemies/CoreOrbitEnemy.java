@@ -8,14 +8,19 @@ import com.mygdx.game.Multimedia.Backgrounds;
 import com.mygdx.game.Multimedia.Sprites;
 import com.mygdx.game.MyGdxGame;
 
+import java.util.ArrayList;
+
 /**
  * Created by xldan on 20/02/2017.
  */
 
 public class CoreOrbitEnemy extends Enemy {
 
-    public CoreOrbitEnemy(float x, float y) {
-        super(x, y, -1);
+    private Behavior.CoreOrbitEnemy behavior;
+    private ArrayList<SatelliteOrbitEnemy> satellites;
+
+    public CoreOrbitEnemy(float x, float y, Behavior.CoreOrbitEnemy behavior) {
+        super(x, y);
 
         this.vSpeed = -200;
         //CUIDAO COLGAOS!!
@@ -23,6 +28,8 @@ public class CoreOrbitEnemy extends Enemy {
         this.width = 48;
         this.height = 48;
         this.lives = 10;
+
+        this.behavior = behavior;
 
         //this.setLivesOutsideScreen(true);
 
@@ -49,6 +56,14 @@ public class CoreOrbitEnemy extends Enemy {
         //this.FRAME_ROWS = 1;
 
         //initAnimation();
+
+        canReboundX = true;
+        canReboundY = true;
+
+        satellites = new ArrayList<SatelliteOrbitEnemy>();
+        SatelliteOrbitEnemy satellite = new SatelliteOrbitEnemy(this, Behavior.SatelliteOrbitEnemy.DEFAULT);
+        GameEngine.getEnemies().add(satellite);
+        satellites.add(satellite);
     }
 
     @Override

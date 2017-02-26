@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.mygdx.game.Entities.Player;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.Multimedia.Backgrounds;
+import com.mygdx.game.Multimedia.Musics;
 import com.mygdx.game.Multimedia.Sprites;
 import com.mygdx.game.MyGdxGame;
 
@@ -23,15 +24,14 @@ public class Boss1 extends Boss {
 
     private TextureRegion[] movingFrames;
 
-    public Boss1(float x, float y) {
+    private Behavior.Bosses.Boss1 behavior;
+
+    public Boss1(float x, float y, Behavior.Bosses.Boss1 behavior) {
         super(x, y, 0);
         vSpeed = -100; //-300 no se por que
         hSpeed = 0;
 
-        //width = 48;
-        //height = 48;
-
-        //width = 96;
+        this.behavior = behavior;
 
         width = 120;
         height = 96;
@@ -61,6 +61,11 @@ public class Boss1 extends Boss {
 
         this.FRAME_COLS = 4;
         this.FRAME_ROWS = 1;
+
+        canReboundX = true;
+        canReboundY = true;
+
+        MyGdxGame.musicManager.setMusic(Musics.boss1Music);
 
         initAnimation();
     }
@@ -110,6 +115,8 @@ public class Boss1 extends Boss {
 
     @Override
     public void runBehavior() {
+        //ANTES ESTABA EN EL MOVE, PERO DEJO DE SER NECESARIO IMPLEMENTARLO (POR AHORA)
+        actionTimer++;
         //System.out.println("BOSS HSPEED: "+hSpeed+" VSPEED: "+vSpeed+" X: "+x+" Y: "+y);
         if (MyGdxGame.MOSTRAR_COMENTARIOS_CHORRA) {
             System.out.println("We need to build a BOSS");
@@ -121,11 +128,11 @@ public class Boss1 extends Boss {
             en funcion de si esta a la izquierda o a la derecha,
             le damos movimiento hacia un lado o hacia otro.
             */
-            case 0:
+            case DEFAULT:
 
                 if (MathUtils.random(0, 1000) > 990) {
 
-                    GameEngine.spawnEnemy(MathUtils.random(68, 432), 800, GameEngine.EnemyType.SPIKE_BALL, 0);
+                    GameEngine.spawnEnemy(MathUtils.random(68, 432), 800, GameEngine.EnemyType.SPIKE_BALL, Behavior.SpikeBallEnemy.DEFAULT);
                 }
                 System.out.println(behaviorPhase + "  " + vSpeed + "  " + hSpeed);
                 switch (behaviorPhase) {
@@ -187,39 +194,6 @@ public class Boss1 extends Boss {
     @Override
     public void shoot() {
 
-    }
-
-    @Override
-    public void move() {
-
-        //super.move();
-
-        // Moverlo simplemente.
-        x += hSpeed * Gdx.graphics.getDeltaTime();
-        y += vSpeed * Gdx.graphics.getDeltaTime();
-
-        // Comprobar si hace falta quitarlo o no.
-        if ((this.y + this.height > MyGdxGame.HEIGHT && this.vSpeed > 0 || this.y < 0 && this.vSpeed < 0) && !canLiveOutsideScreen()) {
-            vSpeed = -vSpeed;
-        }
-        if (x + width > MyGdxGame.WIDTH && hSpeed > 0) {
-            x = MyGdxGame.WIDTH - width;
-            hSpeed = -hSpeed;
-        }
-        if ( x < Backgrounds.backgroundPowerUps.getWidth() && hSpeed < 0){
-            x = Backgrounds.backgroundPowerUps.getWidth();
-            hSpeed = -hSpeed;
-        }
-
-        // Desactivar la habilidad de vivir fuera de la pantalla una vez que entre el area de renderizado
-        // Este se usa para cuando generamos los enemigos.
-        // Los enemigos se generan fuera de la pantalla con el booleano en true, y despues se desactiva para
-        // ser destruidos al salir de la pantalla por debajo.
-        if (this.y < MyGdxGame.HEIGHT && this.y + this.height > 0) {
-            this.setLivesOutsideScreen(false);
-        }
-
-        actionTimer++;
     }
 
     @Override

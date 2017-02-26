@@ -32,15 +32,19 @@ public class SatelliteOrbitEnemy extends Enemy {
     private float angleWithParent;
     private float rotationSpeed = 10f;
 
-    public SatelliteOrbitEnemy(Enemy parent) {
+    private Behavior.SatelliteOrbitEnemy behavior;
 
-        super(0, 1000, -1);
+    public SatelliteOrbitEnemy(Enemy parent, Behavior.SatelliteOrbitEnemy behavior) {
+
+        super(0, 1000);
 
         this.parent = parent;
 
         //inutil (por evitar nullpointers):
         this.x = 0;
         this.y = 1000;
+
+        this.behavior = behavior;
 
         //this.angleWithParent = (float) ((Math.atan2(this.y - parent.getY(), -(this.x - parent.getY())) * 180.0d / Math.PI));
 

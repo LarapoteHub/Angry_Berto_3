@@ -25,8 +25,10 @@ public class HeavyEnemy extends Enemy {
 
     private TextureRegion[] movingFrames;
 
-    public HeavyEnemy(float x, float y, int behavior) {
-        super(x, y, behavior);
+    private Behavior.HeavyEnemy behavior;
+
+    public HeavyEnemy(float x, float y, Behavior.HeavyEnemy behavior) {
+        super(x, y);
         vSpeed = -150;
         this.width = 64;
         this.height = 64;
@@ -36,6 +38,8 @@ public class HeavyEnemy extends Enemy {
         lives = (int) Math.ceil(lives * GameEngine.uni.getEnemyHPBuff());
         setAttackSpeed(GameEngine.uni.getEnemyAttackSpeed(EnemyType.HEAVY_ENEMY));
         // TODO TEST TEST TEST TEST //
+
+        this.behavior = behavior;
 
         score = 150;
 

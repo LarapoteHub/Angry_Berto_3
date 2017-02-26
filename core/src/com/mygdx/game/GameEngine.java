@@ -717,16 +717,16 @@ public class GameEngine {
 	}
 
 	// TODO Totally make this more abstract. Just proof of concept atm.
-	public static void spawnBoss(float x, float y, BossType type) {
+	public static void spawnBoss(float x, float y, BossType type, Object behavior) {
 		switch (type) {
 			case TYPE_1:
-				Boss b = new Boss1(x, y);
+				Boss b = new Boss1(x, y, (Enemy.Behavior.Bosses.Boss1) behavior);
 				bosses.add(b);
 				break;
 		}
 	}
 
-	public static void spawnEnemy(float x, float y, EnemyType type, int behavior) {
+	public static void spawnEnemy(float x, float y, EnemyType type, Object behavior) {
 		// ------------------------------------------------------------------------
 		// este método creará los gotas con un movimiento aleatorio e
 		// independiente.
@@ -737,30 +737,29 @@ public class GameEngine {
 
 		switch (type) {
 
-		// standardEnemy
-		// --------------------------------------------------------------------------
+			// standardEnemy
+			// --------------------------------------------------------------------------
 			case STANDARD_ENEMY:
-				enemy = new StandardEnemy(x, y, behavior);
+				enemy = new StandardEnemy(x, y, (Enemy.Behavior.StandardEnemy)behavior);
 				break;
 
-		// evadingEnemy
-		// --------------------------------------------------------------------------
+			// evadingEnemy
+			// --------------------------------------------------------------------------
 			case EVADING_ENEMY:
-				enemy = new EvadingEnemy(x, y, behavior);
+				enemy = new EvadingEnemy(x, y, (Enemy.Behavior.EvadingEnemy)behavior);
 				break;
-		// spikeBallEnemy
-		// --------------------------------------------------------------------------
+			// spikeBallEnemy
+			// --------------------------------------------------------------------------
 			case SPIKE_BALL:
-				enemy = new SpikeBallEnemy(x, y, behavior);
+				enemy = new SpikeBallEnemy(x, y, (Enemy.Behavior.SpikeBallEnemy)behavior);
 				break;
 
 			case HEAVY_ENEMY:
-				enemy = new HeavyEnemy(x, y, behavior);
+				enemy = new HeavyEnemy(x, y, (Enemy.Behavior.HeavyEnemy)behavior);
 				break;
 
 			case CORE_ORBIT_ENEMY:
-				enemy = new CoreOrbitEnemy(x, y);
-				enemies.add(new SatelliteOrbitEnemy(enemy));
+				enemy = new CoreOrbitEnemy(x, y, (Enemy.Behavior.CoreOrbitEnemy)behavior);
 				break;
 
 		} // end switch();

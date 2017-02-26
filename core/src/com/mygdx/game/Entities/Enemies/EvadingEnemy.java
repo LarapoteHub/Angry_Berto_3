@@ -25,13 +25,17 @@ public class EvadingEnemy extends Enemy {
      */
 
     private TextureRegion[] movingFrames;
+    private Behavior.EvadingEnemy behavior;
+    private boolean behaviorStarted = false;
 
-    public EvadingEnemy(float x, float y, int behavior) {
-        super(x, y, behavior);
+    public EvadingEnemy(float x, float y, Behavior.EvadingEnemy behavior) {
+        super(x, y);
         vSpeed = -200; //200
         setWidth(48);
         setHeight(48);
         lives = 2;
+
+        this.behavior = behavior;
         
         timerShoot = 50;
         
@@ -43,6 +47,8 @@ public class EvadingEnemy extends Enemy {
 
         this.FRAME_COLS = 2;
         this.FRAME_ROWS = 1;
+
+        canReboundX = true;
 
         initAnimation();
 
@@ -138,6 +144,48 @@ public class EvadingEnemy extends Enemy {
 
     @Override
     public void runBehavior() {
+
+        switch(behavior) {
+
+            case DODGE_PLAYER_RIGHT:
+
+                if (!behaviorStarted) {
+                    float distance = this.y - 300;
+                    Player p = GameEngine.getPlayer();
+
+                    for (float point = this.y; point > distance; point--) {
+                        if (point >= p.getY() && point <= p.getY() + p.getHeight() &&
+                                this.x + (this.width / 2) >= p.getX() && this.x + (this.width / 2) <= p.getX() + p.getWidth()) {
+
+                            this.hSpeed = 350;
+                            this.vSpeed = 0;
+                            behaviorStarted = true;
+
+                        }
+                    }
+                }
+
+                break;
+
+            case DODGE_PLAYER_LEFT:
+                if (!behaviorStarted) {
+                    float distance = this.y - 300;
+                    Player p = GameEngine.getPlayer();
+
+                    for (float point = this.y; point > distance; point--) {
+                        if (point >= p.getY() && point <= p.getY() + p.getHeight() &&
+                                this.x + (this.width / 2) >= p.getX() && this.x + (this.width / 2) <= p.getX() + p.getWidth()) {
+
+                            this.hSpeed = -350;
+                            this.vSpeed = 0;
+                            behaviorStarted = true;
+
+                        }
+                    }
+                }
+
+                break;
+        }
 
     }
 
