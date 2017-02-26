@@ -22,7 +22,7 @@ public class RotaryHoe extends Projectile {
     Enemy enContainer;
     Sprite spr;
     // TODO Esto no funca bien...
-    private float targetX, targetY, accelX = 0, step;
+    private float targetX, targetY;
 
     float angle = 0;
     private double a, b, c;
@@ -30,11 +30,11 @@ public class RotaryHoe extends Projectile {
     public RotaryHoe(float x, float y) {
         this.x = x;
         this.y = y;
-        initSprite();
-        initCurve();
-
         this.setWidth(64);
         this.setHeight(64);
+
+        initSprite();
+        initCurve();
         this.damage = 3;
         this.angle = 0;
 
@@ -46,12 +46,12 @@ public class RotaryHoe extends Projectile {
     }
 
     private void initSprite() {
-        this.spr = new Sprite(Sprites.powerUp_rotaryHoe);
+        this.spr = new Sprite(Sprites.getSpriteByName("powerUp_rotaryHoe")[0]);
         spr.rotate(MathUtils.random(0, 350));
 
         x -= 6;
         y -= 6;
-        spr.setPosition(x, y);
+        spr.setBounds(x, y, width, height);
     }
 
     private void initCurve() {

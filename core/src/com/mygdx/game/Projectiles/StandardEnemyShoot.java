@@ -32,7 +32,7 @@ public class StandardEnemyShoot extends Projectile {
     @Override
     public void draw() {
 
-        GameEngine.batch.draw(Sprites.bullet_enemy, x, y, getWidth(), getHeight());
+        GameEngine.batch.draw(Sprites.getSpriteByName("bullet_enemy")[0], x, y, getWidth(), getHeight());
 
     }
 

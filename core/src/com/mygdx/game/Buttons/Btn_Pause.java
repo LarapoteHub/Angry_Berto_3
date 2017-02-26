@@ -17,8 +17,8 @@ public class Btn_Pause extends Button {
 //    pausePlayButtonBox.y = (800 - pausePlayButtonBox.height) - 5;
 
     public Btn_Pause() {
-        super(MyGdxGame.WIDTH - 64 - 5, MyGdxGame.HEIGHT - 64 - 5, 64, 64, Sprites.btn_pause);
-        name = "btn_Pause";
+        super(MyGdxGame.WIDTH - 64 - 5, MyGdxGame.HEIGHT - 64 - 5, 64, 64, "btn_pause");
+        name = "btn_pause";
     }
 
     @Override

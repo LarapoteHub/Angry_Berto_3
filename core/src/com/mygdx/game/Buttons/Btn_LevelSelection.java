@@ -15,7 +15,7 @@ public class Btn_LevelSelection extends Button {
     private Level targetLevel;
 
     public Btn_LevelSelection(float x, float y, Sprite spr, String name, Level targetLevel) {
-        super(x, y, 80, 50, spr);
+        super(x, y, 80, 50, name);
         this.name = name;
         this.targetLevel = targetLevel;
 

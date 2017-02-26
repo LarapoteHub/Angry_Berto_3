@@ -225,11 +225,11 @@ public class Boss1 extends Boss {
     @Override
     public void initAnimation() {
 
-        Sprites.boss_1.setBounds(0, 0, Sprites.boss_1.getTexture().getWidth(), Sprites.boss_1.getTexture().getHeight());
+        //Sprites.getSpriteByName(name)[].boss_1.setBounds(0, 0, Sprites.boss_1.getTexture().getWidth(), Sprites.boss_1.getTexture().getHeight());
 
         movingFrames = new TextureRegion[FRAME_COLS];
 
-        movingFrames = Sprites.boss_1.split(Sprites.boss_1.getTexture(), (int) Sprites.boss_1.getWidth() / FRAME_COLS, (int) Sprites.boss_1.getHeight() / FRAME_ROWS)[0];
+        movingFrames = Sprites.getSpriteByName("boss_1")[0].split(Sprites.getSpriteByName("boss_1")[0].getTexture(), (int) Sprites.getSpriteByName("boss_1")[0].getWidth() / FRAME_COLS, (int) Sprites.getSpriteByName("boss_1")[0].getHeight() / FRAME_ROWS)[0];
 
         currentAnimation = new Animation(0.4f, movingFrames);
         //currentAnimation.setPlayMode(Animation.PlayMode.LOOP);

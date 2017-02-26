@@ -3,6 +3,7 @@ package com.mygdx.game.Entities.Enemies;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.mygdx.game.GameEngine;
@@ -174,11 +175,13 @@ public class StandardEnemy extends Enemy {
 	@Override
 	public void initAnimation() {
 
-		Sprites.enemy_std.setBounds(0, 0, Sprites.enemy_std.getTexture().getWidth(), Sprites.enemy_std.getTexture().getHeight());
+		//Sprites.enemy_std.setBounds(0, 0, Sprites.enemy_std.getTexture().getWidth(), Sprites.enemy_std.getTexture().getHeight());
 
 		movingFrames = new TextureRegion[FRAME_COLS];
 
-		movingFrames = Sprites.enemy_std.split(Sprites.enemy_std.getTexture(), (int) Sprites.enemy_std.getWidth() / FRAME_COLS, (int) Sprites.enemy_std.getHeight() / FRAME_ROWS)[0];
+
+		Sprite enemy_std = Sprites.getSpriteByName("enemy_std")[0];
+		movingFrames = enemy_std.split(enemy_std.getTexture(), (int) enemy_std.getWidth() / FRAME_COLS, (int) enemy_std.getHeight() / FRAME_ROWS)[0];
 
 		currentAnimation = new Animation(0.4f, movingFrames);
 		//currentAnimation.setPlayMode(Animation.PlayMode.LOOP);

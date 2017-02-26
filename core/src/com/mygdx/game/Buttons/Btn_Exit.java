@@ -22,8 +22,8 @@ public class Btn_Exit extends Button {
     */
 
     public Btn_Exit() {
-        super(MyGdxGame.WIDTH - 64 - 5, MyGdxGame.HEIGHT - 64 - 79, 64, 64, Sprites.btn_exit);
-        this.name = "btn_Exit";
+        super(MyGdxGame.WIDTH - 64 - 5, MyGdxGame.HEIGHT - 64 - 79, 64, 64, "btn_exit");
+        this.name = "btn_exit";
     }
 
     @Override

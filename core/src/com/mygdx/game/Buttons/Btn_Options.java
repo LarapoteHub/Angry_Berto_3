@@ -13,8 +13,8 @@ public class Btn_Options extends Button {
 	 */
 	
 	public Btn_Options() {
-		super(30, 20, 110, 120, Sprites.btn_options);
-		this.name = "btn_Options";
+		super(30, 20, 110, 120, "btn_options");
+		this.name = "btn_options";
 	}
 	
 	@Override

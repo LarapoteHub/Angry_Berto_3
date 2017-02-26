@@ -16,8 +16,8 @@ public class Btn_HighScore extends Button {
 	 */
 	
     public Btn_HighScore() {
-        super(170, 20, 140, 120, Sprites.btn_scores);
-        this.name = "btn_HighScore";
+        super(170, 20, 140, 120, "btn_scores");
+        this.name = "btn_scores";
     }
 
     @Override

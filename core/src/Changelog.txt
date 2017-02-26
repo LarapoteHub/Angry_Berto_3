@@ -33,3 +33,16 @@ Añadido el método setScale(float scaleX, float scaleY) a la clase Text(), el c
 Escalados unos cuantos textos, contador de fps reducido en tamaño, redondeado a dos decimales
     y colocado debajo de la score.
 Cambiado el color de la score a verde.
+
+---------------------------
+
+0.1_4
+Cambiado sistema de carga de Sprites
+    - Sistema actual requiere un ID unico para cada sprite cargado.
+    - Mejora del sistema actual posible.
+    - Aparenta una mejora de velocidad de carga.
+Cambiado sistema de acceso a Sprites.
+Cambiado la mayoria de GameEngine.batch.draw() por Sprite.draw()
+
+-- RuLoSp --
+

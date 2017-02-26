@@ -71,12 +71,12 @@ public class Explosion extends PlainAnimation {
 
     public void initAnimation() {
 
-        Sprites.explosion.setBounds(0, 0, Sprites.explosion.getTexture().getWidth(), Sprites.explosion.getTexture().getHeight());
+        //Sprites.getSpriteByName("explosion").explosion.setBounds(0, 0, Sprites.explosion.getTexture().getWidth(), Sprites.explosion.getTexture().getHeight());
 
-        Sprites.explosion.setPosition(x, y);
+        //Sprites.getSpriteByName("explosion").setPosition(x, y);
 
 
-        tmp = Sprites.explosion.split(Sprites.explosion.getTexture(), (int) Sprites.explosion.getWidth() / FRAME_COLS, (int) Sprites.explosion.getHeight() / FRAME_ROWS);
+        tmp = Sprites.getSpriteByName("explosion")[0].split(Sprites.getSpriteByName("explosion")[0].getTexture(), (int) Sprites.getSpriteByName("explosion")[0].getWidth() / FRAME_COLS, (int) Sprites.getSpriteByName("explosion")[0].getHeight() / FRAME_ROWS);
         explodingFrames = new TextureRegion[FRAME_COLS];
 
         explodingFrames = tmp[0];

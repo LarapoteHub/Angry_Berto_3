@@ -39,7 +39,7 @@ public class HeavyEnemyShoot extends Projectile {
     @Override
     public void draw() {
 
-        GameEngine.batch.draw(Sprites.bullet_heavy_enemy[index].getTexture(), x, y, getWidth(), getHeight());
+        GameEngine.batch.draw(Sprites.getSpriteByName("bullet_heavy_enemy")[index].getTexture(), x, y, getWidth(), getHeight());
 
     }
 

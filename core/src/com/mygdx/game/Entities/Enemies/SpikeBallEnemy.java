@@ -146,11 +146,11 @@ public class SpikeBallEnemy extends Enemy {
     @Override
     public void initAnimation() {
 
-        Sprites.enemy_spikeBall.setBounds(0, 0, Sprites.enemy_spikeBall.getTexture().getWidth(), Sprites.enemy_spikeBall.getTexture().getHeight());
+        //Sprites.enemy_spikeBall.setBounds(0, 0, Sprites.enemy_spikeBall.getTexture().getWidth(), Sprites.enemy_spikeBall.getTexture().getHeight());
 
         movingFrames = new TextureRegion[FRAME_COLS];
 
-        movingFrames = Sprites.enemy_spikeBall.split(Sprites.enemy_spikeBall.getTexture(), (int) Sprites.enemy_spikeBall.getWidth() / FRAME_COLS, (int) Sprites.enemy_spikeBall.getHeight() / FRAME_ROWS)[0];
+        movingFrames = Sprites.getSpriteByName("enemy_spikeBall")[0].split(Sprites.getSpriteByName("enemy_spikeBall")[0].getTexture(), (int) Sprites.getSpriteByName("enemy_spikeBall")[0].getWidth() / FRAME_COLS, (int) Sprites.getSpriteByName("enemy_spikeBall")[0].getHeight() / FRAME_ROWS)[0];
 
         currentAnimation = new Animation(0.4f, movingFrames);
         //currentAnimation.setPlayMode(Animation.PlayMode.LOOP);

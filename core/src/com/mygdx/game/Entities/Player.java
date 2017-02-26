@@ -335,20 +335,20 @@ public class Player extends Ship {
 
 	private void initAnimation() {
 
-
-		Sprites.player.setBounds(0, 0, Sprites.player.getTexture().getWidth(), Sprites.player.getTexture().getHeight());
+		// TODO Plantearse si esto es mejor hacerlo con el SprName
+		//Sprites.getSpriteByName("player")[0].setBounds(0, 0, Sprites.getSpriteByName("player")[0].getTexture().getWidth(), Sprites.getSpriteByName("player")[0].getTexture().getHeight());
 
 		movingFrames = new TextureRegion[FRAME_COLS];
 
-		movingFrames = Sprites.player.split(Sprites.player.getTexture(), (int) Sprites.player.getWidth() / FRAME_COLS, (int) Sprites.player.getHeight() / FRAME_ROWS)[0];
+		movingFrames = Sprites.getSpriteByName("player")[0].split(Sprites.getSpriteByName("player")[0].getTexture(), (int) Sprites.getSpriteByName("player")[0].getWidth() / FRAME_COLS, (int) Sprites.getSpriteByName("player")[0].getHeight() / FRAME_ROWS)[0];
 
 		currentAnimation = new Animation(0.4f, movingFrames);
-
-		Sprites.player_propulsion.setBounds(0, 0, Sprites.player_propulsion.getTexture().getWidth(), Sprites.player_propulsion.getTexture().getHeight());
+		// Probabliemente inutil, ya que el Width y Height se asignan al cargar...
+		//Sprites.getSpriteByName("player_propulsion")[0].setBounds(0, 0, Sprites.getSpriteByName("player_propulsion")[0].getTexture().getWidth(), Sprites.player_propulsion.getTexture().getHeight());
 
 		propulsionFrames = new TextureRegion[FRAME_COLS_PROPULSION];
 
-		propulsionFrames = Sprites.player_propulsion.split(Sprites.player_propulsion.getTexture(), (int) Sprites.player_propulsion.getWidth() / FRAME_COLS_PROPULSION, (int) Sprites.player_propulsion.getHeight() / FRAME_ROWS_PROPULSION)[0];
+		propulsionFrames = Sprites.getSpriteByName("player_propulsion")[0].split(Sprites.getSpriteByName("player_propulsion")[0].getTexture(), (int) Sprites.getSpriteByName("player_propulsion")[0].getWidth() / FRAME_COLS_PROPULSION, (int) Sprites.getSpriteByName("player_propulsion")[0].getHeight() / FRAME_ROWS_PROPULSION)[0];
 
 		propulsionAnimation = new Animation(0.4f, propulsionFrames);
 

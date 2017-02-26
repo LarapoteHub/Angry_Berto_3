@@ -170,27 +170,11 @@ public class HeavyEnemy extends Enemy {
     @Override
     public void runBehavior() {
 
-
-    }
-
-    //este método lanzará el método shoot() en 1 segundo
-    public void initShoot() {
-        /*shootTask  = new Timer.Task() {  @Override
-        public void run() {
-
-            shoot();
-
-        }
-
-        };
-
-        //cada 0.06 segundos incrementamos el índice de la imagen.
-        Timer.schedule(shootTask,1, 1 ,0);*/
     }
 
     //creamos un disparo
     public void shoot() {
-        // 10% probabilidad de que dispare
+        // 50% probabilidad de que dispare
         int a = MathUtils.random(0, 100);
         if (a < 70) {
             GameEngine.addEntity(new HeavyEnemyShoot(this), EntityType.BULLET_ENEMY);
@@ -210,14 +194,13 @@ public class HeavyEnemy extends Enemy {
     @Override
     public void initAnimation() {
 
-        Sprites.enemy_heavy.setBounds(0, 0, Sprites.enemy_heavy.getTexture().getWidth(), Sprites.enemy_heavy.getTexture().getHeight());
+        //Sprites.enemy_heavy.setBounds(0, 0, Sprites.enemy_heavy.getTexture().getWidth(), Sprites.enemy_heavy.getTexture().getHeight());
 
         movingFrames = new TextureRegion[FRAME_COLS];
 
-        movingFrames = Sprites.enemy_heavy.split(Sprites.enemy_heavy.getTexture(), (int) Sprites.enemy_heavy.getWidth() / FRAME_COLS, (int) Sprites.enemy_heavy.getHeight() / FRAME_ROWS)[0];
+        movingFrames = Sprites.getSpriteByName("enemy_heavy")[0].split(Sprites.getSpriteByName("enemy_heavy")[0].getTexture(), (int) Sprites.getSpriteByName("enemy_heavy")[0].getWidth() / FRAME_COLS, (int) Sprites.getSpriteByName("enemy_heavy")[0].getHeight() / FRAME_ROWS)[0];
 
         currentAnimation = new Animation(0.4f, movingFrames);
-        //currentAnimation.setPlayMode(Animation.PlayMode.LOOP);
 
     }
 }

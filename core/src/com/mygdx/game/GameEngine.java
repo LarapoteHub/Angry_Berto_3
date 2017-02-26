@@ -141,9 +141,6 @@ public class GameEngine {
 		renderer = new Renderer();
 
 
-		// Necesario para algunos botones...
-		Button.engine = this;
-
 		// NO MAS MIO -------------------
 
 		// enemysList = new Array<Enemy>();
@@ -273,7 +270,7 @@ public class GameEngine {
 			// ANTES 20* I
 			// batch.draw(Sprites.liveImage, 10 + (36 * i), 726, 32, 32);
 
-			batch.draw(Sprites.life, 10, firstY, 48, 48);
+			batch.draw(Sprites.getSpriteByName("life")[0], 10, firstY, 48, 48);
 
 			firstY -= 48;
 
@@ -526,8 +523,8 @@ public class GameEngine {
 
 		//Sprites.powerUp_charge_bar.draw(batch);
 																		//380 - 20 (diferencia )
-		batch.draw(Sprites.powerUp_charge_bar_container.getTexture(), 3, 360);
-		batch.draw(Sprites.powerUp_charge_bar.getTexture(), 5, 380);
+		batch.draw(Sprites.getSpriteByName("powerUp_charge_bar_container")[0].getTexture(), 3, 360);
+		batch.draw(Sprites.getSpriteByName("powerUp_charge_bar")[0].getTexture(), 5, 380);
 		batch.end();
 
 		if (powerUpChargeBgColor == null) {
@@ -538,7 +535,7 @@ public class GameEngine {
 
 		sRenderer.setColor(powerUpChargeBgColor);
 		//Lógica chunga para esto....
-		sRenderer.rect(5, 380 + 100 - (100 - player.getCharge()), Sprites.powerUp_charge_bar.getTexture().getWidth(), 100 - player.getCharge());
+		sRenderer.rect(5, 380 + 100 - (100 - player.getCharge()), Sprites.getSpriteByName("powerUp_charge_bar")[0].getTexture().getWidth(), 100 - player.getCharge());
 
 		sRenderer.end();
 
