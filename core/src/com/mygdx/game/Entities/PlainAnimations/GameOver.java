@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.mygdx.game.Entities.Text;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.Multimedia.Sprites;
+import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Screens.Scr_GameOver;
 
 /**
@@ -31,7 +32,7 @@ public class GameOver extends PlainAnimation {
         if (y > 500) {
             this.y += vSpeed * Gdx.graphics.getDeltaTime();
         } else if (!Scr_GameOver.textAdded) {
-            GameEngine.addText(new Text("TOUCH THE SCREEN", 85, 200, Color.WHITE));
+            GameEngine.addText(new Text("TOUCH THE SCREEN", MyGdxGame.WIDTH/2, 180, Color.WHITE).setCenterToPoint(true));
             Scr_GameOver.textAdded = true;
         }
 

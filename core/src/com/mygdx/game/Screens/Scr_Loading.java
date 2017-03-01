@@ -24,7 +24,7 @@ public class Scr_Loading implements Screen {
                 "SULFATANDO A RIBEIRA...",
                 "ESPANTANDO NAS PEGAS...",
                 "TIRÁNDOLLE ÓS MERLOS...",
-                "AFALANDOLLES ÁS VACAS...",
+                "AFALÁNDOLLES ÁS VACAS...",
                 "CURANDO OS CHOURIZOS...",
                 "SEMENTANDO AS PATACAS...",
                 "FACENDO NOS REGOS...",

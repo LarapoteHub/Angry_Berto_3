@@ -17,6 +17,9 @@ public abstract class Level {
     int phasesCount = 0;
     protected String name = null;
 
+    protected int enemiesSpawned = 0;
+    protected int enemiesDestroyed = 0;
+
     public Level() {
         running = false;
         finished = false;
@@ -58,5 +61,20 @@ public abstract class Level {
         return name;
     }
 
+    public int getEnemiesSpawned() {
+        return this.enemiesSpawned;
+    }
+
+    public int getEnemiesDestroyed() {
+        return this.enemiesDestroyed;
+    }
+
+    public void increaseSpawned() {
+        this.enemiesSpawned++;
+    }
+
+    public void increaseEnemiesDestroyed() {
+        this.enemiesDestroyed++;
+    }
 }
 

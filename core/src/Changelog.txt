@@ -74,7 +74,17 @@ Ahora cuando EvadingEnemy esquiva, su vSpeed es -150.
 Limpiados métodos action de los enemigos.
 Añadida mecánica de AnimationAdapter a los enemigos.
 ------------
-0.1_7
+0.1_7_2
 -- 100vol --
 Corregido error por el cual no se animaba el enemigo de introduction (pasarle un frameDuration de 0).
+Ahora, al acabar la partida, en Scr_GameOver se muestra el número de enemigos que salieron, y el
+    número de enemigos que fueron destruidos, estos datos se obtienen del propio Level. Podrían ser útiles para dar
+    estrellas al resultado de un nivel, por ejemplo.
+        - Cada vez que muere un enemigo muere (kill()), se aumenta el total en el currentLevel del levelManager
+        - Cada vez que se llama al método spawnEnemy() de GameEngine se incrementa el número de enemigos
+            spawneados (en el levelMAnager), pero solo con ese método, gracias a eso, los enemigos aparecidos desde un
+            addEntity o a pelo (como el SatelliteOrbitEnemy por ejemplo), no contarán como un enemigo más,
+            en el método kill() de Enemy se comprueba que el enemigo de un score > 0 para que se
+            tenga en cuenta o no. Los spikeBallEnemy que saca el boss van a través de spawnEnemy,
+            así que no hay problema con ellos.
 ------------

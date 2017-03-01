@@ -43,8 +43,11 @@ public class Scr_GameOver implements Screen {
 
 			GameEngine.addEntity(new GameOver(90, 850), GameEngine.EntityType.PLAIN_ANIMATION);
 
-			GameEngine.addText(new Text("-- SCORE --", MyGdxGame.WIDTH/2, 400, Color.RED).setCenterToPoint(true).setScale(0.8f, 0.8f));
-			GameEngine.addText(new Text("- " + GameEngine.getLastScore()+" -", MyGdxGame.WIDTH/2, 365, Color.GREEN).setCenterToPoint(true).setScale(1.5f, 1.5f));
+			GameEngine.addText(new Text("-- SCORE --", MyGdxGame.WIDTH/2, 420, Color.RED).setCenterToPoint(true).setScale(0.8f, 0.8f));
+			GameEngine.addText(new Text(GameEngine.getLastScore()+"", MyGdxGame.WIDTH/2, 385, Color.GREEN).setCenterToPoint(true).setScale(1.5f, 1.5f));
+
+			GameEngine.addText(new Text("-- ENEMIES DESTROYED --", MyGdxGame.WIDTH/2, 320, Color.RED).setCenterToPoint(true).setScale(0.8f, 0.8f));
+			GameEngine.addText(new Text(GameEngine.levelManager.getCurrentLevel().getEnemiesDestroyed() + " / " + GameEngine.levelManager.getCurrentLevel().getEnemiesSpawned(), MyGdxGame.WIDTH/2, 285, Color.GREEN).setCenterToPoint(true).setScale(1.5f, 1.5f));
 
 		} catch (Exception ex) {
 			System.out.println("Excepción en Scr_GameOver.");

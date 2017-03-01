@@ -54,7 +54,6 @@ public abstract class Enemy extends Ship {
     	cooldown = 50;
         this.x = x;
         this.y = y;
-
         
         // Necesario para que hagan Spawn por fuera de la pantalla.
         // Cosas de la organizacion.
@@ -93,6 +92,10 @@ public abstract class Enemy extends Ship {
                 * System.nanoTime() / 13);
         if (rnd.nextInt(100) < getPowerUpProbability())
             GameEngine.spawnPowerUpCharge(x, y);
+
+        if (this.score > 0) {
+            GameEngine.levelManager.getCurrentLevel().increaseEnemiesDestroyed();
+        }
     }
 
     public float getLives() {

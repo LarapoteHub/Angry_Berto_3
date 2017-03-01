@@ -765,6 +765,7 @@ public class GameEngine {
 		} // end switch();
 
 		enemies.add(enemy);
+		levelManager.getCurrentLevel().increaseSpawned();
 
 		// }
 
