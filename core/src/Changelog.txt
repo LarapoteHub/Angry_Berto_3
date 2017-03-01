@@ -74,3 +74,7 @@ Ahora cuando EvadingEnemy esquiva, su vSpeed es -150.
 Limpiados métodos action de los enemigos.
 Añadida mecánica de AnimationAdapter a los enemigos.
 ------------
+0.1_7
+-- 100vol --
+Corregido error por el cual no se animaba el enemigo de introduction (pasarle un frameDuration de 0).
+------------

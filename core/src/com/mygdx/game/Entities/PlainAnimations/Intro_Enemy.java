@@ -88,19 +88,8 @@ public class Intro_Enemy extends PlainAnimation {
     @Override
     public void initAnimation() {
 
-        //Sprites.enemy_std.setBounds(0, 0, Sprites.enemy_std.getTexture().getWidth(), Sprites.enemy_std.getTexture().getHeight());
-
-        //movingFrames = new TextureRegion[FRAME_COLS];
-
-        //movingFrames = Sprites.getSpriteByName("enemy_std")[0].split(Sprites.getSpriteByName("enemy_std")[0].getTexture(), (int) Sprites.getSpriteByName("enemy_std")[0].getWidth() / FRAME_COLS, (int) Sprites.getSpriteByName("enemy_std")[0].getHeight() / FRAME_ROWS)[0];
-
-
         Sprite spr = Sprites.getSpriteByName("enemy_std")[0];
-
-        currentAnimation = new AnimationAdapter(0, AnimationAdapter.splitSheet(spr, FRAME_COLS, FRAME_ROWS), Animation.PlayMode.NORMAL);
-
-        //currentAnimation = new AnimationAdapter(0.4f, movingFrames, Animation.PlayMode.NORMAL);
-        //currentAnimation.setPlayMode(Animation.PlayMode.LOOP);
+        currentAnimation = new AnimationAdapter(0.4f, AnimationAdapter.splitSheet(spr, FRAME_COLS, FRAME_ROWS), Animation.PlayMode.NORMAL);
 
     }
 
