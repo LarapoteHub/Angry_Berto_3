@@ -3,8 +3,10 @@ package com.mygdx.game.Entities.Enemies;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
+import com.mygdx.game.Entities.PlainAnimations.AnimationAdapter;
 import com.mygdx.game.Entities.Player;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.GameEngine.EnemyType;
@@ -93,18 +95,6 @@ public class SpikeBallEnemy extends Enemy {
             remove = true;
         }
 
-        //si una gota colisiona con la nave...
-        /*if (overlaps(player)) {
-            // reproducimos el sonido correspondiente...
-            Sounds.explodeSound.play();
-            //si este enemigo choca con el jugador le bajaremos 1 vida, la spikeBall le bajara 2
-            player.decreaseLives(2);
-            // y la eliminamos de nuestro mundo.
-            kill();
-
-
-        }*/
-
         if (getLives() <= 0) {
 
             Sounds.explodeSound.play();
@@ -119,9 +109,6 @@ public class SpikeBallEnemy extends Enemy {
 
 
             remove = true;
-
-            //spawnExplosion(enemyContainer.getX() + 6, enemyContainer.getY() + 6);
-            //iterEnemys.remove();
         }
 
     } //end ACTION()
@@ -148,14 +135,18 @@ public class SpikeBallEnemy extends Enemy {
     @Override
     public void initAnimation() {
 
-        //Sprites.enemy_spikeBall.setBounds(0, 0, Sprites.enemy_spikeBall.getTexture().getWidth(), Sprites.enemy_spikeBall.getTexture().getHeight());
+        Sprite spr = Sprites.getSpriteByName("enemy_spikeBall")[0];
+        currentAnimation = new AnimationAdapter(0.4f, AnimationAdapter.splitSheet(spr, FRAME_COLS, FRAME_ROWS), Animation.PlayMode.NORMAL);
 
+        //region OLD
+        /*
         movingFrames = new TextureRegion[FRAME_COLS];
 
         movingFrames = Sprites.getSpriteByName("enemy_spikeBall")[0].split(Sprites.getSpriteByName("enemy_spikeBall")[0].getTexture(), (int) Sprites.getSpriteByName("enemy_spikeBall")[0].getWidth() / FRAME_COLS, (int) Sprites.getSpriteByName("enemy_spikeBall")[0].getHeight() / FRAME_ROWS)[0];
 
         currentAnimation = new Animation(0.4f, movingFrames);
-        //currentAnimation.setPlayMode(Animation.PlayMode.LOOP);
+        */
+        //endregion
 
     }
 

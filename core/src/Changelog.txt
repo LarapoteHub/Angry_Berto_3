@@ -66,3 +66,11 @@ Reducido codigo necesario para inicializar animacion.
 -- RuLoSp --
 Arreglado los satelites cuando hay mas de 1 enemigo de ese tipo en pantalla.
 ------------
+
+0.1_7
+-- 100vol --
+Añadida oleada a Level0.
+Ahora cuando EvadingEnemy esquiva, su vSpeed es -150.
+Limpiados métodos action de los enemigos.
+Añadida mecánica de AnimationAdapter a los enemigos.
+------------

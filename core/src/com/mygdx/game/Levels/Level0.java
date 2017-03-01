@@ -17,8 +17,8 @@ public class Level0 extends Level {
 
     public Level0() {
         movementIndex = 0;
-        this.nPhases = 8;
-        this.bossPhase = 9;
+        this.nPhases = 9;
+        this.bossPhase = 10;
         this.maxPhases = MathUtils.random(12, 18);
         this.name = "Level 1";
     }
@@ -215,6 +215,15 @@ public class Level0 extends Level {
                 break;
 
             case 9:
+
+                GameEngine.spawnEnemy(88, 880, GameEngine.EnemyType.EVADING_ENEMY, Enemy.Behavior.EvadingEnemy.DODGE_PLAYER_LEFT); //spikeBall
+                GameEngine.spawnEnemy(186, 800, GameEngine.EnemyType.EVADING_ENEMY, Enemy.Behavior.EvadingEnemy.DODGE_PLAYER_LEFT); //spikeBall
+                GameEngine.spawnEnemy(314, 800, GameEngine.EnemyType.EVADING_ENEMY, Enemy.Behavior.EvadingEnemy.DODGE_PLAYER_RIGHT); //spikeBall
+                GameEngine.spawnEnemy(412, 880, GameEngine.EnemyType.EVADING_ENEMY, Enemy.Behavior.EvadingEnemy.DODGE_PLAYER_RIGHT); //spikeBall
+
+                break;
+
+            case 10:
 
                 GameEngine.spawnBoss(78, 700, GameEngine.BossType.TYPE_1, Enemy.Behavior.Bosses.Boss1.DEFAULT); //boss1
 

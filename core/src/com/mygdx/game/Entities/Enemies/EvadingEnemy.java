@@ -3,8 +3,10 @@ package com.mygdx.game.Entities.Enemies;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
+import com.mygdx.game.Entities.PlainAnimations.AnimationAdapter;
 import com.mygdx.game.Entities.Player;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.GameEngine.EnemyType;
@@ -30,9 +32,9 @@ public class EvadingEnemy extends Enemy {
 
     public EvadingEnemy(float x, float y, Behavior.EvadingEnemy behavior) {
         super(x, y);
-        vSpeed = -200; //200
-        setWidth(48);
-        setHeight(48);
+        this.vSpeed = -200; //200
+        this.width = 48;
+        this.height = 48;
         lives = 2;
 
         this.behavior = behavior;
@@ -84,63 +86,7 @@ public class EvadingEnemy extends Enemy {
 
     }
 
-    public void action(Player player) {
 
-        if (x+24 >= player.getX() && x+24 <= player.getX()+56 && player.getY() >= y - 400 && hSpeed == 0) { //antes 48 el 100
-
-            if (MathUtils.random(0, 1) == 0) {
-            	hSpeed = 300;
-            } else {
-            	hSpeed = -300;
-            }
-
-        } //end if
-
-        // le restamos a su Y las unidades por segundo de su vspeed aplicando la misma fórmula que a la nave. Lo mismo para su X y su hspeed;
-        y -= this.vSpeed * Gdx.graphics.getDeltaTime();
-        x += this.hSpeed * Gdx.graphics.getDeltaTime();
-        //si el enemigo se sale de los márgenes, invertimos su velocidad.
-        if (x <= 68 || x >= 480 - 32 ) //antes 0 donde el 68
-            this.setHSpeed(-hSpeed);
-
-        //usamos timerShoot para que entre disparo y disparo ocurran al menos 50 iteraciones
-        if (timerShoot<50) {
-            timerShoot++;
-
-        }
-
-        //probabilidad de que dispare. //990
-        if (MathUtils.random(0, 1000) > 995 && !GameEngine.gameState.isPaused() && timerShoot == 50) {
-            Sounds.enemyShootSound.play();
-            engine.addEntity(new StandardEnemyShoot(this), EntityType.BULLET_ENEMY);
-            timerShoot = 0;
-        }
-
-        //COMPORTAMIENTO
-        runBehavior();
-
-        // en caso de que el enemigo se salga de los márgenes de la pantalla por debajo, la eliminamos.
-        if (y + 48 < 0) {
-            remove = true;
-        }
-
-        if (getLives() <= 0) {
-
-            Sounds.explodeSound.play();
-            player.addScore(10);
-
-            random = MathUtils.random(0,20);
-
-            if (random == 5 || random == 8 || random == 2 || random == 4) {
-                //spawnPowerUpLive(enemyContainer.getX(), enemyContainer.getY());
-                charge = true;
-            }
-
-
-            remove = true;
-        }
-
-    } //end ACTION()
 
     @Override
     public void runBehavior() {
@@ -158,7 +104,7 @@ public class EvadingEnemy extends Enemy {
                                 this.x + (this.width / 2) >= p.getX() && this.x + (this.width / 2) <= p.getX() + p.getWidth()) {
 
                             this.hSpeed = 350;
-                            this.vSpeed = 0;
+                            this.vSpeed = -150;
                             behaviorStarted = true;
 
                         }
@@ -177,7 +123,7 @@ public class EvadingEnemy extends Enemy {
                                 this.x + (this.width / 2) >= p.getX() && this.x + (this.width / 2) <= p.getX() + p.getWidth()) {
 
                             this.hSpeed = -350;
-                            this.vSpeed = 0;
+                            this.vSpeed = -150;
                             behaviorStarted = true;
 
                         }
@@ -205,12 +151,19 @@ public class EvadingEnemy extends Enemy {
     @Override
     public void initAnimation() {
 
+        Sprite spr = Sprites.getSpriteByName("enemy_dodging")[0];
+        currentAnimation = new AnimationAdapter(0.4f, AnimationAdapter.splitSheet(spr, FRAME_COLS, FRAME_ROWS), Animation.PlayMode.NORMAL);
+
+        //region OLD
         //Sprites.enemy_dodging.setBounds(0, 0, Sprites.enemy_dodging.getTexture().getWidth(), Sprites.enemy_dodging.getTexture().getHeight());
 
+        /*
         movingFrames = new TextureRegion[FRAME_COLS];
         movingFrames = Sprites.getSpriteByName("enemy_dodging")[0].split(Sprites.getSpriteByName("enemy_dodging")[0].getTexture(), (int) Sprites.getSpriteByName("enemy_dodging")[0].getWidth() / FRAME_COLS, (int) Sprites.getSpriteByName("enemy_dodging")[0].getHeight() / FRAME_ROWS)[0];
 
         currentAnimation = new Animation(0.4f, movingFrames);
+        */
+        //endregion
 
     }
 
