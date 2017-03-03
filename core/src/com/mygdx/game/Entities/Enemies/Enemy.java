@@ -196,6 +196,10 @@ public abstract class Enemy extends Ship {
             DEFAULT;
         }
 
+        public enum AlambradaEnemy {
+            DEFAULT;
+        }
+
         public enum CoreOrbitEnemy {
             DEFAULT;
         }

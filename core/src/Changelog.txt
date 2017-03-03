@@ -94,3 +94,8 @@ Modificado SatelliteOrbitEnemy, ahora se puede controlar la velocidad de rotaci�
     con el padre mediante 2 variables (rotationSpeed y distanceWithParent). Ahora el parent es de
     Ship, no Enemy, posibilitando así el spawn de satélites al rededor del Player.
 ------------
+0.1_8_0_1
+--Xamon--
+Creada clase AlambradaEnemy, creados los tipos correspondientes en GameEngine, Behavior, etc... no debería causar problemas
+También añadí la extensión .txt a Idead
+------------

@@ -19,8 +19,10 @@ import com.mygdx.game.Multimedia.Sprites;
 public class SpikeBallEnemy extends Enemy {
 
     /* DESCRIPCIÓN:
-        enemigo estánder dispara y tiene una velocidad vertical de 200,
-        su movimiento es controlado por schedules de las clases derivadas de Level.
+
+     es una mina, cambiar la descripción
+        //enemigo estánder dispara y tiene una velocidad vertical de 200,
+        //su movimiento es controlado por schedules de las clases derivadas de Level.
      */
 
     private TextureRegion[] movingFrames;

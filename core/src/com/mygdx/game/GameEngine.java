@@ -709,7 +709,7 @@ public class GameEngine {
 	 **************************************************************************************************************************************************/
 
 	public enum EnemyType {
-		STANDARD_ENEMY, EVADING_ENEMY, SPIKE_BALL, HEAVY_ENEMY, SATELLITE_ORBIT_ENEMY, CORE_ORBIT_ENEMY, BOSS;
+		STANDARD_ENEMY, EVADING_ENEMY, SPIKE_BALL, HEAVY_ENEMY, SATELLITE_ORBIT_ENEMY, CORE_ORBIT_ENEMY, BOSS, ALAMBRADA;
 	}
 
 	public enum BossType {
