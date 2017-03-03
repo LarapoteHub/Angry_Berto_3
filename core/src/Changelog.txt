@@ -88,3 +88,9 @@ Ahora, al acabar la partida, en Scr_GameOver se muestra el número de enemigos q
             tenga en cuenta o no. Los spikeBallEnemy que saca el boss van a través de spawnEnemy,
             así que no hay problema con ellos.
 ------------
+0.1_8
+-- 100vol --
+Modificado SatelliteOrbitEnemy, ahora se puede controlar la velocidad de rotación y la distancia
+    con el padre mediante 2 variables (rotationSpeed y distanceWithParent). Ahora el parent es de
+    Ship, no Enemy, posibilitando así el spawn de satélites al rededor del Player.
+------------

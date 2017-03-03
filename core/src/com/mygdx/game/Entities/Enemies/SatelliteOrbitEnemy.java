@@ -3,6 +3,7 @@ package com.mygdx.game.Entities.Enemies;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.mygdx.game.Entities.PlainAnimations.Explosion;
+import com.mygdx.game.Entities.Ship;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.Multimedia.Sprites;
 
@@ -12,15 +13,16 @@ import com.mygdx.game.Multimedia.Sprites;
 
 public class SatelliteOrbitEnemy extends Enemy {
 
-    Enemy parent;
+    private Ship parent;
     private float angleWithParent;
-    private float rotationSpeed = 10f;
+    private float rotationSpeed = 0.1f;
+    private float distanceWithParent = 10f;
 
     private Behavior.SatelliteOrbitEnemy behavior;
 
     Sprite spr;
 
-    public SatelliteOrbitEnemy(Enemy parent, Behavior.SatelliteOrbitEnemy behavior) {
+    public SatelliteOrbitEnemy(Ship parent, Behavior.SatelliteOrbitEnemy behavior) {
 
         super(0, 1000);
 
@@ -71,13 +73,14 @@ public class SatelliteOrbitEnemy extends Enemy {
                     GameEngine.EntityType.PLAIN_ANIMATION);
         }
 
-        angleWithParent+=0.1f;
+        angleWithParent+=rotationSpeed;
+
         if (angleWithParent>=360) {
             angleWithParent = 0;
         }
-
-        this.x = (float) ((Math.cos(angleWithParent) * rotationSpeed) * (this.width / 2) + (parent.getX() + (parent.getWidth()/2)));
-        this.y = (float) ((Math.sin(angleWithParent) * rotationSpeed) * (this.height / 2) + (parent.getY() + (parent.getHeight()/2)));
+                                                    //por algun motivo, donde esta 10f estaba la varaible rotation speed, aqui la velocidad no influye, influye arriba.
+        this.x = (float) ((Math.cos(angleWithParent) * distanceWithParent) * (this.width / 2) + (parent.getX() + (parent.getWidth()/2)));
+        this.y = (float) ((Math.sin(angleWithParent) * distanceWithParent) * (this.height / 2) + (parent.getY() + (parent.getHeight()/2)));
 
         spr.setPosition(x, y);
 
