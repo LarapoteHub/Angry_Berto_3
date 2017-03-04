@@ -81,7 +81,7 @@ public class EvadingEnemy extends Enemy {
 
         }
         if(!GameEngine.gameState.isPaused()) {
-            stateTime += Gdx.graphics.getDeltaTime();
+            stateTime += Gdx.graphics.getDeltaTime() * animationSpeed;
         }
 
     }
@@ -150,6 +150,8 @@ public class EvadingEnemy extends Enemy {
 
     @Override
     public void initAnimation() {
+
+        this.animationSpeed = 1;
 
         Sprite spr = Sprites.getSpriteByName("enemy_dodging")[0];
         currentAnimation = new AnimationAdapter(0.4f, AnimationAdapter.splitSheet(spr, FRAME_COLS, FRAME_ROWS), Animation.PlayMode.NORMAL);

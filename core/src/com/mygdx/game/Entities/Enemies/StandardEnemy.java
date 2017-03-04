@@ -98,7 +98,7 @@ public class StandardEnemy extends Enemy {
 		}
 
 		if(!GameEngine.gameState.isPaused()) {
-			stateTime += Gdx.graphics.getDeltaTime() * 6;
+			stateTime += Gdx.graphics.getDeltaTime() * animationSpeed;
 		}
 
 	}
@@ -150,6 +150,8 @@ public class StandardEnemy extends Enemy {
 
 	@Override
 	public void initAnimation() {
+
+		this.animationSpeed = 6;
 
 		Sprite spr = Sprites.getSpriteByName("enemy_std")[0];
 		currentAnimation = new AnimationAdapter(0.4f, AnimationAdapter.splitSheet(spr, FRAME_COLS, FRAME_ROWS), Animation.PlayMode.NORMAL);

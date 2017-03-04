@@ -117,6 +117,15 @@ Movido ShieldEnemy a Enemys (estaba en bosses) y añadida variable shieldInterva
 Actualizado enlace a anabol por una serie de problemas.
 ------------
 
+0.1_9_3
+-- 100vol && Lurtz --
+Arreglado ShieldEnemy para que su escudo respete la pausa.
+Introducidas tres estrellas de puntuación en Scr_GameOver, se calculan en función de los enemigos spawneados
+    y destruidos. Tuvimos que usar PlanAnimation porque con Image se pasa una referencia del Sprite y
+    no se pueden repetir.
+Añadido LevelDie para palmar rápido y testear el game over.
+---------------------
+
 
 
 

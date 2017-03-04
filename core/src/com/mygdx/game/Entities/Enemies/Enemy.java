@@ -50,6 +50,8 @@ public abstract class Enemy extends Ship {
     protected boolean canReboundX = false;
     protected boolean canReboundY = false;
 
+    protected int animationSpeed = 1;
+
     public Enemy(float x, float y) {
     	cooldown = 50;
         this.x = x;

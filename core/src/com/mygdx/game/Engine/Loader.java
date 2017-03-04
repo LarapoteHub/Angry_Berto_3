@@ -67,6 +67,8 @@ public class Loader extends AssetManager {
         berto("sprites/characters/berto.png"),
         lina("sprites/characters/lina.png"),
 
+        scoreStar("sprites/others/scoreStar.png"),
+
         // Important stuff!
         // TODO Implementar los otros colores del jugador algun dia
         player("sprites/player/player.png"),
@@ -97,6 +99,7 @@ public class Loader extends AssetManager {
         //Botones seleccion de nivel
         btn_level0("sprites/buttons/levels/level0.png"),
         btn_level_test("sprites/buttons/levels/level0.png"),
+        btn_level_die("sprites/buttons/levels/level0.png"),
 
         // IL GRAN FINALE!
         ;

@@ -33,7 +33,8 @@ public class ShieldEnemy extends Enemy {
     private Timer.Task shieldTimer;
 
     private Sprite shieldSpr;
-    private float shieldInterval = 1.5f;
+    private final int SHIELD_INTERVAL = 15;
+    private int shieldClock = 0;
 
     public ShieldEnemy(float x, float y, Enemy.Behavior.ShieldEnemy behavior) {
         super(x, y);
@@ -69,7 +70,7 @@ public class ShieldEnemy extends Enemy {
     }
 
 
-    public void draw () {
+    public void draw() {
         // HIT es un verbo irregular...
         if (hit) {
             tmpColor = GameEngine.batch.getColor();
@@ -97,8 +98,8 @@ public class ShieldEnemy extends Enemy {
             GameEngine.batch.draw(shieldSpr, x, y, width, height);
         }
 
-        if(!GameEngine.gameState.isPaused()) {
-            stateTime += Gdx.graphics.getDeltaTime();
+        if (!GameEngine.gameState.isPaused()) {
+            stateTime += Gdx.graphics.getDeltaTime() * animationSpeed;
         }
 
     }
@@ -133,6 +134,8 @@ public class ShieldEnemy extends Enemy {
     @Override
     public void initAnimation() {
 
+        this.animationSpeed = 6;
+
         Sprite spr = Sprites.getSpriteByName("enemy_shield")[0];
         currentAnimation = new AnimationAdapter(0.4f, AnimationAdapter.splitSheet(spr, FRAME_COLS, FRAME_ROWS), Animation.PlayMode.NORMAL);
 
@@ -144,15 +147,22 @@ public class ShieldEnemy extends Enemy {
 
             @Override
             public void run() {
-                shielded = !shielded;
+
+                if (!GameEngine.gameState.isPaused()) {
+                    shieldClock++;
+                }
+
+
+                if (shieldClock >= SHIELD_INTERVAL) {
+                    shielded = !shielded;
+                    shieldClock = 0;
+                }
             }
         };
 
-        Timer.schedule(shieldTimer, shieldInterval, shieldInterval);
+        Timer.schedule(shieldTimer, 0.1f, 0.1f);
 
     }
-
-
 
 
 }
