@@ -195,16 +195,15 @@ public abstract class Enemy extends Ship {
         public enum SpikeBallEnemy {
             DEFAULT;
         }
-
-        public enum AlambradaEnemy {
-            DEFAULT;
-        }
-
         public enum CoreOrbitEnemy {
             DEFAULT;
         }
 
         public enum SatelliteOrbitEnemy {
+            DEFAULT;
+        }
+
+        public enum ShieldEnemy {
             DEFAULT;
         }
 
@@ -214,6 +213,11 @@ public abstract class Enemy extends Ship {
                 DEFAULT;
             }
 
+        }
+
+        //lo muevo a despues del boss, ya que aun no esta claro que sea "enemy" xD
+        public enum AlambradaEnemy {
+            DEFAULT;
         }
 
     }

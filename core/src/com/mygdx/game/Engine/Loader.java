@@ -80,6 +80,9 @@ public class Loader extends AssetManager {
         enemy_heavy("sprites/enemies/heavyEnemy.png"),
         enemy_satellite_orbit("sprites/enemies/satelliteOrbitEnemy.png"),
         enemy_core_orbit("sprites/enemies/coreOrbitEnemy.png"),
+        enemy_shield("sprites/enemies/shieldEnemy.png"),
+        //bad name but...
+        enemy_shield__shield("sprites/enemies/shieldEnemy_Shield.png"),
 
 
         // BOSSES

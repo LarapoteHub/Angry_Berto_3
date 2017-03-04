@@ -26,7 +26,11 @@ public class LevelTest extends Level {
             */
 
             //GameEngine.spawnBoss(78, 700, GameEngine.BossType.TYPE_1, Enemy.Behavior.Bosses.Boss1.DEFAULT); //boss1
-            GameEngine.spawnEnemy(MyGdxGame.WIDTH/2, 800, GameEngine.EnemyType.CORE_ORBIT_ENEMY, Enemy.Behavior.CoreOrbitEnemy.DEFAULT);
+            //GameEngine.spawnEnemy(MyGdxGame.WIDTH/2, 800, GameEngine.EnemyType.CORE_ORBIT_ENEMY, Enemy.Behavior.CoreOrbitEnemy.DEFAULT);
+
+            GameEngine.spawnEnemy(MyGdxGame.WIDTH/2, 800, GameEngine.EnemyType.SHIELD_ENEMY, Enemy.Behavior.ShieldEnemy.DEFAULT);
+
+
             running = true;
         } else if (GameEngine.getEnemies().isEmpty() && GameEngine.getBosses().isEmpty()) {
             running = false;

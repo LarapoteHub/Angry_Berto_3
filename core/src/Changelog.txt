@@ -88,14 +88,27 @@ Ahora, al acabar la partida, en Scr_GameOver se muestra el número de enemigos q
             tenga en cuenta o no. Los spikeBallEnemy que saca el boss van a través de spawnEnemy,
             así que no hay problema con ellos.
 ------------
+
 0.1_8
 -- 100vol --
 Modificado SatelliteOrbitEnemy, ahora se puede controlar la velocidad de rotación y la distancia
     con el padre mediante 2 variables (rotationSpeed y distanceWithParent). Ahora el parent es de
     Ship, no Enemy, posibilitando así el spawn de satélites al rededor del Player.
 ------------
+
 0.1_8_0_1
 --Xamon--
 Creada clase AlambradaEnemy, creados los tipos correspondientes en GameEngine, Behavior, etc... no debería causar problemas
 También añadí la extensión .txt a Idead
 ------------
+
+0.1_9
+-- 100vol --
+Añadido enemigo ShieldEnemy(por fin), enemigo que cada cierto tiempo se quita/pone un escudo que lo hace inmune.
+Cambiada mecánica en la clase Level, ya no hace falta bossPhase, si por ejemplo tenemos 12 fases
+    y la última es la del boss, poniendo nPhases=11, lanzará fases entre 0 y 10 y pondrá como
+    bossPhase la 11 (12ª en lenguaje humano xD).
+Actualizado enlace a anabol.
+------------
+
+

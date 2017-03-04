@@ -12,7 +12,7 @@ public abstract class Level {
     public boolean finished;
     int phase;
     int nPhases;
-    int bossPhase;
+    //int bossPhase;
     int maxPhases;
     int phasesCount = 0;
     protected String name = null;
@@ -47,10 +47,11 @@ public abstract class Level {
 
         if (phasesCount >= maxPhases) {
             phasesCount = 0;
-            phase = bossPhase;
+            //cambiamos al boss (si nPhases es 11, la del boss sería las 11(la doceava)).
+            phase = nPhases;
         } else {
-
-            phase = MathUtils.random(0, nPhases);
+            //si hay 11 fases, generariamos un random entre 0 y 10.
+            phase = MathUtils.random(0, nPhases-1);
             phasesCount++;
         }
 

@@ -18,6 +18,7 @@ import com.mygdx.game.Engine.Logic;
 import com.mygdx.game.Engine.Renderer;
 import com.mygdx.game.Entities.Enemies.Bossses.Boss;
 import com.mygdx.game.Entities.Enemies.Bossses.Boss1;
+import com.mygdx.game.Entities.Enemies.Bossses.ShieldEnemy;
 import com.mygdx.game.Entities.Enemies.CoreOrbitEnemy;
 import com.mygdx.game.Entities.Enemies.Enemy;
 import com.mygdx.game.Entities.Enemies.EvadingEnemy;
@@ -709,7 +710,7 @@ public class GameEngine {
 	 **************************************************************************************************************************************************/
 
 	public enum EnemyType {
-		STANDARD_ENEMY, EVADING_ENEMY, SPIKE_BALL, HEAVY_ENEMY, SATELLITE_ORBIT_ENEMY, CORE_ORBIT_ENEMY, BOSS, ALAMBRADA;
+		STANDARD_ENEMY, EVADING_ENEMY, SPIKE_BALL, HEAVY_ENEMY, SATELLITE_ORBIT_ENEMY, CORE_ORBIT_ENEMY, SHIELD_ENEMY, BOSS, ALAMBRADA;
 	}
 
 	public enum BossType {
@@ -761,6 +762,9 @@ public class GameEngine {
 			case CORE_ORBIT_ENEMY:
 				enemy = new CoreOrbitEnemy(x, y, (Enemy.Behavior.CoreOrbitEnemy)behavior);
 				break;
+
+			case SHIELD_ENEMY:
+				enemy = new ShieldEnemy(x,y, (Enemy.Behavior.ShieldEnemy)behavior);
 
 		} // end switch();
 

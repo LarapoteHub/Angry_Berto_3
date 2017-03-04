@@ -17,8 +17,7 @@ public class Level0 extends Level {
 
     public Level0() {
         movementIndex = 0;
-        this.nPhases = 9;
-        this.bossPhase = 10;
+        this.nPhases = 11;
         this.maxPhases = MathUtils.random(12, 18);
         this.name = "Level 1";
     }
@@ -30,9 +29,9 @@ public class Level0 extends Level {
             //TODO TEST TEST TEST TETAS TEST TEST TEST TEST
             //phase = 7;
             runPhase();
-        } else if (phase != bossPhase && GameEngine.getEnemies().isEmpty()) {
+        } else if (phase != nPhases && GameEngine.getEnemies().isEmpty()) {
             changePhase();
-        } else if (phase == bossPhase && GameEngine.getBosses().isEmpty()) {
+        } else if (phase == nPhases && GameEngine.getBosses().isEmpty()) {
             MyGdxGame.musicManager.setMusic(Musics.backgroundMusic);
             changePhase();
         }
@@ -224,6 +223,18 @@ public class Level0 extends Level {
                 break;
 
             case 10:
+
+                /*
+                spawneamos 2 filas de dos enemigos pesados
+                 */
+
+                GameEngine.spawnEnemy(108, 800, EnemyType.SHIELD_ENEMY, Enemy.Behavior.ShieldEnemy.DEFAULT);
+                GameEngine.spawnEnemy(376, 800, EnemyType.SHIELD_ENEMY, Enemy.Behavior.ShieldEnemy.DEFAULT);
+
+                break;
+
+            //BOSS PHASE
+            case 11:
 
                 GameEngine.spawnBoss(78, 700, GameEngine.BossType.TYPE_1, Enemy.Behavior.Bosses.Boss1.DEFAULT); //boss1
 
