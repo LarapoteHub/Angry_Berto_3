@@ -144,11 +144,7 @@ public class ShieldEnemy extends Enemy {
 
             @Override
             public void run() {
-                if (shielded) {
-                    shielded = false;
-                } else {
-                    shielded = true;
-                }
+                shielded = !shielded;
             }
         };
 
