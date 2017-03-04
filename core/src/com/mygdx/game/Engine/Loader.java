@@ -80,6 +80,7 @@ public class Loader extends AssetManager {
         enemy_heavy("sprites/enemies/heavyEnemy.png"),
         enemy_satellite_orbit("sprites/enemies/satelliteOrbitEnemy.png"),
         enemy_core_orbit("sprites/enemies/coreOrbitEnemy.png"),
+        //FALLA EN ANDROID PORQUE SÍ:
         enemy_shield("sprites/enemies/shieldEnemy.png"),
         //bad name but...
         enemy_shield__shield("sprites/enemies/shieldEnemy_Shield.png"),
@@ -130,11 +131,17 @@ public class Loader extends AssetManager {
 
     public void loadSprites() {
 
-        // <TODO UBER BUCLE DE CARGA TEST!>
-        for (SprPath sp : SprPath.values()) {
-            for (String path : sp.path) {
-                this.load(path, Texture.class, param);
+        try {
+
+            // <TODO UBER BUCLE DE CARGA TEST!>
+            for (SprPath sp : SprPath.values()) {
+                for (String path : sp.path) {
+                    this.load(path, Texture.class, param);
+                }
             }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
         /*
         this.load(SprPath.bulletSwitch_1.path, Texture.class, param);

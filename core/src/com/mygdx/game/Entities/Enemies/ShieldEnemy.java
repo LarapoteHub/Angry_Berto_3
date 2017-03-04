@@ -1,4 +1,4 @@
-package com.mygdx.game.Entities.Enemies.Bossses;
+package com.mygdx.game.Entities.Enemies;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -33,6 +33,7 @@ public class ShieldEnemy extends Enemy {
     private Timer.Task shieldTimer;
 
     private Sprite shieldSpr;
+    private float shieldInterval = 1.5f;
 
     public ShieldEnemy(float x, float y, Enemy.Behavior.ShieldEnemy behavior) {
         super(x, y);
@@ -151,7 +152,7 @@ public class ShieldEnemy extends Enemy {
             }
         };
 
-        Timer.schedule(shieldTimer, 1.5f, 1.5f);
+        Timer.schedule(shieldTimer, shieldInterval, shieldInterval);
 
     }
 

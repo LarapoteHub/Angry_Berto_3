@@ -111,4 +111,20 @@ Cambiada mecánica en la clase Level, ya no hace falta bossPhase, si por ejemplo
 Actualizado enlace a anabol.
 ------------
 
+0.1_9_2
+-- 100vol --
+Movido ShieldEnemy a Enemys (estaba en bosses) y añadida variable shieldInterval para controlar el intervalo con/sin escudo del enemigo.
+Porblemas:
+    - La textura de ShieldEnemy funciona correctamente en Desktop, en Android no le sale de las
+    narices cargarla (otro gran ejemplo de portabilidad)...
+    - Tras probar a reducir el tamaño de la textura, ahora android da:
+        "Execution failed for task 'android:mergeDebugAssets'. > java.lang.NullPointerException(no error message)"
+        habiendo destrozado la configuración del proyecto y haciendo imposible lanzar la aplicación en android aun realizando un revert :DDDDD
+    - Amo android...
+
+Por lo expuesto antes y sintiéndolo mucho, la versión actual no sirve para android.
+------------
+
+
+
 
