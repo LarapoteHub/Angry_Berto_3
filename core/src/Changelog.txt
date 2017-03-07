@@ -126,6 +126,10 @@ Introducidas tres estrellas de puntuación en Scr_GameOver, se calculan en funci
 Añadido LevelDie para palmar rápido y testear el game over.
 ---------------------
 
+0.1_9_3
+-- RuLoSp --
+Purgado MyGdxGame, Loader. GameEngine en proceso.
+---------------------
 
 
 

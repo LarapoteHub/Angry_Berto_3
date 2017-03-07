@@ -134,106 +134,15 @@ public class Loader extends AssetManager {
 
     public void loadSprites() {
 
-        try {
-
-            // <TODO UBER BUCLE DE CARGA TEST!>
-            for (SprPath sp : SprPath.values()) {
-                for (String path : sp.path) {
-                    this.load(path, Texture.class, param);
-                }
+        // <TOD0 UBER BUCLE DE CARGA TEST!>
+        for (SprPath sp : SprPath.values()) {
+            for (String path : sp.path) {
+                this.load(path, Texture.class, param);
             }
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
         }
-        /*
-        this.load(SprPath.bulletSwitch_1.path, Texture.class, param);
-        this.load(SprPath.bulletSwitch_2.path, Texture.class, param);
-        this.load(SprPath.bullet_type_0.path, Texture.class, param);
-        this.load(SprPath.bullet_type_1.path, Texture.class, param);*/
-        // </TODO>
-
-        //BOTONES - BUTTONS
-        /*
-        this.load(SprPath.pauseButton.path, Texture.class, param);
-        this.load(SprPath.playButton.path, Texture.class, param);
-
-        //Botones de seleccion de nivel
-        this.load(SprPath.btn_level0.path, Texture.class, param);
-        */
-//
-//        this.load("sprites/buttons/archievementsButtonMenu.png", Texture.class, param);
-//        this.load("sprites/buttons/archievementsButtonMenuTouched.png", Texture.class, param);
-//        this.load("sprites/buttons/optionsButtonMenu.png", Texture.class, param);
-//        this.load("sprites/buttons/optionsButtonMenuTouched.png", Texture.class, param);
-//        this.load("sprites/buttons/scoresButtonMenu.png", Texture.class, param);
-//        this.load("sprites/buttons/scoresButtonMenuTouched.png", Texture.class, param);
-//        this.load("sprites/buttons/initButtonMenu.png", Texture.class, param);
-//        this.load("sprites/buttons/initButtonMenuTouched.png", Texture.class, param);
-//        this.load("sprites/buttons/exitButtonMenu.png", Texture.class, param);
-//        this.load("sprites/buttons/exitButtonMenuTouched.png", Texture.class, param);
-//        this.load("sprites/buttons/live.png", Texture.class, param);
-//        //this.load(SprPath.skipButton.path, Texture.class, param);
-//
-//        //POWERUPS
-//        this.load("sprites/powerups/livePowerUp.png", Texture.class, param);
-//        this.load("sprites/powerups/livePowerUpB.png", Texture.class, param);
-//        // Steroids warning! Might want to skip Olympics this year...
-//        this.load("sprites/powerups/chargeBar/chargeBar9.png", Texture.class, param);
-//        //this.load(SprPath.powerUp_charge_bar_container.path, Texture.class, param);
-//        this.load("sprites/powerups/charge.png", Texture.class, param);
-//        this.load("sprites/powerups/rotaryHoePowerUp0.png", Texture.class, param);
-//        this.load("sprites/powerups/attackCowPowerUp.png", Texture.class, param);
-//
-//        this.load("sprites/powerups/hoePowerUp.png", Texture.class, param);
-//        this.load("sprites/powerups/hoePowerUpB.png", Texture.class, param);
-//        this.load("sprites/powerups/dogPowerUp.png", Texture.class, param);
-//        this.load("sprites/powerups/dogPowerUpB.png", Texture.class, param);
-//
-//        //OTROS - OTHERS
-//        this.load("sprites/others/star.png", Texture.class, param);
-//        this.load("sprites/others/explosion.png", Texture.class, param);
-//        this.load("sprites/others/gameOver.png", Texture.class, param);
-//
-//        //OTROS - OTHERS
-//        // TODO DANGER!!
-//        this.load("effects/test.p", ParticleEffect.class);
-//        this.load("sprites/others/star.png", Texture.class, param);
-//        this.load("sprites/others/explosion.png", Texture.class, param);
-//        this.load("sprites/others/gameOver.png", Texture.class, param);
-//
-//        //LOGOS
-//        this.load("sprites/logos/angryBerto.png", Texture.class, param);
-//
-//        //PERSONAJES
-//        this.load("sprites/characters/berto.png", Texture.class, param);
-//        this.load("sprites/characters/lina.png", Texture.class, param);
-//
-//        //JUGADOR
-//        this.load("sprites/player/player.png", Texture.class, param);
-//        //this.load(SprPath.player_propulsion.path, Texture.class, param);
-//
-//        //ENEMIGOS
-//
-//        this.load("sprites/enemies/standardEnemy.png", Texture.class, param);
-//        this.load("sprites/enemies/evadingEnemy.png", Texture.class, param);
-//        this.load("sprites/enemies/spikeBallEnemy.png", Texture.class, param);
-//        this.load("sprites/enemies/heavyEnemy.png", Texture.class, param);
-//        //this.load(SprPath.enemy_satellite_orbit.path, Texture.class, param);
-//        //this.load(SprPath.enemy_core_orbit.path, Texture.class, param);
-//
-//        //BOSSES
-//
-//        this.load("sprites/enemies/firstBoss.png", Texture.class, param);
-//
-//        //BALAS - BULLETS
-//
-//        this.load("sprites/projectiles/playerShoot.png", Texture.class, param);
-//        this.load("sprites/projectiles/standardEnemyShoot.png", Texture.class, param);
-//        this.load("sprites/projectiles/heavyEnemyShoot.png", Texture.class, param);
-//        this.load("sprites/projectiles/heavyEnemyShootB.png", Texture.class, param);
     }
 
+    // TODO: Aplicar la tactica de los Sprites al resto de Multimedia.
     public void loadSounds() {
 
         this.load("audio/sounds/explode.wav", Sound.class);
@@ -297,51 +206,11 @@ public class Loader extends AssetManager {
             Sprites.putSpriteWithName(sPath.name(), spr);
         }
 
-
-        //Botones seleccion de nivel
-        //Sprites.btn_level0 = new Sprite((Texture) this.get(SprPath.btn_level0.path));
-
-        // <TODO TEST BULLET TYPES>
-        /*Sprites.btn_switch_bullet = new Sprite[2];
-        Sprites.btn_switch_bullet[0] = new Sprite((Texture) this.get(SprPath.bulletSwitch_1.path));
-        Sprites.btn_switch_bullet[1] = new Sprite((Texture) this.get(SprPath.bulletSwitch_2.path));*/
-        // </TODO>
-
-
-        // TODO Organizar mejor esto
-        // TODO Acortar las 2 lineas en 1, como arriba.
-        // Part 2 - Les Botones - PowerUps
-//
-
-
-
         // TODO DANGER!!
         Effects.star = new ParticleEffect();
         Effects.star.load(Gdx.files.internal("effects/test.p"), Gdx.files.internal("effects"));
 
-//
-//        Sprites.player = new Sprite((Texture) this.get("sprites/player/player.png"));
-//        // TODO Implementar los otros colores del jugador algun dia
-//
-//        Sprites.player_propulsion = new Sprite((Texture) this.get(SprPath.player_propulsion.path));
-//
-//        // Enemigos
-//
-//        //BOSSES
-//        Sprites.boss_1 = new Sprite((Texture) this.get("sprites/enemies/firstBoss.png"));
-//
-//        // Balas - Bullets
-//        Sprites.bullet_player = new Sprite[2];
-//        Sprites.bullet_player[0] = new Sprite((Texture) this.get(SprPath.bullet_type_0.path));
-//        Sprites.bullet_player[1] = new Sprite((Texture) this.get(SprPath.bullet_type_1.path));
-
-
-//        Sprites.bullet_heavy_enemy = new Sprite[2];
-//        Sprites.bullet_heavy_enemy[0] = new Sprite();
-//        Sprites.bullet_heavy_enemy[1] = new Sprite();
-//        Sprites.bullet_heavy_enemy[0].setTexture((Texture) this.get("sprites/projectiles/heavyEnemyShoot.png"));
-//        Sprites.bullet_heavy_enemy[1].setTexture((Texture) this.get("sprites/projectiles/heavyEnemyShootB.png"));
-
+        // TODO Implementar los otros colores del jugador algun dia
     }
 
     public void initSounds() {

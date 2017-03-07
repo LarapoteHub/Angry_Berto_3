@@ -18,16 +18,16 @@ public class LevelDie extends Level {
     public void runLevel() {
 
         if (!running) {
-
-            GameEngine.spawnBoss(MyGdxGame.WIDTH/2 - 100, 800, GameEngine.BossType.TYPE_1, Enemy.Behavior.Bosses.Boss1.DEFAULT);
-            GameEngine.spawnBoss(MyGdxGame.WIDTH/2 - 100, 700, GameEngine.BossType.TYPE_1, Enemy.Behavior.Bosses.Boss1.DEFAULT);
-            GameEngine.spawnBoss(MyGdxGame.WIDTH/2 - 100, 600, GameEngine.BossType.TYPE_1, Enemy.Behavior.Bosses.Boss1.DEFAULT);
-            GameEngine.spawnBoss(MyGdxGame.WIDTH/2 - 100, 500, GameEngine.BossType.TYPE_1, Enemy.Behavior.Bosses.Boss1.DEFAULT);
-            GameEngine.spawnBoss(MyGdxGame.WIDTH/2 - 100, 400, GameEngine.BossType.TYPE_1, Enemy.Behavior.Bosses.Boss1.DEFAULT);
-            GameEngine.spawnBoss(MyGdxGame.WIDTH/2 - 100, 300, GameEngine.BossType.TYPE_1, Enemy.Behavior.Bosses.Boss1.DEFAULT);
-            GameEngine.spawnBoss(MyGdxGame.WIDTH/2 - 100, 200, GameEngine.BossType.TYPE_1, Enemy.Behavior.Bosses.Boss1.DEFAULT);
-            GameEngine.spawnBoss(MyGdxGame.WIDTH/2 - 100, 100, GameEngine.BossType.TYPE_1, Enemy.Behavior.Bosses.Boss1.DEFAULT);
-
+            for (int i = 0; i < 30; i++) {
+                GameEngine.spawnBoss(MyGdxGame.WIDTH / 2 - 100, 800, GameEngine.BossType.TYPE_1, Enemy.Behavior.Bosses.Boss1.DEFAULT);
+                GameEngine.spawnBoss(MyGdxGame.WIDTH / 2 - 100, 700, GameEngine.BossType.TYPE_1, Enemy.Behavior.Bosses.Boss1.DEFAULT);
+                GameEngine.spawnBoss(MyGdxGame.WIDTH / 2 - 100, 600, GameEngine.BossType.TYPE_1, Enemy.Behavior.Bosses.Boss1.DEFAULT);
+                GameEngine.spawnBoss(MyGdxGame.WIDTH / 2 - 100, 500, GameEngine.BossType.TYPE_1, Enemy.Behavior.Bosses.Boss1.DEFAULT);
+                GameEngine.spawnBoss(MyGdxGame.WIDTH / 2 - 100, 400, GameEngine.BossType.TYPE_1, Enemy.Behavior.Bosses.Boss1.DEFAULT);
+                GameEngine.spawnBoss(MyGdxGame.WIDTH / 2 - 100, 300, GameEngine.BossType.TYPE_1, Enemy.Behavior.Bosses.Boss1.DEFAULT);
+                GameEngine.spawnBoss(MyGdxGame.WIDTH / 2 - 100, 200, GameEngine.BossType.TYPE_1, Enemy.Behavior.Bosses.Boss1.DEFAULT);
+                GameEngine.spawnBoss(MyGdxGame.WIDTH / 2 - 100, 100, GameEngine.BossType.TYPE_1, Enemy.Behavior.Bosses.Boss1.DEFAULT);
+            }
             running = true;
         } else if (GameEngine.getEnemies().isEmpty() && GameEngine.getBosses().isEmpty()) {
             running = false;

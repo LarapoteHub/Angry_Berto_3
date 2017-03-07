@@ -33,8 +33,6 @@ public class Explosion extends PlainAnimation {
 
         //iniciamos la animación.
         initAnimation();
-
-        //action();
     }
 
     public float getX() {
@@ -55,6 +53,7 @@ public class Explosion extends PlainAnimation {
         //System.out.println("Exp at :" + x + "  " + y + " - " + width + "  " + height);
         GameEngine.batch.draw(currentFrame, x, y, width, height);
 
+        // Por que hay un x19 y despues un x0.4??
         if (!GameEngine.gameState.isPaused()) {
             stateTime += Gdx.graphics.getDeltaTime() * 19;
         }
@@ -68,26 +67,7 @@ public class Explosion extends PlainAnimation {
 
     public void initAnimation() {
 
-        //Sprites.getSpriteByName("explosion").explosion.setBounds(0, 0, Sprites.explosion.getTexture().getWidth(), Sprites.explosion.getTexture().getHeight());
-
-        //Sprites.getSpriteByName("explosion").setPosition(x, y);
-
-
         // TODO REDUCIDO A 1 LINEA (2 por comodidad)
-//
-//        tmp = Sprites.getSpriteByName("explosion")[0].split(Sprites.getSpriteByName("explosion")[0].getTexture(), (int) Sprites.getSpriteByName("explosion")[0].getWidth() / FRAME_COLS, (int) Sprites.getSpriteByName("explosion")[0].getHeight() / FRAME_ROWS);
-//        explodingFrames = new TextureRegion[FRAME_COLS];
-//
-//        explodingFrames = tmp[0];
-//
-//        /*for (int i = 0 ; i < FRAME_COLS ; i++) {
-//            explodingFrames[i] = tmp[0][i];
-//        }*/
-//
-//        explodingAnimation = new Animation(0.4f, explodingFrames);
-//        explodingAnimation.setPlayMode(Animation.PlayMode.NORMAL);
-//
-//        currentAnimation = explodingAnimation;
 
         Sprite spr = Sprites.getSpriteByName("explosion")[0];
 
