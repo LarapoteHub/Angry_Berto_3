@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
+import com.mygdx.game.Entities.PlainAnimations.AnimationAdapter;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.GameEngine.EnemyType;
 import com.mygdx.game.GameEngine.EntityType;
@@ -97,7 +98,7 @@ public class StandardEnemy extends Enemy {
 		}
 
 		if(!GameEngine.gameState.isPaused()) {
-			stateTime += Gdx.graphics.getDeltaTime() * 6;
+			stateTime += Gdx.graphics.getDeltaTime() * animationSpeed;
 		}
 
 	}
@@ -150,7 +151,16 @@ public class StandardEnemy extends Enemy {
 	@Override
 	public void initAnimation() {
 
-		//Sprites.enemy_std.setBounds(0, 0, Sprites.enemy_std.getTexture().getWidth(), Sprites.enemy_std.getTexture().getHeight());
+		this.animationSpeed = 6;
+
+		Sprite spr = Sprites.getSpriteByName("enemy_std")[0];
+		currentAnimation = new AnimationAdapter(0.4f, AnimationAdapter.splitSheet(spr, FRAME_COLS, FRAME_ROWS), Animation.PlayMode.NORMAL);
+
+		//region OLD
+		/*
+		v//Sprites.enemy_std.setBounds(0, 0, Sprites.enemy_std.getTexture().getWidth(), Sprites.enemy_std.getTexture().getHeight());
+
+
 
 		movingFrames = new TextureRegion[FRAME_COLS];
 
@@ -160,6 +170,8 @@ public class StandardEnemy extends Enemy {
 
 		currentAnimation = new Animation(0.4f, movingFrames);
 		//currentAnimation.setPlayMode(Animation.PlayMode.LOOP);
+		 */
+		//endregion
 
 	}
 

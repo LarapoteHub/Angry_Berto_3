@@ -52,6 +52,8 @@ public class Universe {
 		switch (type) {
 			case STANDARD_ENEMY:
 				return enemyAttackSpeed;
+			case EVADING_ENEMY:
+				return enemyAttackSpeed;
 			case HEAVY_ENEMY:
 				return enemyAttackSpeed / 10;
 		}

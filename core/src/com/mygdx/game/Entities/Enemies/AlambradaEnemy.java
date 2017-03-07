@@ -16,20 +16,24 @@ import com.mygdx.game.Multimedia.Sprites;
 /**
  * Created by 100VOL on 09/08/2016.
  */
-public class SpikeBallEnemy extends Enemy {
+public class AlambradaEnemy extends Enemy {
 
-    /* DESCRIPCIÓN:
+    //Xamon in development
 
-     es una mina, cambiar la descripción
-        //enemigo estánder dispara y tiene una velocidad vertical de 200,
-        //su movimiento es controlado por schedules de las clases derivadas de Level.
-     */
+    /* DESCRIPCIÓN: PENDENTE DE IMPLEMENTACIÓN
+
+    es un enemigo rectangular (16:9 o 16:10?) que spawnea en orientación vertical u horizontal, sin diagonales.
+    Inmortal, que causa daño moderado y puede spawnear en sus extremos otro enemigo del mismo tipo, con orientación
+    vertical u horizontal. los hijos no spawnean más
+    */
 
     private TextureRegion[] movingFrames;
 
-    private Behavior.SpikeBallEnemy behavior;
+    private Behavior.AlambradaEnemy behavior;
 
-    public SpikeBallEnemy(float x, float y, Behavior.SpikeBallEnemy behavior) {
+    private boolean isFillo; //PENDENTE DE IMPLEMENTACIÓN
+
+    public AlambradaEnemy(float x, float y, Behavior.AlambradaEnemy behavior, boolean isFillo) {
 
         super(x, y);
         vSpeed = -550;
@@ -73,7 +77,7 @@ public class SpikeBallEnemy extends Enemy {
 
         }
         if(!GameEngine.gameState.isPaused()) {
-            stateTime += Gdx.graphics.getDeltaTime() * animationSpeed;
+            stateTime += Gdx.graphics.getDeltaTime();
         }
 
     }
@@ -136,8 +140,6 @@ public class SpikeBallEnemy extends Enemy {
 
     @Override
     public void initAnimation() {
-
-        this.animationSpeed = 1;
 
         Sprite spr = Sprites.getSpriteByName("enemy_spikeBall")[0];
         currentAnimation = new AnimationAdapter(0.4f, AnimationAdapter.splitSheet(spr, FRAME_COLS, FRAME_ROWS), Animation.PlayMode.NORMAL);

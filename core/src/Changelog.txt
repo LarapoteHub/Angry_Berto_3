@@ -66,3 +66,70 @@ Reducido codigo necesario para inicializar animacion.
 -- RuLoSp --
 Arreglado los satelites cuando hay mas de 1 enemigo de ese tipo en pantalla.
 ------------
+
+0.1_7
+-- 100vol --
+Añadida oleada a Level0.
+Ahora cuando EvadingEnemy esquiva, su vSpeed es -150.
+Limpiados métodos action de los enemigos.
+Añadida mecánica de AnimationAdapter a los enemigos.
+------------
+0.1_7_2
+-- 100vol --
+Corregido error por el cual no se animaba el enemigo de introduction (pasarle un frameDuration de 0).
+Ahora, al acabar la partida, en Scr_GameOver se muestra el número de enemigos que salieron, y el
+    número de enemigos que fueron destruidos, estos datos se obtienen del propio Level. Podrían ser útiles para dar
+    estrellas al resultado de un nivel, por ejemplo.
+        - Cada vez que muere un enemigo muere (kill()), se aumenta el total en el currentLevel del levelManager
+        - Cada vez que se llama al método spawnEnemy() de GameEngine se incrementa el número de enemigos
+            spawneados (en el levelMAnager), pero solo con ese método, gracias a eso, los enemigos aparecidos desde un
+            addEntity o a pelo (como el SatelliteOrbitEnemy por ejemplo), no contarán como un enemigo más,
+            en el método kill() de Enemy se comprueba que el enemigo de un score > 0 para que se
+            tenga en cuenta o no. Los spikeBallEnemy que saca el boss van a través de spawnEnemy,
+            así que no hay problema con ellos.
+------------
+
+0.1_8
+-- 100vol --
+Modificado SatelliteOrbitEnemy, ahora se puede controlar la velocidad de rotación y la distancia
+    con el padre mediante 2 variables (rotationSpeed y distanceWithParent). Ahora el parent es de
+    Ship, no Enemy, posibilitando así el spawn de satélites al rededor del Player.
+------------
+
+0.1_8_0_1
+--Xamon--
+Creada clase AlambradaEnemy, creados los tipos correspondientes en GameEngine, Behavior, etc... no debería causar problemas
+También añadí la extensión .txt a Idead
+------------
+
+0.1_9
+-- 100vol --
+Añadido enemigo ShieldEnemy(por fin), enemigo que cada cierto tiempo se quita/pone un escudo que lo hace inmune.
+Cambiada mecánica en la clase Level, ya no hace falta bossPhase, si por ejemplo tenemos 12 fases
+    y la última es la del boss, poniendo nPhases=11, lanzará fases entre 0 y 10 y pondrá como
+    bossPhase la 11 (12ª en lenguaje humano xD).
+Actualizado enlace a anabol.
+------------
+
+0.1_9_2
+-- 100vol --
+Movido ShieldEnemy a Enemys (estaba en bosses) y añadida variable shieldInterval para controlar el intervalo con/sin escudo del enemigo.
+Actualizado enlace a anabol por una serie de problemas.
+------------
+
+0.1_9_3
+-- 100vol && Lurtz --
+Arreglado ShieldEnemy para que su escudo respete la pausa.
+Introducidas tres estrellas de puntuación en Scr_GameOver, se calculan en función de los enemigos spawneados
+    y destruidos. Tuvimos que usar PlanAnimation porque con Image se pasa una referencia del Sprite y
+    no se pueden repetir.
+Añadido LevelDie para palmar rápido y testear el game over.
+---------------------
+
+0.1_9_3
+-- RuLoSp --
+Purgado MyGdxGame, Loader. GameEngine en proceso.
+---------------------
+
+
+

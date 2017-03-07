@@ -50,11 +50,12 @@ public abstract class Enemy extends Ship {
     protected boolean canReboundX = false;
     protected boolean canReboundY = false;
 
+    protected int animationSpeed = 1;
+
     public Enemy(float x, float y) {
     	cooldown = 50;
         this.x = x;
         this.y = y;
-
         
         // Necesario para que hagan Spawn por fuera de la pantalla.
         // Cosas de la organizacion.
@@ -93,6 +94,10 @@ public abstract class Enemy extends Ship {
                 * System.nanoTime() / 13);
         if (rnd.nextInt(100) < getPowerUpProbability())
             GameEngine.spawnPowerUpCharge(x, y);
+
+        if (this.score > 0) {
+            GameEngine.levelManager.getCurrentLevel().increaseEnemiesDestroyed();
+        }
     }
 
     public float getLives() {
@@ -192,12 +197,15 @@ public abstract class Enemy extends Ship {
         public enum SpikeBallEnemy {
             DEFAULT;
         }
-
         public enum CoreOrbitEnemy {
             DEFAULT;
         }
 
         public enum SatelliteOrbitEnemy {
+            DEFAULT;
+        }
+
+        public enum ShieldEnemy {
             DEFAULT;
         }
 
@@ -207,6 +215,11 @@ public abstract class Enemy extends Ship {
                 DEFAULT;
             }
 
+        }
+
+        //lo muevo a despues del boss, ya que aun no esta claro que sea "enemy" xD
+        public enum AlambradaEnemy {
+            DEFAULT;
         }
 
     }

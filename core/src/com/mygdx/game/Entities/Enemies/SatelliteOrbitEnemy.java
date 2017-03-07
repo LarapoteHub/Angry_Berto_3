@@ -3,6 +3,7 @@ package com.mygdx.game.Entities.Enemies;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.mygdx.game.Entities.PlainAnimations.Explosion;
+import com.mygdx.game.Entities.Ship;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.Multimedia.Sprites;
 
@@ -12,32 +13,16 @@ import com.mygdx.game.Multimedia.Sprites;
 
 public class SatelliteOrbitEnemy extends Enemy {
 
-    /*
-    // this is degrees per second
-   float speed = 10f;
-   float rate = 5f;
-   float circleX = (float) (Math.cos(drone.getAngle()) *
-          (ship.getWidth() / 1.25) + centerX);
-   float circleY = (float) (Math.sin(drone.getAngle()) *
-          (ship.getHeight() / 1.25) + centerY);
-   float angle = drone.getAngle() + (speed * (rate/1000)) % 360;
-   if (angle >= 360) {
-      angle = 0;
-   }
-   drone.setAngle(angle);
-   drone.setX(circleX);
-   drone.setY(circleY);
-     */
-
-    Enemy parent;
+    private Ship parent;
     private float angleWithParent;
-    private float rotationSpeed = 10f;
+    private float rotationSpeed = 0.1f;
+    private float distanceWithParent = 10f;
 
     private Behavior.SatelliteOrbitEnemy behavior;
 
     Sprite spr;
 
-    public SatelliteOrbitEnemy(Enemy parent, Behavior.SatelliteOrbitEnemy behavior) {
+    public SatelliteOrbitEnemy(Ship parent, Behavior.SatelliteOrbitEnemy behavior) {
 
         super(0, 1000);
 
@@ -49,22 +34,11 @@ public class SatelliteOrbitEnemy extends Enemy {
 
         this.behavior = behavior;
 
-        //this.angleWithParent = (float) ((Math.atan2(this.y - parent.getY(), -(this.x - parent.getY())) * 180.0d / Math.PI));
-
-        //this.x = (float) (Math.cos(angleWithParent) * (this.width / 1.25) + (MyGdxGame.WIDTH / 2));
-        //this.y = (float) (Math.sin(angleWithParent) * (this.height / 1.25) + (MyGdxGame.HEIGHT / 2));
-
-
-        //vSpeed = -300;
         width = 24;
         height = 24;
         lives = 1;
 
         this.setLivesOutsideScreen(true);
-
-        // Implementado en otro lado. Usar cooldown
-        // timerShoot = 50;
-        //cooldown = 100;
 
         damage = 2;
 
@@ -80,21 +54,12 @@ public class SatelliteOrbitEnemy extends Enemy {
         spr = new Sprite(Sprites.getSpriteByName("enemy_satellite_orbit")[0]);
         spr.setSize(width, height);
 
-        //TODO, muy peligroso
-        //this.cooldown = GameEngine.uni.getEnemyAttackSpeed();
-        //this.lives = GameEngine.uni.getEnemyHPBuff() * lives;
-
-        //this.FRAME_COLS = 4;
-        //this.FRAME_ROWS = 1;
-
         //initAnimation();
     }
 
     @Override
     public void draw() {
         spr.draw(GameEngine.batch);
-        //Sprites.getSpriteByName("enemy_satellite_orbit")[0].draw(GameEngine.batch);
-        //GameEngine.batch.draw(Sprites.enemy_satellite_orbit.getTexture(), x, y, width, height);
 
     }
 
@@ -108,22 +73,14 @@ public class SatelliteOrbitEnemy extends Enemy {
                     GameEngine.EntityType.PLAIN_ANIMATION);
         }
 
-        angleWithParent+=0.1f;
+        angleWithParent+=rotationSpeed;
+
         if (angleWithParent>=360) {
             angleWithParent = 0;
         }
-
-
-
-        //parent.get
-
-        /*
-        this.x = (float) (Math.cos(angleWithParent) * (this.width / 1.25) + (MyGdxGame.WIDTH / 2)) + parent.getX();
-        this.y = (float) (Math.sin(angleWithParent) * (this.height / 1.25) + (MyGdxGame.HEIGHT / 2) + parent.getY());
-        */
-
-        this.x = (float) ((Math.cos(angleWithParent) * rotationSpeed) * (this.width / 2) + (parent.getX() + (parent.getWidth()/2)));
-        this.y = (float) ((Math.sin(angleWithParent) * rotationSpeed) * (this.height / 2) + (parent.getY() + (parent.getHeight()/2)));
+                                                    //por algun motivo, donde esta 10f estaba la varaible rotation speed, aqui la velocidad no influye, influye arriba.
+        this.x = (float) ((Math.cos(angleWithParent) * distanceWithParent) * (this.width / 2) + (parent.getX() + (parent.getWidth()/2)));
+        this.y = (float) ((Math.sin(angleWithParent) * distanceWithParent) * (this.height / 2) + (parent.getY() + (parent.getHeight()/2)));
 
         spr.setPosition(x, y);
 

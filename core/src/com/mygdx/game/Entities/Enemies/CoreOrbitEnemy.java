@@ -31,29 +31,13 @@ public class CoreOrbitEnemy extends Enemy {
 
         this.behavior = behavior;
 
-        //this.setLivesOutsideScreen(true);
-
-        // Implementado en otro lado. Usar cooldown
-        // timerShoot = 50;
-        //cooldown = 100;
-
         damage = 2;
 
         // Valor que sumar para la puntuacion
         score = 200;
 
-        // ascending = true;
-        // descending = false;
-
         this.type = GameEngine.EnemyType.CORE_ORBIT_ENEMY;
         this.powerUpProb = 10;
-
-        //TODO, muy peligroso
-        //this.cooldown = GameEngine.uni.getEnemyAttackSpeed();
-        //this.lives = GameEngine.uni.getEnemyHPBuff() * lives;
-
-        //this.FRAME_COLS = 4;
-        //this.FRAME_ROWS = 1;
 
         //initAnimation();
 
