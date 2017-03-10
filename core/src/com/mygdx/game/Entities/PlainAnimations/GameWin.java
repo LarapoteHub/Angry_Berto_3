@@ -9,12 +9,12 @@ import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Screens.Scr_GameEnd;
 
 /**
- * Created by xldan on 25/02/2017.
+ * Created by xldan on 07/03/2017.
  */
 
-public class GameOver extends PlainAnimation {
+public class GameWin extends PlainAnimation {
 
-    public GameOver(float x, float y) {
+    public GameWin(float x, float y) {
 
         this.x = x;
         this.y = y;
@@ -23,7 +23,7 @@ public class GameOver extends PlainAnimation {
 
         this.vSpeed = -200;
 
-        Sprites.getSpriteByName("gameOver")[0].setSize(width, height);
+        Sprites.getSpriteByName("gameWin")[0].setSize(width, height);
     }
 
     @Override
@@ -31,14 +31,14 @@ public class GameOver extends PlainAnimation {
 
         if (y > 500) {
             this.y += vSpeed * Gdx.graphics.getDeltaTime();
-        } else if (!Scr_GameEnd.textAdded) {                                    //160 //180
+        } else if (!Scr_GameEnd.textAdded) {                                //180
             GameEngine.addText(new Text("TOUCH THE SCREEN", MyGdxGame.WIDTH/2, 130, Color.WHITE).setCenterToPoint(true));
             Scr_GameEnd.textAdded = true;
         }
 
 
-        Sprites.getSpriteByName("gameOver")[0].setPosition(x, y);
-        Sprites.getSpriteByName("gameOver")[0].draw(GameEngine.batch);
+        Sprites.getSpriteByName("gameWin")[0].setPosition(x, y);
+        Sprites.getSpriteByName("gameWin")[0].draw(GameEngine.batch);
         //GameEngine.batch.draw(Sprites.gameOver.getTexture(), x, y, width, height);
 
     }
@@ -52,4 +52,5 @@ public class GameOver extends PlainAnimation {
     public void initAnimation() {
 
     }
+
 }

@@ -131,5 +131,22 @@ Añadido LevelDie para palmar rápido y testear el game over.
 Purgado MyGdxGame, Loader. GameEngine en proceso.
 ---------------------
 
+0.2 (2 porque al fin tiene datos!!(y porque llegamos a 1.9))
+-- 100vol --
+Añadidos datos a la aplicación (por fin) en forma de TreeMap serializado.
+    Se gestionan a través de la clase GameDAta de forma estática (se revisará).
+Ahora la pantalla GameOver se llama GameEnd y se comporta diferente en función de si se gana
+    o se pierde (se le pasa un boolean en el contructor). La pantalla muestra tu puntuación y la
+    más alta en ese nivel.
+Añadidos gamestate GAME_END_WIN, GAME_WIN_LOSE para controlar lo anterior.
+Ahora, cuando se derrota al Boss1, Level0 lanza un trigger para lanzar la pantalla de victoria.
+btn_LevelSelection ahora, de haber highscore registrad para el nivel, la muestra.
+AVISO IMPORTANTE!!
+Para que funcionen los datos, en las assets debe estar creado un fichero "data/levels.ser". Ya que
+da erro al intentar crear un fichero en el almacenamiento interno.
+Assets actualizadas.
+------------
+
+
 
 

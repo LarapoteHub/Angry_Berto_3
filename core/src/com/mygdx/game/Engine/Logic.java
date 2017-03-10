@@ -23,7 +23,7 @@ import com.mygdx.game.GameEngine;
 import com.mygdx.game.Levels.Level;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Projectiles.Projectile;
-import com.mygdx.game.Screens.Scr_GameOver;
+import com.mygdx.game.Screens.Scr_GameEnd;
 import com.mygdx.game.Screens.Scr_Introduction;
 import com.mygdx.game.Screens.Scr_LevelSelection;
 import com.mygdx.game.Screens.Scr_Loading;
@@ -134,7 +134,7 @@ public class Logic extends GameEngine implements Runnable {
 
     private void handleEndGame() {
         //basicamente, nsi la animacion de gameOver ha llegado a su fin, se podra pasar de pantalla.
-        if (Gdx.input.justTouched() && Scr_GameOver.textAdded) {
+        if (Gdx.input.justTouched() && Scr_GameEnd.textAdded) {
             gameState.mainMenu();
         }
     }
@@ -440,7 +440,7 @@ public class Logic extends GameEngine implements Runnable {
         }
 
         if (player.getLives() <= 0.0f) {
-            gameState.finishGame();
+            gameState.finishGame(false);
         }
 
     }
@@ -486,8 +486,11 @@ public class Logic extends GameEngine implements Runnable {
                 case MAIN_MENU:
                     new Scr_MainMenu().initComponents();
                     break;
-                case GAME_END:
-                    new Scr_GameOver().initComponents();
+                case GAME_END_WIN:
+                    new Scr_GameEnd(true).initComponents();
+                    break;
+                case GAME_END_LOSE:
+                    new Scr_GameEnd(false).initComponents();
                     break;
                 case INTRO:
                     new Scr_Introduction().initComponents();

@@ -1,6 +1,7 @@
 package com.mygdx.game.Levels;
 
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.utils.Timer;
 import com.mygdx.game.Entities.Enemies.Enemy;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.GameEngine.EnemyType;
@@ -12,11 +13,18 @@ import com.mygdx.game.MyGdxGame;
  */
 public class Level0 extends Level {
 
-    int movementIndex;
-    int random;
+    private int random;
+    private Timer.Task win = new Timer.Task() {
+        @Override
+        public void run() {
+
+            GameEngine.gameState.finishGame(true);
+        }
+    };
+
+    private boolean victoryTriggered = false;
 
     public Level0() {
-        movementIndex = 0;
         this.nPhases = 11;
         this.maxPhases = MathUtils.random(12, 18);
         this.name = "Level 1";
@@ -31,9 +39,10 @@ public class Level0 extends Level {
             runPhase();
         } else if (phase != nPhases && GameEngine.getEnemies().isEmpty()) {
             changePhase();
-        } else if (phase == nPhases && GameEngine.getBosses().isEmpty()) {
+        } else if (phase == nPhases && GameEngine.getBosses().isEmpty() && !victoryTriggered) {
             MyGdxGame.musicManager.setMusic(Musics.backgroundMusic);
-            changePhase();
+            Timer.schedule(win, 5);
+            victoryTriggered = true;
         }
 
 

@@ -57,8 +57,12 @@ public class GameStateManager {
 		changed = true;
 	}
 
-	public void finishGame() { 
-		state = GameState.GAME_END;
+	public void finishGame(boolean isWIN) {
+		if (isWIN) {
+			state = GameState.GAME_END_WIN;
+		} else {
+			state = GameState.GAME_END_LOSE;
+		}
 		saveState = false;
 		changed = true;
 	}
@@ -96,7 +100,7 @@ public class GameStateManager {
 	public boolean isPlaying() { return state == GameState.GAMEPLAY;}
 	public boolean isPaused() { return state == GameState.PAUSED;}
 	public boolean isInMainMenu() { return state == GameState.MAIN_MENU;}
-	public boolean isInEndGame() { return state == GameState.GAME_END;}
+	public boolean isInEndGame() { return state == GameState.GAME_END_WIN || state == GameState.GAME_END_LOSE;}
 	public boolean isIntro() { return state == GameState.INTRO;}
 	public boolean isLoading() { return state == GameState.LOADING; }
 	public boolean isLevelSelection() {return state == GameState.LEVEL_SELECTION; }
