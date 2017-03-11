@@ -145,7 +145,15 @@ AVISO IMPORTANTE!!
 Para que funcionen los datos, en las assets debe estar creado un fichero "data/levels.ser". Ya que
 da erro al intentar crear un fichero en el almacenamiento interno.
 Assets actualizadas.
+La clase GameData se inicializa en MyGdxGame por el momento.
 ------------
+
+0.2_1
+-- 100vol --
+Movidos los datos del juego al almacenamiento externo (concretamente a /storage/sdcard/angry_berto/data
+    en android y C:/Users/tuUsuario/angry_berto_data en windows) Con lo cual, los datos ya funcionan
+    en android.
+
 
 
 

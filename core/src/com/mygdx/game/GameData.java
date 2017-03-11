@@ -22,6 +22,8 @@ import java.util.TreeMap;
 
 public class GameData {
 
+    private static FileHandle dataDir;
+
     private static FileHandle levels_file;
     //String=nombreDelNivel Long[0]stars, Long[1]highscore
     private static TreeMap<String, Long[]> levels_map;
@@ -30,8 +32,21 @@ public class GameData {
 
         try {
 
+            dataDir = Gdx.files.external("angry_berto/data/");
 
-            levels_file = Gdx.files.internal("data/levels.ser");
+            //si no existe la carpeta de Data...
+            if (!dataDir.exists()) {
+                //la creamos
+                dataDir.mkdirs();
+            }
+
+            levels_file = Gdx.files.external(dataDir.path() + "/levels.ser");
+
+            //si no existe el fichero de niveles...
+            if (!levels_file.exists()) {
+                //lo creamos
+                levels_file.write(false);
+            }
 
             ObjectInputStream ois = null;
             try {

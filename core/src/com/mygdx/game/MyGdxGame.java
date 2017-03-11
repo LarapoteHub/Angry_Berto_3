@@ -46,9 +46,11 @@ public class MyGdxGame extends ApplicationAdapter {
     @Override
     public void create() {
 
-        GameData.initGameData();
+
         //TODO 100vol estuvo aqui
         initComponents();
+
+        GameData.initGameData();
 
     } // fin del método create() <-----
 
