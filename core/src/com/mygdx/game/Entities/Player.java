@@ -60,6 +60,8 @@ public class Player extends Ship {
 	private int blinkClock = 0;
 	private int blinkIntervalClock = 0;
 
+	private boolean victory = false;
+
 	public Player() {
 		canShoot = true;
 		mode = 0;
@@ -260,27 +262,34 @@ public class Player extends Ship {
 		y += vSpeed * Gdx.graphics.getDeltaTime();
 		*/
 
-		// TODO entender esto
-		// Mecanica para que no salte cuando haya un tap fuera de
-		// ciertos limites
-		this.x -= hspeed * Gdx.graphics.getDeltaTime() * 10;
-		this.y -= vspeed * Gdx.graphics.getDeltaTime() * 10;
-		hspeed = Math.round(hspeed / 2);
-		vspeed = Math.round(vspeed / 2);
+		if (!victory) {
 
-		if (x <= Backgrounds.backgroundPowerUps.getWidth())
-			x = Backgrounds.backgroundPowerUps.getWidth(); // antes 0 donde el 68
-		if (x > 480 - width)
-			x = 480 - width;
-		if (y > 300)
-			y = 300;
-		if (y < 20)
-			y = 20;
-		if (x <= Backgrounds.backgroundPowerUps.getWidth() && hSpeed > 0) {
-			hSpeed = 0;
-		}
-		if (x + width >= MyGdxGame.WIDTH && hSpeed < 0) {
-			hSpeed = 0;
+			// TODO entender esto
+			// Mecanica para que no salte cuando haya un tap fuera de
+			// ciertos limites
+			this.x -= hspeed * Gdx.graphics.getDeltaTime() * 10;
+			this.y -= vspeed * Gdx.graphics.getDeltaTime() * 10;
+			hspeed = Math.round(hspeed / 2);
+			vspeed = Math.round(vspeed / 2);
+
+			if (x <= Backgrounds.backgroundPowerUps.getWidth())
+				x = Backgrounds.backgroundPowerUps.getWidth(); // antes 0 donde el 68
+			if (x > 480 - width)
+				x = 480 - width;
+			if (y > 300)
+				y = 300;
+			if (y < 20)
+				y = 20;
+			if (x <= Backgrounds.backgroundPowerUps.getWidth() && hSpeed > 0) {
+				hSpeed = 0;
+			}
+			if (x + width >= MyGdxGame.WIDTH && hSpeed < 0) {
+				hSpeed = 0;
+			}
+
+			//si el player ha ganado el nivel, lo movemos hacia delante sin limite...
+		} else {
+			this.y -= -250 * Gdx.graphics.getDeltaTime();
 		}
 	}
 
@@ -357,5 +366,13 @@ public class Player extends Ship {
 	public boolean isHit() {
 		//devuelvo blinkng para que sea inmune teniendo en cuenta el tiempo de parpadeo.
 		return blinking;
+	}
+
+	public void setVictory(boolean victory) {
+		this.victory = victory;
+	}
+
+	public boolean getVictory() {
+		return this.victory;
 	}
 }

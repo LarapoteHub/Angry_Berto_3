@@ -18,7 +18,11 @@ public class Level0 extends Level {
         @Override
         public void run() {
 
-            GameEngine.gameState.finishGame(true);
+            if (GameEngine.getPlayer().getY() > MyGdxGame.HEIGHT) {
+                GameEngine.getPlayer().setVictory(false);
+                GameEngine.gameState.finishGame(true);
+                win.cancel();
+            }
         }
     };
 
@@ -41,7 +45,9 @@ public class Level0 extends Level {
             changePhase();
         } else if (phase == nPhases && GameEngine.getBosses().isEmpty() && !victoryTriggered) {
             MyGdxGame.musicManager.setMusic(Musics.backgroundMusic);
-            Timer.schedule(win, 5);
+            Timer.schedule(win, 0.5f, 0.5f);
+            //
+            GameEngine.getPlayer().setVictory(true);
             victoryTriggered = true;
         }
 

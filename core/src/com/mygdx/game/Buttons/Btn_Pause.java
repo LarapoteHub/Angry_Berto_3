@@ -23,8 +23,12 @@ public class Btn_Pause extends Button {
 
     @Override
     public void onTouch() {
-    	if (GameEngine.gameState.isPlaying())
-    		GameEngine.gameState.pause();
+    	if (GameEngine.gameState.isPlaying()) {
+            //esto hace que si el player se ha pasado el nivel, no se pueda pasar hasta que termine.
+            if (!GameEngine.getPlayer().getVictory()) {
+                GameEngine.gameState.pause();
+            }
+        }
     	else if (GameEngine.gameState.isPaused()) {
     		GameEngine.gameState.unpause();
     	}

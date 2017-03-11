@@ -474,8 +474,9 @@ public class Logic extends GameEngine implements Runnable {
                         spawnTestEnemies();
                     }
 
-                    if (buttons.get("btn_Exit") != null) {
-                        buttons.remove("btn_Exit");
+                    System.out.println("AAAAAAAAAAAA: "+buttons.get("btn_exit"));
+                    if (buttons.get("btn_exit") != null) {
+                        buttons.remove("btn_exit");
                     }
                     player.setDraw(true);
                     break;
