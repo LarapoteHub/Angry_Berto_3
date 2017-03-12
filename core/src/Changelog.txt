@@ -163,6 +163,12 @@ Ahora, cuando se derrota al boss, se pierde el control sobre la pantalla, el Pla
 Añadido botón de salir a la pantalla de selección de nivel. El botón de salir en gameplay ahora devuelve
     a la selección de nivel.
 
+0.2_3
+-- RuLoSp --
+Añadida mecanica de que se mueva al centro de la pantalla mientras se mueve hacia arriba el jugador
+    tras derrotar un boss.
+------------
+
 
 
 
