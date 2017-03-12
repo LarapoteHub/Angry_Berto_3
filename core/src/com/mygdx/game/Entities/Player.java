@@ -296,7 +296,7 @@ public class Player extends Ship {
 
 			if (this.x - step > MyGdxGame.GAMEPLAY_SCR_CENTER)
 				this.x -= step;
-			else if (this.x + 250 * step < MyGdxGame.GAMEPLAY_SCR_CENTER)
+			else if (this.x + step < MyGdxGame.GAMEPLAY_SCR_CENTER)
 				this.x += step;
 			else {
 				this.x = MyGdxGame.GAMEPLAY_SCR_CENTER;

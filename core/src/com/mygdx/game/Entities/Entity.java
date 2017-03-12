@@ -39,14 +39,6 @@ public abstract class Entity {
         this.y = y;
     }
 
-    public float[] getPosition(){
-        return new float[]{x, y};       // Forma bonita de devolverlo.
-    }
-
-    public Rectangle getCollisionBox() {
-    	return collisionBox;
-    }
-
     public boolean isColliding(Entity e) {
     	return x < e.x + e.width && x + width > e.x && y < e.y + e.height && y + height > e.y;
     }

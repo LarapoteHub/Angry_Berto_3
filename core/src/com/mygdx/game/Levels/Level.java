@@ -28,10 +28,6 @@ public abstract class Level {
         //this.player = gameEngineInstance.getPlayer();
     }
 
-    public boolean isRunned() {
-        return running;
-    }
-
     public abstract void runLevel();
 
     public abstract void runPhase();

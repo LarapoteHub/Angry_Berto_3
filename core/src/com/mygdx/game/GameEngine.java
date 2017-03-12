@@ -297,8 +297,8 @@ public class GameEngine {
 		// Contador de FPS
 		if (MyGdxGame.SHOW_FPS) {
 			// Improved FPS counter.
-			if (count++ % 10 == 0)
-				time = 1 / Gdx.graphics.getRawDeltaTime();
+			if (count++ % 30 == 0)
+				time = 1 / Gdx.graphics.getDeltaTime();
 			/*
 			 * Gdx.gl.glClearColor(0, 0, 0, 1);
 			 * Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

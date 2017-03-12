@@ -510,40 +510,6 @@ public class Logic extends GameEngine implements Runnable {
 
         levelManager.getCurrentLevel().runLevel();
 
-        //region OLD_CODE
-        /*
-        if (levelList.size() == 0) {
-            levelList = new ArrayList<Level>();
-            levelList.add(new Level0());
-            //levelList.add(new LevelTest());
-        }
-        // TODO Implementar esto algun dia xD
-        // //levelList.add(new Level1(engine));
-        // //levelList.add(new Level2(engine));
-        // //levelList.add(new Level3(engine));
-        // //levelList.add(new Level4(engine));
-        //
-        // levelIndex = 0;
-        // }
-        //
-        // levelList.get(0).runLevel();
-
-        try {
-            if (!levelList.get(levelIndex).finished) {
-                levelList.get(levelIndex % levelList.size()).runLevel();
-                if (MyGdxGame.DEBUG_MODE)
-                    System.out.println("NIVEL ACTUAL: " + levelIndex);
-            } else {
-                levelIndex++;
-            }
-        } catch (Exception ex) {
-
-            System.out.println("Error al rular el nivel");
-            ex.printStackTrace();
-        }
-
-        */
-        //endregion
     }
 
     @Override
