@@ -28,10 +28,15 @@ public class Btn_Exit extends Button {
 
     @Override
     public void onTouch() {
-        if (GameEngine.gameState.isPaused() && Gdx.input.justTouched())
+        if (GameEngine.gameState.isLevelSelection() && Gdx.input.justTouched()) {
             GameEngine.gameState.mainMenu();
-        else if (Gdx.input.justTouched())
+        } else if (GameEngine.gameState.isPaused() && Gdx.input.justTouched()) {
+            GameEngine.gameState.goToLevelSelection();
+        }
+
+        else if (Gdx.input.justTouched()) {
             System.exit(0);
+        }
     }
 
     public void onRelease() {

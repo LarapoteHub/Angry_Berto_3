@@ -158,6 +158,10 @@ Ahora, cuando se derrota al boss, se pierde el control sobre la pantalla, el Pla
     finalmente, se completa el nivel.
 ------------
 
+0.2_2
+-- 100vol --
+Añadido botón de salir a la pantalla de selección de nivel. El botón de salir en gameplay ahora devuelve
+    a la selección de nivel.
 
 
 
