@@ -1,5 +1,6 @@
 package com.mygdx.game.Buttons;
 
+import com.mygdx.game.Engine.SprNames;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.Multimedia.Sounds;
 import com.mygdx.game.Multimedia.Sprites;
@@ -13,24 +14,12 @@ public class Btn_PlusHP extends PowerUp_Button {
 	
     public Btn_PlusHP() {
     	// Calculos de Dani: x = 10; y = 213; width = 48; height = 48
-    	super(10, 213, 48, 48, "btn_plusHP");
+    	super(10, 213, 48, 48, SprNames.btn_plusHP.name());
     	isPowerUp = true;
-    	name = "btn_plusHP";
+    	name = SprNames.btn_plusHP.name();
     	cost = 75;
     }
 
-    /*
-                if (player.getLives() < 5 && player.getCharge() >= 75) {
-                    player.incrementLives(1);
-                    Sounds.liveRestoredSound.play();
-                    player.decreaseCharge(75);
-
-
-            }
-        }*/
-
-
-    
     @Override
     public void onTouch() {
 
@@ -40,6 +29,4 @@ public class Btn_PlusHP extends PowerUp_Button {
             GameEngine.getPlayer().decreaseCharge(cost);
     	}
     }
-
-
 }

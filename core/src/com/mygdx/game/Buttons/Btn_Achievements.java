@@ -1,19 +1,15 @@
 package com.mygdx.game.Buttons;
 
-import com.mygdx.game.Multimedia.Sprites;
+import com.mygdx.game.Engine.SprNames;
 
 public class Btn_Achievements extends Button {
-	/*
-	 * archievementsButtonBox = new Rectangle();
-        archievementsButtonBox.width = 110;
-        archievementsButtonBox.height = 120;
-        archievementsButtonBox.x = 350;
-        archievementsButtonBox.y = 20;
-	 */
 
+	/**
+	 * Poner un boton de tipo Achievements en el 350, 20 con tamaño 110, 120 y su sprite correspondiente.
+	 */
 	public Btn_Achievements() {
-		super(350, 20, 110, 120, "btn_achievements");
-		this.name = "btn_achievements";
+		super(350, 20, 110, 120, SprNames.btn_achievements.name());
+		this.name = SprNames.btn_achievements.name();
 	}
 	
 	@Override

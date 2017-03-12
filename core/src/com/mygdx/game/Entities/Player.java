@@ -306,19 +306,6 @@ public class Player extends Ship {
 		}
 	}
 
-
-	public boolean collides(Entity collisionBox) {
-		return this.collisionBox.overlaps(collisionBox.collisionBox);
-
-		/*
-		 * if (this.x <= collisionBox.x && this.x + this.width >= collisionBox.x
-		 * + collisionBox.width && this.y <= collisionBox.y && this.y +
-		 * this.height >= collisionBox.y + collisionBox.height) { return true; }
-		 *
-		 * return false;
-		 */
-	}
-
 	/**
 	 * Puesto aqui la parte del disparo para poder añadir mecanicas extra, como la del ejemplo.
 	 */

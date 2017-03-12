@@ -1,20 +1,13 @@
 package com.mygdx.game.Buttons;
 
+import com.mygdx.game.Engine.SprNames;
 import com.mygdx.game.Multimedia.Sprites;
 
 public class Btn_Options extends Button {
 
-	/*
-	 * optionsButtonBox = new Rectangle();
-        optionsButtonBox.width = 110;
-        optionsButtonBox.height = 120;
-        optionsButtonBox.x = 30;
-        optionsButtonBox.y = 20;
-	 */
-	
 	public Btn_Options() {
-		super(30, 20, 110, 120, "btn_options");
-		this.name = "btn_options";
+		super(30, 20, 110, 120, SprNames.btn_options.name());
+		this.name = SprNames.btn_options.name();
 	}
 	
 	@Override

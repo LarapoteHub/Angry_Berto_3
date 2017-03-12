@@ -1,26 +1,25 @@
 package com.mygdx.game.Buttons;
 
+import com.mygdx.game.Engine.SprNames;
 import com.mygdx.game.GameEngine;
-import com.mygdx.game.Multimedia.Sprites;
 
 /**
  * Created by SlowFolk on 2/15/2017.
  */
 
-public class Btn_Change_Bullet_Type extends Button {
+public class Btn_Switch_Bullet extends Button {
     private int mode;
 
-    public Btn_Change_Bullet_Type() {
+    public Btn_Switch_Bullet() {
         // X, Y, Ancho, Alto, Nombre de sprite
-        super(10, 50, 48, 48, "btn_switch_bullet");
+        super(10, 50, 48, 48, SprNames.btn_switch_bullet.name());
         isPowerUp = false;
-        name = "btn_switch_bullet";
+        name = SprNames.btn_switch_bullet.name();
         mode = 0;
     }
 
     public void onTouch() {
         // TODO Buscar sonido para cambio de tipo.
-        //    Sounds.attackCowSound.play();
         // Mirar si hacen falta mas
         // Cambiar el mode dentro del limite.
         mode = ++mode % GameEngine.getPlayer().getNumModes();
@@ -33,15 +32,11 @@ public class Btn_Change_Bullet_Type extends Button {
     public void draw(Integer a) {
         switch (mode) {
             case 0:
-                textures[0].draw(GameEngine.batch);
+                spr[0].draw(GameEngine.batch);
                 break;
             case 1:
-                textures[1].draw(GameEngine.batch);
+                spr[1].draw(GameEngine.batch);
                 break;
         }
-    }
-
-    public int getCost() {
-        return 0;
     }
 }

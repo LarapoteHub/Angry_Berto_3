@@ -67,8 +67,8 @@ public class Logic extends GameEngine implements Runnable {
          * Parte del Button de Hoe
 		 * 
 		 * if (chargeBar >= cost) {
-		 * GameEngine.batch.draw(textures[1].getTexture(), x, y, width, height);
-		 * } else { GameEngine.batch.draw(textures[0].getTexture(), x, y, width,
+		 * GameEngine.batch.draw(spr[1].getTexture(), x, y, width, height);
+		 * } else { GameEngine.batch.draw(spr[0].getTexture(), x, y, width,
 		 * height); }
 		 */
 

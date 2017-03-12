@@ -169,6 +169,16 @@ Añadida mecanica de que se mueva al centro de la pantalla mientras se mueve hac
     tras derrotar un boss.
 ------------
 
+0.2_4
+-- RuLoSp --
+- Purgado : [Botones, Sprites.java, Loader.java]
+- Sacado el Enum a un fichero (y renombrado) de SprPaths a SprNames
+- Cambiado el acceso al nombre de los sprites usando el Enum.
+- Pillado el mas descriptivo de los 2 siguientes:
+    - Renombrado algunas clases para que coincidan con su correspondiente en valor sprite
+    - Renombrado algun nombre de sprite en SprNames para que coincida con su nombre de clase
+------------
+
 
 
 

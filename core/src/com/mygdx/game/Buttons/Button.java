@@ -14,8 +14,7 @@ import com.mygdx.game.Multimedia.Sprites;
  */
 public abstract class Button extends Rectangle {
 
-    protected Sprite[] textures;
-    //public static GameEngine engine;
+    protected Sprite[] spr;
 
     // Para poder acceder facilmente a cada boton, y para que no se repitan.
     // ES NECESARIO DARLE UN VALOR, SINO SOBREESCRIBE UN BOTON EXISTENTE!! ************************************************************
@@ -36,9 +35,10 @@ public abstract class Button extends Rectangle {
         this.height = height;
         this.name = name;
 
-        this.textures = Sprites.getSpriteByName(name);
-        //this.textures = textures;
-        for (Sprite t : textures) {
+        // TODO Inspeccionar esto a ver si se puede eliminar/mejorar
+        this.spr = Sprites.getSpriteByName(name);
+        //this.spr = spr;
+        for (Sprite t : spr) {
             //t.setPosition(x, y);
             // El tamaño ya se ajusta en la carga.
             t.setBounds(x, y, width, height);
@@ -51,20 +51,15 @@ public abstract class Button extends Rectangle {
     public void draw(Integer textureIndex) {
 
         // NOTA: ESTO ES COMO SE USA...
-        // Nota2: textures.draw() No funca.... Ni idea como funca bien...
-        //textures[textureIndex].draw(GameEngine.batch);
-        if (textureIndex > textures.length - 1)
-            textureIndex = textures.length - 1;
+        // Nota2: spr.draw() No funca.... Ni idea como funca bien...
+        //spr[textureIndex].draw(GameEngine.batch);
+        if (textureIndex > spr.length - 1)
+            textureIndex = spr.length - 1;
 
-        textures[textureIndex].draw(GameEngine.batch);
-        //GameEngine.batch.draw(textures[textureIndex].getTexture(), x, y, width, height);
+        spr[textureIndex].draw(GameEngine.batch);
         // DEBUG
-        //System.out.println("X: " + textures[textureIndex].getX() + " Y: " + textures[textureIndex].getY() + " Width: " + textures[textureIndex].getWidth() + " Height: " + textures[textureIndex].getHeight());
-
+        //System.out.println("X: " + spr[textureIndex].getX() + " Y: " + spr[textureIndex].getY() + " Width: " + spr[textureIndex].getWidth() + " Height: " + spr[textureIndex].getHeight());
     }
-
-    // Aplicar la accion del boton. En caso de que sea uno de cambio de pantalla, el X e Y se ignoraran
-    // public abstract void act(float x, float y, int currentCharge);
 
     // Comprobar si se ha tocado el boton y devolver el resultado
     public boolean isTouched(Vector3 touchCoords) {

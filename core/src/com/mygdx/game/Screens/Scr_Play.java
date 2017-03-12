@@ -1,7 +1,7 @@
 package com.mygdx.game.Screens;
 
 import com.badlogic.gdx.graphics.Color;
-import com.mygdx.game.Buttons.Btn_Change_Bullet_Type;
+import com.mygdx.game.Buttons.Btn_Switch_Bullet;
 import com.mygdx.game.Buttons.Btn_Dog;
 import com.mygdx.game.Buttons.Btn_Hoe;
 import com.mygdx.game.Buttons.Btn_Pause;
@@ -18,7 +18,7 @@ public class Scr_Play implements Screen {
 		GameEngine.addButton(new Btn_Hoe());
 		GameEngine.addButton(new Btn_PlusHP());
 		GameEngine.addButton(new Btn_Pause());
-		GameEngine.addButton(new Btn_Change_Bullet_Type());
+		GameEngine.addButton(new Btn_Switch_Bullet());
 
 		//TEXTO DE LA SCORE:
 		GameEngine.addText(new Text("", 78, 800, Color.GREEN));

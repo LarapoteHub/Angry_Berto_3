@@ -5,9 +5,9 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.Buttons.Btn_Achievements;
 import com.mygdx.game.Buttons.Btn_Exit;
-import com.mygdx.game.Buttons.Btn_HighScore;
+import com.mygdx.game.Buttons.Btn_Scores;
 import com.mygdx.game.Buttons.Btn_Options;
-import com.mygdx.game.Buttons.Btn_Play;
+import com.mygdx.game.Buttons.Btn_Init;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.Multimedia.Musics;
 import com.mygdx.game.Multimedia.Sprites;
@@ -44,10 +44,10 @@ public class Scr_MainMenu {
         logoX = 75;
         logoY = 800;
         
-        GameEngine.addButton(new Btn_Play());
+        GameEngine.addButton(new Btn_Init());
         GameEngine.addButton(new Btn_Exit());
         GameEngine.addButton(new Btn_Options());
-        GameEngine.addButton(new Btn_HighScore());
+        GameEngine.addButton(new Btn_Scores());
         GameEngine.addButton(new Btn_Achievements());
         
         /* Ref:

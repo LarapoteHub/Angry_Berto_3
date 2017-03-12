@@ -1,5 +1,6 @@
 package com.mygdx.game.Buttons;
 
+import com.mygdx.game.Engine.SprNames;
 import com.mygdx.game.Entities.PowerUps.RotaryHoe;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.GameEngine.EntityType;
@@ -15,9 +16,9 @@ public class Btn_Hoe extends PowerUp_Button {
     private int damage = 10;
 
     public Btn_Hoe() {
-        super(10, 150, 48, 48, "btn_rotaryHoe");
+        super(10, 150, 48, 48, SprNames.btn_rotaryHoe.name());
         isPowerUp = true;
-        name = "btn_rotaryHoe";
+        name = SprNames.btn_rotaryHoe.name();
         cost = 50;
     }
 

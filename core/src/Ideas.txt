@@ -6,7 +6,7 @@
 
 - Crear Chupito-landia?
 
-- Añadir multiples disparos / dualidad?
++DONE+ - Añadir multiples disparos / dualidad?
 
 Xamon ideas---
 boss final:
