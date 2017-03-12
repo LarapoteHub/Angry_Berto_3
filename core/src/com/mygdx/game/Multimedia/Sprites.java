@@ -114,7 +114,7 @@ public class Sprites {
 //    }
 
     // TODO Eliminar comentario si se va entregar...
-    // OLD AND DEPRECATED!!!	#VICENTE
+    // OLD AND DEPRECATED!!!
     // Solo usar de referencia en caso de necesidad.
     //BOTONES
 /*
