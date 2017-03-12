@@ -9,6 +9,7 @@ import com.mygdx.game.Engine.Loader;
 import com.mygdx.game.Engine.MusicManager;
 import com.mygdx.game.Levels.Level;
 import com.mygdx.game.Levels.Level0;
+import com.mygdx.game.Multimedia.Backgrounds;
 
 // TODO LIST!
 // Lista donde se pone el resto de cosas que no son directamente relacionadas con codigo
@@ -19,7 +20,7 @@ public class MyGdxGame extends ApplicationAdapter {
     // TODO Esto debería ajustarse a la pantalla actual que tenemos en realidad,
     // TODO con bordes negros
     // TODO o lo que haga falta.
-    public static final int WIDTH = 480, HEIGHT = 800, ORIGIN_X = 68;
+    public static final int WIDTH = 480, HEIGHT = 800, ORIGIN_X = 68, GAMEPLAY_SCR_CENTER = 250;
     //EL WIDTH DE LA BARRA DE LA IZQUIERDA ES 68.
 
     // modo DEBUG
@@ -46,6 +47,11 @@ public class MyGdxGame extends ApplicationAdapter {
     @Override
     public void create() {
 
+        //Código para obtener el centro relativo:
+        //GAMEPLAY_SCR_CENTER = MyGdxGame.WIDTH - Backgrounds.backgroundPowerUps.getWidth();
+        //GAMEPLAY_SCR_CENTER = centroPantalla /= 2;
+        //GAMEPLAY_SCR_CENTER = centroPantalla += Backgrounds.backgroundPowerUps.getWidth();
+        //GAMEPLAY_SCR_CENTER = centroPantalla -= width / 2;
 
         //TODO 100vol estuvo aqui
         initComponents();
@@ -132,6 +138,8 @@ public class MyGdxGame extends ApplicationAdapter {
     //TODO ESTO SE HACE EN EL ON CREATE, ESTA PUESTO AQUI PARA PROBAR LA CARGA ASÍNCRONA.
     private void initComponents() {
         engine = new GameEngine();
+
+
 
         engine.create();
 

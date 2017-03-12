@@ -17,7 +17,7 @@ import com.mygdx.game.Projectiles.PlayerShoot;
 public class Player extends Ship {
 
 	//TODO Cheats!
-	private boolean GODMODE = true;
+	private boolean GODMODE = false;
 	private float initialLives;
 	// --------
 
@@ -289,20 +289,17 @@ public class Player extends Ship {
 
 			//si el player ha ganado el nivel, lo movemos hacia delante sin limite...
 		} else {
+
 			// Mecanica para ir al centro de la pantalla y al y.MAX
-			int centroPantalla = MyGdxGame.WIDTH - Backgrounds.backgroundPowerUps.getWidth();
-			centroPantalla /= 2;
-			centroPantalla += Backgrounds.backgroundPowerUps.getWidth();
-			centroPantalla -= width / 2;
 
 			float step = 250 * Gdx.graphics.getDeltaTime();
 
-			if (this.x - step > centroPantalla)
-				this.x -= 250 * step;
-			else if (this.x + 250 * step < centroPantalla)
-				this.x += 250 * step;
+			if (this.x - step > MyGdxGame.GAMEPLAY_SCR_CENTER)
+				this.x -= step;
+			else if (this.x + 250 * step < MyGdxGame.GAMEPLAY_SCR_CENTER)
+				this.x += step;
 			else {
-				this.x = centroPantalla;
+				this.x = MyGdxGame.GAMEPLAY_SCR_CENTER;
 			}
 
 			this.y += step;
