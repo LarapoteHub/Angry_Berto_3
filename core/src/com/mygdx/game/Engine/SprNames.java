@@ -61,7 +61,7 @@ public enum SprNames {
     enemy_shield("sprites/enemies/shieldEnemy.png"),
     //bad name but...
     enemy_shield__shield("sprites/enemies/shieldEnemy_Shield.png"),
-
+    enemy_barbedWire("sprites/enemies/barbedWireEnemy.png"),
 
     // BOSSES
     boss_1("sprites/enemies/firstBoss.png"),

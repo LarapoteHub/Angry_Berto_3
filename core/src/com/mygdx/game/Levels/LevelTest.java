@@ -32,8 +32,9 @@ public class LevelTest extends Level {
 
             //GameEngine.spawnEnemy(MyGdxGame.WIDTH/2, 800, GameEngine.EnemyType.SHIELD_ENEMY, Enemy.Behavior.ShieldEnemy.DEFAULT);
             // NOTA: Facil de equivocarse en tod0 esto...
-            GameEngine.spawnEnemy(MyGdxGame.WIDTH/2, 800, GameEngine.EnemyType.HEAVY_ENEMY, Enemy.Behavior.HeavyEnemy.DEFAULT);
+           // GameEngine.spawnEnemy(MyGdxGame.WIDTH/2, 800, GameEngine.EnemyType.HEAVY_ENEMY, Enemy.Behavior.HeavyEnemy.DEFAULT);
 
+            GameEngine.spawnEnemy(MyGdxGame.WIDTH/2, 800, GameEngine.EnemyType.BARBEDWIRE, Enemy.Behavior.BarbedWireEnemy.DEFAULT);
 
             running = true;
         } else if (GameEngine.getEnemies().isEmpty() && GameEngine.getBosses().isEmpty()) {

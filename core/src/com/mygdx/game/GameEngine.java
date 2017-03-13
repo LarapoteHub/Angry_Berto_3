@@ -16,6 +16,7 @@ import com.mygdx.game.Engine.LevelManager;
 import com.mygdx.game.Engine.Loader;
 import com.mygdx.game.Engine.Logic;
 import com.mygdx.game.Engine.Renderer;
+import com.mygdx.game.Entities.Enemies.BarbedWireEnemy;
 import com.mygdx.game.Entities.Enemies.Bossses.Boss;
 import com.mygdx.game.Entities.Enemies.Bossses.Boss1;
 import com.mygdx.game.Entities.Enemies.ShieldEnemy;
@@ -356,7 +357,7 @@ public class GameEngine {
 	 **************************************************************************************************************************************************/
 
 	public enum EnemyType {
-		STANDARD_ENEMY, EVADING_ENEMY, SPIKE_BALL, HEAVY_ENEMY, SATELLITE_ORBIT_ENEMY, CORE_ORBIT_ENEMY, SHIELD_ENEMY, BOSS, ALAMBRADA;
+		STANDARD_ENEMY, EVADING_ENEMY, SPIKE_BALL, HEAVY_ENEMY, SATELLITE_ORBIT_ENEMY, CORE_ORBIT_ENEMY, SHIELD_ENEMY, BOSS, BARBEDWIRE;
 	}
 
 	public enum BossType {
@@ -405,12 +406,20 @@ public class GameEngine {
 
 			case SHIELD_ENEMY:
 				enemy = new ShieldEnemy(x,y, (Enemy.Behavior.ShieldEnemy)behavior);
+				break;
+			case  BARBEDWIRE:
+				enemy = new BarbedWireEnemy(x, y, (Enemy.Behavior.BarbedWireEnemy)behavior);
+				break;
 
 		} // end switch();
 
 		enemies.add(enemy);
 		// TODO Probar si esto va bien.
-		if (!enemy.getClass().equals(SpikeBallEnemy.class))
+		//muy bonito
+		//if (!enemy.getClass().equals(SpikeBallEnemy.class))
+		//	levelManager.getCurrentLevel().increaseSpawned();
+		//pero...
+		if (type != EnemyType.SPIKE_BALL)
 			levelManager.getCurrentLevel().increaseSpawned();
 
 

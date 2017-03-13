@@ -184,6 +184,10 @@ Añadida mecanica de que se mueva al centro de la pantalla mientras se mueve hac
 - Purgado TOD0 lo que quedaba
 ------------
 
+0.3
+-- Xamon (100vol) --
+Añadido BarbedWireEnemy, de parte de Xamon.
+Actualizadas assets con sprite provisional, el enemigo se puede ver enm Level Test.
 
 
 

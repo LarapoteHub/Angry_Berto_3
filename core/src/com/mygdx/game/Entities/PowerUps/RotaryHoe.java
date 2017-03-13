@@ -148,7 +148,7 @@ public class RotaryHoe extends Projectile {
     }
 
     public void draw() {
-        // TODO Reñir a Diego por no usar la clase "Sprite"
+
         spr.rotate(MathUtils.random(15, 45));
 
         spr.draw(GameEngine.batch);

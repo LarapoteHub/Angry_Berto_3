@@ -207,6 +207,10 @@ public abstract class Enemy extends Ship {
             DEFAULT;
         }
 
+        public enum BarbedWireEnemy {
+            DEFAULT;
+        }
+
         public static class Bosses {
 
             public enum Boss1 {
