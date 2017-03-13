@@ -22,6 +22,7 @@ public class Sounds {
 
     public static Sound chargeSound;
 
+
     public static Sound heavyEnemyShootSound;
 
 }

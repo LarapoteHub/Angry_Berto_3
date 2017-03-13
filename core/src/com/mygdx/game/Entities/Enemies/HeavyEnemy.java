@@ -1,16 +1,21 @@
 package com.mygdx.game.Entities.Enemies;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.utils.Timer;
 import com.mygdx.game.Entities.PlainAnimations.AnimationAdapter;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.GameEngine.EnemyType;
 import com.mygdx.game.GameEngine.EntityType;
+import com.mygdx.game.Multimedia.Musics;
+import com.mygdx.game.Multimedia.Sounds;
 import com.mygdx.game.Multimedia.Sprites;
+import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Projectiles.HeavyEnemyShoot;
 
 /**
@@ -28,6 +33,18 @@ public class HeavyEnemy extends Enemy {
     private TextureRegion[] movingFrames;
 
     private Behavior.HeavyEnemy behavior;
+
+    private Music chargingSound = null;
+
+    private Timer.Task initShoot = new Timer.Task() {
+        @Override
+        public void run() {
+
+            if (!chargingSound.isPlaying()) {
+                spawnShoot();
+            }
+        }
+    };
 
     public HeavyEnemy(float x, float y, Behavior.HeavyEnemy behavior) {
         super(x, y);
@@ -96,8 +113,13 @@ public class HeavyEnemy extends Enemy {
     public void shoot() {
         // 50% probabilidad de que dispare
         int a = MathUtils.random(0, 100);
-        if (a < 70) {
-            GameEngine.addEntity(new HeavyEnemyShoot(this), EntityType.BULLET_ENEMY);
+        if (a < 70 && !initShoot.isScheduled()) {
+
+            chargingSound = Musics.heavyEnemyChargeSound;
+            chargingSound.setLooping(false);
+            chargingSound.play();
+            Timer.schedule(initShoot, 0.1f, 0.1f);
+
         } else {
             // Retraso en caso de que no dispare.
             CDCount -= MathUtils.random(0.15f, 0.45f);
@@ -120,5 +142,11 @@ public class HeavyEnemy extends Enemy {
         currentAnimation = new AnimationAdapter(0.4f, AnimationAdapter.splitSheet(spr, FRAME_COLS, FRAME_ROWS), Animation.PlayMode.NORMAL);
 
 
+    }
+
+    private void spawnShoot() {
+        GameEngine.addEntity(new HeavyEnemyShoot(this), EntityType.BULLET_ENEMY);
+        Sounds.heavyEnemyShootSound.play();
+        initShoot.cancel();
     }
 }

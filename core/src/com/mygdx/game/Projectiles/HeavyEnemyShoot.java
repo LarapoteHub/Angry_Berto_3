@@ -76,6 +76,15 @@ public class HeavyEnemyShoot extends Projectile {
 		
 	}
 
+    @Override
+    public void move() {
+
+        super.move();
+
+
+
+    }
+
 //	@Override
 //	public void move() {
 //		y -= vSpeed * Gdx.graphics.getDeltaTime(); //antes 250

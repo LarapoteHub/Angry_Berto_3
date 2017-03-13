@@ -184,16 +184,24 @@ Añadida mecanica de que se mueva al centro de la pantalla mientras se mueve hac
 - Purgado TOD0 lo que quedaba
 ------------
 
-0.3
+0.2_6
 -- Xamon (100vol) --
 Añadido BarbedWireEnemy, de parte de Xamon.
 Actualizadas assets con sprite provisional, el enemigo se puede ver enm Level Test.
 
-0.3_"
+0.2_7
 -- Xamon (100vol) --
 Corregido que los disparos del Player impactasen en BarbedWireEnemy.
 Añadido boolean isTranscendental en la clase Enemy, si se pone a true los disparos del Player no
     atravesarán al enemigo.
+
+0.2_8
+-- 100vol --
+Arreglado completamente el disparo de HeavyEnemy, he dividido en dos sonidos la carga y el tiro en
+    si el problema es que he tenido que crear y tratar heavyEnemyChargeSound como Music para poder
+    preguntar isPlaying() (Sound no tiene tal método) y lanzar el disparo junto con el segundo sonido.
+
+
 
 
 
