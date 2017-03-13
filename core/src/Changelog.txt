@@ -179,6 +179,11 @@ Añadida mecanica de que se mueva al centro de la pantalla mientras se mueve hac
     - Renombrado algun nombre de sprite en SprNames para que coincida con su nombre de clase
 ------------
 
+0.2_5
+-- RuLoSp --
+- Purgado TOD0 lo que quedaba
+------------
+
 
 
 

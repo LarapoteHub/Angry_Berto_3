@@ -2,6 +2,7 @@ package com.mygdx.game.Entities.Enemies;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.mygdx.game.Engine.SprNames;
 import com.mygdx.game.Entities.Player;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.Multimedia.Backgrounds;
@@ -16,25 +17,20 @@ import java.util.ArrayList;
 
 public class CoreOrbitEnemy extends Enemy {
 
-    private Behavior.CoreOrbitEnemy behavior;
     private ArrayList<SatelliteOrbitEnemy> satellites;
 
     public CoreOrbitEnemy(float x, float y, Behavior.CoreOrbitEnemy behavior) {
         super(x, y);
 
         this.vSpeed = -200;
-        //CUIDAO COLGAOS!!
-        //this.hSpeed = 100;
         this.width = 48;
         this.height = 48;
         this.lives = 10;
 
-        this.behavior = behavior;
-
         damage = 2;
 
         // Valor que sumar para la puntuacion
-        score = 200;
+        scoreValue = 200;
 
         this.type = GameEngine.EnemyType.CORE_ORBIT_ENEMY;
         this.powerUpProb = 10;
@@ -53,12 +49,13 @@ public class CoreOrbitEnemy extends Enemy {
     @Override
     public void draw() {
 
+        // TODO Sustituir esto por copias de Sprites guardados localmente.
         if (hit) {
             tmpColor = GameEngine.batch.getColor();
             GameEngine.batch.setColor(Color.RED);
         }
 
-        GameEngine.batch.draw(Sprites.getSpriteByName("enemy_core_orbit")[0].getTexture(), x, y, width, height);
+        GameEngine.batch.draw(Sprites.getSpriteByName(SprNames.enemy_core_orbit.name())[0].getTexture(), x, y, width, height);
 
         if (hit) {
             GameEngine.batch.setColor(tmpColor);
@@ -78,8 +75,6 @@ public class CoreOrbitEnemy extends Enemy {
 
     @Override
     public void move() {
-        //super.move();
-
         // Moverlo simplemente.
         x += hSpeed * Gdx.graphics.getDeltaTime();
         y += vSpeed * Gdx.graphics.getDeltaTime();

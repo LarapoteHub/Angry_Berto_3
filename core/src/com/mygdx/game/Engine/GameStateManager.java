@@ -30,7 +30,7 @@ public class GameStateManager {
 		changed = true;
 	}
 	
-	/*public void score() {
+	/*public void scoreValue() {
 		state = GameState.HIGH_SCORE;
 	}
 	*/
@@ -63,12 +63,6 @@ public class GameStateManager {
 		} else {
 			state = GameState.GAME_END_LOSE;
 		}
-		saveState = false;
-		changed = true;
-	}
-
-	public void loadGame() {
-		state = GameState.LOADING;
 		saveState = false;
 		changed = true;
 	}

@@ -9,7 +9,6 @@ import com.badlogic.gdx.math.MathUtils;
 import com.mygdx.game.Entities.PlainAnimations.AnimationAdapter;
 import com.mygdx.game.Entities.Player;
 import com.mygdx.game.GameEngine;
-import com.mygdx.game.Multimedia.Backgrounds;
 import com.mygdx.game.Multimedia.Musics;
 import com.mygdx.game.Multimedia.Sprites;
 import com.mygdx.game.MyGdxGame;
@@ -29,7 +28,7 @@ public class Boss1 extends Boss {
     private Behavior.Bosses.Boss1 behavior;
 
     public Boss1(float x, float y, Behavior.Bosses.Boss1 behavior) {
-        super(x, y, 0);
+        super(x, y);
         vSpeed = -100; //-300 no se por que
         hSpeed = 0;
 
@@ -47,7 +46,7 @@ public class Boss1 extends Boss {
         damage = 2;
 
         // Valor que sumar para la puntuacion
-        score = 100;
+        scoreValue = 100;
 
         // ascending = true;
         // descending = false;
@@ -70,11 +69,6 @@ public class Boss1 extends Boss {
         MyGdxGame.musicManager.setMusic(Musics.boss1Music);
 
         initAnimation();
-    }
-
-    @Override
-    public void updateBehaviour() {
-
     }
 
     @Override
@@ -203,19 +197,6 @@ public class Boss1 extends Boss {
 
         Sprite spr = Sprites.getSpriteByName("boss_1")[0];
         currentAnimation = new AnimationAdapter(0.4f, AnimationAdapter.splitSheet(spr, FRAME_COLS, FRAME_ROWS), Animation.PlayMode.NORMAL);
-
-        //region OLD
-
-        /*
-        movingFrames = new TextureRegion[FRAME_COLS];
-
-        movingFrames = Sprites.getSpriteByName("boss_1")[0].split(Sprites.getSpriteByName("boss_1")[0].getTexture(), (int) Sprites.getSpriteByName("boss_1")[0].getWidth() / FRAME_COLS, (int) Sprites.getSpriteByName("boss_1")[0].getHeight() / FRAME_ROWS)[0];
-
-        currentAnimation = new Animation(0.4f, movingFrames);
-        //currentAnimation.setPlayMode(Animation.PlayMode.LOOP);
-         */
-
-        //endregion
 
     }
 }

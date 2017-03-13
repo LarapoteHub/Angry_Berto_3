@@ -33,7 +33,6 @@ public class Charge extends PowerUp {
 
     public void draw() {
 		spr.draw(GameEngine.batch);
-        //GameEngine.batch.draw(Sprites.getSpriteByName("powerUp_charge_increase")[0].getTexture(), x, y, getWidth(), getHeight());
     }
 
 	@Override
@@ -49,7 +48,6 @@ public class Charge extends PowerUp {
 	
 	@Override
 	public void destroy() {
-		//this.remove = true;
 		kill();
 		
 		if (gotIt)

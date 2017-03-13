@@ -1,6 +1,5 @@
 package com.mygdx.game.Entities.Enemies;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.mygdx.game.Entities.PlainAnimations.Explosion;
 import com.mygdx.game.Entities.Ship;
@@ -43,7 +42,7 @@ public class SatelliteOrbitEnemy extends Enemy {
         damage = 2;
 
         // Valor que sumar para la puntuacion
-        this.score = 0;
+        this.scoreValue = 0;
 
         // ascending = true;
         // descending = false;
@@ -84,7 +83,6 @@ public class SatelliteOrbitEnemy extends Enemy {
 
         spr.setPosition(x, y);
 
-        //Sprites.getSpriteByName("enemy_satellite_orbit")[0].setPosition(x, y);
 
     }
 

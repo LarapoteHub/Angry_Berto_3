@@ -38,8 +38,7 @@ public class Level0 extends Level {
 
         if (!running) {
             running = true;
-            //TODO TEST TEST TEST TETAS TEST TEST TEST TEST
-            //phase = 7;
+
             runPhase();
         } else if (phase != nPhases && GameEngine.getEnemies().isEmpty()) {
             changePhase();

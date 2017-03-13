@@ -41,7 +41,7 @@ public class AlambradaEnemy extends Enemy {
         setHeight(48);
         lives = 3;
         
-        score = 15;
+        scoreValue = 15;
         
         type = EnemyType.SPIKE_BALL;
 

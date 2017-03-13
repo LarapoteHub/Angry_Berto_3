@@ -43,7 +43,7 @@ public class HeavyEnemy extends Enemy {
 
         this.behavior = behavior;
 
-        score = 150;
+        scoreValue = 150;
 
 
         type = EnemyType.HEAVY_ENEMY;
@@ -119,19 +119,6 @@ public class HeavyEnemy extends Enemy {
         Sprite spr = Sprites.getSpriteByName("enemy_heavy")[0];
         currentAnimation = new AnimationAdapter(0.4f, AnimationAdapter.splitSheet(spr, FRAME_COLS, FRAME_ROWS), Animation.PlayMode.NORMAL);
 
-        //region OLD
-        /*
-
-        //Sprites.enemy_heavy.setBounds(0, 0, Sprites.enemy_heavy.getTexture().getWidth(), Sprites.enemy_heavy.getTexture().getHeight());
-
-        movingFrames = new TextureRegion[FRAME_COLS];
-
-        movingFrames = Sprites.getSpriteByName("enemy_heavy")[0].split(Sprites.getSpriteByName("enemy_heavy")[0].getTexture(), (int) Sprites.getSpriteByName("enemy_heavy")[0].getWidth() / FRAME_COLS, (int) Sprites.getSpriteByName("enemy_heavy")[0].getHeight() / FRAME_ROWS)[0];
-
-        currentAnimation = new Animation(0.4f, movingFrames);
-
-         */
-        //endregion
 
     }
 }

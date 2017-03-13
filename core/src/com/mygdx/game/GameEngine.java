@@ -59,7 +59,6 @@ public class GameEngine {
 	public static BitmapFont printer;
 	public static LevelManager levelManager;
 
-	private Thread lThread = null;
 
 	// Partes del motor
 	public Logic logic;
@@ -207,10 +206,6 @@ public class GameEngine {
 		printer.dispose();
 	}
 
-	public static void initPlayer() {
-
-	}
-
 	public static long getLastScore() {
 		return lastScore;
 	}
@@ -224,20 +219,6 @@ public class GameEngine {
 		player.setAttackSpeed(uni.getPlayerAttackSpeed());
 	}
 
-	/***************************************************************************************************************************************************
-	 * MÉTODOS DE DIBUJO - Otros??
-	 **************************************************************************************************************************************************/
-
-	/*
-	 * public void drawPausePlayButton(SpriteBatch batch, boolean pause) {
-	 * 
-	 * if (pause) { batch.draw(Sprites.btn_pause[1], pausePlayButtonBox.x,
-	 * pausePlayButtonBox.y - 2, 64, 64); } else {
-	 * batch.draw(Sprites.btn_pause[0], pausePlayButtonBox.x,
-	 * pausePlayButtonBox.y - 2, 64, 64); }
-	 * 
-	 * }
-	 */
 
 	public void drawPlayerLives() {
 
@@ -256,11 +237,6 @@ public class GameEngine {
 
 	}
 
-	/*
-	public void drawPlayerScore() {
-
-
-	}*/
 
 	protected void clearAll() {
 		if (player != null)
@@ -285,8 +261,9 @@ public class GameEngine {
 	}
 
 	// Cosas del SHOW_FPS
-	int count = 0;
+	int count = 1;
 	double time = 0;
+	double subTotal = 0;
 
 	// **********************
 
@@ -296,18 +273,14 @@ public class GameEngine {
 
 		// Contador de FPS
 		if (MyGdxGame.SHOW_FPS) {
-			// Improved FPS counter.
-			if (count++ % 30 == 0)
-				time = 1 / Gdx.graphics.getDeltaTime();
-			/*
-			 * Gdx.gl.glClearColor(0, 0, 0, 1);
-			 * Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-			 * 
-			 * // Esto SI que hace falta cam.update(); // cam.update();
-			 * 
-			 * // Lo que Dani dice que es importante:
-			 * batch.setProjectionMatrix(cam.combined);
-			 */
+			// Improved FPS counter. Draw FPS count every 30 seconds.
+			// For Improved accuracy
+			subTotal += 1 / Gdx.graphics.getDeltaTime();
+			if (count++ % 30 == 0) {
+				time = subTotal / count;
+				subTotal = 0;
+				count = 1;
+			}
 
 			batch.begin();
 
@@ -340,18 +313,11 @@ public class GameEngine {
 
 	public void drawPlayerCharge() {
 
-		/*
-		 * printer.setColor(Color.RED); printer.draw(batch,
-		 * player.getCharge()+"", 10, 380); //339 //800 - 80 printer.draw(batch,
-		 * "%", 22, 350); printer.setColor(Color.WHITE);
-		 */
-
 		// TODO Rehacer esto...
 		// TODO ESTO ESTA MAAAL (A medio hacer)
 		if (MyGdxGame.DEBUG_MODE)
 			System.out.println("Need to finish the charge_bar!");
 
-		//Sprites.powerUp_charge_bar.draw(batch);
 																		//380 - 20 (diferencia )
 		batch.draw(Sprites.getSpriteByName("powerUp_charge_bar_container")[0].getTexture(), 3, 360);
 		batch.draw(Sprites.getSpriteByName("powerUp_charge_bar")[0].getTexture(), 5, 380);

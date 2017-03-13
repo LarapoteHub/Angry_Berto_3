@@ -9,9 +9,10 @@ import com.mygdx.game.GameEngine;
  * Created by Red Mercy on 12/3/2016.
  */
 
+// Dibuja un texto en la pantalla en X, Y
 public class Text {
 
-    private float x, y, width, height;
+    private float x, y;
     private String text;
     private Color color;
     private boolean centerToPoint = false;

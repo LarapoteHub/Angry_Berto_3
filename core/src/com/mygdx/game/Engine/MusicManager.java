@@ -15,7 +15,7 @@ public class MusicManager {
         if (currentMusic != null) {
             currentMusic.stop();
         }
-        //dispose();
+        //dispose(); ??
 
         currentMusic = m;
         if (currentMusic != null) {

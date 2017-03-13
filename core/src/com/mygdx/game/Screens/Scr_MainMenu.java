@@ -17,33 +17,11 @@ import com.mygdx.game.Multimedia.Sprites;
  */
 public class Scr_MainMenu {
 
-    //private SpriteBatch batch;
-    private Rectangle initButtonBox;
-    private Rectangle exitButtonBox;
-    private Rectangle optionsButtonBox;
-    private Rectangle scoresButtonBox;
-    private Rectangle archievementsButtonBox;
-
-    private int logoX;
-    private int logoY;
-
-    public static boolean recently_touched;
-    private Vector3 touchPos;
-
     //Music background;
     public boolean playMusic;
 
-    //variable que impedira la interaccion durante la animacion del logo
-    public boolean touchable;
-
     public void initComponents() {
 
-
-        //this.batch = new SpriteBatch();
-
-        logoX = 75;
-        logoY = 800;
-        
         GameEngine.addButton(new Btn_Init());
         GameEngine.addButton(new Btn_Exit());
         GameEngine.addButton(new Btn_Options());
@@ -61,7 +39,6 @@ public class Scr_MainMenu {
         
         
         // Agregamos al gañuflas
-        // Por que se reinicia???
         Sprite sprBerto = Sprites.getSpriteByName("berto")[0];
         sprBerto.setPosition(38.99f, 217);
         sprBerto.setSize(234, 311);
@@ -74,10 +51,7 @@ public class Scr_MainMenu {
         sprLina.setSize(234, 311);
         
         GameEngine.addImage(sprLina);
-        
-        
 
-        //background = Gdx.audio.newMusic(Gdx.files.internal("audio/music/backgroundMenu.mp3"));
         Musics.backgroundMenuMusic.setLooping(true);
 
         playMusic = true;

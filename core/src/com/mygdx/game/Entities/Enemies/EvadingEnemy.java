@@ -5,13 +5,11 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.MathUtils;
 import com.mygdx.game.Entities.PlainAnimations.AnimationAdapter;
 import com.mygdx.game.Entities.Player;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.GameEngine.EnemyType;
 import com.mygdx.game.GameEngine.EntityType;
-import com.mygdx.game.Multimedia.Sounds;
 import com.mygdx.game.Multimedia.Sprites;
 import com.mygdx.game.Projectiles.StandardEnemyShoot;
 
@@ -41,7 +39,7 @@ public class EvadingEnemy extends Enemy {
         
         timerShoot = 50;
         
-        score = 120;
+        scoreValue = 120;
         
         type = EnemyType.EVADING_ENEMY;
         
@@ -156,16 +154,6 @@ public class EvadingEnemy extends Enemy {
         Sprite spr = Sprites.getSpriteByName("enemy_dodging")[0];
         currentAnimation = new AnimationAdapter(0.4f, AnimationAdapter.splitSheet(spr, FRAME_COLS, FRAME_ROWS), Animation.PlayMode.NORMAL);
 
-        //region OLD
-        //Sprites.enemy_dodging.setBounds(0, 0, Sprites.enemy_dodging.getTexture().getWidth(), Sprites.enemy_dodging.getTexture().getHeight());
-
-        /*
-        movingFrames = new TextureRegion[FRAME_COLS];
-        movingFrames = Sprites.getSpriteByName("enemy_dodging")[0].split(Sprites.getSpriteByName("enemy_dodging")[0].getTexture(), (int) Sprites.getSpriteByName("enemy_dodging")[0].getWidth() / FRAME_COLS, (int) Sprites.getSpriteByName("enemy_dodging")[0].getHeight() / FRAME_ROWS)[0];
-
-        currentAnimation = new Animation(0.4f, movingFrames);
-        */
-        //endregion
 
     }
 

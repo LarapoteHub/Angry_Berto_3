@@ -25,7 +25,7 @@ public abstract class Enemy extends Ship {
     
     protected EnemyType type;
     
-    protected int score = 0;
+    protected int scoreValue = 0;
     protected int powerUpProb;
 
     
@@ -60,9 +60,7 @@ public abstract class Enemy extends Ship {
         // Necesario para que hagan Spawn por fuera de la pantalla.
         // Cosas de la organizacion.
         setLivesOutsideScreen(true);
-        
-//
-//        playAnimation();
+
         collisionBox = new Rectangle(x, y, width, height);
         
     	// Esto se usará mas tarde para ahorrar comprobaciones de colisión.
@@ -88,14 +86,14 @@ public abstract class Enemy extends Ship {
         GameEngine.addEntity(new Explosion(x, y, width, height, true),
                 GameEngine.EntityType.PLAIN_ANIMATION);
         // Incrementar la puntuacion del jugador
-        GameEngine.getPlayer().addScore(score);
+        GameEngine.getPlayer().addScore(scoreValue);
         // Spawnear carga de Power Up si hay suerte.
         Random rnd = new Random(System.nanoTime()
                 * System.nanoTime() / 13);
         if (rnd.nextInt(100) < getPowerUpProbability())
             GameEngine.spawnPowerUpCharge(x, y);
 
-        if (this.score > 0) {
+        if (this.scoreValue > 0) {
             GameEngine.levelManager.getCurrentLevel().increaseEnemiesDestroyed();
         }
     }
@@ -118,8 +116,8 @@ public abstract class Enemy extends Ship {
     	return center;
     }
     
-    public int getScore() {
-    	return score;
+    public int getScoreValue() {
+    	return scoreValue;
     }
     
     

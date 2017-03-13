@@ -258,9 +258,6 @@ public class Player extends Ship {
 
 	@Override
 	public void move() {
-		/*x += hSpeed * Gdx.graphics.getDeltaTime();
-		y += vSpeed * Gdx.graphics.getDeltaTime();
-		*/
 
 		if (!victory) {
 
@@ -344,16 +341,13 @@ public class Player extends Ship {
 
 	private void initAnimation() {
 
-		// TODO Plantearse si esto es mejor hacerlo con el SprName
-		//Sprites.getSpriteByName("player")[0].setBounds(0, 0, Sprites.getSpriteByName("player")[0].getTexture().getWidth(), Sprites.getSpriteByName("player")[0].getTexture().getHeight());
+		// TODO Implementar SprName Y AnimationAdapter
 
 		movingFrames = new TextureRegion[FRAME_COLS];
 
 		movingFrames = Sprites.getSpriteByName("player")[0].split(Sprites.getSpriteByName("player")[0].getTexture(), (int) Sprites.getSpriteByName("player")[0].getWidth() / FRAME_COLS, (int) Sprites.getSpriteByName("player")[0].getHeight() / FRAME_ROWS)[0];
 
 		currentAnimation = new Animation(0.4f, movingFrames);
-		// Probabliemente inutil, ya que el Width y Height se asignan al cargar...
-		//Sprites.getSpriteByName("player_propulsion")[0].setBounds(0, 0, Sprites.getSpriteByName("player_propulsion")[0].getTexture().getWidth(), Sprites.player_propulsion.getTexture().getHeight());
 
 		propulsionFrames = new TextureRegion[FRAME_COLS_PROPULSION];
 

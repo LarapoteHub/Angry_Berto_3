@@ -21,7 +21,7 @@ public class AttackCow extends Projectile {
         width = 64;
         height = 64;
         this.vSpeed = 750;
-        //setLivesOutsideScreen(true);
+
         // Crea copia local del sprite
         spr = new Sprite(Sprites.getSpriteByName("powerUp_attackCow")[0]);
         // Hace que coincida el sprite con el tamaño del objeto.

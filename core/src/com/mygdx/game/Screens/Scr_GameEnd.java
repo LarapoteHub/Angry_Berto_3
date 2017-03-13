@@ -17,8 +17,6 @@ import com.mygdx.game.MyGdxGame;
  */
 public class Scr_GameEnd implements Screen {
 
-	// Texture background;
-	// Texture gameOverImage;
 	int gameOverX;
 	int gameOverY;
 	boolean touched;
@@ -79,7 +77,7 @@ public class Scr_GameEnd implements Screen {
 				drawScoreStars();
 			}
 
-
+			// IN DEV ??
 			/*
 			GameEngine.addText(new Text("-- ENEMIES DESTROYED --", MyGdxGame.WIDTH/2, 320, Color.RED).setCenterToPoint(true).setScale(0.8f, 0.8f));
 			GameEngine.addText(new Text(GameEngine.levelManager.getCurrentLevel().getEnemiesDestroyed() + " / " + GameEngine.levelManager.getCurrentLevel().getEnemiesSpawned(), MyGdxGame.WIDTH/2, 285, Color.GREEN).setCenterToPoint(true).setScale(1.5f, 1.5f));

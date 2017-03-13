@@ -31,7 +31,7 @@ public class HeavyEnemyShoot extends Projectile {
         index = 0;
         
         damage = 2;
-
+        // Animacion de la bala
         playAnimation();
 
     }
@@ -40,26 +40,6 @@ public class HeavyEnemyShoot extends Projectile {
     public void draw() {
 
         GameEngine.batch.draw(Sprites.getSpriteByName("bullet_heavy_enemy")[index].getTexture(), x, y, getWidth(), getHeight());
-
-    }
-
-    // TODO: Quitar esto!
-    
-    public void action(Player player) {
-
-        
-        // en caso de que el enemigo se salga de los márgenes de la pantalla por debajo, la eliminamos.
-        
-/*
-        //si un disparo colisiona con el jugador...
-        if (this.overlaps(player)) {
-            // reproducimos el sonido correspondiente...
-            Sounds.explodeSound.play();
-            //restamos una vida al jugador
-            player.decreaseLives(2);
-            // y lo eliminamos de nuestro mundo.
-            remove = true;
-        }*/
 
     }
 

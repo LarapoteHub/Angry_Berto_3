@@ -23,12 +23,6 @@ public class StandardEnemy extends Enemy {
 	 * 200, su movimiento es controlado por schedules de las clases derivadas de
 	 * Level.
 	 */
-	/*
-	 * boolean ascending; boolean descending;
-	 */
-
-	//solo tiene una animacion
-	private TextureRegion[] movingFrames;
 
 	private Behavior.StandardEnemy behavior;
 
@@ -44,10 +38,8 @@ public class StandardEnemy extends Enemy {
 		damage = 2;
 		
 		// Valor que sumar para la puntuacion
-		score = 100;
+		scoreValue = 100;
 
-		// ascending = true;
-		// descending = false;
 
 		type = EnemyType.STANDARD_ENEMY;
 		powerUpProb = 10;
@@ -156,22 +148,6 @@ public class StandardEnemy extends Enemy {
 		Sprite spr = Sprites.getSpriteByName("enemy_std")[0];
 		currentAnimation = new AnimationAdapter(0.4f, AnimationAdapter.splitSheet(spr, FRAME_COLS, FRAME_ROWS), Animation.PlayMode.NORMAL);
 
-		//region OLD
-		/*
-		v//Sprites.enemy_std.setBounds(0, 0, Sprites.enemy_std.getTexture().getWidth(), Sprites.enemy_std.getTexture().getHeight());
-
-
-
-		movingFrames = new TextureRegion[FRAME_COLS];
-
-
-		Sprite enemy_std = Sprites.getSpriteByName("enemy_std")[0];
-		movingFrames = enemy_std.split(enemy_std.getTexture(), (int) enemy_std.getWidth() / FRAME_COLS, (int) enemy_std.getHeight() / FRAME_ROWS)[0];
-
-		currentAnimation = new Animation(0.4f, movingFrames);
-		//currentAnimation.setPlayMode(Animation.PlayMode.LOOP);
-		 */
-		//endregion
 
 	}
 

@@ -53,6 +53,7 @@ public class PlayerShoot extends Projectile {
         }
         GameEngine.batch.draw(tex, x, y, getWidth(), getHeight());
 
+        // Restauracion de colores
         //GameEngine.batch.setColor(tmpColor);
     }
 
@@ -68,13 +69,5 @@ public class PlayerShoot extends Projectile {
         	remove = true;
     }
 
-    public void act(Array<Enemy> enemysList) {
-
-
-
-
-
-
-    } //end action()
 
 }

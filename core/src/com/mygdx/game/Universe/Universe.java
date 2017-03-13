@@ -20,7 +20,7 @@ public class Universe {
 
 	private int uniMode = 1;
 
-	// Base values
+	// Base values Not used yet, for some reason...
 	private float playerAttackSpeedBase = 10;
 	private float enemyAttackSpeedBase = 10;
 
@@ -66,10 +66,7 @@ public class Universe {
 	public float getEnemyHPBuff() {
 		return enemyHPBuff;
 	}
-	
-	public int getPlayerAttackMode() {
-		return playerAttackMode;
-	}
+
 	
 	public float getPlayerAttackSpeed() {
 		return playerAttackSpeed;
@@ -85,7 +82,13 @@ public class Universe {
 
 		return null;
 	}
-	
+
+
+	// To be implemented in the future.
+	public int getPlayerAttackMode() {
+		return playerAttackMode;
+	}
+
 	public float getPlayerHPBuff() {
 		return playerHPBuff;
 	}
