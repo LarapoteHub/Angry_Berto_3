@@ -144,6 +144,15 @@ public class HeavyEnemy extends Enemy {
 
     }
 
+    //sobreescrito para que detenga el disparo.
+    @Override
+    public void kill() {
+        if (initShoot.isScheduled()) {
+            initShoot.cancel();
+        }
+        super.kill();
+    }
+
     private void spawnShoot() {
         GameEngine.addEntity(new HeavyEnemyShoot(this), EntityType.BULLET_ENEMY);
         Sounds.heavyEnemyShootSound.play();

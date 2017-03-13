@@ -195,11 +195,15 @@ Corregido que los disparos del Player impactasen en BarbedWireEnemy.
 Añadido boolean isTranscendental en la clase Enemy, si se pone a true los disparos del Player no
     atravesarán al enemigo.
 
-0.2_8
+0.2_7_2
 -- 100vol --
 Arreglado completamente el disparo de HeavyEnemy, he dividido en dos sonidos la carga y el tiro en
     si el problema es que he tenido que crear y tratar heavyEnemyChargeSound como Music para poder
     preguntar isPlaying() (Sound no tiene tal método) y lanzar el disparo junto con el segundo sonido.
+
+0.2_7_3
+Actualizado sprite de BarbedWireEnemy.
+Ahora el disparo de HeavyEnemy se detiene si éste muere.
 
 
 
