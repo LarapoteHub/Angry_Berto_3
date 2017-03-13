@@ -1,7 +1,9 @@
 package com.mygdx.game.Levels;
 
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.utils.Timer;
 import com.mygdx.game.GameEngine;
+import com.mygdx.game.MyGdxGame;
 
 /**
  * Created by 100VOL on 21/08/2016.
@@ -19,6 +21,20 @@ public abstract class Level {
 
     protected int enemiesSpawned = 0;
     protected int enemiesDestroyed = 0;
+
+    protected Timer.Task win = new Timer.Task() {
+        @Override
+        public void run() {
+
+            if (GameEngine.getPlayer().getY() > MyGdxGame.HEIGHT) {
+                GameEngine.getPlayer().setVictory(false);
+                GameEngine.gameState.finishGame(true);
+                win.cancel();
+            }
+        }
+    };
+
+    protected boolean victoryTriggered = false;
 
     public Level() {
         running = false;

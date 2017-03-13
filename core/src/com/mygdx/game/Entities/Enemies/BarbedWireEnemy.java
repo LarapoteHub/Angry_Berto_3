@@ -35,6 +35,9 @@ public class BarbedWireEnemy extends Enemy {
         this.height = 24; //Alto
         this.behavior=behavior;//nin zorra idea do que fai isto
 
+        //las balas los atraviesan
+        this.isTrascendental = true;
+
         damage=1;//dano que realiza ao xogador
 
         type = EnemyType.BARBEDWIRE;
@@ -59,6 +62,9 @@ public class BarbedWireEnemy extends Enemy {
         this.behavior=behavior;
         this.damage=1;
         this.type = EnemyType.BARBEDWIRE;
+
+        //las balas los atraviesan
+        this.isTrascendental = true;
 
         if (isFirstChild) {
             setWidth(24);

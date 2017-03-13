@@ -6,7 +6,6 @@ import com.mygdx.game.GameEngine;
 import com.mygdx.game.Levels.Level0;
 import com.mygdx.game.Levels.LevelDie;
 import com.mygdx.game.Levels.LevelTest;
-import com.mygdx.game.Multimedia.Sprites;
 
 /**
  * Created by xldan on 25/02/2017.

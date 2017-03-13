@@ -15,6 +15,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.MathUtils;
 import com.mygdx.game.Buttons.Button;
+import com.mygdx.game.Entities.Enemies.BarbedWireEnemy;
 import com.mygdx.game.Entities.Enemies.Bossses.Boss;
 import com.mygdx.game.Entities.Enemies.Enemy;
 import com.mygdx.game.Entities.Entity;
@@ -335,7 +336,9 @@ public class Logic extends GameEngine implements Runnable {
             for (Enemy enem : enemies) {
                 if (enem.isColliding(p)) {
                     enem.decreaseLives(p.getDamage());
-                    p.destroy();
+                    if (!enem.isTrascendental()) {
+                        p.destroy();
+                    }
                     if (enem.getLives() <= 0) {
                         enem.kill();
                     }

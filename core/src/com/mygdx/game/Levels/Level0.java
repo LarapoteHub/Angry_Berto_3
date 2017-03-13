@@ -14,19 +14,6 @@ import com.mygdx.game.MyGdxGame;
 public class Level0 extends Level {
 
     private int random;
-    private Timer.Task win = new Timer.Task() {
-        @Override
-        public void run() {
-
-            if (GameEngine.getPlayer().getY() > MyGdxGame.HEIGHT) {
-                GameEngine.getPlayer().setVictory(false);
-                GameEngine.gameState.finishGame(true);
-                win.cancel();
-            }
-        }
-    };
-
-    private boolean victoryTriggered = false;
 
     public Level0() {
         this.nPhases = 11;
@@ -34,6 +21,7 @@ public class Level0 extends Level {
         this.name = "Level 1";
     }
 
+    @Override
     public void runLevel() {
 
         if (!running) {

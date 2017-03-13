@@ -189,6 +189,12 @@ Añadida mecanica de que se mueva al centro de la pantalla mientras se mueve hac
 Añadido BarbedWireEnemy, de parte de Xamon.
 Actualizadas assets con sprite provisional, el enemigo se puede ver enm Level Test.
 
+0.3_"
+-- Xamon (100vol) --
+Corregido que los disparos del Player impactasen en BarbedWireEnemy.
+Añadido boolean isTranscendental en la clase Enemy, si se pone a true los disparos del Player no
+    atravesarán al enemigo.
+
 
 
 

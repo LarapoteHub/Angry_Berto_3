@@ -52,6 +52,8 @@ public abstract class Enemy extends Ship {
 
     protected int animationSpeed = 1;
 
+    protected boolean isTrascendental = false;
+
     public Enemy(float x, float y) {
     	cooldown = 50;
         this.x = x;
@@ -224,5 +226,9 @@ public abstract class Enemy extends Ship {
             DEFAULT;
         }
 
+    }
+
+    public boolean isTrascendental() {
+        return isTrascendental;
     }
 }
