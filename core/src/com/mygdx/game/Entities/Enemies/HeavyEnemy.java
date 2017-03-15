@@ -110,6 +110,7 @@ public class HeavyEnemy extends Enemy {
     }
 
     //creamos un disparo
+    @Override
     public void shoot() {
         // 50% probabilidad de que dispare
         int a = MathUtils.random(0, 100);

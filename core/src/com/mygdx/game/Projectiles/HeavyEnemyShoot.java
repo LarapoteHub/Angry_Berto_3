@@ -18,11 +18,14 @@ public class HeavyEnemyShoot extends Projectile {
     public HeavyEnemyShoot(Enemy enemy) {
 
         super();
-        x = enemy.getX() +16;
-        y = enemy.getY();
+        //x = enemy.getX() +16;
+        //y = enemy.getY();
 
-        this.setWidth(32); //16
-        this.setHeight(72); //16
+        this.width = 32; //16
+        this.height = 72; //16
+
+        this.x = enemy.getX() + enemy.getWidth()/2 - this.width/2;
+        this.y = enemy.getY();
 
         vSpeed = enemy.getVSpeed() - 700;
 

@@ -202,8 +202,16 @@ Arreglado completamente el disparo de HeavyEnemy, he dividido en dos sonidos la 
     preguntar isPlaying() (Sound no tiene tal método) y lanzar el disparo junto con el segundo sonido.
 
 0.2_7_3
+-- 100vol --
 Actualizado sprite de BarbedWireEnemy.
 Ahora el disparo de HeavyEnemy se detiene si éste muere.
+
+0.2_8
+-- 100vol --
+Ahora Boss1 dispara igual que un HeavyEnemy.
+He encontrado la variAble cooldown establecida en Enemy a 50, lo cual hacia que ualquier objeto que
+    la usase tardase muchísimo en disparar. Lo que aún no entiendo es por que narices cambiar esa
+    variable no AFECTA EN ABSOLUTO a StandardEnemy.
 
 
 

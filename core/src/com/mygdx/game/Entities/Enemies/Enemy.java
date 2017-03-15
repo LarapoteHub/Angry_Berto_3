@@ -55,7 +55,8 @@ public abstract class Enemy extends Ship {
     protected boolean isTrascendental = false;
 
     public Enemy(float x, float y) {
-    	cooldown = 50;
+        //TODO estaba a 50!! CUIDADO CON EST0
+    	cooldown = 5;
         this.x = x;
         this.y = y;
         
