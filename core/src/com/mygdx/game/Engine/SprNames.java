@@ -9,6 +9,7 @@ package com.mygdx.game.Engine;
 public enum SprNames {
 
     // Les Botones.
+    btn_mute("sprites/buttons/muteButton.png"),
     btn_pause("sprites/buttons/pauseButton.png", "sprites/buttons/playButton.png"),
     btn_skipIntro("sprites/buttons/skipButton.png"),
 

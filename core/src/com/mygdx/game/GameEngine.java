@@ -90,12 +90,21 @@ public class GameEngine {
 	private boolean multimediaInitialized = false;
 	private boolean componentsInitialized = false;
 	private static  long lastScore = 0;
-	// </Mio!!>
+
+	private static boolean muted = false;
 
 	private Color powerUpChargeBgColor;
 
 	public GameEngine() {
 		// Apparently not used?
+	}
+
+	public static boolean isMuted() {
+		return muted;
+	}
+
+	public static void setMuted(boolean muted) {
+		GameEngine.muted = muted;
 	}
 
 	public void create() {

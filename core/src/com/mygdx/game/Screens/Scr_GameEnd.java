@@ -2,6 +2,7 @@ package com.mygdx.game.Screens;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.mygdx.game.Buttons.Btn_Mute;
 import com.mygdx.game.Entities.PlainAnimations.GameOver;
 import com.mygdx.game.Entities.PlainAnimations.GameWin;
 import com.mygdx.game.Entities.PlainAnimations.ScoreStar;
@@ -89,6 +90,9 @@ public class Scr_GameEnd implements Screen {
 			System.out.println("Excepción en Scr_GameEnd.");
 			ex.printStackTrace();
 		}
+
+		// TODO RedMercy - RuLoSp Was here
+		GameEngine.addButton(new Btn_Mute());
 
 	}
 

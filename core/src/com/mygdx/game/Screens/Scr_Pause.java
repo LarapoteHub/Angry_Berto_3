@@ -3,6 +3,7 @@ package com.mygdx.game.Screens;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.Buttons.Btn_Exit;
+import com.mygdx.game.Buttons.Btn_Mute;
 import com.mygdx.game.GameEngine;
 
 /**
@@ -16,6 +17,5 @@ public class Scr_Pause implements Screen {
 	@Override
 	public void initComponents() {
 		GameEngine.addButton(new Btn_Exit());
-		
 	}
 }

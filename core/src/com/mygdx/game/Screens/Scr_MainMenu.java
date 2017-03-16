@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.Buttons.Btn_Achievements;
 import com.mygdx.game.Buttons.Btn_Exit;
+import com.mygdx.game.Buttons.Btn_Mute;
 import com.mygdx.game.Buttons.Btn_Scores;
 import com.mygdx.game.Buttons.Btn_Options;
 import com.mygdx.game.Buttons.Btn_Init;
@@ -28,6 +29,8 @@ public class Scr_MainMenu implements Screen {
         GameEngine.addButton(new Btn_Options());
         GameEngine.addButton(new Btn_Scores());
         GameEngine.addButton(new Btn_Achievements());
+        // TODO RedMercy - RuLoSp Was here
+        GameEngine.addButton(new Btn_Mute());
         
         /* Ref:
          * logoX = 75;
@@ -55,7 +58,7 @@ public class Scr_MainMenu implements Screen {
 
         Musics.backgroundMenuMusic.setLooping(true);
 
-        playMusic = true;
+        playMusic = !GameEngine.isMuted();
 
 
     }
