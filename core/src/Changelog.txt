@@ -151,7 +151,7 @@ La clase GameData se inicializa en MyGdxGame por el momento.
 0.2_1
 -- 100vol --
 Movidos los datos del juego al almacenamiento externo (concretamente a /storage/sdcard/angry_berto/data
-    en android y C:/Users/tuUsuario/angry_berto_data en windows) Con lo cual, los datos ya funcionan
+    en android y C:/Users/tuUsuario/angry_berto/data en windows) Con lo cual, los datos ya funcionan
     en android.
 Arreglado error por el cual, el btn_Exit no desaparecía al despausar el juego.
 Ahora, cuando se derrota al boss, se pierde el control sobre la pantalla, el Player se va hacia delante y,
