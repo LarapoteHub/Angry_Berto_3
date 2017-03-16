@@ -17,7 +17,7 @@ import com.mygdx.game.Projectiles.PlayerShoot;
 public class Player extends Ship {
 
 	//TODO Cheats!
-	private boolean GODMODE = true;
+	private boolean GODMODE = false;
 	private float initialLives;
 	// --------
 
@@ -98,13 +98,15 @@ public class Player extends Ship {
 	}
 
 	public void decreaseLives(float damage) {
-		if (!GODMODE)
-			this.lives -= damage;
+		if (!victory) {
+			if (!GODMODE)
+				this.lives -= damage;
 
-		if (damage > 0) {
-			Sounds.playerHitSound.play();
-			hit = true;
-			blinking = true;
+			if (damage > 0) {
+				Sounds.playerHitSound.play();
+				hit = true;
+				blinking = true;
+			}
 		}
 	}
 

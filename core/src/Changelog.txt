@@ -219,6 +219,12 @@ Modificada la clase GameData para que trabaje con las 10 puntuaciones más altas
 Añadido constructor a Btn_Exit para que se pueda colocar en una posición diferente a la del
     constructor por defecto.
 
+0.2_9_2
+-- 100vol --
+Arreglado error por el cual cuando el jugador derrotaba al boss y se comenzaba a mover solo, si se
+    chocaba contra algo, recibía el daño, pudiendo morir y crear un conflicto entre las pantallas de
+    victoria/derrota.
+
 
 
 
