@@ -31,6 +31,7 @@ import com.mygdx.game.Screens.Scr_Loading;
 import com.mygdx.game.Screens.Scr_MainMenu;
 import com.mygdx.game.Screens.Scr_Pause;
 import com.mygdx.game.Screens.Scr_Play;
+import com.mygdx.game.Screens.Scr_Scores;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -454,6 +455,9 @@ public class Logic extends GameEngine implements Runnable {
                     break;
                 case LEVEL_SELECTION:
                     new Scr_LevelSelection().initComponents();
+                    break;
+                case SCORES_SCREEN:
+                    new Scr_Scores().initComponents();
                     break;
             }
         }

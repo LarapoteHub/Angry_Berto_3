@@ -75,6 +75,12 @@ public class GameStateManager {
 		changed = true;
 	}
 
+	public void goToScoresScreen() {
+		state = GameState.SCORES_SCREEN;
+		saveState = false;
+		changed = true;
+	}
+
 	public GameState getState() {
 		return state;
 	}
@@ -98,6 +104,7 @@ public class GameStateManager {
 	public boolean isIntro() { return state == GameState.INTRO;}
 	public boolean isLoading() { return state == GameState.LOADING; }
 	public boolean isLevelSelection() {return state == GameState.LEVEL_SELECTION; }
+	public boolean isScoresScreen() {return state == GameState.SCORES_SCREEN; }
 	
 	
 }

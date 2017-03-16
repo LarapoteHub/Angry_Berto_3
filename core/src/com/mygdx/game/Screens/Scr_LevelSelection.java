@@ -6,6 +6,7 @@ import com.mygdx.game.GameEngine;
 import com.mygdx.game.Levels.Level0;
 import com.mygdx.game.Levels.LevelDie;
 import com.mygdx.game.Levels.LevelTest;
+import com.mygdx.game.MyGdxGame;
 
 /**
  * Created by xldan on 25/02/2017.
@@ -23,7 +24,7 @@ public class Scr_LevelSelection implements Screen {
 
         GameEngine.addButton(new Btn_LevelSelection(40, 500, "btn_level_die", new LevelDie()));
 
-        GameEngine.addButton(new Btn_Exit());
+        GameEngine.addButton(new Btn_Exit(MyGdxGame.WIDTH - 64 - 5, MyGdxGame.HEIGHT - 64 - 5));
 
     }
 }

@@ -1,6 +1,7 @@
 package com.mygdx.game.Buttons;
 
 import com.mygdx.game.Engine.SprNames;
+import com.mygdx.game.GameEngine;
 
 /**
  * Created by Red Mercy on 10/25/2016.
@@ -14,6 +15,6 @@ public class Btn_Scores extends Button {
 
     @Override
     public void onTouch() {
-        // TODO btn_scores NOT IMPLEMENTED
+        GameEngine.gameState.goToScoresScreen();
     }
 }

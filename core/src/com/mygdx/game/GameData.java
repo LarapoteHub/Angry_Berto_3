@@ -26,7 +26,7 @@ public class GameData {
 
     private static FileHandle levels_file;
     //String=nombreDelNivel Long[0]stars, Long[1]highscore
-    private static TreeMap<String, Long[]> levels_map;
+    private static TreeMap<String, Object[]> levels_map;
 
     public static void initGameData() {
 
@@ -57,9 +57,9 @@ public class GameData {
             }
 
             try {
-                levels_map = (TreeMap<String, Long[]>) ois.readObject();
+                levels_map = (TreeMap<String, Object[]>) ois.readObject();
             } catch (NullPointerException ex) {
-                levels_map = new TreeMap<String, Long[]>();
+                levels_map = new TreeMap<String, Object[]>();
             }
 
 
@@ -71,42 +71,73 @@ public class GameData {
 
     }
 
-    public static void insertHighscore(String levelName, long stars, long highscore) {
+    public static void insertHighscore(String levelName, long stars, long score) {
 
-        Long[] values = new Long[2];
-
-        System.out.println("DESBUG: STARS:"+stars+" BEFORE:"+getStars(levelName));
-        System.out.println("DESBUG: SCORE:"+highscore+" BEFORE:"+getHighscore(levelName));
-
-        if (stars > getStars(levelName)) {
-            values[0] = stars;
+        if (!existLevel(levelName)) {
+            long[] scores = new long[10];
+            scores[0] = score;
+            levels_map.put(levelName, new Object[]{stars, scores});
         } else {
-            values[0] = getStars(levelName);
+
+            Object[] values = levels_map.get(levelName);
+            if (values[0] == null || stars > (Long) values[0]) {
+                values[0] = stars;
+            }
+
+            long[] scores = (long[]) values[1];
+
+            for (int i = 0 ; i < scores.length ; i++) {
+                if (score > scores[i]) {
+
+                    for (int j = scores.length-1 ; j > i ; j--) {
+                        scores[j] = scores[j-1];
+                    }
+
+                    scores[i] = score;
+                    break;
+                }
+            }
         }
 
-        if (highscore > getHighscore(levelName)) {
-            values[1] = highscore;
-        } else {
-            values[1] = getHighscore(levelName);
-        }
+        //para DEBUG
+        //imprimirScores(levelName);
 
-        levels_map.put(levelName, values);
+
+
 
     }
 
     public static long getStars(String levelName) {
 
-        Long[] values = levels_map.get(levelName);
+        Long stars = (Long) levels_map.get(levelName)[0];
 
-        return values == null ? 0 : values[0];
+        return stars == null ? 0 : stars;
 
     }
 
     public static long getHighscore(String levelName) {
 
-        Long[] values = levels_map.get(levelName);
 
-        return values == null ? 0 : values[1];
+        long[] scores = (long[]) levels_map.get(levelName)[1];
+
+        long highscore = 0l;
+
+        for (int i = 0 ; i < scores.length ; i++) {
+            if (scores[i]>highscore) {
+                highscore = scores[i];
+            }
+        }
+
+        return highscore;
+
+    }
+
+    public static long[] getScores(String levelName) {
+        if (existLevel(levelName)) {
+            return (long[]) levels_map.get(levelName)[1];
+        } else {
+            return new long[10];
+        }
 
     }
 
@@ -127,6 +158,20 @@ public class GameData {
 
     public static boolean existLevel(String levelName) {
         return levels_map.get(levelName) != null;
+    }
+
+    private static void imprimirScores(String levelName) {
+        Object[] values = levels_map.get(levelName);
+        long[] scores = (long[]) values[1];
+
+        System.out.print("ARRAY: ");
+
+        //Visualizar array
+        for (int i = 0 ; i < scores.length ; i++) {
+            System.out.print("["+scores[i]+"]");
+        }
+
+        System.out.println("\n");
     }
 
 }
