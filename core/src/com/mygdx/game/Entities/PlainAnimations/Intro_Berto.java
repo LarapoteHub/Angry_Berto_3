@@ -87,7 +87,6 @@ public class Intro_Berto extends PlainAnimation {
         if (!finished) {
             Sprites.getSpriteByName("berto")[0].setBounds(x, y, width, height);
             Sprites.getSpriteByName("berto")[0].draw(GameEngine.batch);
-            //GameEngine.batch.draw(Sprites.berto.getTexture(), x, y, width, height);
         } else {
 
             if (!animationInitialized) {
@@ -131,9 +130,7 @@ public class Intro_Berto extends PlainAnimation {
     @Override
     public void initAnimation() {
 
-
-        //Sprites.player.setBounds(0, 0, Sprites.player.getTexture().getWidth(), Sprites.player.getTexture().getHeight());
-
+        // TODO Implementar AnimationAdapter!
         movingFrames = new TextureRegion[FRAME_COLS];
 
         movingFrames = Sprites.getSpriteByName("player")[0].split(Sprites.getSpriteByName("player")[0].getTexture(), (int) Sprites.getSpriteByName("player")[0].getWidth() / FRAME_COLS, (int) Sprites.getSpriteByName("player")[0].getHeight() / FRAME_ROWS)[0];

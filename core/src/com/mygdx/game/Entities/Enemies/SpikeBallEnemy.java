@@ -20,9 +20,7 @@ public class SpikeBallEnemy extends Enemy {
 
     /* DESCRIPCIÓN:
 
-     es una mina, cambiar la descripción
-        //enemigo estánder dispara y tiene una velocidad vertical de 200,
-        //su movimiento es controlado por schedules de las clases derivadas de Level.
+     es una mina
      */
 
     private TextureRegion[] movingFrames;
@@ -37,7 +35,7 @@ public class SpikeBallEnemy extends Enemy {
         setHeight(48);
         lives = 3;
         
-        score = 15;
+        scoreValue = 15;
         
         type = EnemyType.SPIKE_BALL;
 
@@ -141,16 +139,6 @@ public class SpikeBallEnemy extends Enemy {
 
         Sprite spr = Sprites.getSpriteByName("enemy_spikeBall")[0];
         currentAnimation = new AnimationAdapter(0.4f, AnimationAdapter.splitSheet(spr, FRAME_COLS, FRAME_ROWS), Animation.PlayMode.NORMAL);
-
-        //region OLD
-        /*
-        movingFrames = new TextureRegion[FRAME_COLS];
-
-        movingFrames = Sprites.getSpriteByName("enemy_spikeBall")[0].split(Sprites.getSpriteByName("enemy_spikeBall")[0].getTexture(), (int) Sprites.getSpriteByName("enemy_spikeBall")[0].getWidth() / FRAME_COLS, (int) Sprites.getSpriteByName("enemy_spikeBall")[0].getHeight() / FRAME_ROWS)[0];
-
-        currentAnimation = new Animation(0.4f, movingFrames);
-        */
-        //endregion
 
     }
 

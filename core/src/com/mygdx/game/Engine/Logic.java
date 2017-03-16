@@ -15,6 +15,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.MathUtils;
 import com.mygdx.game.Buttons.Button;
+import com.mygdx.game.Entities.Enemies.BarbedWireEnemy;
 import com.mygdx.game.Entities.Enemies.Bossses.Boss;
 import com.mygdx.game.Entities.Enemies.Enemy;
 import com.mygdx.game.Entities.Entity;
@@ -30,6 +31,7 @@ import com.mygdx.game.Screens.Scr_Loading;
 import com.mygdx.game.Screens.Scr_MainMenu;
 import com.mygdx.game.Screens.Scr_Pause;
 import com.mygdx.game.Screens.Scr_Play;
+import com.mygdx.game.Screens.Scr_Scores;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -63,16 +65,7 @@ public class Logic extends GameEngine implements Runnable {
             System.out.println("_________________________");
         }
 
-        /*
-         * Parte del Button de Hoe
-		 * 
-		 * if (chargeBar >= cost) {
-		 * GameEngine.batch.draw(spr[1].getTexture(), x, y, width, height);
-		 * } else { GameEngine.batch.draw(spr[0].getTexture(), x, y, width,
-		 * height); }
-		 */
-
-        // si se pulsa el boton de atras salimso del juego
+        // si se pulsa el boton de atras salimos del juego
         // TODO Deberia haber un mensaje que pida otro Back!!
         updateTouchPos();
 
@@ -180,12 +173,6 @@ public class Logic extends GameEngine implements Runnable {
             GameEngine.cam.unproject(touchPos);
         }
 
-        // TODO Por alguna razon tira para abajo a la izquierda en alguna circunstancia.
-        /*else {
-
-            //touchPos.set(-10, -10, 0);
-        }*/
-
     }
 
     private void moveEnemies() {
@@ -238,19 +225,6 @@ public class Logic extends GameEngine implements Runnable {
             }
     }
 
-    // For testing purposes only!
-    private void spawnTestEnemies() {
-        // StandardEnemy e = new StandardEnemy(100, 200, 0);
-        // addEntity(e, EntityType.ENEMY);
-        //
-        // HeavyEnemy e2 = new HeavyEnemy(150, 200, 0);
-        // addEntity(e2, EntityType.ENEMY);
-        //
-        // EvadingEnemy e3 = new EvadingEnemy(300, 250, 0);
-        // addEntity(e3, EntityType.ENEMY);
-
-    }
-
     private void moveOther() {
         Iterator<Entity> it = otherEntities.iterator();
 
@@ -298,28 +272,8 @@ public class Logic extends GameEngine implements Runnable {
     private void checkPlayerChange() {
         if (touchPos.y < MyGdxGame.HEIGHT / 2 && touchPos.x > 100) {
 
-            // No necesariamente necesario :P
-			/*
-			 * if (touchPos.x >= player.x - 40 && touchPos.x <= player.x +
-			 * player.width + 40 && touchPos.y >= player.y - 40 && touchPos.y <=
-			 * player.y + player.height + 40) { // añadido que solo se mueva si
-			 * se toca la nave // EL HECHO DE QUE ESTO VAYA EN EL ELSE EVITA QUE
-			 * LA // NAVE SE MUEVA AL TOCAR EL BOTÓN DE PAUSA. // finalmente,
-			 * cambiamos la posición de la nave a la // posición extraída del
-			 * lugar del click/toque. player.setX(touchPos.x - player.getWidth()
-			 * / 2); player.setY(touchPos.y - player.getHeight() / 2);
-			 * 
-			 * } else {
-			 */
-
             player.setVSpeed(((player.getY() + player.getHeight() / 2) - touchPos.y));
             player.setHSpeed(((player.getX() + player.getWidth() / 2) - touchPos.x));
-            /*if (player.getVSpeed() < 2)
-                player.setVSpeed(0);
-
-            if (player.getHSpeed() < 2)
-                player.setHSpeed(0);*/
-            // }
 
         }
 
@@ -383,7 +337,9 @@ public class Logic extends GameEngine implements Runnable {
             for (Enemy enem : enemies) {
                 if (enem.isColliding(p)) {
                     enem.decreaseLives(p.getDamage());
-                    p.destroy();
+                    if (!enem.isTrascendental()) {
+                        p.destroy();
+                    }
                     if (enem.getLives() <= 0) {
                         enem.kill();
                     }
@@ -471,10 +427,8 @@ public class Logic extends GameEngine implements Runnable {
                 case GAMEPLAY:
                     if (!gameState.saveEntities()) {
                         new Scr_Play().initComponents();
-                        spawnTestEnemies();
                     }
 
-                    System.out.println("AAAAAAAAAAAA: "+buttons.get("btn_exit"));
                     if (buttons.get("btn_exit") != null) {
                         buttons.remove("btn_exit");
                     }
@@ -502,6 +456,9 @@ public class Logic extends GameEngine implements Runnable {
                 case LEVEL_SELECTION:
                     new Scr_LevelSelection().initComponents();
                     break;
+                case SCORES_SCREEN:
+                    new Scr_Scores().initComponents();
+                    break;
             }
         }
     }
@@ -514,12 +471,7 @@ public class Logic extends GameEngine implements Runnable {
 
     @Override
     public void run() {
-        //System.out.println((long)(Gdx.graphics.getDeltaTime() * 1000000000000l) + " - " + lastTime);
-        //if (lastTime >= 170315591l) {
         tick();
-
-        //}
-
     }
 
 }

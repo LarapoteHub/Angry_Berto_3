@@ -7,7 +7,9 @@ import com.mygdx.game.MyGdxGame;
 /**
  * Created by xldan on 04/03/2017.
  */
-
+/*
+    Esto sólo existe como prueba de la pantalla final.
+ */
 public class LevelDie extends Level {
 
     public LevelDie() {

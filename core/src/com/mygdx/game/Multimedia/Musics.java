@@ -11,4 +11,6 @@ public class Musics {
     public static Music backgroundMenuMusic;
     public static Music boss1Music;
     public static Music backgroundLevelSelectionMusic;
+
+    public static Music heavyEnemyChargeSound;
 }

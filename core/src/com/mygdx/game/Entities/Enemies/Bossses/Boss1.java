@@ -1,18 +1,21 @@
 package com.mygdx.game.Entities.Enemies.Bossses;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.utils.Timer;
 import com.mygdx.game.Entities.PlainAnimations.AnimationAdapter;
 import com.mygdx.game.Entities.Player;
 import com.mygdx.game.GameEngine;
-import com.mygdx.game.Multimedia.Backgrounds;
 import com.mygdx.game.Multimedia.Musics;
+import com.mygdx.game.Multimedia.Sounds;
 import com.mygdx.game.Multimedia.Sprites;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.Projectiles.HeavyEnemyShoot;
 
 /**
  * Created by Red Mercy on 12/28/2016.
@@ -28,8 +31,20 @@ public class Boss1 extends Boss {
 
     private Behavior.Bosses.Boss1 behavior;
 
+    private Music chargingSound = null;
+
+    private Timer.Task initShoot = new Timer.Task() {
+        @Override
+        public void run() {
+
+            if (!chargingSound.isPlaying()) {
+                spawnShoot();
+            }
+        }
+    };
+
     public Boss1(float x, float y, Behavior.Bosses.Boss1 behavior) {
-        super(x, y, 0);
+        super(x, y);
         vSpeed = -100; //-300 no se por que
         hSpeed = 0;
 
@@ -44,10 +59,12 @@ public class Boss1 extends Boss {
         // timerShoot = 50;
         //cooldown = 100;
 
+        this.cooldown = 2.5f;
+
         damage = 2;
 
         // Valor que sumar para la puntuacion
-        score = 100;
+        scoreValue = 100;
 
         // ascending = true;
         // descending = false;
@@ -70,11 +87,6 @@ public class Boss1 extends Boss {
         MyGdxGame.musicManager.setMusic(Musics.boss1Music);
 
         initAnimation();
-    }
-
-    @Override
-    public void updateBehaviour() {
-
     }
 
     @Override
@@ -188,14 +200,29 @@ public class Boss1 extends Boss {
 
     }
 
-    @Override
-    public boolean canShoot() {
-        return false;
-    }
-
+    //creamos un disparo
     @Override
     public void shoot() {
+        // 50% probabilidad de que dispare
+        int a = MathUtils.random(0, 100);
+        if (a < 70 && !initShoot.isScheduled()) {
 
+            chargingSound = Musics.heavyEnemyChargeSound;
+            chargingSound.setLooping(false);
+            chargingSound.play();
+            Timer.schedule(initShoot, 0.1f, 0.1f);
+
+        } else {
+            // Retraso en caso de que no dispare.
+            CDCount -= MathUtils.random(0.15f, 0.45f);
+        }
+        canShoot = false;
+    }
+
+
+    @Override
+    public boolean canShoot() {
+        return canShoot;
     }
 
     @Override
@@ -204,18 +231,20 @@ public class Boss1 extends Boss {
         Sprite spr = Sprites.getSpriteByName("boss_1")[0];
         currentAnimation = new AnimationAdapter(0.4f, AnimationAdapter.splitSheet(spr, FRAME_COLS, FRAME_ROWS), Animation.PlayMode.NORMAL);
 
-        //region OLD
+    }
 
-        /*
-        movingFrames = new TextureRegion[FRAME_COLS];
+    //sobreescrito para que detenga el disparo.
+    @Override
+    public void kill() {
+        if (initShoot.isScheduled()) {
+            initShoot.cancel();
+        }
+        super.kill();
+    }
 
-        movingFrames = Sprites.getSpriteByName("boss_1")[0].split(Sprites.getSpriteByName("boss_1")[0].getTexture(), (int) Sprites.getSpriteByName("boss_1")[0].getWidth() / FRAME_COLS, (int) Sprites.getSpriteByName("boss_1")[0].getHeight() / FRAME_ROWS)[0];
-
-        currentAnimation = new Animation(0.4f, movingFrames);
-        //currentAnimation.setPlayMode(Animation.PlayMode.LOOP);
-         */
-
-        //endregion
-
+    private void spawnShoot() {
+        GameEngine.addEntity(new HeavyEnemyShoot(this), GameEngine.EntityType.BULLET_ENEMY);
+        Sounds.heavyEnemyShootSound.play();
+        initShoot.cancel();
     }
 }

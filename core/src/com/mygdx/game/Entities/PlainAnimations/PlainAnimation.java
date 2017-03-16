@@ -15,8 +15,6 @@ public abstract class PlainAnimation extends Entity {
     protected int FRAME_COLS;
     protected int FRAME_ROWS;
 
-    protected TextureRegion[][] tmp;
-
     protected AnimationAdapter currentAnimation;
 
     protected float stateTime = 0f;

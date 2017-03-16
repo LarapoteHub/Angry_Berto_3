@@ -9,6 +9,7 @@ package com.mygdx.game.Engine;
 public enum SprNames {
 
     // Les Botones.
+    btn_mute("sprites/buttons/muteButton.png"),
     btn_pause("sprites/buttons/pauseButton.png", "sprites/buttons/playButton.png"),
     btn_skipIntro("sprites/buttons/skipButton.png"),
 
@@ -61,7 +62,7 @@ public enum SprNames {
     enemy_shield("sprites/enemies/shieldEnemy.png"),
     //bad name but...
     enemy_shield__shield("sprites/enemies/shieldEnemy_Shield.png"),
-
+    enemy_barbedWire("sprites/enemies/barbedWireEnemy.png"),
 
     // BOSSES
     boss_1("sprites/enemies/firstBoss.png"),

@@ -10,11 +10,9 @@ import com.mygdx.game.MyGdxGame;
  */
 // TODO Implement this
 public abstract class Boss extends Enemy {
-    public Boss(float x, float y, int behavior) {
+    public Boss(float x, float y) {
         super(x, y);
     }
-
-    public abstract void updateBehaviour();
 
     @Override
     public abstract void initAnimation();

@@ -18,11 +18,14 @@ public class HeavyEnemyShoot extends Projectile {
     public HeavyEnemyShoot(Enemy enemy) {
 
         super();
-        x = enemy.getX() +16;
-        y = enemy.getY();
+        //x = enemy.getX() +16;
+        //y = enemy.getY();
 
-        this.setWidth(32); //16
-        this.setHeight(72); //16
+        this.width = 32; //16
+        this.height = 72; //16
+
+        this.x = enemy.getX() + enemy.getWidth()/2 - this.width/2;
+        this.y = enemy.getY();
 
         vSpeed = enemy.getVSpeed() - 700;
 
@@ -31,7 +34,7 @@ public class HeavyEnemyShoot extends Projectile {
         index = 0;
         
         damage = 2;
-
+        // Animacion de la bala
         playAnimation();
 
     }
@@ -40,26 +43,6 @@ public class HeavyEnemyShoot extends Projectile {
     public void draw() {
 
         GameEngine.batch.draw(Sprites.getSpriteByName("bullet_heavy_enemy")[index].getTexture(), x, y, getWidth(), getHeight());
-
-    }
-
-    // TODO: Quitar esto!
-    
-    public void action(Player player) {
-
-        
-        // en caso de que el enemigo se salga de los márgenes de la pantalla por debajo, la eliminamos.
-        
-/*
-        //si un disparo colisiona con el jugador...
-        if (this.overlaps(player)) {
-            // reproducimos el sonido correspondiente...
-            Sounds.explodeSound.play();
-            //restamos una vida al jugador
-            player.decreaseLives(2);
-            // y lo eliminamos de nuestro mundo.
-            remove = true;
-        }*/
 
     }
 
@@ -95,6 +78,15 @@ public class HeavyEnemyShoot extends Projectile {
 		// TODO Auto-generated method stub
 		
 	}
+
+    @Override
+    public void move() {
+
+        super.move();
+
+
+
+    }
 
 //	@Override
 //	public void move() {

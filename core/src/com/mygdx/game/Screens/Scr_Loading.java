@@ -14,6 +14,7 @@ public class Scr_Loading implements Screen {
 
     private static String[] texts;
 
+    // Super frases de carga...
     public Scr_Loading() {
         texts = new String[] {
                 "VIRANDO NA CRIBA...",

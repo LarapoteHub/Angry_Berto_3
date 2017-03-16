@@ -39,7 +39,6 @@ public class GameWin extends PlainAnimation {
 
         Sprites.getSpriteByName("gameWin")[0].setPosition(x, y);
         Sprites.getSpriteByName("gameWin")[0].draw(GameEngine.batch);
-        //GameEngine.batch.draw(Sprites.gameOver.getTexture(), x, y, width, height);
 
     }
 

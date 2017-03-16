@@ -50,6 +50,7 @@ public class Explosion extends PlainAnimation {
 
         //EL SEGUNDO PARAMETRO ES EL LOOP
         currentFrame = currentAnimation.getKeyFrame(stateTime, false);
+        // DEBUG
         //System.out.println("Exp at :" + x + "  " + y + " - " + width + "  " + height);
         GameEngine.batch.draw(currentFrame, x, y, width, height);
 

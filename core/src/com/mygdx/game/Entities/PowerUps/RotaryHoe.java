@@ -17,9 +17,6 @@ import java.util.Iterator;
  * Created by 100VOL on 20/08/2016.
  */
 public class RotaryHoe extends Projectile {
-    Iterator<Enemy> collisionEnemys;
-    GameEngine gameEngineInstance;
-    Enemy enContainer;
     Sprite spr;
     // TODO Esto no funca bien...
     private float targetX, targetY;
@@ -58,8 +55,8 @@ public class RotaryHoe extends Projectile {
         targetX = this.x;
         targetY = y + 500;
 
-        //angle = MathUtils.random(10.0f, 13f);
-        //angle = MathUtils.random(10, 13);
+        // AVISO: Mates chungas AHEAD!
+        // Calculo de una Hiperbola teniendo 2 puntos y un angulo de tangencia desde el punto A
         angle = 10;
         System.out.println(angle);
         if (MathUtils.randomBoolean()) {
@@ -150,16 +147,11 @@ public class RotaryHoe extends Projectile {
         // Override hecho para que no se destruya al chocar
     }
 
-
-    public void action(Player player, OrthographicCamera camera) {
-    } //end action()
-
     public void draw() {
-        // TODO Reñir a Diego por no usar la clase "Sprite"
+
         spr.rotate(MathUtils.random(15, 45));
 
         spr.draw(GameEngine.batch);
-        //GameEngine.batch.draw(Sprites.rotaryHoePowerUpImage[0])
 
     }
 
@@ -170,12 +162,9 @@ public class RotaryHoe extends Projectile {
 
     @Override
     public void move() {
-        /*
-        this.x += (hSpeed + accelX)* accelX * Gdx.graphics.getDeltaTime();
+        
         this.y += vSpeed * Gdx.graphics.getDeltaTime();
-
-        */
-        this.y += vSpeed * Gdx.graphics.getDeltaTime();
+        // Funcion hiperbólica
         //y=a*x^2+b*x+c
         this.x =(float) (a * y * y + b * y + c);
 

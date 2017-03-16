@@ -7,14 +7,14 @@ import com.badlogic.gdx.graphics.Texture;
  */
 public class Backgrounds {
 
-    public static Texture backgroundMenuImage;// = new Texture(Gdx.files.internal("backgrounds/backgroundMenu.png"));
-    public static Texture backgroundGameOver;// = new Texture(Gdx.files.internal("backgrounds/backgroundGameOver.png"));
+    public static Texture backgroundMenuImage;
+    public static Texture backgroundGameOver;
 
-    public static Texture backgroundIntro;// = new Texture(Gdx.files.internal("backgrounds/backgroundIntro.png"));
+    public static Texture backgroundIntro;
 
     public static Texture backgroundLevelSelection;
 
-    public static Texture backgroundPowerUps;// = new Texture(Gdx.files.internal("backgrounds/powerUps.png"));
+    public static Texture backgroundPowerUps;
 
     public static Texture universe_1;
     public static Texture universe_2;

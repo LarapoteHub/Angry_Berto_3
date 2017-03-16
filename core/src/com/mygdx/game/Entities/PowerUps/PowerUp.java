@@ -12,9 +12,6 @@ public abstract class PowerUp extends Projectile {
 	public static GameEngine engine;
     public int vSpeed;
     public boolean remove;
-    private int dmgPower = 0;
-    private Sprite tex;
-    private Sprite[] textures;
     
 
     public PowerUp(float x, float y, String sprName) {
@@ -23,18 +20,11 @@ public abstract class PowerUp extends Projectile {
         this.y = y;
         this.setWidth(48);
         this.setHeight(48);
+
+        // TODO Ajustar esto!
         Sprites.getSpriteByName(sprName)[0].setBounds(x, y, width, height);
 
     } //end constructor
-    
-    public PowerUp(float x, float y, float width, float height, Sprite tex) {
-    	remove = false;
-    	this.x = x;
-    	this.y = y;
-    	this.setWidth(width);
-    	this.setHeight(height);
-    	this.tex = tex;
-    }
 
     public abstract void draw();
 }

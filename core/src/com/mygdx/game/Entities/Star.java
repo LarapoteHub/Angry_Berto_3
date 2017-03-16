@@ -17,9 +17,6 @@ public class Star extends Entity {
     private ParticleEffect p = new ParticleEffect(Effects.star);
 
     public Star() {
-        // Esto es por comodidad mas que nada
-//    	this.width = starImage.getWidth();
-//    	this.height = starImage.getHeight();
         x = MathUtils.random(68, 480 - 2); // antes 0
         y = 800;
         vSpeed = (-MathUtils.random(1000, 1500));
@@ -32,7 +29,6 @@ public class Star extends Entity {
     @Override
     public void draw() {
         p.draw(GameEngine.batch);
-        //GameEngine.batch.draw(starImage, x, y);
     }
 
     @Override

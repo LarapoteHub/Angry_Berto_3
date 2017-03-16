@@ -36,44 +36,23 @@ import java.util.Iterator;
  * Nota: Se puede optimizar mas... Haciendo uso del ArrayList
  * "entitiesToRender"...
  */
-public class Renderer extends GameEngine implements Runnable{
-	// SOLO se van a dibujar las entidades en este Array
-	// TODO Decidir si implementar esto o no
-	private ArrayList<Entity> entitiesToRender;
+public class Renderer extends GameEngine {
 
 	public Renderer() {
-		// Inicializamos la camara
-
-		// Inicializamos el text printer
-		/*
-		 * batch = super.batch; cam = super.cam;
-		 */
 		printer = new BitmapFont(Gdx.files.internal("fonts/anime_ace2.fnt"));
 
 		// Inicializamos el SpriteBatch (lo que nos dibuja los graficos en si)
 
-		entitiesToRender = new ArrayList<Entity>();
 
-	}
-
-	public void setEntitiesToRender(ArrayList<Entity> entities) {
-		this.entitiesToRender = entities;
 	}
 
 	public void draw() {
-
-		// Actualizamos la camara antes de dibujar nada
 		updateCamera();
 		batch.begin();
-		//rendering = true;
 
 		drawBackground();
 		drawOther();
-		// Deberia haber una comprobacion para saber si esta dentro del juego o
-		// no
-		/*
-		 * for (Entity e : entitiesToRender) { e.draw(batch); }
-		 */
+
 		if ((gameState.isPlaying() || gameState.isPaused()) && player != null) {
 			player.draw();
 			
@@ -98,7 +77,6 @@ public class Renderer extends GameEngine implements Runnable{
 		drawText();
 
 
-		//rendering = false;
 		batch.end();
 
 	}
@@ -108,6 +86,7 @@ public class Renderer extends GameEngine implements Runnable{
 		for (Projectile p : bullets_Player) {
 			p.draw();
 		}
+		// Dibujar las balas enemigas
 		for (Projectile p : bullets_Enemy) {
 			p.draw();
 		}
@@ -152,6 +131,7 @@ public class Renderer extends GameEngine implements Runnable{
 		}
 	}
 
+	// Dibujar el fondo acorde al estado actual del juego.
 	private void drawBackground() {
 
 		if (gameState.isInMainMenu()) {
@@ -177,7 +157,7 @@ public class Renderer extends GameEngine implements Runnable{
 	private void drawPlainAnimations() {
 		Iterator<PlainAnimation> it = plainAnimations.iterator();
 		while (it.hasNext()) {
-			PlainAnimation pa = (PlainAnimation) it.next();
+			PlainAnimation pa = it.next();
 			pa.draw();
 
 			if (pa.isFinished()) {
@@ -190,7 +170,7 @@ public class Renderer extends GameEngine implements Runnable{
 	private void drawOther() {
 		Iterator<Entity> it = otherEntities.iterator();
 		while (it.hasNext()) {
-			Entity e = (Entity) it.next();
+			Entity e = it.next();
 			e.draw();
 
 		}
@@ -204,25 +184,14 @@ public class Renderer extends GameEngine implements Runnable{
 	}
 
 	private void updateCamera() {
-		// Esto deberia antes de renderizar... no en un "If" para el
-		// background...
-		// Osease, aqui!
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-		// Esto SI que hace falta
 		cam.update();
-		// cam.update();
 
 		// Lo que Dani dice que es importante:
 		batch.setProjectionMatrix(cam.combined);
 		sRenderer.setProjectionMatrix(cam.combined);
-	}
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

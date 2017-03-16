@@ -7,7 +7,9 @@ import com.mygdx.game.MyGdxGame;
 /**
  * Created by Red Mercy on 12/28/2016.
  */
-
+/*
+    Usado como nivel de prueba para las mecánicas de algun enemigo o tal.
+ */
 public class LevelTest extends Level {
     public LevelTest() {
         this.name = "Level Test";
@@ -28,8 +30,16 @@ public class LevelTest extends Level {
             //GameEngine.spawnBoss(78, 700, GameEngine.BossType.TYPE_1, Enemy.Behavior.Bosses.Boss1.DEFAULT); //boss1
             //GameEngine.spawnEnemy(MyGdxGame.WIDTH/2, 800, GameEngine.EnemyType.CORE_ORBIT_ENEMY, Enemy.Behavior.CoreOrbitEnemy.DEFAULT);
 
-            GameEngine.spawnEnemy(MyGdxGame.WIDTH/2, 800, GameEngine.EnemyType.SHIELD_ENEMY, Enemy.Behavior.ShieldEnemy.DEFAULT);
+            //GameEngine.spawnEnemy(MyGdxGame.WIDTH/2, 800, GameEngine.EnemyType.SHIELD_ENEMY, Enemy.Behavior.ShieldEnemy.DEFAULT);
+            // NOTA: Facil de equivocarse en tod0 esto...
+            //GameEngine.spawnEnemy(MyGdxGame.WIDTH/2, 800, GameEngine.EnemyType.HEAVY_ENEMY, Enemy.Behavior.HeavyEnemy.DEFAULT);
 
+            GameEngine.spawnEnemy(MyGdxGame.WIDTH/2, 800, GameEngine.EnemyType.BARBEDWIRE, Enemy.Behavior.BarbedWireEnemy.DEFAULT);
+
+            //GameEngine.spawnEnemy(108, 800, GameEngine.EnemyType.HEAVY_ENEMY, Enemy.Behavior.HeavyEnemy.DEFAULT);
+            //GameEngine.spawnEnemy(376, 800, GameEngine.EnemyType.HEAVY_ENEMY, Enemy.Behavior.HeavyEnemy.DEFAULT);
+            //GameEngine.spawnEnemy(108, 880, GameEngine.EnemyType.HEAVY_ENEMY, Enemy.Behavior.HeavyEnemy.DEFAULT);
+            //GameEngine.spawnEnemy(376, 880, GameEngine.EnemyType.HEAVY_ENEMY, Enemy.Behavior.HeavyEnemy.DEFAULT);
 
             running = true;
         } else if (GameEngine.getEnemies().isEmpty() && GameEngine.getBosses().isEmpty()) {

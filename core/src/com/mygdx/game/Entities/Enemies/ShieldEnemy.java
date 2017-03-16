@@ -6,9 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Timer;
-import com.mygdx.game.Entities.Enemies.Enemy;
 import com.mygdx.game.Entities.PlainAnimations.AnimationAdapter;
-import com.mygdx.game.Entities.Player;
 import com.mygdx.game.GameEngine;
 import com.mygdx.game.Multimedia.Sprites;
 import com.mygdx.game.Projectiles.StandardEnemyShoot;
@@ -19,16 +17,6 @@ import com.mygdx.game.Projectiles.StandardEnemyShoot;
 
 public class ShieldEnemy extends Enemy {
 
-
-
-    /* DESCRIPCIÓN:
-        enemigo que si detecta al jugador enfrente, se lanza hacia un lado aleatorio
-        a una velocidad de 300, su velocidad vertical es de 250.
-     */
-
-    private TextureRegion[] movingFrames;
-    private Enemy.Behavior.ShieldEnemy behavior;
-    private boolean behaviorStarted = false;
     private boolean shielded = false;
     private Timer.Task shieldTimer;
 
@@ -43,13 +31,12 @@ public class ShieldEnemy extends Enemy {
         this.height = 72;
 
         //chéganlle ben
-        lives = 10;
+        lives = 7;
 
-        this.behavior = behavior;
 
         timerShoot = 50;
 
-        score = 120;
+        scoreValue = 120;
 
         type = GameEngine.EnemyType.SHIELD_ENEMY;
 

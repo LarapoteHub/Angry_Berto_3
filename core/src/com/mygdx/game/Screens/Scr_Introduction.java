@@ -14,9 +14,6 @@ import com.mygdx.game.GameEngine.EntityType;
 // TODO ESTO ES UN PUÑETERO LIO!!!!!
 public class Scr_Introduction implements Screen {
 
-    boolean ascending;
-    boolean descending;
-
     public static boolean playDingSound = true;
     public static boolean playBertoSound = true;
     public static boolean playBertolinaSound = true;

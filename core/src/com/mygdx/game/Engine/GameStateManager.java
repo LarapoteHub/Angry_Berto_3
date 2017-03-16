@@ -30,7 +30,7 @@ public class GameStateManager {
 		changed = true;
 	}
 	
-	/*public void score() {
+	/*public void scoreValue() {
 		state = GameState.HIGH_SCORE;
 	}
 	*/
@@ -67,16 +67,16 @@ public class GameStateManager {
 		changed = true;
 	}
 
-	public void loadGame() {
-		state = GameState.LOADING;
-		saveState = false;
-		changed = true;
-	}
-
 	public void goToLevelSelection() {
 		state = GameState.LEVEL_SELECTION;
 		//TODO 100vol estuvo aqui
 		MyGdxGame.musicManager.setMusic(Musics.backgroundLevelSelectionMusic);
+		saveState = false;
+		changed = true;
+	}
+
+	public void goToScoresScreen() {
+		state = GameState.SCORES_SCREEN;
 		saveState = false;
 		changed = true;
 	}
@@ -104,6 +104,7 @@ public class GameStateManager {
 	public boolean isIntro() { return state == GameState.INTRO;}
 	public boolean isLoading() { return state == GameState.LOADING; }
 	public boolean isLevelSelection() {return state == GameState.LEVEL_SELECTION; }
+	public boolean isScoresScreen() {return state == GameState.SCORES_SCREEN; }
 	
 	
 }

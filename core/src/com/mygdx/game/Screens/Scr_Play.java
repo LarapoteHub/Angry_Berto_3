@@ -1,6 +1,7 @@
 package com.mygdx.game.Screens;
 
 import com.badlogic.gdx.graphics.Color;
+import com.mygdx.game.Buttons.Btn_Mute;
 import com.mygdx.game.Buttons.Btn_Switch_Bullet;
 import com.mygdx.game.Buttons.Btn_Dog;
 import com.mygdx.game.Buttons.Btn_Hoe;
@@ -22,6 +23,9 @@ public class Scr_Play implements Screen {
 
 		//TEXTO DE LA SCORE:
 		GameEngine.addText(new Text("", 78, 800, Color.GREEN));
+
+		// TODO RedMercy - RuLoSp Was here
+		GameEngine.addButton(new Btn_Mute());
 	}
 
 }
