@@ -13,7 +13,7 @@ import com.mygdx.game.MyGdxGame;
 import java.util.Random;
 
 /**
- * Created by 100VOL on 09/08/2016.
+ * Created by LordXamon on 09/08/2016.
  */
 public class BarbedWireEnemy extends Enemy {
 
@@ -30,7 +30,7 @@ public class BarbedWireEnemy extends Enemy {
     public BarbedWireEnemy(float x, float y, Behavior.BarbedWireEnemy behavior) {
 
         super(x, y);
-        this.vSpeed = -100;//-50 //velocidad vertical (hSpeed= velocidad horizontal)
+        this.vSpeed = -100; //velocidad vertical (hSpeed= velocidad horizontal)
         this.width = 96;//Ancho
         this.height = 24; //Alto
         this.behavior=behavior;//nin zorra idea do que fai isto
@@ -41,12 +41,11 @@ public class BarbedWireEnemy extends Enemy {
         damage=1;//dano que realiza ao xogador
 
         type = EnemyType.BARBEDWIRE;
-        spr=new Sprite(Sprites.getSpriteByName("enemy_barbedWire")[0]);//el sprite es temporal, creo
+        spr=new Sprite(Sprites.getSpriteByName("enemy_barbedWire")[0]);
         spr.setBounds(x, y, width, height);
-        //spr.setRotation(90);
 
         BarbedWireEnemy barbedWireChild=null;
-        switch (new Random().nextInt(4)){//sí, xa sei que isto hé confuso de carallo
+        switch (new Random().nextInt(4)){//sí, xa sei que isto é confuso de carallo //PENDENTE DE OPTIMIZACIÓN>xamon
             case 0: barbedWireChild= new BarbedWireEnemy(x,y+24-96,Behavior.BarbedWireEnemy.DEFAULT,true);break;
             case 1: barbedWireChild= new BarbedWireEnemy(x,y,Behavior.BarbedWireEnemy.DEFAULT,true);break;
             case 2: barbedWireChild= new BarbedWireEnemy(x+96-24,y,Behavior.BarbedWireEnemy.DEFAULT,true);break;
@@ -78,8 +77,7 @@ public class BarbedWireEnemy extends Enemy {
         spr.setBounds(x, y, width, height);
 
         if (isFirstChild) {
-            //spr.setRotation(90);//no rula
-
+            spr.rotate90(true);
             BarbedWireEnemy barbedWireChild=null;
             switch (new Random().nextInt(4)){//sí, xa sei que isto hé confuso de carallo
                 case 0: barbedWireChild= new BarbedWireEnemy(x+24-96,y,Behavior.BarbedWireEnemy.DEFAULT,false);break;

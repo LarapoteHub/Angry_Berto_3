@@ -225,6 +225,9 @@ Arreglado error por el cual cuando el jugador derrotaba al boss y se comenzaba a
     chocaba contra algo, recibía el daño, pudiendo morir y crear un conflicto entre las pantallas de
     victoria/derrota.
 
+0.2_9_2
+-- Xamon --
+Arreglado error de rotacion del BaredWireEnemy.
 
 
 
