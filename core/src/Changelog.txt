@@ -212,6 +212,13 @@ Ahora Boss1 dispara igual que un HeavyEnemy.
 He encontrado la variAble cooldown establecida en Enemy a 50, lo cual hacia que ualquier objeto que
     la usase tardase muchísimo en disparar. Lo que aún no entiendo es por que narices cambiar esa
     variable no AFECTA EN ABSOLUTO a StandardEnemy.
+0.2_9
+-- 100vol --
+Añadida pantalla de puntuaciones Scr_Scores con su respectivo GameState y demás dependencias.
+Modificada la clase GameData para que trabaje con las 10 puntuaciones más altas de cada nivel.
+Añadido constructor a Btn_Exit para que se pueda colocar en una posición diferente a la del
+    constructor por defecto.
+
 
 
 
