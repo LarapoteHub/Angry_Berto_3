@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
+import com.mygdx.game.Engine.SprNames;
 import com.mygdx.game.Entities.Enemies.Enemy;
 import com.mygdx.game.Entities.Player;
 import com.mygdx.game.GameEngine;
@@ -43,7 +44,7 @@ public class RotaryHoe extends Projectile {
     }
 
     private void initSprite() {
-        this.spr = new Sprite(Sprites.getSpriteByName("powerUp_rotaryHoe")[0]);
+        this.spr = new Sprite(Sprites.getSpriteByName(SprNames.powerUp_rotaryHoe.name())[0]);
         spr.rotate(MathUtils.random(0, 350));
 
         x -= 6;

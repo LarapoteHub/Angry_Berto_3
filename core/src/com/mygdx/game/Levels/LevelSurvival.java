@@ -11,14 +11,16 @@ import com.mygdx.game.MyGdxGame;
 /**
  * Created by 100VOL on 21/08/2016.
  */
-public class Level0 extends Level {
+public class LevelSurvival extends Level {
 
     private int random;
 
-    public Level0() {
-        this.nPhases = 13;
+    public LevelSurvival() {
+        this.nPhases = 12;
         this.maxPhases = MathUtils.random(12, 18);
-        this.name = "Level 1";
+        this.name = "Level Survival";
+
+        survivalMode = true;
     }
 
     @Override
@@ -30,13 +32,14 @@ public class Level0 extends Level {
             runPhase();
         } else if (phase != nPhases && GameEngine.getEnemies().isEmpty()) {
             changePhase();
-        } else if (phase == nPhases && GameEngine.getBosses().isEmpty() && !victoryTriggered) {
+        }
+        /*else if (phase == nPhases && GameEngine.getBosses().isEmpty() && !victoryTriggered) {
             MyGdxGame.musicManager.setMusic(Musics.backgroundMusic);
             Timer.schedule(win, 0.5f, 0.5f);
             //
             GameEngine.getPlayer().setVictory(true);
             victoryTriggered = true;
-        }
+        }*/
 
 
 
@@ -194,8 +197,8 @@ public class Level0 extends Level {
 
             case 7:
 
-                GameEngine.spawnEnemy(380, 800, GameEngine.EnemyType.CORE_ORBIT_ENEMY, Enemy.Behavior.CoreOrbitEnemy.DEFAULT);
-                GameEngine.spawnEnemy(128, 800, GameEngine.EnemyType.CORE_ORBIT_ENEMY, Enemy.Behavior.CoreOrbitEnemy.DEFAULT);
+                GameEngine.spawnEnemy(380, 800, EnemyType.CORE_ORBIT_ENEMY, Enemy.Behavior.CoreOrbitEnemy.DEFAULT);
+                GameEngine.spawnEnemy(128, 800, EnemyType.CORE_ORBIT_ENEMY, Enemy.Behavior.CoreOrbitEnemy.DEFAULT);
 
                 break;
 
@@ -217,10 +220,10 @@ public class Level0 extends Level {
 
             case 9:
 
-                GameEngine.spawnEnemy(88, 880, GameEngine.EnemyType.EVADING_ENEMY, Enemy.Behavior.EvadingEnemy.DODGE_PLAYER_LEFT); //spikeBall
-                GameEngine.spawnEnemy(186, 800, GameEngine.EnemyType.EVADING_ENEMY, Enemy.Behavior.EvadingEnemy.DODGE_PLAYER_LEFT); //spikeBall
-                GameEngine.spawnEnemy(314, 800, GameEngine.EnemyType.EVADING_ENEMY, Enemy.Behavior.EvadingEnemy.DODGE_PLAYER_RIGHT); //spikeBall
-                GameEngine.spawnEnemy(412, 880, GameEngine.EnemyType.EVADING_ENEMY, Enemy.Behavior.EvadingEnemy.DODGE_PLAYER_RIGHT); //spikeBall
+                GameEngine.spawnEnemy(88, 880, EnemyType.EVADING_ENEMY, Enemy.Behavior.EvadingEnemy.DODGE_PLAYER_LEFT); //spikeBall
+                GameEngine.spawnEnemy(186, 800, EnemyType.EVADING_ENEMY, Enemy.Behavior.EvadingEnemy.DODGE_PLAYER_LEFT); //spikeBall
+                GameEngine.spawnEnemy(314, 800, EnemyType.EVADING_ENEMY, Enemy.Behavior.EvadingEnemy.DODGE_PLAYER_RIGHT); //spikeBall
+                GameEngine.spawnEnemy(412, 880, EnemyType.EVADING_ENEMY, Enemy.Behavior.EvadingEnemy.DODGE_PLAYER_RIGHT); //spikeBall
 
                 break;
 
@@ -238,18 +241,6 @@ public class Level0 extends Level {
             case 11:
 
                 /*
-                spawneamos 2 filas de dos enemigos pesados
-                 */
-
-                GameEngine.spawnEnemy(108, 800, EnemyType.BARBEDWIRE, Enemy.Behavior.BarbedWireEnemy.DEFAULT);
-                GameEngine.spawnEnemy(376, 1030, EnemyType.BARBEDWIRE, Enemy.Behavior.BarbedWireEnemy.DEFAULT);
-
-                break;
-
-
-            case 12:
-
-                /*
                 Alambradas
                  */
 
@@ -257,9 +248,8 @@ public class Level0 extends Level {
                 GameEngine.spawnEnemy(376, 800, EnemyType.BARBEDWIRE, Enemy.Behavior.BarbedWireEnemy.DEFAULT);
 
                 break;
-
             //BOSS PHASE
-            case 13:
+            case 12:
 
                 GameEngine.spawnBoss(78, 700, GameEngine.BossType.TYPE_1, Enemy.Behavior.Bosses.Boss1.DEFAULT); //boss1
 

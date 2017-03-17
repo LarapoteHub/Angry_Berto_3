@@ -27,7 +27,14 @@ public class HeavyEnemyShoot extends Projectile {
         this.x = enemy.getX() + enemy.getWidth()/2 - this.width/2;
         this.y = enemy.getY();
 
-        vSpeed = enemy.getVSpeed() - 700;
+        // TODO MALA IDEA! Si el boss esta yendo hacia arriba la velocidad de la bala es casi 0
+        vSpeed = enemy.getVSpeed();
+        // En caso de que suba, restarla.
+        if (vSpeed > 0)
+            vSpeed -= vSpeed;
+
+        // Double speed?
+        vSpeed -= 700; //* 2;
 
         remove = false;
 

@@ -9,7 +9,7 @@ package com.mygdx.game.Engine;
 public enum SprNames {
 
     // Les Botones.
-    btn_mute("sprites/buttons/muteButton.png"),
+    btn_mute("sprites/buttons/muteButton.png", "sprites/buttons/unmuteButton.png"),
     btn_pause("sprites/buttons/pauseButton.png", "sprites/buttons/playButton.png"),
     btn_skipIntro("sprites/buttons/skipButton.png"),
 
@@ -76,6 +76,7 @@ public enum SprNames {
     btn_level0("sprites/buttons/levels/level0.png"),
     btn_level_test("sprites/buttons/levels/level0.png"),
     btn_level_die("sprites/buttons/levels/level0.png"),
+    btn_level_survival("sprites/buttons/levels/level0.png"),
 
     // IL GRAN FINALE!
     ;

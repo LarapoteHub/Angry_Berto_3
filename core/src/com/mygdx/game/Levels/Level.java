@@ -22,6 +22,8 @@ public abstract class Level {
     protected int enemiesSpawned = 0;
     protected int enemiesDestroyed = 0;
 
+    protected boolean survivalMode = false;
+
     protected Timer.Task win = new Timer.Task() {
         @Override
         public void run() {
@@ -56,8 +58,8 @@ public abstract class Level {
             GameEngine.changeUniverse(2);
             System.out.println("UNIVERSO CAMBIADO");
         }
-
-        if (phasesCount >= maxPhases) {
+        // Modo survival añadido a mano. No hay spawn despues del boss sino...
+        if (phasesCount >= maxPhases && !survivalMode) {
             phasesCount = 0;
             //cambiamos al boss (si nPhases es 11, la del boss sería las 11(la doceava)).
             phase = nPhases;

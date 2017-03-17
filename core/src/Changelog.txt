@@ -233,6 +233,14 @@ Arreglado error de rotacion del BaredWireEnemy.
 -- RuLoSp --
 Añadido boton de Mute Funcional (Falta sprite para UnMute)
 
+0.3_0_1
+-- RuLoSp --
+Añadido segundo sprite del boton Mute
+Hecho que el enemigo "BarbedWire" pueda spawnear
+Ocultado los niveles de prueba (DISTRIBUCION)
+Rebalanceado escudo de Enemigo azul
+Easter egg en botones "Not implemented yet"
+Añadido modo supervivencia (Falta arreglar que haga spawn de vez en cuando el boss)
 
 
 

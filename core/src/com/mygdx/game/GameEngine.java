@@ -43,6 +43,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import sun.rmi.runtime.Log;
+
 /**
  * Created by 100VOL on 16/08/2016.
  */
@@ -286,11 +288,13 @@ public class GameEngine {
 			// Improved FPS counter. Draw FPS count every 30 seconds.
 			// For Improved accuracy
 			subTotal += 1 / Gdx.graphics.getDeltaTime();
-			if (count++ % 30 == 0) {
+			if (count % 30 == 0) {
 				time = subTotal / count;
 				subTotal = 0;
 				count = 1;
 			}
+
+			System.out.println(time);
 
 			batch.begin();
 

@@ -35,6 +35,7 @@ import com.mygdx.game.Screens.Scr_Scores;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Created by Red Mercy on 9/26/2016.
@@ -83,14 +84,14 @@ public class Logic extends GameEngine implements Runnable {
 
         if (GameEngine.gameState.isLoading()) {
 
-            if (MathUtils.random(0,100) >= 99) {
+            if (MathUtils.random(0, 100) >= 99) {
                 texts.get(0).setText(Scr_Loading.getRandomText());
             }
 
-            texts.get(1).setText((int)(loader.getProgress() * 100) + "%");
+            texts.get(1).setText((int) (loader.getProgress() * 100) + "%");
             if (loader.update()) {
                 // Inicializar el musicManager despues de cargar todo, ya que usa una cancion...
-                MyGdxGame.musicManager  = new MusicManager();
+                MyGdxGame.musicManager = new MusicManager();
                 initComponents();
                 GameEngine.gameState.mainMenu();
             }
@@ -118,6 +119,7 @@ public class Logic extends GameEngine implements Runnable {
         }
 
         checkButtonPress();
+        checkButtonRemove();
         if (gameState.isInEndGame()) {
             handleEndGame();
         }
@@ -415,6 +417,21 @@ public class Logic extends GameEngine implements Runnable {
                     }
                 }
             }
+    }
+
+    private void checkButtonRemove() {
+        if (buttons.size() > 0)
+            for (Map.Entry<String, Button> b : buttons.entrySet()) {
+                if (b.getValue().remove) {
+                    buttons.remove(b.getKey());
+                    /*
+                        TODO AMAÑAR ESTO CON XEITO. El Break deberia ser comprobado fuera
+                        del bucle y despues reiniciada la comprobacion.
+                    */
+                    break;
+                }
+            }
+
     }
 
     private void updateInterface() {

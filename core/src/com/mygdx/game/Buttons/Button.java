@@ -26,6 +26,8 @@ public abstract class Button extends Rectangle {
     // Interactuar de distinta manera si es un btn de power up
     public boolean isPowerUp = false;
 
+    public boolean remove = false;
+
     // Inicializacion estandar con el extra de la textura del botón
 
     public Button(float x, float y, float width, float height, String name) {
@@ -87,6 +89,10 @@ public abstract class Button extends Rectangle {
     }
 
     public abstract void onTouch();
+
+    public void setRemove(boolean remove) {
+        this.remove = remove;
+    }
 
     public String getName() {
         return name;

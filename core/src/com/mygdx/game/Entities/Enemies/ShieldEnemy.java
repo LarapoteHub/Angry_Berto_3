@@ -146,8 +146,8 @@ public class ShieldEnemy extends Enemy {
                 }
             }
         };
-
-        Timer.schedule(shieldTimer, 0.1f, 0.1f);
+        // TIMER REDUCIDO, BALANCEADO!
+        Timer.schedule(shieldTimer, 0.05f, 0.05f);
 
     }
 

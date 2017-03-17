@@ -14,7 +14,6 @@ public abstract class Entity {
 	protected float vSpeed = 0;
 	protected float hSpeed = 0;
     protected Rectangle collisionBox;     // Need to change this
-    protected Texture tex;
     public static GameEngine engine;
 
     protected int damage;

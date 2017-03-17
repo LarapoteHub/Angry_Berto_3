@@ -50,7 +50,7 @@ public class Btn_Mute extends Button {
         if (GameEngine.isMuted())
             GameEngine.batch.draw(spr[0].getTexture(), x, y, width, height);
         else
-            GameEngine.batch.draw(spr[0].getTexture(), x, y, width, height);
+            GameEngine.batch.draw(spr[1].getTexture(), x, y, width, height);
     }
 
 }
