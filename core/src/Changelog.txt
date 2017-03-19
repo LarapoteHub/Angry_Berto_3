@@ -244,7 +244,7 @@ Añadido modo supervivencia (Falta arreglar que haga spawn de vez en cuando el b
 
 0.3_0_2
 -- 10vol --
-Refactorizado Level0 a Level. Añadido bunmuteButton a los assets, no esta actualizado, realizar una
+Refactorizado Level0 a Level1. Añadido bunmuteButton a los assets, no esta actualizado, realizar una
     copia de muteButton con tal nombre en la misma carpeta.
 
 
