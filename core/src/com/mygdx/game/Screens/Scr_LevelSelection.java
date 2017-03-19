@@ -4,10 +4,8 @@ import com.mygdx.game.Buttons.Btn_Exit;
 import com.mygdx.game.Buttons.Btn_LevelSelection;
 import com.mygdx.game.Buttons.Btn_Mute;
 import com.mygdx.game.GameEngine;
-import com.mygdx.game.Levels.Level0;
-import com.mygdx.game.Levels.LevelDie;
+import com.mygdx.game.Levels.Level1;
 import com.mygdx.game.Levels.LevelSurvival;
-import com.mygdx.game.Levels.LevelTest;
 import com.mygdx.game.MyGdxGame;
 
 /**
@@ -19,7 +17,7 @@ public class Scr_LevelSelection implements Screen {
     @Override
     public void initComponents() {
 
-        GameEngine.addButton(new Btn_LevelSelection(350, 200, "btn_level0", new Level0()));
+        GameEngine.addButton(new Btn_LevelSelection(350, 200, "btn_level0", new Level1()));
         //super(350, 80, 80, 50, spr);
 
 

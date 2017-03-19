@@ -11,11 +11,11 @@ import com.mygdx.game.MyGdxGame;
 /**
  * Created by 100VOL on 21/08/2016.
  */
-public class Level0 extends Level {
+public class Level1 extends Level {
 
     private int random;
 
-    public Level0() {
+    public Level1() {
         this.nPhases = 13;
         this.maxPhases = MathUtils.random(12, 18);
         this.name = "Level 1";
