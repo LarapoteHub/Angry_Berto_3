@@ -242,6 +242,11 @@ Rebalanceado escudo de Enemigo azul
 Easter egg en botones "Not implemented yet"
 Añadido modo supervivencia (Falta arreglar que haga spawn de vez en cuando el boss)
 
+0.3_0_2
+-- 10vol --
+Refactorizado Level0 a Level. Añadido bunmuteButton a los assets, no esta actualizado, realizar una
+    copia de muteButton con tal nombre en la misma carpeta.
+
 
 
 
