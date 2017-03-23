@@ -247,7 +247,10 @@ Añadido modo supervivencia (Falta arreglar que haga spawn de vez en cuando el b
 Refactorizado Level0 a Level1. Añadido bunmuteButton a los assets, no esta actualizado, realizar una
     copia de muteButton con tal nombre en la misma carpeta.
 
-
+0.3_1
+-- 100vol --
+Transformados a secuenciales los niveles que no son survival.
+Cambiadas hordas de Level1.
 
 
 

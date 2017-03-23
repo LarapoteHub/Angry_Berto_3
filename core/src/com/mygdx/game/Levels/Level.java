@@ -54,23 +54,33 @@ public abstract class Level {
 
         running = false;
 
+
         if (MathUtils.random(100) > 98) {
             GameEngine.changeUniverse(2);
             System.out.println("UNIVERSO CAMBIADO");
         }
-        // Modo survival añadido a mano. No hay spawn despues del boss sino...
-        if (phasesCount >= maxPhases && !survivalMode) {
-            phasesCount = 0;
-            //cambiamos al boss (si nPhases es 11, la del boss sería las 11(la doceava)).
-            phase = nPhases;
+
+        if (survivalMode) {
+
+            // Modo survival añadido a mano. No hay spawn despues del boss sino...
+            if (phasesCount >= maxPhases && !survivalMode) {
+                phasesCount = 0;
+                //cambiamos al boss (si nPhases es 11, la del boss sería las 11(la doceava)).
+                phase = nPhases/*(bossPhase)*/;
+            } else {
+                //si hay 11 fases, generariamos un random entre 0 y 10.
+                phase = MathUtils.random(0, nPhases - 1);
+                phasesCount++;
+            }
+
         } else {
-            //si hay 11 fases, generariamos un random entre 0 y 10.
-            phase = MathUtils.random(0, nPhases-1);
-            phasesCount++;
+
+            phase++;
         }
 
 
     }
+
 
     public String getName() {
         return name;

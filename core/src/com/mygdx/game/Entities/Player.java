@@ -17,7 +17,7 @@ import com.mygdx.game.Projectiles.PlayerShoot;
 public class Player extends Ship {
 
 	//TODO Cheats!
-	private boolean GODMODE = false;
+	private boolean GODMODE = true;
 	private float initialLives;
 	// --------
 
